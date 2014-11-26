@@ -18,41 +18,41 @@
 // ----------------------------------------------------------------------------
 class SnoopDump : public SnoopProcess
 {
-  Q_OBJECT
+	Q_OBJECT
 
 public:
-  static const char* DEFAULT_DUMP_FILE_NAME;
+	static const char* DEFAULT_DUMP_FILE_NAME;
 
 protected:
-  pcap*          m_pcap;
-  pcap_dumper_t* m_pcap_dumper;
+	pcap*          m_pcap;
+	pcap_dumper_t* m_pcap_dumper;
 
 public:
-  SnoopDump(void* owner = NULL);
-  virtual ~SnoopDump();
+	SnoopDump(void* owner = NULL);
+	virtual ~SnoopDump();
 
 public:
-  QString filePath;
-  int     linkType;
+	QString filePath;
+	int     linkType;
 
 protected:
-  virtual bool doOpen();
-  virtual bool doClose();
+	virtual bool doOpen();
+	virtual bool doClose();
 
 public slots:
-  void dump(SnoopPacket* packet);
+	void dump(SnoopPacket* packet);
 
 signals:
-  void dumped(SnoopPacket* packet);
+	void dumped(SnoopPacket* packet);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+	virtual void load(VXml xml);
+	virtual void save(VXml xml);
 
 #ifdef QT_GUI_LIB
 public: // for VOptionable
-  virtual void optionAddWidget(QLayout* layout);
-  virtual void optionSaveDlg(QDialog* dialog);
+	virtual void optionAddWidget(QLayout* layout);
+	virtual void optionSaveDlg(QDialog* dialog);
 #endif // QT_GUI_LIB
 };
 

@@ -22,9 +22,9 @@
 class SnoopDelayItem
 {
 public:
-  VTick             tick;
-  QByteArray        buf;
-  WINDIVERT_ADDRESS divertAddr;
+	VTick             tick;
+	QByteArray        buf;
+	WINDIVERT_ADDRESS divertAddr;
 };
 
 // ----------------------------------------------------------------------------
@@ -33,15 +33,15 @@ public:
 class SnoopDelayItemMgr : public VLockable
 {
 public:
-  SnoopDelayItemMgr();
-  virtual ~SnoopDelayItemMgr();
+	SnoopDelayItemMgr();
+	virtual ~SnoopDelayItemMgr();
 
 public:
-  SnoopCapture*         writer; // reference
-  QList<SnoopDelayItem> items;
+	SnoopCapture*         writer; // reference
+	QList<SnoopDelayItem> items;
 
 public:
-  int flush(VTick now = 0xFFFFFFFFFFFF);
+	int flush(VTick now = 0xFFFFFFFFFFFF);
 };
 
 // ----------------------------------------------------------------------------
@@ -51,14 +51,14 @@ class SnoopDelay;
 class SnoopDelayThread : public VThread
 {
 public:
-  SnoopDelayThread(SnoopDelay* delay);
-  virtual ~SnoopDelayThread();
+	SnoopDelayThread(SnoopDelay* delay);
+	virtual ~SnoopDelayThread();
 
 public:
-  SnoopDelayItemMgr itemMgr;
+	SnoopDelayItemMgr itemMgr;
 
 protected:
-  virtual void run();
+	virtual void run();
 };
 
 // ----------------------------------------------------------------------------
@@ -66,34 +66,34 @@ protected:
 // ----------------------------------------------------------------------------
 class SnoopDelay : public SnoopProcess
 {
-  Q_OBJECT
+	Q_OBJECT
 
 public:
-  SnoopDelay(void* owner = NULL);
-  virtual ~SnoopDelay();
+	SnoopDelay(void* owner = NULL);
+	virtual ~SnoopDelay();
 
 public:
-  SnoopCapture* writer;
-  VTimeout      timeout;
+	SnoopCapture* writer;
+	VTimeout      timeout;
 
 protected:
-  SnoopDelayThread* thread;
+	SnoopDelayThread* thread;
 
 protected:
-  virtual bool doOpen();
-  virtual bool doClose();
+	virtual bool doOpen();
+	virtual bool doClose();
 
 public slots:
-  void delay(SnoopPacket* packet);
+	void delay(SnoopPacket* packet);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+	virtual void load(VXml xml);
+	virtual void save(VXml xml);
 
 #ifdef QT_GUI_LIB
 public: // for VOptionable
-  virtual void optionAddWidget(QLayout* layout);
-  virtual void optionSaveDlg(QDialog* dialog);
+	virtual void optionAddWidget(QLayout* layout);
+	virtual void optionSaveDlg(QDialog* dialog);
 #endif // QT_GUI_LIB
 };
 

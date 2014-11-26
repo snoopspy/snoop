@@ -18,33 +18,33 @@
 // ----------------------------------------------------------------------------
 class SnoopInterface : public VXmlable /*, private VNonCopyable */ // gilgil temp 2012.06.04
 {
-  friend class SnoopInterfaces;
-  friend class QList<SnoopInterface>;
-  // friend class QList<SnoopInterface>::iterator; // gilgil temp 2012.06.05
-  friend class SnoopRemote;
+	friend class SnoopInterfaces;
+	friend class QList<SnoopInterface>;
+	// friend class QList<SnoopInterface>::iterator; // gilgil temp 2012.06.05
+	friend class SnoopRemote;
 
 public: // protected: // gilgil temp 2012.06.04
-  SnoopInterface();
-  virtual ~SnoopInterface();
+	SnoopInterface();
+	virtual ~SnoopInterface();
 
 public:
-  int          index;
-  QString      name;
-  QString      description;
-  pcap_if_t*   dev;
+	int          index;
+	QString      name;
+	QString      description;
+	pcap_if_t*   dev;
 
 #ifdef WIN32
 public:
-  PIP_ADAPTER_INFO adapterInfo;
+	PIP_ADAPTER_INFO adapterInfo;
 #endif // WIN32
 
 public:
-  bool operator == (SnoopInterface& rhs);
-  bool operator != (SnoopInterface& rhs);
+	bool operator == (SnoopInterface& rhs);
+	bool operator != (SnoopInterface& rhs);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+	virtual void load(VXml xml);
+	virtual void save(VXml xml);
 };
 
 // ----------------------------------------------------------------------------
@@ -52,41 +52,41 @@ public:
 // ----------------------------------------------------------------------------
 class SnoopInterfaces : public QList<SnoopInterface>, public VXmlable , private VNonCopyable // gilgil temp 2012.06.04
 {
-  friend class SnoopRemote;
-  friend class _SnoopInterfaces;
+	friend class SnoopRemote;
+	friend class _SnoopInterfaces;
 
 public:
-  SnoopInterfaces();
-  virtual ~SnoopInterfaces();
+	SnoopInterfaces();
+	virtual ~SnoopInterfaces();
 
 public:
-  pcap_if_t*       allDevs;
+	pcap_if_t*       allDevs;
 
 #ifdef WIN32
 public:
-  PIP_ADAPTER_INFO allAdaptersInfo;
+	PIP_ADAPTER_INFO allAdaptersInfo;
 #endif // WIN32
 
 protected:
-  void initialize();
-  void finalize();
+	void initialize();
+	void finalize();
 
 public:
-  bool operator == (SnoopInterfaces& rhs);
-  bool operator != (SnoopInterfaces& rhs);
+	bool operator == (SnoopInterfaces& rhs);
+	bool operator != (SnoopInterfaces& rhs);
 
 public:
-  void load(VXml xml);
-  void save(VXml xml);
+	void load(VXml xml);
+	void save(VXml xml);
 
 public:
-  static int getBestAdapterIndex(QString host = "");
+	static int getBestAdapterIndex(QString host = "");
 
-  //
-  // Static
-  //
+	//
+	// Static
+	//
 public:
-  static SnoopInterfaces& instance();
+	static SnoopInterfaces& instance();
 };
 
 #endif // __SNOOP_ADAPTER_INFO_H__

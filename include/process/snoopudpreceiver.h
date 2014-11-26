@@ -23,11 +23,11 @@
 class SnoopUdpReceiverFlowItem
 {
 public:
-  bool    first;
-  quint16 lastId;
+	bool    first;
+	quint16 lastId;
 
 public:
-  void clear();
+	void clear();
 };
 
 // ----------------------------------------------------------------------------
@@ -35,48 +35,48 @@ public:
 // ----------------------------------------------------------------------------
 class SnoopUdpReceiver : public SnoopProcess
 {
-  Q_OBJECT
+	Q_OBJECT
 
 public:
-  SnoopUdpReceiver(void* owner = NULL);
-  virtual ~SnoopUdpReceiver();
+	SnoopUdpReceiver(void* owner = NULL);
+	virtual ~SnoopUdpReceiver();
 
 
 protected:
-  virtual bool doOpen();
-  virtual bool doClose();
+	virtual bool doOpen();
+	virtual bool doClose();
 
 public:
-  SnoopFlowMgr* flowMgr;
-  SnoopCapture* writer;
-  QByteArray    dscr;
-  int           headerSize;
-  bool          autoBlockOnSplit;
+	SnoopFlowMgr* flowMgr;
+	SnoopCapture* writer;
+	QByteArray    dscr;
+	int           headerSize;
+	bool          autoBlockOnSplit;
 
 protected:
-  size_t udpFlowOffset;
+	size_t udpFlowOffset;
 
 protected slots:
-  void __udpFlowCreate(SnoopUdpFlowKey* key, SnoopFlowValue* value);
-  void __udpFlowDelete(SnoopUdpFlowKey* key, SnoopFlowValue* value);
+	void __udpFlowCreate(SnoopUdpFlowKey* key, SnoopFlowValue* value);
+	void __udpFlowDelete(SnoopUdpFlowKey* key, SnoopFlowValue* value);
 
 protected:
-  void doSplit(SnoopUdpChunk& chunk, SnoopPacket* packet);
+	void doSplit(SnoopUdpChunk& chunk, SnoopPacket* packet);
 
 signals:
-  void splitted(SnoopPacket* packet);
+	void splitted(SnoopPacket* packet);
 
 public slots:
-  void split(SnoopPacket* packet);
+	void split(SnoopPacket* packet);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+	virtual void load(VXml xml);
+	virtual void save(VXml xml);
 
 #ifdef QT_GUI_LIB
 public: // for VOptionable
-  virtual void optionAddWidget(QLayout* layout);
-  virtual void optionSaveDlg(QDialog* dialog);
+	virtual void optionAddWidget(QLayout* layout);
+	virtual void optionSaveDlg(QDialog* dialog);
 #endif // QT_GUI_LIB
 };
 

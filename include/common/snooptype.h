@@ -31,44 +31,44 @@ typedef struct pcap_pkthdr             PKT_HDR;
 class Mac
 {
 public:
-  static const int MAC_SIZE = 6;
+	static const int MAC_SIZE = 6;
 
 protected:
-  UINT8 value[MAC_SIZE];
+	UINT8 value[MAC_SIZE];
 
 public:
-  Mac()                   {                                       } // default ctor
-  Mac(const UINT8* value) { memcpy(this->value, value, MAC_SIZE); } // conversion ctor
+	Mac()                   {                                       } // default ctor
+	Mac(const UINT8* value) { memcpy(this->value, value, MAC_SIZE); } // conversion ctor
 
-  operator UINT8*() const { return (UINT8*)value;                 } // cast operator
-
-public:
-  Mac(const QString s);
-  Mac(const char* s)      { *this = QString(s);                         }
+	operator UINT8*() const { return (UINT8*)value;                 } // cast operator
 
 public:
-  QString str() const;
-  QString qformat(QString format);
-
-  bool operator == (const Mac& rhs) const   { return memcmp(value, rhs.value, MAC_SIZE) == 0; }
-  bool operator != (const Mac& rhs) const   { return memcmp(value, rhs.value, MAC_SIZE) != 0; }
-  bool operator <  (const Mac& rhs) const   { return memcmp(value, rhs.value, MAC_SIZE) <  0; }
-  bool operator >  (const Mac& rhs) const   { return memcmp(value, rhs.value, MAC_SIZE) >  0; }
-  bool operator <= (const Mac& rhs) const   { return memcmp(value, rhs.value, MAC_SIZE) <= 0; }
-  bool operator >= (const Mac& rhs) const   { return memcmp(value, rhs.value, MAC_SIZE) >= 0; }
-  bool operator == (const UINT8* rhs) const { return memcmp(value, rhs,       MAC_SIZE) == 0; }
+	Mac(const QString s);
+	Mac(const char* s)      { *this = QString(s);                         }
 
 public:
-  void clear()          { *this = cleanMac();               }
+	QString str() const;
+	QString qformat(QString format);
+
+	bool operator == (const Mac& rhs) const   { return memcmp(value, rhs.value, MAC_SIZE) == 0; }
+	bool operator != (const Mac& rhs) const   { return memcmp(value, rhs.value, MAC_SIZE) != 0; }
+	bool operator <  (const Mac& rhs) const   { return memcmp(value, rhs.value, MAC_SIZE) <  0; }
+	bool operator >  (const Mac& rhs) const   { return memcmp(value, rhs.value, MAC_SIZE) >  0; }
+	bool operator <= (const Mac& rhs) const   { return memcmp(value, rhs.value, MAC_SIZE) <= 0; }
+	bool operator >= (const Mac& rhs) const   { return memcmp(value, rhs.value, MAC_SIZE) >= 0; }
+	bool operator == (const UINT8* rhs) const { return memcmp(value, rhs,       MAC_SIZE) == 0; }
 
 public:
-  bool isClean()        { return *this == cleanMac();       }
-  bool isBroadcast()    { return *this == broadcastMac();   } // FF:FF:FF:FF:FF:FF
-  bool isMulticast()    { return value[0] == 0x01 && value[1] == 0x00 && value[2] == 0x5E && (value[3] & 0x80) == 0x00; } // 01:00:5e:0*
+	void clear()          { *this = cleanMac();               }
 
-  static Mac  randomMac();
-  static Mac& cleanMac();
-  static Mac& broadcastMac();
+public:
+	bool isClean()        { return *this == cleanMac();       }
+	bool isBroadcast()    { return *this == broadcastMac();   } // FF:FF:FF:FF:FF:FF
+	bool isMulticast()    { return value[0] == 0x01 && value[1] == 0x00 && value[2] == 0x5E && (value[3] & 0x80) == 0x00; } // 01:00:5e:0*
+
+	static Mac  randomMac();
+	static Mac& cleanMac();
+	static Mac& broadcastMac();
 };
 #pragma pack(pop)
 
@@ -346,9 +346,9 @@ public:
 // ----------------------------------------------------------------------------
 typedef struct // libnet_ethernet_hdr
 {
-    Mac ether_dhost;      /* destination ethernet address */
-    Mac ether_shost;      /* source ethernet address */
-    u_int16_t ether_type; /* protocol */
+		Mac ether_dhost;      /* destination ethernet address */
+		Mac ether_shost;      /* source ethernet address */
+		u_int16_t ether_type; /* protocol */
 } ETH_HDR;
 
 // ----------------------------------------------------------------------------
@@ -362,14 +362,14 @@ typedef struct libnet_fddi_hdr FDDI_HDR;
 typedef struct IP_HDR // libnet_ipv4_hdr
 {
 #if (LIBNET_LIL_ENDIAN)
-    u_int8_t ip_hl:4,      /* header length */
-           ip_v:4;         /* version */
+		u_int8_t ip_hl:4,      /* header length */
+					 ip_v:4;         /* version */
 #endif
 #if (LIBNET_BIG_ENDIAN)
-    u_int8_t ip_v:4,       /* version */
-           ip_hl:4;        /* header length */
+		u_int8_t ip_v:4,       /* version */
+					 ip_hl:4;        /* header length */
 #endif
-    u_int8_t ip_tos;       /* type of service */
+		u_int8_t ip_tos;       /* type of service */
 #ifndef IPTOS_LOWDELAY
 #define IPTOS_LOWDELAY      0x10
 #endif
@@ -382,9 +382,9 @@ typedef struct IP_HDR // libnet_ipv4_hdr
 #ifndef IPTOS_LOWCOST
 #define IPTOS_LOWCOST       0x02
 #endif
-    u_int16_t ip_len;         /* total length */
-    u_int16_t ip_id;          /* identification */
-    u_int16_t ip_off;
+		u_int16_t ip_len;         /* total length */
+		u_int16_t ip_id;          /* identification */
+		u_int16_t ip_off;
 #ifndef IP_RF
 #define IP_RF 0x8000          /* reserved fragment flag */
 #endif
@@ -397,10 +397,10 @@ typedef struct IP_HDR // libnet_ipv4_hdr
 #ifndef IP_OFFMASK
 #define IP_OFFMASK 0x1fff     /* mask for fragmenting bits */
 #endif
-    u_int8_t ip_ttl;          /* time to live */
-    u_int8_t ip_p;            /* protocol */
-    u_int16_t ip_sum;         /* checksum */
-    u_int32_t ip_src, ip_dst;  /* source and dest address */
+		u_int8_t ip_ttl;          /* time to live */
+		u_int8_t ip_p;            /* protocol */
+		u_int16_t ip_sum;         /* checksum */
+		u_int32_t ip_src, ip_dst;  /* source and dest address */
 } IP_HDR;
 
 // ----------------------------------------------------------------------------
@@ -409,10 +409,10 @@ typedef struct IP_HDR // libnet_ipv4_hdr
 typedef struct libnet_arp_hdr _ARP_HDR;
 typedef struct ARP_HDR : _ARP_HDR
 {
-  Mac ar_sa;
-  Ip  ar_si;
-  Mac ar_ta;
-  Ip  ar_ti;
+	Mac ar_sa;
+	Ip  ar_si;
+	Mac ar_ta;
+	Ip  ar_ti;
 } ARP_HDR;
 
 // ----------------------------------------------------------------------------
@@ -435,12 +435,12 @@ typedef struct libnet_icmpv4_hdr ICMP_HDR;
 // ----------------------------------------------------------------------------
 typedef struct DNS_HDR
 {
-    u_int16_t id;             /* DNS packet ID */
-    u_int16_t flags;          /* DNS flags */
-    u_int16_t num_q;          /* Number of questions */
-    u_int16_t num_answ_rr;    /* Number of answer resource records */
-    u_int16_t num_auth_rr;    /* Number of authority resource records */
-    u_int16_t num_addi_rr;    /* Number of additional resource records */
+		u_int16_t id;             /* DNS packet ID */
+		u_int16_t flags;          /* DNS flags */
+		u_int16_t num_q;          /* Number of questions */
+		u_int16_t num_answ_rr;    /* Number of answer resource records */
+		u_int16_t num_auth_rr;    /* Number of authority resource records */
+		u_int16_t num_addi_rr;    /* Number of additional resource records */
 } DNS_HDR;
 
 #pragma pack(pop)

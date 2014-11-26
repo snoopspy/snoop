@@ -19,13 +19,13 @@
 class SnoopUdpChunkInfo
 {
 public:
-  static const int DSCR_SIZE = 4;
-  static const int INFO_SIZE = 8;
+	static const int DSCR_SIZE = 4;
+	static const int INFO_SIZE = 8;
 
 public:
-  QByteArray dscr; // 4 BYTE
-  quint16    id;   // 2 BYTE
-  quint16    len;  // 2 BYTE
+	QByteArray dscr; // 4 BYTE
+	quint16    id;   // 2 BYTE
+	quint16    len;  // 2 BYTE
 };
 
 // ----------------------------------------------------------------------------
@@ -34,8 +34,8 @@ public:
 class SnoopUdpChunkPayload
 {
 public:
-  QByteArray header;
-  QByteArray body;
+	QByteArray header;
+	QByteArray body;
 };
 
 // ----------------------------------------------------------------------------
@@ -44,12 +44,12 @@ public:
 class SnoopUdpChunk
 {
 public:
-  SnoopUdpChunkInfo    info;
-  SnoopUdpChunkPayload payload;
+	SnoopUdpChunkInfo    info;
+	SnoopUdpChunkPayload payload;
 
 public:
-  int encode(QByteArray& ba); // into ba
-  int decode(int headerSize, QByteArray& ba); // from ba
+	int encode(QByteArray& ba); // into ba
+	int decode(int headerSize, QByteArray& ba); // from ba
 };
 
 // ----------------------------------------------------------------------------

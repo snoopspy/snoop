@@ -19,12 +19,12 @@
 class SnoopUdp
 {
 public:
-  static bool   isData(IP_HDR* ipHdr, UDP_HDR* udpHdr, BYTE** udpData = NULL, int* udpDataLen = NULL);
-  static UINT16 checksum(IP_HDR* ipHdr, UDP_HDR* udpHdr);
+	static bool   isData(IP_HDR* ipHdr, UDP_HDR* udpHdr, BYTE** udpData = NULL, int* udpDataLen = NULL);
+	static UINT16 checksum(IP_HDR* ipHdr, UDP_HDR* udpHdr);
 
 public:
-  static bool parse(SnoopPacket* packet);
-  static bool parseAll(SnoopPacket* packet);
+	static bool parse(SnoopPacket* packet);
+	static bool parseAll(SnoopPacket* packet);
 };
 
 #endif // __SNOOP_UDP_H__

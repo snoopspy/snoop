@@ -19,13 +19,13 @@
 class SnoopEth
 {
 public:
-  static bool is   (ETH_HDR* ethHdr, UINT16 etherType, void** networkHdr);
-  static bool isIp (ETH_HDR* ethHdr, IP_HDR** ipHdr);
-  static bool isArp(ETH_HDR* ethHdr, ARP_HDR** arpHdr);
-  
+	static bool is   (ETH_HDR* ethHdr, UINT16 etherType, void** networkHdr);
+	static bool isIp (ETH_HDR* ethHdr, IP_HDR** ipHdr);
+	static bool isArp(ETH_HDR* ethHdr, ARP_HDR** arpHdr);
+	
 public:
-  static bool parse(SnoopPacket* packet);
-  static bool parseAll(SnoopPacket* packet);
+	static bool parse(SnoopPacket* packet);
+	static bool parseAll(SnoopPacket* packet);
 };
 
 #endif // __SNOOP_ETH_H__

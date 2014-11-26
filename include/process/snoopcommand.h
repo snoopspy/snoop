@@ -22,30 +22,30 @@
 class SnoopCommandItem : public VXmlable
 {
 public:
-  SnoopCommandItem();
-  virtual ~SnoopCommandItem();
+	SnoopCommandItem();
+	virtual ~SnoopCommandItem();
 
 public:
-  bool    enabled;
-  QString command;
-  bool    sync;
+	bool    enabled;
+	QString command;
+	bool    sync;
 
 protected:
-  QProcess* process;
+	QProcess* process;
 
 public:
-  bool execute(VError& error);
+	bool execute(VError& error);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+	virtual void load(VXml xml);
+	virtual void save(VXml xml);
 
 #ifdef QT_GUI_LIB
 public:
-  static const int ENABLED_IDX = 0;
-  static const int COMMAND_IDX = 1;
-  static const int SYNC_IDX    = 2;
-  #endif // QT_GUI_LIB
+	static const int ENABLED_IDX = 0;
+	static const int COMMAND_IDX = 1;
+	static const int SYNC_IDX    = 2;
+	#endif // QT_GUI_LIB
 };
 
 #ifdef QT_GUI_LIB
@@ -59,11 +59,11 @@ void operator << (SnoopCommandItem& item, QTreeWidgetItem& treeWidgetItem);
 class SnoopCommandItems : public QList<SnoopCommandItem>, public VXmlable
 {
 public:
-  bool execute(VError& error);
+	bool execute(VError& error);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+	virtual void load(VXml xml);
+	virtual void save(VXml xml);
 };
 
 #ifdef QT_GUI_LIB
@@ -76,28 +76,28 @@ void operator << (SnoopCommandItems& items, QTreeWidget& treeWidget);
 // ----------------------------------------------------------------------------
 class SnoopCommand : public SnoopProcess
 {
-  Q_OBJECT
+	Q_OBJECT
 
 public:
-  SnoopCommand(void* owner = NULL);
-  virtual ~SnoopCommand();
+	SnoopCommand(void* owner = NULL);
+	virtual ~SnoopCommand();
 
 protected:
-  virtual bool doOpen();
-  virtual bool doClose();
+	virtual bool doOpen();
+	virtual bool doClose();
 
 public:
-  SnoopCommandItems openCommands;
-  SnoopCommandItems closeCommands;
+	SnoopCommandItems openCommands;
+	SnoopCommandItems closeCommands;
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+	virtual void load(VXml xml);
+	virtual void save(VXml xml);
 
 #ifdef QT_GUI_LIB
 public: // for VOptionable
-  virtual void optionAddWidget(QLayout* layout);
-  virtual void optionSaveDlg(QDialog* dialog);
+	virtual void optionAddWidget(QLayout* layout);
+	virtual void optionSaveDlg(QDialog* dialog);
 #endif // QT_GUI_LIB
 };
 

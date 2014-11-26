@@ -19,24 +19,24 @@
 class SnoopSourcePcap : public SnoopPcap
 {
 public:
-  SnoopSourcePcap(void* owner = NULL);
-  virtual ~SnoopSourcePcap();
+	SnoopSourcePcap(void* owner = NULL);
+	virtual ~SnoopSourcePcap();
 
 public:
-  QString source;
+	QString source;
 
 protected:
-  virtual bool doOpen();
-  virtual bool doClose();
+	virtual bool doOpen();
+	virtual bool doClose();
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+	virtual void load(VXml xml);
+	virtual void save(VXml xml);
 
 #ifdef QT_GUI_LIB
 public: // for VOptionable
-  virtual void optionAddWidget(QLayout* layout);
-  virtual void optionSaveDlg(QDialog* dialog);
+	virtual void optionAddWidget(QLayout* layout);
+	virtual void optionSaveDlg(QDialog* dialog);
 #endif // QT_GUI_LIB
 };
 

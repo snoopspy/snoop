@@ -19,37 +19,37 @@
 // ----------------------------------------------------------------------------
 class SnoopVirtualNat : public SnoopCapture
 {
-  Q_OBJECT
+	Q_OBJECT
 
 public:
-  SnoopVirtualNat(void* owner = NULL);
-  virtual ~SnoopVirtualNat();
+	SnoopVirtualNat(void* owner = NULL);
+	virtual ~SnoopVirtualNat();
 
 protected:
-  virtual bool doOpen();
-  virtual bool doClose();
+	virtual bool doOpen();
+	virtual bool doClose();
 
 protected:
-  SnoopAdapter virAdapter;
-  SnoopAdapter realAdapter;
+	SnoopAdapter virAdapter;
+	SnoopAdapter realAdapter;
 
-  SnoopNetInfo virNetInfo;
-  SnoopNetInfo realNetInfo;
+	SnoopNetInfo virNetInfo;
+	SnoopNetInfo realNetInfo;
 
-  bool changeRouteTable();
-  bool recoverRouteTable();
+	bool changeRouteTable();
+	bool recoverRouteTable();
 
 public:
-  int virAdapterIndex;
-  int realAdapterIndex;
+	int virAdapterIndex;
+	int realAdapterIndex;
 
 protected slots:
-  void myVirtualRecv(SnoopPacket* packet);
-  void myRealRecv(SnoopPacket* packet);
+	void myVirtualRecv(SnoopPacket* packet);
+	void myRealRecv(SnoopPacket* packet);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+	virtual void load(VXml xml);
+	virtual void save(VXml xml);
 };
 
 #endif // __SNOOP_VIRTUAL_NAT_H__

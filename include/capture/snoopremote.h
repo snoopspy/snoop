@@ -21,36 +21,36 @@
 // ----------------------------------------------------------------------------
 class SnoopRemote : public SnoopPcap
 {
-  Q_OBJECT
+	Q_OBJECT
 
 public:
-  SnoopRemote(void* owner = NULL);
-  virtual ~SnoopRemote();
+	SnoopRemote(void* owner = NULL);
+	virtual ~SnoopRemote();
 
 protected:
-  virtual bool doOpen();
-  virtual bool doClose();
+	virtual bool doOpen();
+	virtual bool doClose();
 
 public:
-  QString host;
-  QString userName;
-  QString password;
-  int     adapterIndex;
+	QString host;
+	QString userName;
+	QString password;
+	int     adapterIndex;
 
 protected:
-  SnoopInterfaces interfaces;
+	SnoopInterfaces interfaces;
 
 signals:
-  void interfacesReceived(SnoopRemote* remote, SnoopInterfaces* interfaces, int* adapterIndex);
+	void interfacesReceived(SnoopRemote* remote, SnoopInterfaces* interfaces, int* adapterIndex);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+	virtual void load(VXml xml);
+	virtual void save(VXml xml);
 
 #ifdef QT_GUI_LIB
 public: // for VOptionable
-  virtual void optionAddWidget(QLayout* layout);
-  virtual void optionSaveDlg(QDialog* dialog);
+	virtual void optionAddWidget(QLayout* layout);
+	virtual void optionSaveDlg(QDialog* dialog);
 #endif // QT_GUI_LIB
 };
 

@@ -10,34 +10,34 @@
 // SnoopProcessFilterWidget
 // ----------------------------------------------------------------------------
 namespace Ui {
-  class SnoopProcessFilterWidget;
+	class SnoopProcessFilterWidget;
 }
 
 class SnoopProcessFilter;
 class SnoopProcessFilterWidget : public QWidget
 {
-  Q_OBJECT
+	Q_OBJECT
 
 public:
-  explicit SnoopProcessFilterWidget(QWidget *parent, Qt::WindowFlags f);
-  ~SnoopProcessFilterWidget();
+	explicit SnoopProcessFilterWidget(QWidget *parent, Qt::WindowFlags f);
+	~SnoopProcessFilterWidget();
 
 public:
-  SnoopProcessFilter* filter; // reference
+	SnoopProcessFilter* filter; // reference
 
 protected:
-  virtual bool event(QEvent* event);
+	virtual bool event(QEvent* event);
 
 public:
-  void showPolicyMap();
-  void setPolicyMap();
+	void showPolicyMap();
+	void setPolicyMap();
 
 private slots:
-  void on_pbClear_clicked();
-  void on_treeWidget_clicked(const QModelIndex &index);
+	void on_pbClear_clicked();
+	void on_treeWidget_clicked(const QModelIndex &index);
 
 private:
-  Ui::SnoopProcessFilterWidget *ui;
+	Ui::SnoopProcessFilterWidget *ui;
 
 };
 
@@ -47,7 +47,7 @@ private:
 class QShowPolicyMapEvent : public QEvent
 {
 public:
-  QShowPolicyMapEvent();
+	QShowPolicyMapEvent();
 };
 
 #endif // QT_GUI_LIB

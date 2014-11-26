@@ -19,17 +19,17 @@
 class SnoopHost : public VXmlable
 {
 public:
-  Ip      ip;
-  Mac     mac;
-  QString name;
+	Ip      ip;
+	Mac     mac;
+	QString name;
 
 public:
-  SnoopHost(Ip ip = 0, Mac mac = Mac::cleanMac(), QString name = "");
-  virtual ~SnoopHost();
+	SnoopHost(Ip ip = 0, Mac mac = Mac::cleanMac(), QString name = "");
+	virtual ~SnoopHost();
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+	virtual void load(VXml xml);
+	virtual void save(VXml xml);
 };
 
 // ----------------------------------------------------------------------------
@@ -38,11 +38,11 @@ public:
 class SnoopHostList : public QList<SnoopHost>, public VXmlable
 {
 public:
-  SnoopHost* findByIp(Ip ip);
+	SnoopHost* findByIp(Ip ip);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+	virtual void load(VXml xml);
+	virtual void save(VXml xml);
 };
 
 #endif // __SNOOP_HOST_LIST_H__
