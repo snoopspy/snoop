@@ -1,0 +1,7 @@
+build*/
+*.a
+*.autosave
+*.bak
+*.so
+*.user
+
