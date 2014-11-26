@@ -1,7 +1,10 @@
+Makefile
 build*/
+moc_*
 *.a
 *.autosave
 *.bak
+*.o
 *.so
 *.user
 
