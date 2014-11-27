@@ -1,4 +1,4 @@
-DEFINES += GTEST
+DEFINES += GTEST # gilgil temp 2014.11.28
 CONFIG += SNOOP_LIB_BUILD
 QT -= gui
 #QT += gui widgets
