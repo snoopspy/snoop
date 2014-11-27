@@ -1,3 +1,4 @@
+DEFINES += GTEST
 CONFIG += SNOOP_LIB_BUILD
 QT -= gui
 #QT += gui widgets
