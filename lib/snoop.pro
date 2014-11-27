@@ -1,8 +1,8 @@
-DEFINES += GTEST # gilgil temp 2014.11.28
 CONFIG += SNOOP_LIB_BUILD
 QT -= gui
 #QT += gui widgets
 
+include (../../../etc/gtest/gtest.pri) # gilgil temp 2014.11.28
 include (snoop.pri)
 
 TARGET   = $${SNOOP_LIB_NAME}
