@@ -13,7 +13,7 @@
 
 #include <VCommon>
 #include <VNet>
-#include <VDesign>
+// #include <VDesign> // gilgil temp 2014.11.27
 #include <VError>
 #include <VLog>
 #include <VXml>
