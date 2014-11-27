@@ -16,7 +16,7 @@
 // ----------------------------------------------------------------------------
 // SnoopInterface
 // ----------------------------------------------------------------------------
-class SnoopInterface : public VXmlable /*, private VNonCopyable */ // gilgil temp 2012.06.04
+class SnoopInterface : public VXmlable
 {
 	friend class SnoopInterfaces;
 	friend class QList<SnoopInterface>;
@@ -45,12 +45,15 @@ public:
 public:
 	virtual void load(VXml xml);
 	virtual void save(VXml xml);
+
+private:
+	Q_DISABLE_COPY(SnoopInterfaces) // gilgil temp 2014.11.27
 };
 
 // ----------------------------------------------------------------------------
 // SnoopInterfaces
 // ----------------------------------------------------------------------------
-class SnoopInterfaces : public QList<SnoopInterface>, public VXmlable , private VNonCopyable // gilgil temp 2012.06.04
+class SnoopInterfaces : public QList<SnoopInterface>, public VXmlable
 {
 	friend class SnoopRemote;
 	friend class _SnoopInterfaces;
@@ -87,6 +90,9 @@ public:
 	//
 public:
 	static SnoopInterfaces& instance();
+
+private:
+	Q_DISABLE_COPY(SnoopInterface)
 };
 
 #endif // __SNOOP_ADAPTER_INFO_H__
