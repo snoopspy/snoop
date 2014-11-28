@@ -36,10 +36,11 @@ INCLUDEPATH           +=   $${SNOOP_PATH}/include
 INCLUDEPATH           +=   $${SNOOP_PATH}/lib
 DEPENDPATH            +=   $${SNOOP_PATH}
 LIBS                  += -L$${SNOOP_PATH}/lib -l$${SNOOP_LIB_NAME}
-CONFIG(SNOOP_LIB_BUILD) {
-} else {
-	win32:PRE_TARGETDEPS       +=   $${SNOOP_PATH}/lib/$${SNOOP_LIB_NAME}.lib
-	linux-g++:PRE_TARGETDEPS   +=  $${VDREAM_PATH}/lib/lib$${SNOOP_LIB_NAME}.a
-	android-g++:PRE_TARGETDEPS +=  $${VDREAM_PATH}/lib/lib$${SNOOP_LIB_NAME}.so
-	linux:LIBS                 +=  -lpcap
-}
+# gilgil temp 2014.11.28
+# CONFIG(SNOOP_LIB_BUILD) {
+# } else {
+# 	win32:PRE_TARGETDEPS       +=   $${SNOOP_PATH}/lib/$${SNOOP_LIB_NAME}.lib
+# 	linux-g++:PRE_TARGETDEPS   +=  $${VDREAM_PATH}/lib/lib$${SNOOP_LIB_NAME}.a
+# 	android-g++:PRE_TARGETDEPS +=  $${VDREAM_PATH}/lib/lib$${SNOOP_LIB_NAME}.so
+# 	linux:LIBS                 +=  -lpcap
+# }

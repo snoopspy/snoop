@@ -1,4 +1,4 @@
-CONFIG += SNOOP_LIB_BUILD
+# CONFIG += SNOOP_LIB_BUILD # gilgil temp 2014.11.28
 QT -= gui
 #QT += gui widgets
 
