@@ -31,7 +31,7 @@ LIBS         += -lwpcap -lIphlpapi
 #-------------------------------------------------
 # snoop
 #-------------------------------------------------
-SNOOP_PATH             =   $$PWD/..
+SNOOP_PATH             =   $${PWD}/..
 INCLUDEPATH           +=   $${SNOOP_PATH}/include
 INCLUDEPATH           +=   $${SNOOP_PATH}/lib
 DEPENDPATH            +=   $${SNOOP_PATH}
