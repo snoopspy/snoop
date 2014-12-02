@@ -9,7 +9,7 @@ include (snoop.pri)
 TARGET   = $${SNOOP_LIB_NAME}
 TEMPLATE = lib
 CONFIG  += staticlib
-DESTDIR  = ../lib
+DESTDIR  = $${PWD}
 
 SOURCES += \
 	../include/process/snoopudpsender.cpp \
