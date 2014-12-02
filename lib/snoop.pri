@@ -20,15 +20,15 @@ linux {
 #-------------------------------------------------
 # library name
 #-------------------------------------------------
-SNOOP_LIB_NAME=snoop
+SNOOP_LIB_NAME = snoop
 CONFIG(debug, debug|release) {
-	SNOOP_LIB_NAME=$${SNOOP_LIB_NAME}_d
+	SNOOP_LIB_NAME = $${SNOOP_LIB_NAME}_d
 }
 contains(QT, gui) {
-	SNOOP_LIB_NAME=$${SNOOP_LIB_NAME}_gui
+	SNOOP_LIB_NAME = $${SNOOP_LIB_NAME}_gui
 }
 android-g++ {
-	SNOOP_LIB_NAME=$${SNOOP_LIB_NAME}_android
+	SNOOP_LIB_NAME = $${SNOOP_LIB_NAME}_android
 }
 
 #-------------------------------------------------
