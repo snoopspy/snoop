@@ -10,14 +10,15 @@ win32 {
 		LIBS     += -L$${WINPCAP_PATH}/Lib/x64
 	} else {
 		LIBS     += -L$${WINPCAP_PATH}/Lib
-	LIBS         += -lwpcap -lIphlpapi
+		LIBS     += -lwpcap -lIphlpapi
+	}
 }
 linux {
 	LIBS         += -lpcap
 }
 
 #-------------------------------------------------
-# SNOOP_LIB_NAME
+# library name
 #-------------------------------------------------
 SNOOP_LIB_NAME=snoop
 CONFIG(debug, debug|release) {
@@ -39,5 +40,6 @@ INCLUDEPATH += $${SNOOP_PATH}/include
 !CONFIG(SNOOP_LIB_BUILD) {
 	win32-msvc*:PRE_TARGETDEPS +=  $${SNOOP_PATH}/lib/$${SNOOP_LIB_NAME}.lib
 	gcc:PRE_TARGETDEPS         +=  $${SNOOP_PATH}/lib/lib$${SNOOP_LIB_NAME}.a
-	LIBS                       += -L$${SNOOP_PATH}/lib -l$${SNOOP_LIB_NAME}
+	LIBS                       += -L$${SNOOP_PATH}/lib
+	LIBS                       += -l$${SNOOP_LIB_NAME}
 }
