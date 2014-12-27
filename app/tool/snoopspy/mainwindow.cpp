@@ -216,7 +216,8 @@ void MainWindow::selectionChanged()
     return;
   }
   QGraphicsItem* item = scene->selectedItems().first();
-  if (IS_CLASS(item, Node*))
+  //if (IS_CLASS(item, Node*)) // gilgil temp 2014.12.28
+  if (dynamic_cast<Node*>(item))
   {
     Node* node = dynamic_cast<Node*>(item);
     // LOG_DEBUG("%p scene=%p", node, node->scene()); // gilgil temp 2012.12.07

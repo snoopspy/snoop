@@ -129,7 +129,8 @@ QString Scene::generateObjectClassName(QString className)
     for (int i = 0; i < _count; i++)
     {
       QGraphicsItem* item = this->items().at(i);
-      if (!IS_CLASS(item, Node*)) continue;
+	  // if (!IS_CLASS(item, Node*)) continue; // gilgil temp 2014.12.28
+	  if (!dynamic_cast<Node*>(item)) continue;
       Node* node = dynamic_cast<Node*>(item);
       if (res == node->object->name)
       {
