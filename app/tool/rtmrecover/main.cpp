@@ -13,26 +13,26 @@ void run()
 	SnoopRtm& rtm = SnoopRtm::instance();
 	if (fileName == "")
 	{
-	  if (!rtm.loadFromSystem())
-	  {
-	    std::cout << "rtm.loadFromSystem return false " << rtm.error.msg << std::endl;
-	    return;
-	  }
-	  if (!rtm.saveToFile(SnoopRtm::DEFAULT_RTM_FILE_NAME, ""))
-	  {
-	    std::cout << "rtm.saveToFile return false " << rtm.error.msg << std::endl;
-	    return;
-	  }
+		if (!rtm.loadFromSystem())
+		{
+			std::cout << "rtm.loadFromSystem return false " << rtm.error.msg << std::endl;
+			return;
+		}
+		if (!rtm.saveToFile(SnoopRtm::DEFAULT_RTM_FILE_NAME, ""))
+		{
+			std::cout << "rtm.saveToFile return false " << rtm.error.msg << std::endl;
+			return;
+		}
 	} else
 	{
-	  if (!rtm.loadFromFile(fileName, ""))
-	  {
-	    std::cout << format("can not open file(%s)", qPrintable(fileName)) << std::endl;
-	  }
-	  if (!rtm.recoverSystem())
-	  {
-	    std::cout << "can not recover rtm" << std::endl;
-	  }
+		if (!rtm.loadFromFile(fileName, ""))
+		{
+			std::cout << format("can not open file(%s)", qPrintable(fileName)) << std::endl;
+		}
+		if (!rtm.recoverSystem())
+		{
+			std::cout << "can not recover rtm" << std::endl;
+		}
 	}
 }
 

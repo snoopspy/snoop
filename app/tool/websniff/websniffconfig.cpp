@@ -656,7 +656,7 @@ bool HttpSniffConfig::saveToGraph(VGraph& graph)
 		if (sslStripEnabled)
 		{
 			filter += qformat(" or tcp.SrcPort==%d or tcp.DstPort==%d",
-			 this->proxyStripOutPort, this->proxyStripOutPort);
+				this->proxyStripOutPort, this->proxyStripOutPort);
 		}
 		filter = qformat("(ifIdx==1) and outbound and (%s)", qPrintable(filter));
 

@@ -399,8 +399,8 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
 									QString name = _signalList.at(i);
 									if (name.startsWith("__"))
 									{
-									  _signalList.removeAt(i);
-									  continue;
+										_signalList.removeAt(i);
+										continue;
 									}
 									i++;
 								}

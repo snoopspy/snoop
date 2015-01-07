@@ -39,9 +39,9 @@ QRectF Arrow::boundingRect() const
 		qreal extra = (pen().width() + 20) / 2.0;
 
 		return QRectF(line().p1(), QSizeF(line().p2().x() - line().p1().x(),
-						                          line().p2().y() - line().p1().y()))
-				.normalized()
-				.adjusted(-extra, -extra, extra, extra);
+			line().p2().y() - line().p1().y()))
+			.normalized()
+			.adjusted(-extra, -extra, extra, extra);
 }
 //! [1]
 
@@ -134,10 +134,8 @@ void Arrow::paint(QPainter *painter, const QStyleOptionGraphicsItem *,
 		if (line().dy() >= 0)
 				angle = (Pi * 2) - angle;
 
-				QPointF arrowP1 = line().p1() + QPointF(sin(angle + Pi / 3) * arrowSize,
-						                            cos(angle + Pi / 3) * arrowSize);
-				QPointF arrowP2 = line().p1() + QPointF(sin(angle + Pi - Pi / 3) * arrowSize,
-						                            cos(angle + Pi - Pi / 3) * arrowSize);
+				QPointF arrowP1 = line().p1() + QPointF(sin(angle + Pi / 3) * arrowSize, cos(angle + Pi / 3) * arrowSize);
+				QPointF arrowP2 = line().p1() + QPointF(sin(angle + Pi - Pi / 3) * arrowSize, cos(angle + Pi - Pi / 3) * arrowSize);
 
 				arrowHead.clear();
 				arrowHead << line().p1() << arrowP1 << arrowP2;

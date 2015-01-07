@@ -103,9 +103,9 @@ QVariant DomModel::data(const QModelIndex &index, int role) const
 					else return QVariant();
 				/*
 						for (int i = 0; i < attributeMap.count(); ++i) {
-								QDomNode attribute = attributeMap.item(i);
-								attributes << attribute.nodeName() + "=\""
-									            +attribute.nodeValue() + "\"";
+							QDomNode attribute = attributeMap.item(i);
+							attributes << attribute.nodeName() + "=\""
+							+attribute.nodeValue() + "\"";
 						}
 						return attributes.join(" ");
 				*/
@@ -132,8 +132,7 @@ Qt::ItemFlags DomModel::flags(const QModelIndex &index) const
 //! [5]
 
 //! [6]
-QVariant DomModel::headerData(int section, Qt::Orientation orientation,
-									            int role) const
+QVariant DomModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
 		if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
 		{

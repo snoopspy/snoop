@@ -362,12 +362,12 @@ typedef struct libnet_fddi_hdr FDDI_HDR;
 typedef struct IP_HDR // libnet_ipv4_hdr
 {
 #if (LIBNET_LIL_ENDIAN)
-		u_int8_t ip_hl:4,      /* header length */
-					 ip_v:4;         /* version */
+   u_int8_t ip_hl:4,        /* header length */
+			ip_v:4;         /* version */
 #endif
 #if (LIBNET_BIG_ENDIAN)
-		u_int8_t ip_v:4,       /* version */
-					 ip_hl:4;        /* header length */
+	u_int8_t ip_v:4,         /* version */
+			 ip_hl:4;        /* header length */
 #endif
 		u_int8_t ip_tos;       /* type of service */
 #ifndef IPTOS_LOWDELAY
@@ -382,9 +382,9 @@ typedef struct IP_HDR // libnet_ipv4_hdr
 #ifndef IPTOS_LOWCOST
 #define IPTOS_LOWCOST       0x02
 #endif
-		u_int16_t ip_len;         /* total length */
-		u_int16_t ip_id;          /* identification */
-		u_int16_t ip_off;
+	u_int16_t ip_len;         /* total length */
+	u_int16_t ip_id;          /* identification */
+	u_int16_t ip_off;
 #ifndef IP_RF
 #define IP_RF 0x8000          /* reserved fragment flag */
 #endif
@@ -397,10 +397,10 @@ typedef struct IP_HDR // libnet_ipv4_hdr
 #ifndef IP_OFFMASK
 #define IP_OFFMASK 0x1fff     /* mask for fragmenting bits */
 #endif
-		u_int8_t ip_ttl;          /* time to live */
-		u_int8_t ip_p;            /* protocol */
-		u_int16_t ip_sum;         /* checksum */
-		u_int32_t ip_src, ip_dst;  /* source and dest address */
+	u_int8_t ip_ttl;          /* time to live */
+	u_int8_t ip_p;            /* protocol */
+	u_int16_t ip_sum;         /* checksum */
+	u_int32_t ip_src, ip_dst; /* source and dest address */
 } IP_HDR;
 
 // ----------------------------------------------------------------------------
@@ -435,12 +435,12 @@ typedef struct libnet_icmpv4_hdr ICMP_HDR;
 // ----------------------------------------------------------------------------
 typedef struct DNS_HDR
 {
-		u_int16_t id;             /* DNS packet ID */
-		u_int16_t flags;          /* DNS flags */
-		u_int16_t num_q;          /* Number of questions */
-		u_int16_t num_answ_rr;    /* Number of answer resource records */
-		u_int16_t num_auth_rr;    /* Number of authority resource records */
-		u_int16_t num_addi_rr;    /* Number of additional resource records */
+	u_int16_t id;             /* DNS packet ID */
+	u_int16_t flags;          /* DNS flags */
+	u_int16_t num_q;          /* Number of questions */
+	u_int16_t num_answ_rr;    /* Number of answer resource records */
+	u_int16_t num_auth_rr;    /* Number of authority resource records */
+	u_int16_t num_addi_rr;    /* Number of additional resource records */
 } DNS_HDR;
 
 #pragma pack(pop)

@@ -156,7 +156,7 @@ quint32 SnoopNetStatWin::getPID(SnoopTupleFlowKey &infoKey)
 					break;
 				}
 			}
-		 }
+
 	}
 
 	if (infoKey.proto == IPPROTO_UDP)

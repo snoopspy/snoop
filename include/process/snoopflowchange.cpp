@@ -303,7 +303,7 @@ SnoopTransportFlowKey SnoopFlowChangeItems::change(SnoopFlowChangeItem& item, Sn
 		case SnoopFlowChangeItem::IpCopy:
 			res.dstIp = flowKey.dstIp;
 			break;
-		 case SnoopFlowChangeItem::IpFix:
+		case SnoopFlowChangeItem::IpFix:
 			res.dstIp = item.dstIpFixValue;
 			break;
 	}
