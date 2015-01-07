@@ -15,12 +15,12 @@ TEMPLATE = app
 DESTDIR  = ../../bin
 
 SOURCES += main.cpp\
-    dialog.cpp \
-    explicit_link.cpp \
-    websniffconfig.cpp
+		dialog.cpp \
+		explicit_link.cpp \
+		websniffconfig.cpp
 
 HEADERS  += dialog.h \
-    explicit_link.h \
-    websniffconfig.h
+		explicit_link.h \
+		websniffconfig.h
 
 FORMS    += dialog.ui

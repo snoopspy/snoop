@@ -15,11 +15,11 @@ TEMPLATE = app
 DESTDIR  = ../../bin
 
 SOURCES += \
-    explicit_link.cpp \
-    main.cpp \
-    param.cpp
+		explicit_link.cpp \
+		main.cpp \
+		param.cpp
 
 HEADERS += \
-    explicit_link.h \
-    main.h \
-    param.h
+		explicit_link.h \
+		main.h \
+		param.h

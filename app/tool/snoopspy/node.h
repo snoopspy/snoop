@@ -15,25 +15,25 @@
 class Node : public QGraphicsTextItem
 {
 public:
-  enum { Type = UserType + 5 };
-  int type() const { return Type; }
+	enum { Type = UserType + 5 };
+	int type() const { return Type; }
 
 public:
-  Node(VObject* object);
-  virtual ~Node();
+	Node(VObject* object);
+	virtual ~Node();
 
 public:
-  QList<Arrow *> arrows;
-  void addArrow(Arrow *arrow);
-  void removeArrow(Arrow *arrow);
-  void removeArrows();
+	QList<Arrow *> arrows;
+	void addArrow(Arrow *arrow);
+	void removeArrow(Arrow *arrow);
+	void removeArrows();
 
 public:
-  VObject* object; // reference
+	VObject* object; // reference
 
 public:
-  // virtual QRectF boundingRect() const; //
-  virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+	// virtual QRectF boundingRect() const; //
+	virtual void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 };
 
 #endif // NODE_H

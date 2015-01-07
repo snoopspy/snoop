@@ -4,25 +4,25 @@
 #include <QDialog>
 
 namespace Ui {
-    class AboutDlg;
+		class AboutDlg;
 }
 
 class AboutDlg : public QDialog
 {
-    Q_OBJECT
+		Q_OBJECT
 
 public:
-    explicit AboutDlg(QWidget *parent = 0);
-    ~AboutDlg();
+		explicit AboutDlg(QWidget *parent = 0);
+		~AboutDlg();
 
 protected:
-  virtual void showEvent(QShowEvent *);
+	virtual void showEvent(QShowEvent *);
 
 private slots:
-  void on_btnOK_clicked();
+	void on_btnOK_clicked();
 
 private:
-    Ui::AboutDlg *ui;
+		Ui::AboutDlg *ui;
 };
 
 #endif // ABOUTDLG_H

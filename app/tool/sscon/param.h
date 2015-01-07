@@ -19,11 +19,11 @@
 class Param
 {
 public:
-  QString fileName;
+	QString fileName;
 
 public:
-  bool parse(int argc, char* argv[]);
-  static void usage();
+	bool parse(int argc, char* argv[]);
+	static void usage();
 };
 
 #endif // __PARAM_H__

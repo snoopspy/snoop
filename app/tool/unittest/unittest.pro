@@ -17,4 +17,4 @@ TEMPLATE  = app
 DESTDIR   = ../../bin
 
 SOURCES += main.cpp \
-    ../../include/common/snoopautodetectadapter.cpp
+		../../include/common/snoopautodetectadapter.cpp

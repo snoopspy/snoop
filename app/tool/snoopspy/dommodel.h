@@ -53,42 +53,42 @@ class DomItem;
 //! [0]
 class DomModel : public QAbstractItemModel
 {
-    Q_OBJECT
+		Q_OBJECT
 
 public:
-    DomModel(QDomDocument document, QObject *parent = 0);
-    ~DomModel();
+		DomModel(QDomDocument document, QObject *parent = 0);
+		~DomModel();
 
-    QVariant data(const QModelIndex &index, int role) const;
-    Qt::ItemFlags flags(const QModelIndex &index) const;
-    QVariant headerData(int section, Qt::Orientation orientation,
-                        int role = Qt::DisplayRole) const;
-    QModelIndex index(int row, int column,
-                      const QModelIndex &parent = QModelIndex()) const;
-    QModelIndex parent(const QModelIndex &child) const;
-    int rowCount(const QModelIndex &parent = QModelIndex()) const;
-    int columnCount(const QModelIndex &parent = QModelIndex()) const;
+		QVariant data(const QModelIndex &index, int role) const;
+		Qt::ItemFlags flags(const QModelIndex &index) const;
+		QVariant headerData(int section, Qt::Orientation orientation,
+									      int role = Qt::DisplayRole) const;
+		QModelIndex index(int row, int column,
+									    const QModelIndex &parent = QModelIndex()) const;
+		QModelIndex parent(const QModelIndex &child) const;
+		int rowCount(const QModelIndex &parent = QModelIndex()) const;
+		int columnCount(const QModelIndex &parent = QModelIndex()) const;
 
 
 public: // for edit
-    bool setData(const QModelIndex &index, const QVariant &value, int role);
-    /*
-    bool setHeaderData(int section, Qt::Orientation orientation,
-                       const QVariant &value, int role = Qt::EditRole);
+		bool setData(const QModelIndex &index, const QVariant &value, int role);
+		/*
+		bool setHeaderData(int section, Qt::Orientation orientation,
+									     const QVariant &value, int role = Qt::EditRole);
 
-    bool insertColumns(int position, int columns,
-                       const QModelIndex &parent = QModelIndex());
-    bool removeColumns(int position, int columns,
-                       const QModelIndex &parent = QModelIndex());
-    bool insertRows(int position, int rows,
-                    const QModelIndex &parent = QModelIndex());
-    bool removeRows(int position, int rows,
-                    const QModelIndex &parent = QModelIndex());
-    */
+		bool insertColumns(int position, int columns,
+									     const QModelIndex &parent = QModelIndex());
+		bool removeColumns(int position, int columns,
+									     const QModelIndex &parent = QModelIndex());
+		bool insertRows(int position, int rows,
+									  const QModelIndex &parent = QModelIndex());
+		bool removeRows(int position, int rows,
+									  const QModelIndex &parent = QModelIndex());
+		*/
 
 public:
-    QDomDocument domDocument;
-    DomItem *rootItem;
+		QDomDocument domDocument;
+		DomItem *rootItem;
 };
 //! [0]
 

@@ -47,42 +47,42 @@
 class DomItem
 {
 public:
-    DomItem(QDomElement& element, int row, DomItem* parent = NULL);
-    ~DomItem();
+		DomItem(QDomElement& element, int row, DomItem* parent = NULL);
+		~DomItem();
 
 protected:
-    QDomElement m_element;
-    int         m_row;
-    DomItem*    m_parent;
+		QDomElement m_element;
+		int         m_row;
+		DomItem*    m_parent;
 
 public:
-    QDomElement element() { return m_element; }
-    int         row()     { return m_row;     }
-    DomItem*    parent()  { return m_parent;  }
+		QDomElement element() { return m_element; }
+		int         row()     { return m_row;     }
+		DomItem*    parent()  { return m_parent;  }
 
 private:
-    QHash<int,DomItem*> childItems;
+		QHash<int,DomItem*> childItems;
 public:
-    virtual DomItem* child(int i);
+		virtual DomItem* child(int i);
 };
 
 class DomAttrItem : public DomItem
 {
 public:
-  DomAttrItem(QDomElement& element, QDomAttr attr, int row, DomItem* parent = NULL);
+	DomAttrItem(QDomElement& element, QDomAttr attr, int row, DomItem* parent = NULL);
 
 protected:
-  QDomAttr m_attr;
+	QDomAttr m_attr;
 
 public:
-  QDomAttr attr() { return m_attr; }
+	QDomAttr attr() { return m_attr; }
 
 public:
-  virtual DomItem* child(int i)
-  {
-    Q_UNUSED(i)
-    return NULL;
-  }
+	virtual DomItem* child(int i)
+	{
+		Q_UNUSED(i)
+		return NULL;
+	}
 };
 
 #endif
