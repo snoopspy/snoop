@@ -8,7 +8,7 @@ QT       += core
 QT       -= gui
 
 include (../../../../other/googletest/unittest.pri)
-include (../../lib/snoop.pri)
+include(../../../lib/snoop.pri)
 
 TARGET    = unittest
 CONFIG   += console

@@ -1,3 +1,5 @@
+#ifdef WIN32
+
 #include <SnoopWriteWinDivert>
 
 REGISTER_METACLASS(SnoopWriteWinDivert, SnoopProcess)
@@ -84,3 +86,5 @@ void SnoopWriteWinDivert::optionSaveDlg(QDialog* dialog)
 	divertAddr.Direction = dialog->findChild<QLineEdit*>("leDirection")->text().toUInt();
 }
 #endif // QT_GUI_LIB
+
+#endif // WIN32

@@ -8,7 +8,7 @@ QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
-include(../../lib/snoop.pri)
+include(../../../lib/snoop.pri)
 
 TARGET   = websniff
 TEMPLATE = app

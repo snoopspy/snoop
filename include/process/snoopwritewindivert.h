@@ -11,6 +11,8 @@
 #ifndef __SNOOP_WRITE_WIN_DIVERT_H__
 #define __SNOOP_WRITE_WIN_DIVERT_H__
 
+#ifdef WIN32
+
 #include <SnoopWinDivert>
 
 // ----------------------------------------------------------------------------
@@ -46,5 +48,7 @@ public: // for VOptionable
 	virtual void optionSaveDlg(QDialog* dialog);
 #endif // QT_GUI_LIB
 };
+
+#endif // WIN32
 
 #endif // __SNOOP_WRITE_WIN_DIVERT_H__

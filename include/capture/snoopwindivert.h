@@ -11,6 +11,8 @@
 #ifndef __SNOOP_WIN_DIVERT_H__
 #define __SNOOP_WIN_DIVERT_H__
 
+#ifdef WIN32
+
 #include <QLibrary>
 #include <SnoopCapture>
 #include <SnoopIp>
@@ -74,5 +76,7 @@ public: // for VOptionable
 // VWinDivertError
 // ----------------------------------------------------------------------------
 VDECLARE_ERROR_CLASS(VWinDivertError)
+
+#endif // WIN32
 
 #endif // __SNOOP_WIN_DIVERT_H__

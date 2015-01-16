@@ -38,7 +38,9 @@ void SnoopProcessFactory::explicitLink()
 	SnoopUdpReceiver    udpReceiver;
 	SnoopUdpSender      udpSender;
 	SnoopWriteAdapter   writeAdapter;
+#ifdef WIN32
 	SnoopWriteWinDivert writeWinDivert;
+#endif // WIN32
 }
 
 SnoopProcess* SnoopProcessFactory::createDefaultProcess()

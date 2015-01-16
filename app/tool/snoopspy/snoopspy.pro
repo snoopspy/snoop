@@ -7,7 +7,7 @@
 QT += gui
 QT += widgets
 
-include(../../lib/snoop.pri)
+include(../../../lib/snoop.pri)
 
 TARGET        = snoopspy
 TEMPLATE      = app

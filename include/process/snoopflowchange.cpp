@@ -408,22 +408,22 @@ bool SnoopFlowChange::doOpen()
 
 	if (tcpChange)
 	{
-		fromTcpFlowOffset = fromFlowMgr->requestMemory_TcpFlow("SnoopFlowChangeFrom", sizeof(SnoopFlowChangeFlowItem));
+		fromTcpFlowOffset = fromFlowMgr->requestMemory_TcpFlow((void*)"SnoopFlowChangeFrom", sizeof(SnoopFlowChangeFlowItem));
 		fromFlowMgr->connect(SIGNAL(__tcpFlowCreated(SnoopTcpFlowKey*,SnoopFlowValue*)), this, SLOT(__fromTcpFlowCreate(SnoopTcpFlowKey*,SnoopFlowValue*)), Qt::DirectConnection);
 		fromFlowMgr->connect(SIGNAL(__tcpFlowDeleted(SnoopTcpFlowKey*,SnoopFlowValue*)), this, SLOT(__fromTcpFlowDelete(SnoopTcpFlowKey*,SnoopFlowValue*)), Qt::DirectConnection);
 
-		toTcpFlowOffset = toFlowMgr->requestMemory_TcpFlow("SnoopFlowChangeTo", sizeof(SnoopFlowChangeFlowItem));
+		toTcpFlowOffset = toFlowMgr->requestMemory_TcpFlow((void*)"SnoopFlowChangeTo", sizeof(SnoopFlowChangeFlowItem));
 		toFlowMgr->connect(SIGNAL(__tcpFlowCreated(SnoopTcpFlowKey*,SnoopFlowValue*)), this, SLOT(__toTcpFlowCreate(SnoopTcpFlowKey*,SnoopFlowValue*)), Qt::DirectConnection);
 		toFlowMgr->connect(SIGNAL(__tcpFlowDeleted(SnoopTcpFlowKey*,SnoopFlowValue*)), this, SLOT(__toTcpFlowDelete(SnoopTcpFlowKey*,SnoopFlowValue*)), Qt::DirectConnection);
 	}
 
 	if (udpChange)
 	{
-		fromUdpFlowOffset = fromFlowMgr->requestMemory_UdpFlow("SnoopFlowChangeFrom", sizeof(SnoopFlowChangeFlowItem));
+		fromUdpFlowOffset = fromFlowMgr->requestMemory_UdpFlow((void*)"SnoopFlowChangeFrom", sizeof(SnoopFlowChangeFlowItem));
 		fromFlowMgr->connect(SIGNAL(__udpFlowCreated(SnoopUdpFlowKey*,SnoopFlowValue*)), this, SLOT(__fromUdpFlowCreate(SnoopUdpFlowKey*,SnoopFlowValue*)), Qt::DirectConnection);
 		fromFlowMgr->connect(SIGNAL(__udpFlowDeleted(SnoopUdpFlowKey*,SnoopFlowValue*)), this, SLOT(__fromUdpFlowDelete(SnoopUdpFlowKey*,SnoopFlowValue*)), Qt::DirectConnection);
 
-		toUdpFlowOffset = toFlowMgr->requestMemory_UdpFlow("SnoopFlowChangeTo", sizeof(SnoopFlowChangeFlowItem));
+		toUdpFlowOffset = toFlowMgr->requestMemory_UdpFlow((void*)"SnoopFlowChangeTo", sizeof(SnoopFlowChangeFlowItem));
 		toFlowMgr->connect(SIGNAL(__udpFlowCreated(SnoopUdpFlowKey*,SnoopFlowValue*)), this, SLOT(__toUdpFlowCreate(SnoopUdpFlowKey*,SnoopFlowValue*)), Qt::DirectConnection);
 		toFlowMgr->connect(SIGNAL(__udpFlowDeleted(SnoopUdpFlowKey*,SnoopFlowValue*)), this, SLOT(__toUdpFlowDelete(SnoopUdpFlowKey*,SnoopFlowValue*)), Qt::DirectConnection);
 	}

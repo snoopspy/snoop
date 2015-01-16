@@ -98,7 +98,9 @@ void SnoopDelay::delay(SnoopPacket* packet)
 	SnoopDelayItem item;
 	item.tick = tick() + this->timeout;
 	packet->write(item.buf);
+#ifdef WIN32
 	item.divertAddr = packet->divertAddr;
+#endif // WIN32
 
 	VLock lock(thread->itemMgr);
 	thread->itemMgr.items.push_back(item);

@@ -377,7 +377,7 @@ int SnoopArpSpoof::read(SnoopPacket* packet)
 
 		case ipSender:
 			packet->ethHdr->ether_dhost = session->targetMac;
-			if (!bpFilter._check(packet->pktData, (UINT)packet->pktHdr->caplen))
+			if (!bpFilter._check(packet->pktData, (uint32_t)packet->pktHdr->caplen))
 			{
 				emit capturedOther(packet);
 				relay(packet);

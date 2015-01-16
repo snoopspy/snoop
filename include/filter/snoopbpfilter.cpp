@@ -59,7 +59,7 @@ bool SnoopBpFilter::doClose()
 	return SnoopFilter::doClose();
 }
 
-bool SnoopBpFilter::_check(BYTE* pktData, UINT pktLen)
+bool SnoopBpFilter::_check(BYTE* pktData, uint32_t pktLen)
 {
 	if (m_state != VState::Opened)
 	{

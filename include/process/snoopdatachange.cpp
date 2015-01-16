@@ -39,7 +39,7 @@ bool SnoopDataChange::doOpen()
 		// All SnoopDataChange objects should share SnoopDataChangeFlowItem contents.
 		// So id parameter value set into the same value.
 		// tcpFlowOffset = flowMgr->requestMemory_TcpFlow(this, sizeof(SnoopDataChangeFlowItem));
-		tcpFlowOffset = flowMgr->requestMemory_TcpFlow("SnoopDataChange", sizeof(SnoopDataChangeFlowItem)); // gilgil temp 2014.03.13
+		tcpFlowOffset = flowMgr->requestMemory_TcpFlow((void*)"SnoopDataChange", sizeof(SnoopDataChangeFlowItem)); // gilgil temp 2014.03.13
 		// --------------------------------
 
 		flowMgr->connect(SIGNAL(__tcpFlowCreated(SnoopTcpFlowKey*,SnoopFlowValue*)), this, SLOT(__tcpFlowCreate(SnoopTcpFlowKey*,SnoopFlowValue*)), Qt::DirectConnection);

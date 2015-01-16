@@ -12,7 +12,9 @@
 #define __SNOOP_PACKET_H__
 
 #include <SnoopType>
+#ifdef WIN32
 #include <windivert/windivert.h>
+#endif // WIN32
 
 // ----------------------------------------------------------------------------
 // SnoopFlowValue
@@ -26,6 +28,10 @@ public:
 	bool           created;
 	BYTE*          totalMem;
 };
+
+#ifndef WIN32
+struct WINDIVERT_ADDRESS {};
+#endif // WIN32
 
 // ----------------------------------------------------------------------------
 // SnoopPacket

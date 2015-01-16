@@ -1,3 +1,5 @@
+#ifdef WIN32
+
 #include <SnoopWinDivert>
 #include <VDebugNew>
 
@@ -400,4 +402,7 @@ void SnoopWinDivert::optionSaveDlg(QDialog* dialog)
 	tos       = dialog->findChild<QLineEdit*>("leQueueTime")->text().toUInt();
 	correctChecksum = dialog->findChild<QCheckBox*>("chkCorrectChecksum")->checkState() == Qt::Checked;
 }
+
+#endif // WIN32
+
 #endif // QT_GUI_LIB

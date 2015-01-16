@@ -115,7 +115,7 @@ void SnoopUdpSender::merge(SnoopPacket* packet)
 
 		for (int i = 0; i < count; i++)
 		{
-			SnoopUdpChunk& chunk = (SnoopUdpChunk)flowItem->chunks.at(i);
+			SnoopUdpChunk chunk = (SnoopUdpChunk)flowItem->chunks.at(i);
 			int udpDataSize = newUdpData.size() +
 				chunk.payload.header.size()    + chunk.payload.body.size() +
 				newChunk.payload.header.size() + chunk.payload.body.size();

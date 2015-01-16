@@ -83,11 +83,11 @@ bool SnoopFindHost::sendArpRequestAll()
 		if (host.mac.isClean())
 		{
 			if (!sendArpRequest(host.ip)) return false;
-			if (sendInterval != 0)
-				Sleep(sendInterval);
+			//if (sendInterval != 0)
+				// Sleep(sendInterval); // gilgil temp 2015.10.16
 		}
 	}
-	lastSendTick = GetTickCount();
+	lastSendTick = tick();
 	return true;
 }
 

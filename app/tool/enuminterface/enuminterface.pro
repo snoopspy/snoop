@@ -6,7 +6,7 @@
 
 QT -= gui
 
-include(../../lib/snoop.pri)
+include(../../../lib/snoop.pri)
 
 TARGET    = enuminterface
 CONFIG   += console

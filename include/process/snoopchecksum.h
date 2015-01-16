@@ -46,4 +46,4 @@ public: // for VOptionable
 #endif // QT_GUI_LIB
 };
 
-#endif __SNOOP_CHECKSUM_H__
+#endif // __SNOOP_CHECKSUM_H__

@@ -25,7 +25,7 @@ int main()
 		if (netInfo.ip != 0)
 			printf("  ip          = %s\n", qPrintable(netInfo.ip.str()));
 		if (netInfo.subnet != 0)
-			rintf("  subnet      = %s\n", qPrintable(netInfo.subnet.str()));
+			printf("  subnet      = %s\n", qPrintable(netInfo.subnet.str()));
 		if (netInfo.gateway != 0 && netInfo.gateway != 0xFFFFFFFF)
 			printf("  gateway     = %s\n", qPrintable(netInfo.gateway.str()));
 		// ----- gilgil temp 2012.08.24 -----

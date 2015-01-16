@@ -159,7 +159,7 @@ void SnoopUdpReceiver::split(SnoopPacket* packet)
 
 	if (flowItem->first)
 	{
-		SnoopUdpChunk& chunk = (SnoopUdpChunk)chunks.at(chunkCount - 1);
+		SnoopUdpChunk chunk = (SnoopUdpChunk)chunks.at(chunkCount - 1);
 
 		doSplit(chunk, packet);
 		writer->write(packet);
@@ -171,7 +171,7 @@ void SnoopUdpReceiver::split(SnoopPacket* packet)
 	{
 		for (int i = 0; i < chunkCount; i++)
 		{
-			SnoopUdpChunk& chunk = (SnoopUdpChunk)chunks.at(i);
+			SnoopUdpChunk chunk = (SnoopUdpChunk)chunks.at(i);
 
 			//
 			// Check id

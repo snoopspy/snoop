@@ -259,14 +259,20 @@ void SnoopDnsChange::check(SnoopPacket* packet)
 		udpHdr->uh_ulen  = htons(sizeof(UDP_HDR) + (UINT16)responseMsg.size());
 
 		memcpy(udpData, responseMsg.data(), responseMsg.size());
-
+#ifdef WIN32
 		WINDIVERT_ADDRESS responseDivertAddr = packet->divertAddr;
 		responseDivertAddr.Direction         = 1 - responseDivertAddr.Direction;
+#endif // WIN32
 
 		udpHdr->uh_sum = htons(SnoopUdp::checksum(ipHdr, udpHdr));
 		ipHdr->ip_sum  = htons(SnoopIp::checksum(ipHdr));
 
+#ifdef WIN32
 		writer->write(buf, bufSize, &responseDivertAddr);
+#endif // WIN32
+#ifdef linux
+		writer->write(buf, bufSize);
+#endif // linux
 		packet->drop = true;
 
 		if (changeItem.log)

@@ -23,7 +23,9 @@ void SnoopCaptureFactory::explicitLink()
 	SnoopRemote      remote;
 #endif // WIN32
 	SnoopVirtualNat  virtualNAT;
+#ifdef WIN32
 	SnoopWinDivert   winDivert;
+#endif // WIN32
 }
 
 SnoopCapture* SnoopCaptureFactory::createDefaultCapture()
