@@ -9,27 +9,27 @@ SnoopFilter::SnoopFilter(void* owner) : VObject(owner)
 
 SnoopFilter::~SnoopFilter()
 {
-	close();
+  close();
 }
 
 bool SnoopFilter::doOpen()
 {
-	return true;
+  return true;
 }
 
 bool SnoopFilter::doClose()
 {
-	return true;
+  return true;
 }
 
 #ifdef QT_GUI_LIB
 void SnoopFilter::optionAddWidget(QLayout *layout)
 {
-	Q_UNUSED(layout)
+  Q_UNUSED(layout)
 }
 
 void SnoopFilter::optionSaveDlg(QDialog *dialog)
 {
-	Q_UNUSED(dialog)
+  Q_UNUSED(dialog)
 }
 #endif // QT_GUI_LIB

@@ -19,9 +19,9 @@
 class SnoopMacKey
 {
 public:
-	Mac mac;
+  Mac mac;
 
-	bool operator < (const SnoopMacKey& rhs) const;
+  bool operator < (const SnoopMacKey& rhs) const;
 };
 
 // ----------------------------------------------------------------------------
@@ -30,11 +30,11 @@ public:
 class SnoopMacFlowKey
 {
 public:
-	Mac srcMac;
-	Mac dstMac;
+  Mac srcMac;
+  Mac dstMac;
 
-	bool operator < (const SnoopMacFlowKey& rhs) const;
-	SnoopMacFlowKey reverse();
+  bool operator < (const SnoopMacFlowKey& rhs) const;
+  SnoopMacFlowKey reverse();
 };
 
 // ----------------------------------------------------------------------------
@@ -43,10 +43,10 @@ public:
 class SnoopMacSessionKey
 {
 public:
-	Mac mac1;
-	Mac mac2;
+  Mac mac1;
+  Mac mac2;
 
-	bool operator < (const SnoopMacSessionKey& rhs) const;
+  bool operator < (const SnoopMacSessionKey& rhs) const;
 };
 
 // ----------------------------------------------------------------------------
@@ -55,9 +55,9 @@ public:
 class SnoopIpKey
 {
 public:
-	Ip ip;
+  Ip ip;
 
-	bool operator < (const SnoopIpKey& rhs) const;
+  bool operator < (const SnoopIpKey& rhs) const;
 };
 
 // ----------------------------------------------------------------------------
@@ -66,11 +66,11 @@ public:
 class SnoopIpFlowKey
 {
 public:
-	Ip srcIp;
-	Ip dstIp;
+  Ip srcIp;
+  Ip dstIp;
 
-	bool operator < (const SnoopIpFlowKey& rhs) const;
-	SnoopIpFlowKey reverse();
+  bool operator < (const SnoopIpFlowKey& rhs) const;
+  SnoopIpFlowKey reverse();
 };
 
 // ----------------------------------------------------------------------------
@@ -79,10 +79,10 @@ public:
 class SnoopIpSessionKey
 {
 public:
-	Ip ip1;
-	Ip ip2;
+  Ip ip1;
+  Ip ip2;
 
-	bool operator < (const SnoopIpSessionKey& rhs) const;
+  bool operator < (const SnoopIpSessionKey& rhs) const;
 };
 
 // ----------------------------------------------------------------------------
@@ -91,9 +91,9 @@ public:
 class SnoopPortKey
 {
 public:
-	int port;
+  int port;
 
-	bool operator < (const SnoopPortKey& rhs) const;
+  bool operator < (const SnoopPortKey& rhs) const;
 };
 
 // ----------------------------------------------------------------------------
@@ -102,11 +102,11 @@ public:
 class SnoopPortFlowKey
 {
 public:
-	UINT16 srcPort;
-	UINT16 dstPort;
+  UINT16 srcPort;
+  UINT16 dstPort;
 
-	bool operator < (const SnoopPortFlowKey& rhs) const;
-	SnoopPortFlowKey reverse();
+  bool operator < (const SnoopPortFlowKey& rhs) const;
+  SnoopPortFlowKey reverse();
 };
 
 // ----------------------------------------------------------------------------
@@ -115,10 +115,10 @@ public:
 class SnoopPortSessionKey
 {
 public:
-	UINT16 port1;
-	UINT16 port2;
+  UINT16 port1;
+  UINT16 port2;
 
-	bool operator < (const SnoopPortSessionKey& rhs) const;
+  bool operator < (const SnoopPortSessionKey& rhs) const;
 };
 
 // ----------------------------------------------------------------------------
@@ -127,10 +127,10 @@ public:
 class SnoopTransportKey
 {
 public:
-	Ip     ip;
-	UINT16 port;
+  Ip     ip;
+  UINT16 port;
 
-	bool operator < (const SnoopTransportKey& rhs) const;
+  bool operator < (const SnoopTransportKey& rhs) const;
 };
 
 typedef SnoopTransportKey SnoopTcpKey;
@@ -142,14 +142,14 @@ typedef SnoopTransportKey SnoopUdpKey;
 class SnoopTransportFlowKey
 {
 public:
-	Ip     srcIp;
-	UINT16 srcPort;
-	Ip     dstIp;
-	UINT16 dstPort;
+  Ip     srcIp;
+  UINT16 srcPort;
+  Ip     dstIp;
+  UINT16 dstPort;
 
-	bool operator < (const SnoopTransportFlowKey& rhs) const;
-	bool operator == (const SnoopTransportFlowKey& rhs) const;
-	SnoopTransportFlowKey reverse();
+  bool operator < (const SnoopTransportFlowKey& rhs) const;
+  bool operator == (const SnoopTransportFlowKey& rhs) const;
+  SnoopTransportFlowKey reverse();
 };
 
 typedef SnoopTransportFlowKey SnoopTcpFlowKey;
@@ -161,12 +161,12 @@ typedef SnoopTransportFlowKey SnoopUdpFlowKey;
 class SnoopTransportSessionKey
 {
 public:
-	Ip     ip1;
-	UINT16 port1;
-	Ip     ip2;
-	UINT16 port2;
+  Ip     ip1;
+  UINT16 port1;
+  Ip     ip2;
+  UINT16 port2;
 
-	bool operator < (const SnoopTransportSessionKey& rhs) const;
+  bool operator < (const SnoopTransportSessionKey& rhs) const;
 };
 
 typedef SnoopTransportSessionKey SnoopTcpSessionKey;
@@ -178,11 +178,11 @@ typedef SnoopTransportSessionKey SnoopUdpSessionKey;
 class SnoopTupleFlowKey
 {
 public:
-	UINT8                 proto;
-	SnoopTransportFlowKey flow;
+  UINT8                 proto;
+  SnoopTransportFlowKey flow;
 
-	bool operator < (const SnoopTupleFlowKey& rhs) const;
-	SnoopTupleFlowKey reverse();
+  bool operator < (const SnoopTupleFlowKey& rhs) const;
+  SnoopTupleFlowKey reverse();
 };
 
 #endif // __SNOOP_TYPE_KEY_H__

@@ -47,184 +47,184 @@
 
 //! [0]
 DomModel::DomModel(QDomDocument document, QObject *parent)
-		: QAbstractItemModel(parent), domDocument(document)
+    : QAbstractItemModel(parent), domDocument(document)
 {
-	QDomElement element = document.documentElement();
-	rootItem = new DomItem(element, NULL);
+  QDomElement element = document.documentElement();
+  rootItem = new DomItem(element, NULL);
 }
 //! [0]
 
 //! [1]
 DomModel::~DomModel()
 {
-		delete rootItem;
+    delete rootItem;
 }
 //! [1]
 
 //! [2]
 int DomModel::columnCount(const QModelIndex &/*parent*/) const
 {
-		return 2;
+    return 2;
 }
 //! [2]
 
 //! [3]
 QVariant DomModel::data(const QModelIndex &index, int role) const
 {
-		if (!index.isValid())
-				return QVariant();
+    if (!index.isValid())
+        return QVariant();
 
-		// LOG_DEBUG("rolw=%d", role); // gilgil temp 2012.08.08
+    // LOG_DEBUG("rolw=%d", role); // gilgil temp 2012.08.08
 
-		if (role == Qt::BackgroundColorRole)
-		{
-			if (index.row() % 2 == 0)
-				return qVariantFromValue(QColor(246, 246, 246));
-			else
-				return qVariantFromValue(QColor(255, 255, 255));
-		}
+    if (role == Qt::BackgroundColorRole)
+    {
+      if (index.row() % 2 == 0)
+        return qVariantFromValue(QColor(246, 246, 246));
+      else
+        return qVariantFromValue(QColor(255, 255, 255));
+    }
 
-		if (role != Qt::DisplayRole && role != Qt::EditRole)
-				return QVariant();
+    if (role != Qt::DisplayRole && role != Qt::EditRole)
+        return QVariant();
 
-		DomItem *item = static_cast<DomItem*>(index.internalPointer());
+    DomItem *item = static_cast<DomItem*>(index.internalPointer());
 
-		QDomElement element = item->element();
+    QDomElement element = item->element();
 //! [3] //! [4]
-		QStringList attributes;
-		QDomNamedNodeMap attributeMap = element.attributes();
+    QStringList attributes;
+    QDomNamedNodeMap attributeMap = element.attributes();
 
-		switch (index.column()) {
-				case 0:
-					if (dynamic_cast<DomAttrItem*>(item) != NULL) return ((DomAttrItem*)item)->attr().name();
-					else return element.nodeName();
-				case 1:
-					if (dynamic_cast<DomAttrItem*>(item) != NULL) return ((DomAttrItem*)item)->attr().value();
-					else return QVariant();
-				/*
-						for (int i = 0; i < attributeMap.count(); ++i) {
-							QDomNode attribute = attributeMap.item(i);
-							attributes << attribute.nodeName() + "=\""
-							+attribute.nodeValue() + "\"";
-						}
-						return attributes.join(" ");
-				*/
-				case 2:
-						return element.nodeValue().split("\n").join(" ");
-				default:
-						return QVariant();
-		}
+    switch (index.column()) {
+        case 0:
+          if (dynamic_cast<DomAttrItem*>(item) != NULL) return ((DomAttrItem*)item)->attr().name();
+          else return element.nodeName();
+        case 1:
+          if (dynamic_cast<DomAttrItem*>(item) != NULL) return ((DomAttrItem*)item)->attr().value();
+          else return QVariant();
+        /*
+            for (int i = 0; i < attributeMap.count(); ++i) {
+              QDomNode attribute = attributeMap.item(i);
+              attributes << attribute.nodeName() + "=\""
+              +attribute.nodeValue() + "\"";
+            }
+            return attributes.join(" ");
+        */
+        case 2:
+            return element.nodeValue().split("\n").join(" ");
+        default:
+            return QVariant();
+    }
 }
 //! [4]
 
 //! [5]
 Qt::ItemFlags DomModel::flags(const QModelIndex &index) const
 {
-	if (!index.isValid())
-		return 0;
-	switch (index.column())
-	{
-		case 0: return Qt::ItemIsEnabled;
-		case 1: return Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable;
-		default: return Qt::NoItemFlags;
-	}
+  if (!index.isValid())
+    return 0;
+  switch (index.column())
+  {
+    case 0: return Qt::ItemIsEnabled;
+    case 1: return Qt::ItemIsEditable | Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+    default: return Qt::NoItemFlags;
+  }
 }
 //! [5]
 
 //! [6]
 QVariant DomModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-		if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
-		{
-				switch (section) {
-						case 0:
-								return tr("Name");
-						case 1:
-								return tr("Value");
-						default:
-								return QVariant();
-				}
-		}
+    if (orientation == Qt::Horizontal && role == Qt::DisplayRole)
+    {
+        switch (section) {
+            case 0:
+                return tr("Name");
+            case 1:
+                return tr("Value");
+            default:
+                return QVariant();
+        }
+    }
 
-		return QVariant();
+    return QVariant();
 }
 //! [6]
 
 //! [7]
 QModelIndex DomModel::index(int row, int column, const QModelIndex &parent)
-						const
+            const
 {
-		if (!hasIndex(row, column, parent))
-				return QModelIndex();
+    if (!hasIndex(row, column, parent))
+        return QModelIndex();
 
-		DomItem *parentItem;
+    DomItem *parentItem;
 
-		if (!parent.isValid())
-				parentItem = rootItem;
-		else
-				parentItem = static_cast<DomItem*>(parent.internalPointer());
+    if (!parent.isValid())
+        parentItem = rootItem;
+    else
+        parentItem = static_cast<DomItem*>(parent.internalPointer());
 //! [7]
 
 //! [8]
-		DomItem *childItem = parentItem->child(row);
-		if (childItem)
-				return createIndex(row, column, childItem);
-		else
-				return QModelIndex();
+    DomItem *childItem = parentItem->child(row);
+    if (childItem)
+        return createIndex(row, column, childItem);
+    else
+        return QModelIndex();
 }
 //! [8]
 
 //! [9]
 QModelIndex DomModel::parent(const QModelIndex &child) const
 {
-		if (!child.isValid())
-				return QModelIndex();
+    if (!child.isValid())
+        return QModelIndex();
 
-		DomItem *childItem = static_cast<DomItem*>(child.internalPointer());
-		DomItem *parentItem = childItem->parent();
+    DomItem *childItem = static_cast<DomItem*>(child.internalPointer());
+    DomItem *parentItem = childItem->parent();
 
-		if (!parentItem || parentItem == rootItem)
-				return QModelIndex();
+    if (!parentItem || parentItem == rootItem)
+        return QModelIndex();
 
-		return createIndex(parentItem->row(), 0, parentItem);
+    return createIndex(parentItem->row(), 0, parentItem);
 }
 //! [9]
 
 //! [10]
 int DomModel::rowCount(const QModelIndex &parent) const
 {
-		if (parent.column() > 0)
-				return 0;
+    if (parent.column() > 0)
+        return 0;
 
-		DomItem *parentItem;
+    DomItem *parentItem;
 
-		if (!parent.isValid())
-				parentItem = rootItem;
-		else
-				parentItem = static_cast<DomItem*>(parent.internalPointer());
+    if (!parent.isValid())
+        parentItem = rootItem;
+    else
+        parentItem = static_cast<DomItem*>(parent.internalPointer());
 
-		if (dynamic_cast<DomAttrItem*>(parentItem) != NULL) return 0;
-		return parentItem->element().attributes().count() + parentItem->element().childNodes().count();
+    if (dynamic_cast<DomAttrItem*>(parentItem) != NULL) return 0;
+    return parentItem->element().attributes().count() + parentItem->element().childNodes().count();
 }
 //! [10]
 
 
 bool DomModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-	if (role != Qt::EditRole) return false;
+  if (role != Qt::EditRole) return false;
 
-	DomAttrItem *attrItem = static_cast<DomAttrItem*>(index.internalPointer());
-	if (attrItem == NULL) return false;
-	if (dynamic_cast<DomAttrItem*>(attrItem) == NULL) return false;
+  DomAttrItem *attrItem = static_cast<DomAttrItem*>(index.internalPointer());
+  if (attrItem == NULL) return false;
+  if (dynamic_cast<DomAttrItem*>(attrItem) == NULL) return false;
 
-	switch (index.column()){
-			case 0: // name
-				return false;
-			case 1: // value
-				attrItem->attr().setValue(value.toString()); // This works - QTreeView is updated
-				emit dataChanged(index, index);
-				return true;
-			default:
-				return false;
-	}
+  switch (index.column()){
+      case 0: // name
+        return false;
+      case 1: // value
+        attrItem->attr().setValue(value.toString()); // This works - QTreeView is updated
+        emit dataChanged(index, index);
+        return true;
+      default:
+        return false;
+  }
 }

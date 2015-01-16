@@ -19,20 +19,20 @@
 class SnoopDnsQuestion
 {
 public:
-	QString name;
-	UINT16  type;
-	UINT16  _class;
+  QString name;
+  UINT16  type;
+  UINT16  _class;
 
 public:
-	QByteArray encode();
-	bool       decode(BYTE* udpData, int dataLen, int* offset);
+  QByteArray encode();
+  bool       decode(BYTE* udpData, int dataLen, int* offset);
 };
 
 class SnoopDnsQuestions : public QList<SnoopDnsQuestion>
 {
 public:
-	QByteArray encode();
-	bool       decode(BYTE* udpData, int dataLen, int count, int* offset);
+  QByteArray encode();
+  bool       decode(BYTE* udpData, int dataLen, int count, int* offset);
 };
 
 // ----------------------------------------------------------------------------
@@ -41,16 +41,16 @@ public:
 class SnoopDnsResourceRecord
 {
 public:
-	QString    name;
-	UINT16     type;
-	UINT16     _class;
-	UINT32     ttl;
-	UINT16     dataLength;
-	QByteArray data;
+  QString    name;
+  UINT16     type;
+  UINT16     _class;
+  UINT32     ttl;
+  UINT16     dataLength;
+  QByteArray data;
 
 public:
-	QByteArray encode();
-	bool       decode(BYTE* udpData, int dataLen, int* offset);
+  QByteArray encode();
+  bool       decode(BYTE* udpData, int dataLen, int* offset);
 };
 
 // ----------------------------------------------------------------------------
@@ -59,8 +59,8 @@ public:
 class SnoopDnsResourceRecords : public QList<SnoopDnsResourceRecord>
 {
 public:
-	QByteArray encode();
-	bool       decode(BYTE* udpData, int dataLen, int count, int* offset);
+  QByteArray encode();
+  bool       decode(BYTE* udpData, int dataLen, int count, int* offset);
 };
 
 // ----------------------------------------------------------------------------
@@ -69,19 +69,19 @@ public:
 class SnoopDns
 {
 public:
-	DNS_HDR dnsHdr;
-	SnoopDnsQuestions questions;
-	SnoopDnsResourceRecords answers;
-	SnoopDnsResourceRecords authorities;
-	SnoopDnsResourceRecords additionals;
+  DNS_HDR dnsHdr;
+  SnoopDnsQuestions questions;
+  SnoopDnsResourceRecords answers;
+  SnoopDnsResourceRecords authorities;
+  SnoopDnsResourceRecords additionals;
 
 public:
-	QByteArray encode();
-	bool       decode(BYTE* udpData, int dataLen, int* offset);
+  QByteArray encode();
+  bool       decode(BYTE* udpData, int dataLen, int* offset);
 
 public:
-	static QByteArray encodeName(QString name);
-	static QString    decodeName(BYTE* udpData, int dataLen, int* offset);
+  static QByteArray encodeName(QString name);
+  static QString    decodeName(BYTE* udpData, int dataLen, int* offset);
 };
 
 #endif // __SNOOP_DNS_H__

@@ -21,22 +21,22 @@
 // ----------------------------------------------------------------------------
 class Main : public VObject
 {
-	Q_OBJECT
+  Q_OBJECT
 
 public:
-	Main();
-	virtual ~Main();
+  Main();
+  virtual ~Main();
 
 protected:
-	virtual bool doOpen();
-	virtual bool doClose();
+  virtual bool doOpen();
+  virtual bool doClose();
 
 public:
-	QString fileName;
-	VGraph  graph;
+  QString fileName;
+  VGraph  graph;
 
 public slots:
-	void terminate();
+  void terminate();
 };
 
 #endif // __MAIN_H__

@@ -18,31 +18,31 @@
 // ----------------------------------------------------------------------------
 class SnoopChecksum : public SnoopProcess
 {
-	Q_OBJECT
+  Q_OBJECT
 
 public:
-	SnoopChecksum(void* owner = NULL);
-	virtual ~SnoopChecksum();
+  SnoopChecksum(void* owner = NULL);
+  virtual ~SnoopChecksum();
 
 public:
-	bool ipChecksum;
-	bool tcpChecksum;
-	bool udpChecksum;
+  bool ipChecksum;
+  bool tcpChecksum;
+  bool udpChecksum;
 
 public slots:
-	void calculate(SnoopPacket* packet);
+  void calculate(SnoopPacket* packet);
 
 signals:
-	void calculated(SnoopPacket* packet);
+  void calculated(SnoopPacket* packet);
 
 public:
-	virtual void load(VXml xml);
-	virtual void save(VXml xml);
+  virtual void load(VXml xml);
+  virtual void save(VXml xml);
 
 #ifdef QT_GUI_LIB
 public: // for VOptionable
-	virtual void optionAddWidget(QLayout* layout);
-	virtual void optionSaveDlg(QDialog* dialog);
+  virtual void optionAddWidget(QLayout* layout);
+  virtual void optionSaveDlg(QDialog* dialog);
 #endif // QT_GUI_LIB
 };
 

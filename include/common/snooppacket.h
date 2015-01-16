@@ -22,11 +22,11 @@
 class SnoopFlowValue
 {
 public:
-	size_t         packets;
-	size_t         bytes;
-	struct timeval ts;
-	bool           created;
-	BYTE*          totalMem;
+  size_t         packets;
+  size_t         bytes;
+  struct timeval ts;
+  bool           created;
+  BYTE*          totalMem;
 };
 
 #ifndef WIN32
@@ -40,62 +40,62 @@ class SnoopCapture;
 class SnoopPacket
 {
 public:
-	///
-	/// packet
-	///
-	PKT_HDR*  pktHdr;
-	BYTE*     pktData;
+  ///
+  /// packet
+  ///
+  PKT_HDR*  pktHdr;
+  BYTE*     pktData;
 
-	///
-	/// datalink layer
-	///
-	int       linkType; // DLT_EN10MB, ...
-	ETH_HDR*  ethHdr;
+  ///
+  /// datalink layer
+  ///
+  int       linkType; // DLT_EN10MB, ...
+  ETH_HDR*  ethHdr;
 
-	///
-	/// network layer
-	///
-	UINT16    netType; // ETHERTYPE_IP, ETHERTYPE_ARP, ...
-	IP_HDR*   ipHdr;
-	ARP_HDR*  arpHdr;
+  ///
+  /// network layer
+  ///
+  UINT16    netType; // ETHERTYPE_IP, ETHERTYPE_ARP, ...
+  IP_HDR*   ipHdr;
+  ARP_HDR*  arpHdr;
 
-	///
-	/// transport layer(protocol)
-	///
-	UINT8     proto; // IPPROTO_TCP, IPPROTO_UDP, IPPROTO_ICMP, ...
-	TCP_HDR*  tcpHdr;
-	UDP_HDR*  udpHdr;
-	ICMP_HDR* icmpHdr;
+  ///
+  /// transport layer(protocol)
+  ///
+  UINT8     proto; // IPPROTO_TCP, IPPROTO_UDP, IPPROTO_ICMP, ...
+  TCP_HDR*  tcpHdr;
+  UDP_HDR*  udpHdr;
+  ICMP_HDR* icmpHdr;
 
-	///
-	/// data
-	///
-	BYTE*     data;
-	int       dataLen;
+  ///
+  /// data
+  ///
+  BYTE*     data;
+  int       dataLen;
 
-	///
-	/// control
-	///
-	// SnoopCapture* sender; // gilgil temp 2014.04.41
-	bool          drop;
-	// bool      ipChanged;  // issue14_remove_changed_in_snoop_packet
-	// bool      tcpChanged; // issue14_remove_changed_in_snoop_packet
-	// bool      udpChanged; // issue14_remove_changed_in_snoop_packet
+  ///
+  /// control
+  ///
+  // SnoopCapture* sender; // gilgil temp 2014.04.41
+  bool          drop;
+  // bool      ipChanged;  // issue14_remove_changed_in_snoop_packet
+  // bool      tcpChanged; // issue14_remove_changed_in_snoop_packet
+  // bool      udpChanged; // issue14_remove_changed_in_snoop_packet
 
-	///
-	/// flow
-	///
-	void*           flowKey;  // SnoopMacFlowKey, SnoopIpFlowKey, SnoopTcpFlowKey, SnoopUdpFlowKey, ...
-	SnoopFlowValue* flowValue;
+  ///
+  /// flow
+  ///
+  void*           flowKey;  // SnoopMacFlowKey, SnoopIpFlowKey, SnoopTcpFlowKey, SnoopUdpFlowKey, ...
+  SnoopFlowValue* flowValue;
 
-	///
-	/// windivert
-	///
-	WINDIVERT_ADDRESS divertAddr;
+  ///
+  /// windivert
+  ///
+  WINDIVERT_ADDRESS divertAddr;
 
 public:
-	void clear();
-	int  write(QByteArray& ba);
+  void clear();
+  int  write(QByteArray& ba);
 };
 
 #endif // __SNOOP_PACKET_H__

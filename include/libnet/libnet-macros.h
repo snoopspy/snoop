@@ -57,12 +57,12 @@
 /**
  * Used several places, to specify "on" or "one"
  */
-#define LIBNET_ON	0
+#define LIBNET_ON  0
 
 /**
  * Used several places, to specify "on" or "one"
  */
-#define LIBNET_OFF	1
+#define LIBNET_OFF  1
 
 /**
  * IPv6 error code

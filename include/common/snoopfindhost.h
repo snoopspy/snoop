@@ -21,44 +21,44 @@
 // ----------------------------------------------------------------------------
 class SnoopFindHost : public SnoopAdapter
 {
-	Q_OBJECT
+  Q_OBJECT
 
 public:
-	SnoopFindHost(void* owner = NULL);
-	virtual ~SnoopFindHost();
+  SnoopFindHost(void* owner = NULL);
+  virtual ~SnoopFindHost();
 
 protected:
-	virtual bool doOpen();
-	virtual bool doClose();
+  virtual bool doOpen();
+  virtual bool doClose();
 
 public:
-	VTimeout      findAllTimeout;
-	VTimeout      scanInterval;
-	VTimeout      sendInterval;
-	SnoopHostList hostList;
+  VTimeout      findAllTimeout;
+  VTimeout      scanInterval;
+  VTimeout      sendInterval;
+  SnoopHostList hostList;
 
 public:
-	bool findAll();
+  bool findAll();
 
 protected:
-	VTick        lastSendTick;
-	SnoopNetInfo netInfo;
+  VTick        lastSendTick;
+  SnoopNetInfo netInfo;
 
-	bool sendArpRequestAll();
-	bool isFoundAll();
-	void logUnfoundHost(VLog* log = NULL);
-	int  sendArpRequest(Ip ip);
-	int  read(Ip& ip, Mac& mac);
+  bool sendArpRequestAll();
+  bool isFoundAll();
+  void logUnfoundHost(VLog* log = NULL);
+  int  sendArpRequest(Ip ip);
+  int  read(Ip& ip, Mac& mac);
 
 protected:
-	virtual void run();
+  virtual void run();
 
 signals:
-	void found(Ip ip, Mac mac);
+  void found(Ip ip, Mac mac);
 
 public:
-	virtual void load(VXml xml);
-	virtual void save(VXml xml);
+  virtual void load(VXml xml);
+  virtual void save(VXml xml);
 };
 
 #endif // __SNOOP_FIND_HOST_H__

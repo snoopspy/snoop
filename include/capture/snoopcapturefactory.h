@@ -20,8 +20,8 @@
 class SnoopCaptureFactory : public VFactory<SnoopCapture>
 {
 public:
-	static void          explicitLink();
-	static SnoopCapture* createDefaultCapture();
+  static void          explicitLink();
+  static SnoopCapture* createDefaultCapture();
 };
 
 #endif // __SNOOP_CAPTURE_FACTORY_H__

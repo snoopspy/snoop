@@ -23,15 +23,15 @@
 class SnoopUdpSenderFlowItem
 {
 public:
-	quint16 lastId;
-	SnoopUdpChunks chunks;
+  quint16 lastId;
+  SnoopUdpChunks chunks;
 
 public:
-	SnoopUdpSenderFlowItem();
-	virtual ~SnoopUdpSenderFlowItem();
+  SnoopUdpSenderFlowItem();
+  virtual ~SnoopUdpSenderFlowItem();
 
 public:
-	void clear();
+  void clear();
 };
 
 // ----------------------------------------------------------------------------
@@ -39,44 +39,44 @@ public:
 // ----------------------------------------------------------------------------
 class SnoopUdpSender : public SnoopProcess
 {
-	Q_OBJECT
+  Q_OBJECT
 
 public:
-	SnoopUdpSender(void* owner = NULL);
-	virtual ~SnoopUdpSender();
+  SnoopUdpSender(void* owner = NULL);
+  virtual ~SnoopUdpSender();
 
 protected:
-	virtual bool doOpen();
-	virtual bool doClose();
+  virtual bool doOpen();
+  virtual bool doClose();
 
 public:
-	SnoopFlowMgr* flowMgr;
-	SnoopCapture* writer; // gilgil temp 2014.07.30
-	QByteArray    dscr;
-	int           headerSize;
-	int           addChunkCount;
+  SnoopFlowMgr* flowMgr;
+  SnoopCapture* writer; // gilgil temp 2014.07.30
+  QByteArray    dscr;
+  int           headerSize;
+  int           addChunkCount;
 
 protected:
-	size_t udpFlowOffset;
+  size_t udpFlowOffset;
 
 protected slots:
-	void __udpFlowCreate(SnoopUdpFlowKey* key, SnoopFlowValue* value);
-	void __udpFlowDelete(SnoopUdpFlowKey* key, SnoopFlowValue* value);
+  void __udpFlowCreate(SnoopUdpFlowKey* key, SnoopFlowValue* value);
+  void __udpFlowDelete(SnoopUdpFlowKey* key, SnoopFlowValue* value);
 
 signals:
-	void merged(SnoopPacket* packet);
+  void merged(SnoopPacket* packet);
 
 public slots:
-	void merge(SnoopPacket* packet);
+  void merge(SnoopPacket* packet);
 
 public:
-	virtual void load(VXml xml);
-	virtual void save(VXml xml);
+  virtual void load(VXml xml);
+  virtual void save(VXml xml);
 
 #ifdef QT_GUI_LIB
 public: // for VOptionable
-	virtual void optionAddWidget(QLayout* layout);
-	virtual void optionSaveDlg(QDialog* dialog);
+  virtual void optionAddWidget(QLayout* layout);
+  virtual void optionSaveDlg(QDialog* dialog);
 #endif // QT_GUI_LIB
 };
 

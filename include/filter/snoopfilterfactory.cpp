@@ -9,8 +9,8 @@
 // ----------------------------------------------------------------------------
 void SnoopFilterFactory::explicitLink()
 {
-	SnoopBpFilter      bpFilter;
+  SnoopBpFilter      bpFilter;
 #ifdef WIN32
-	SnoopProcessFilter processFilter;
+  SnoopProcessFilter processFilter;
 #endif // WIN32
 }

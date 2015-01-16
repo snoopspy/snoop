@@ -20,7 +20,7 @@
 class SnoopFilterFactory : public VFactory<SnoopFilter>
 {
 public:
-	static void          explicitLink();
+  static void          explicitLink();
 };
 
 #endif // __SNOOP_FILTER_FACTORY_H__

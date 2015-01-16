@@ -19,8 +19,8 @@
 class SnoopUdpData
 {
 public:
-	static bool parse(SnoopPacket* packet);
-	static bool parseAll(SnoopPacket* packet);
+  static bool parse(SnoopPacket* packet);
+  static bool parseAll(SnoopPacket* packet);
 };
 
 #endif // __SNOOP_UDP_DATA_H_

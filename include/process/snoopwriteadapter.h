@@ -18,32 +18,32 @@
 // ----------------------------------------------------------------------------
 class SnoopWriteAdapter : public SnoopAdapter
 {
-	Q_OBJECT
+  Q_OBJECT
 
 public:
-	SnoopWriteAdapter(void* owner = NULL);
-	virtual ~SnoopWriteAdapter();
+  SnoopWriteAdapter(void* owner = NULL);
+  virtual ~SnoopWriteAdapter();
 
 public:
-	Mac srcMac;
-	Mac dstMac;
+  Mac srcMac;
+  Mac dstMac;
 
 public slots:
-	void copy(SnoopPacket* packet);
-	void move(SnoopPacket* packet);
+  void copy(SnoopPacket* packet);
+  void move(SnoopPacket* packet);
 
 signals:
-	void copied(SnoopPacket* packet);
-	void moved(SnoopPacket* packet);
+  void copied(SnoopPacket* packet);
+  void moved(SnoopPacket* packet);
 
 public:
-	virtual void load(VXml xml);
-	virtual void save(VXml xml);
+  virtual void load(VXml xml);
+  virtual void save(VXml xml);
 
 #ifdef QT_GUI_LIB
 public: // for VOptionable
-	virtual void optionAddWidget(QLayout* layout);
-	virtual void optionSaveDlg(QDialog* dialog);
+  virtual void optionAddWidget(QLayout* layout);
+  virtual void optionSaveDlg(QDialog* dialog);
 #endif // QT_GUI_LIB
 };
 

@@ -556,15 +556,15 @@ struct libnet_fddi_addr
 struct libnet_gre_hdr
 {
     u_int16_t flags_ver;
-#define GRE_CSUM	                        0x8000
-#define GRE_ROUTING	                        0x4000
-#define GRE_KEY		                        0x2000
-#define GRE_SEQ		                        0x1000
-#define GRE_STRICT	                        0x0800
-#define GRE_REC		                        0x0700
-#define GRE_ACK		                        0x0080
+#define GRE_CSUM                          0x8000
+#define GRE_ROUTING                          0x4000
+#define GRE_KEY                            0x2000
+#define GRE_SEQ                            0x1000
+#define GRE_STRICT                          0x0800
+#define GRE_REC                            0x0700
+#define GRE_ACK                            0x0080
 
-#define GRE_FLAGS_MASK	                        0x00F8
+#define GRE_FLAGS_MASK                          0x00F8
 #define GRE_VERSION_MASK                        0x0007
 
 #define GRE_VERSION_0                           0x0000
@@ -594,19 +594,19 @@ struct libnet_gre_hdr
 #define GRE_PPP                                 0x880b /* taken from RFC 2637 */
 
     union {
-	struct {
-	    u_int16_t sum;  /* optional */
-	    u_int16_t offset;    /* optional */
-	    u_int32_t key;        /* optional */
-	    u_int32_t seq;        /* optional */
-	} _gre;
+  struct {
+      u_int16_t sum;  /* optional */
+      u_int16_t offset;    /* optional */
+      u_int32_t key;        /* optional */
+      u_int32_t seq;        /* optional */
+  } _gre;
 
-	struct {
-	    u_int16_t payload_s; /* optional */
-	    u_int16_t callID;    /* optional */
-	    u_int32_t seq;        /* optional */
-	    u_int32_t ack;        /* optional */
-	} _egre;
+  struct {
+      u_int16_t payload_s; /* optional */
+      u_int16_t callID;    /* optional */
+      u_int32_t seq;        /* optional */
+      u_int32_t ack;        /* optional */
+  } _egre;
     }_data;
 
 #define gre_sum _data._gre.sum

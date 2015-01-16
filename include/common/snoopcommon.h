@@ -19,13 +19,13 @@
 #include <VXml>
 
 #ifdef WIN32
-	#define  WPCAP
-	#define  HAVE_REMOTE
-	#include <Iphlpapi.h>
-	#include <pcap.h>
+  #define  WPCAP
+  #define  HAVE_REMOTE
+  #include <Iphlpapi.h>
+  #include <pcap.h>
 #endif // WIN32
 #ifdef linux
-	#include <pcap.h>
+  #include <pcap.h>
 #endif // linux
 
 // ----------------------------------------------------------------------------
@@ -34,21 +34,21 @@
 // ----- gilgil temp 2014.03.28 -----
 /*
 #ifdef _MSC_VER
-	#ifdef _DEBUG
-		#ifdef QT_GUI_LIB
-			#pragma comment(lib, "snoopd_gui.lib")
-		#else
-			#pragma comment(lib, "snoopd.lib")
-		#endif // QT_GUI_LIB
-	#else  _DEBUG
-		#ifdef QT_GUI_LIB
-			#pragma comment(lib, "snoop_gui.lib")
-		#else
-			#pragma comment(lib, "snoop.lib")
-		#endif // QT_GUI_LIB
-	#endif // _DEBUG
-	#pragma comment(lib, "wpcap.lib")
-	#pragma comment(lib, "Iphlpapi.lib")
+  #ifdef _DEBUG
+    #ifdef QT_GUI_LIB
+      #pragma comment(lib, "snoopd_gui.lib")
+    #else
+      #pragma comment(lib, "snoopd.lib")
+    #endif // QT_GUI_LIB
+  #else  _DEBUG
+    #ifdef QT_GUI_LIB
+      #pragma comment(lib, "snoop_gui.lib")
+    #else
+      #pragma comment(lib, "snoop.lib")
+    #endif // QT_GUI_LIB
+  #endif // _DEBUG
+  #pragma comment(lib, "wpcap.lib")
+  #pragma comment(lib, "Iphlpapi.lib")
 #endif // _MSC_VER
 */
 // ----------------------------------
@@ -63,11 +63,11 @@ extern const char* SNOOP_VERSION;
 // ----------------------------------------------------------------------------
 namespace snoop
 {
-	static const int DEFAULT_READTIMEOUT    =  1;
-	static const int DEFAULT_SNAPLEN        =  1600;
-	static const int DEFAULT_TIMEOUT        =  5000;
-	static const int INVALID_ADAPTER_INDEX  =  -1;
-	static const int DEFAULT_ADAPTER_INDEX  =  0;
+  static const int DEFAULT_READTIMEOUT    =  1;
+  static const int DEFAULT_SNAPLEN        =  1600;
+  static const int DEFAULT_TIMEOUT        =  5000;
+  static const int INVALID_ADAPTER_INDEX  =  -1;
+  static const int DEFAULT_ADAPTER_INDEX  =  0;
 };
 
 // ----------------------------------------------------------------------------
@@ -76,24 +76,24 @@ namespace snoop
 class SnoopCaptureType
 {
 public:
-	enum _SnoopCaptureType
-	{
-		None,
-		InPath,
-		OutOfPath
-	};
+  enum _SnoopCaptureType
+  {
+    None,
+    InPath,
+    OutOfPath
+  };
 
 protected:
-	_SnoopCaptureType value;
+  _SnoopCaptureType value;
 
 public:
-	SnoopCaptureType()                              {                      } // default ctor
-	SnoopCaptureType(const _SnoopCaptureType value) { this->value = value; } // conversion ctor
-	operator _SnoopCaptureType() const              { return value;        } // cast operator
+  SnoopCaptureType()                              {                      } // default ctor
+  SnoopCaptureType(const _SnoopCaptureType value) { this->value = value; } // conversion ctor
+  operator _SnoopCaptureType() const              { return value;        } // cast operator
 
 public:
-	SnoopCaptureType(const QString s);
-	QString str() const;
+  SnoopCaptureType(const QString s);
+  QString str() const;
 };
 
 // ----------------------------------------------------------------------------

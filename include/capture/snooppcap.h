@@ -23,56 +23,56 @@ typedef void pcap_rmtauth;
 class SnoopPcap : public SnoopCapture
 {
 public:
-	SnoopPcap(void* owner = NULL);
-	virtual ~SnoopPcap();
+  SnoopPcap(void* owner = NULL);
+  virtual ~SnoopPcap();
 
 protected:
-	virtual bool doOpen();
-	virtual bool doClose();
+  virtual bool doOpen();
+  virtual bool doClose();
 
 public:
-	virtual int read(SnoopPacket* packet);
-	virtual int write(SnoopPacket* packet);
-	virtual int write(u_char* buf, int size, WINDIVERT_ADDRESS* divertAddr = NULL);
+  virtual int read(SnoopPacket* packet);
+  virtual int write(SnoopPacket* packet);
+  virtual int write(u_char* buf, int size, WINDIVERT_ADDRESS* divertAddr = NULL);
 
 public:
-	virtual SnoopCaptureType captureType() { return SnoopCaptureType::OutOfPath; }
-	virtual int              dataLink()    { return m_dataLink; }
-	virtual bool             relay(SnoopPacket* packet);
+  virtual SnoopCaptureType captureType() { return SnoopCaptureType::OutOfPath; }
+  virtual int              dataLink()    { return m_dataLink; }
+  virtual bool             relay(SnoopPacket* packet);
 
-	//
-	// Properties
-	//
+  //
+  // Properties
+  //
 public:
-	QString  filter;
-	int      snapLen;
-	int      flags;
-	int      readTimeout;
+  QString  filter;
+  int      snapLen;
+  int      flags;
+  int      readTimeout;
 
 public:
-	pcap*    m_pcap;
+  pcap*    m_pcap;
 protected:
-	int      m_dataLink;
+  int      m_dataLink;
 private:
-	QString  m_source;
+  QString  m_source;
 
 public:
 
 public:
-	QString source()     { return m_source;   }
+  QString source()     { return m_source;   }
 
 protected:
-	bool pcapOpen(char* source, pcap_rmtauth* auth, pcap_if_t* dev);
-	bool pcapProcessFilter(pcap_if_t* dev);
+  bool pcapOpen(char* source, pcap_rmtauth* auth, pcap_if_t* dev);
+  bool pcapProcessFilter(pcap_if_t* dev);
 
 public:
-	virtual void load(VXml xml);
-	virtual void save(VXml xml);
+  virtual void load(VXml xml);
+  virtual void save(VXml xml);
 
 #ifdef QT_GUI_LIB
 public: // for VOptionable
-	virtual void optionAddWidget(QLayout* layout);
-	virtual void optionSaveDlg(QDialog* dialog);
+  virtual void optionAddWidget(QLayout* layout);
+  virtual void optionSaveDlg(QDialog* dialog);
 #endif // QT_GUI_LIB
 };
 

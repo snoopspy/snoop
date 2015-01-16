@@ -45,47 +45,47 @@
 
 DomItem::DomItem(QDomElement& element, int row, DomItem* parent)
 {
-	m_element = element;
-	m_row     = row;
-	m_parent  = parent;
+  m_element = element;
+  m_row     = row;
+  m_parent  = parent;
 }
 
 DomItem::~DomItem()
 {
-		QHash<int,DomItem*>::iterator it;
-		for (it = childItems.begin(); it != childItems.end(); ++it)
-				delete it.value();
+    QHash<int,DomItem*>::iterator it;
+    for (it = childItems.begin(); it != childItems.end(); ++it)
+        delete it.value();
 }
 
 DomItem *DomItem::child(int i)
 {
-		if (childItems.contains(i))
-				return childItems[i];
+    if (childItems.contains(i))
+        return childItems[i];
 
-		if (i < 0) return NULL;
-		if (i < m_element.attributes().count())
-		{
-			QDomAttr attr = m_element.attributes().item(i).toAttr();
-			if (attr.isNull()) return NULL;
-			DomAttrItem* attrItem = new DomAttrItem(m_element, attr, m_row, this);
-			childItems[i] = attrItem;
-			return attrItem;
-		}
-		int index = i - m_element.attributes().count();
+    if (i < 0) return NULL;
+    if (i < m_element.attributes().count())
+    {
+      QDomAttr attr = m_element.attributes().item(i).toAttr();
+      if (attr.isNull()) return NULL;
+      DomAttrItem* attrItem = new DomAttrItem(m_element, attr, m_row, this);
+      childItems[i] = attrItem;
+      return attrItem;
+    }
+    int index = i - m_element.attributes().count();
 
-		if (index < m_element.childNodes().count())
-		{
-			QDomElement childElement = m_element.childNodes().item(index).toElement();
-			if (childElement.isNull()) return NULL;
-			DomItem *childItem = new DomItem(childElement, index, this);
-			childItems[i] = childItem;
-			return childItem;
-		}
-		return 0;
+    if (index < m_element.childNodes().count())
+    {
+      QDomElement childElement = m_element.childNodes().item(index).toElement();
+      if (childElement.isNull()) return NULL;
+      DomItem *childItem = new DomItem(childElement, index, this);
+      childItems[i] = childItem;
+      return childItem;
+    }
+    return 0;
 }
 
 DomAttrItem::DomAttrItem(QDomElement& element, QDomAttr attr, int row, DomItem* parent)
-	: DomItem(element, row, parent)
+  : DomItem(element, row, parent)
 {
-	m_attr = attr;
+  m_attr = attr;
 }

@@ -29,18 +29,18 @@
 class SnoopAutoDetectAdapter
 {
 private: // singleton
-	SnoopAutoDetectAdapter()          {}
-	virtual ~SnoopAutoDetectAdapter() {}
+  SnoopAutoDetectAdapter()          {}
+  virtual ~SnoopAutoDetectAdapter() {}
 
 public:
-	virtual int detect(QString host);
+  virtual int detect(QString host);
 
 public:
-	static SnoopAutoDetectAdapter& instance()
-	{
-		static SnoopAutoDetectAdapter g_instance;
-		return g_instance;
-	}
+  static SnoopAutoDetectAdapter& instance()
+  {
+    static SnoopAutoDetectAdapter g_instance;
+    return g_instance;
+  }
 };
 
 #endif // defined SNOOP_AUTO_DETECT_USE_GETBESTINTERFACE || defined SNOOP_AUTO_DETECT_USE_RTM
@@ -55,21 +55,21 @@ public:
 // ----------------------------------------------------------------------------
 class SnoopAutoDetectAdapterItem : public VObject
 {
-	Q_OBJECT
+  Q_OBJECT
 
 public:
-	SnoopAutoDetectAdapterItem(void* owner);
-	virtual ~SnoopAutoDetectAdapterItem();
+  SnoopAutoDetectAdapterItem(void* owner);
+  virtual ~SnoopAutoDetectAdapterItem();
 
 public:
-	SnoopAdapter adapter;
+  SnoopAdapter adapter;
 
 protected:
-	virtual bool doOpen();
-	virtual bool doClose();
+  virtual bool doOpen();
+  virtual bool doClose();
 
 public slots:
-	void recv(SnoopPacket* packet);
+  void recv(SnoopPacket* packet);
 };
 
 // ----------------------------------------------------------------------------
@@ -77,29 +77,29 @@ public slots:
 // ----------------------------------------------------------------------------
 class SnoopAutoDetectAdapter : public QObject
 {
-	Q_OBJECT
+  Q_OBJECT
 
-	friend class SnoopAutoDetectAdapterItem;
+  friend class SnoopAutoDetectAdapterItem;
 
 protected:
-	int    m_adapterIndex;
-	VEvent m_event;
+  int    m_adapterIndex;
+  VEvent m_event;
 
 private: // singleton
-	SnoopAutoDetectAdapter();
-	virtual ~SnoopAutoDetectAdapter();
+  SnoopAutoDetectAdapter();
+  virtual ~SnoopAutoDetectAdapter();
 
 public:
-	virtual int detect(QString& host);
+  virtual int detect(QString& host);
 
 public slots:
-	void recv(SnoopPacket* packet);
+  void recv(SnoopPacket* packet);
 
-	static SnoopAutoDetectAdapter& instance()
-	{
-		static SnoopAutoDetectAdapter g_instance;
-		return g_instance;
-	}
+  static SnoopAutoDetectAdapter& instance()
+  {
+    static SnoopAutoDetectAdapter g_instance;
+    return g_instance;
+  }
 };
 
 #endif // SNOOP_AUTO_DETECT_USE_ADAPTER

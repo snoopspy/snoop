@@ -20,8 +20,8 @@
 class SnoopProcessFactory : public VFactory<SnoopProcess>
 {
 public:
-	static void          explicitLink();
-	static SnoopProcess* createDefaultProcess();
+  static void          explicitLink();
+  static SnoopProcess* createDefaultProcess();
 };
 
 #endif // __SNOOP_PROCESS_FACTORY_H__

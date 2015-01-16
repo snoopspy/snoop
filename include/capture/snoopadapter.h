@@ -20,15 +20,15 @@
 class SnoopAdapterIndex
 {
 protected:
-	int m_adapterIndex;
+  int m_adapterIndex;
 
 public:
-	SnoopAdapterIndex();
-	operator int();
-	void operator = (const int i);
+  SnoopAdapterIndex();
+  operator int();
+  void operator = (const int i);
 
 protected:
-	void setAdapterIndex(int value);
+  void setAdapterIndex(int value);
 };
 
 // ----------------------------------------------------------------------------
@@ -37,24 +37,24 @@ protected:
 class SnoopAdapter : public SnoopPcap
 {
 public:
-	SnoopAdapter(void* owner = NULL);
-	virtual ~SnoopAdapter();
+  SnoopAdapter(void* owner = NULL);
+  virtual ~SnoopAdapter();
 
 protected:
-	virtual bool doOpen();
-	virtual bool doClose();
+  virtual bool doOpen();
+  virtual bool doClose();
 
 public:
-	SnoopAdapterIndex adapterIndex;
+  SnoopAdapterIndex adapterIndex;
 
 public:
-	virtual void load(VXml xml);
-	virtual void save(VXml xml);
+  virtual void load(VXml xml);
+  virtual void save(VXml xml);
 
 #ifdef QT_GUI_LIB
 public: // for VOptionable
-	virtual void optionAddWidget(QLayout* layout);
-	virtual void optionSaveDlg(QDialog* dialog);
+  virtual void optionAddWidget(QLayout* layout);
+  virtual void optionSaveDlg(QDialog* dialog);
 #endif // QT_GUI_LIB
 };
 

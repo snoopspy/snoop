@@ -19,8 +19,8 @@
 class SnoopTcpData
 {
 public:
-	static bool parse(SnoopPacket* packet);
-	static bool parseAll(SnoopPacket* packet);
+  static bool parse(SnoopPacket* packet);
+  static bool parseAll(SnoopPacket* packet);
 };
 
 #endif // __SNOOP_TCP_DATA_H__

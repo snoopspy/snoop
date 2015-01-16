@@ -18,42 +18,42 @@
 // ----------------------------------------------------------------------------
 class SnoopBpFilter : public SnoopFilter
 {
-	Q_OBJECT
+  Q_OBJECT
 
 public:
-	SnoopBpFilter(void* owner = NULL);
-	virtual ~SnoopBpFilter();
+  SnoopBpFilter(void* owner = NULL);
+  virtual ~SnoopBpFilter();
 
 protected:
-	virtual bool doOpen();
-	virtual bool doClose();
+  virtual bool doOpen();
+  virtual bool doClose();
 
 public:
-	pcap_t*      m_pcap;
-	bpf_program* m_code;
+  pcap_t*      m_pcap;
+  bpf_program* m_code;
 
 public:
-	QString filter;
-	int     linkType;
+  QString filter;
+  int     linkType;
 
 public:
-	bool _check(BYTE* pktData, uint32_t pktLen);
+  bool _check(BYTE* pktData, uint32_t pktLen);
 
 public slots:
-	void check(SnoopPacket* packet);
+  void check(SnoopPacket* packet);
 
 signals:
-	void ack(SnoopPacket* packet);
-	void nak(SnoopPacket* packet);
+  void ack(SnoopPacket* packet);
+  void nak(SnoopPacket* packet);
 
 public:
-	virtual void load(VXml xml);
-	virtual void save(VXml xml);
+  virtual void load(VXml xml);
+  virtual void save(VXml xml);
 
 #ifdef QT_GUI_LIB
 public: // for VOptionable
-	virtual void optionAddWidget(QLayout* layout);
-	virtual void optionSaveDlg(QDialog* dialog);
+  virtual void optionAddWidget(QLayout* layout);
+  virtual void optionSaveDlg(QDialog* dialog);
 #endif // QT_GUI_LIB
 };
 

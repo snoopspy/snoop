@@ -19,12 +19,12 @@
 class SnoopIcmp
 {
 public:
-	static bool   isData(IP_HDR* ipHdr, ICMP_HDR* icmpHdr, BYTE** icmpData = NULL, int* icmpDataLen = NULL);
-	static UINT16 checksum(IP_HDR* ipHdr, ICMP_HDR* icmpHdr);
+  static bool   isData(IP_HDR* ipHdr, ICMP_HDR* icmpHdr, BYTE** icmpData = NULL, int* icmpDataLen = NULL);
+  static UINT16 checksum(IP_HDR* ipHdr, ICMP_HDR* icmpHdr);
 
 public:
-	static bool parse(SnoopPacket* packet);
-	static bool parseAll(SnoopPacket* packet);
+  static bool parse(SnoopPacket* packet);
+  static bool parseAll(SnoopPacket* packet);
 };
 
 #endif // __SNOOP_ICMP_H__

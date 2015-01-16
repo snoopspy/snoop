@@ -21,8 +21,8 @@
 class SnoopDataChangeFlowItem
 {
 public:
-	INT32 seqDiff;
-	INT32 ackDiff;
+  INT32 seqDiff;
+  INT32 ackDiff;
 };
 
 // ----------------------------------------------------------------------------
@@ -30,47 +30,47 @@ public:
 // ----------------------------------------------------------------------------
 class SnoopDataChange : public SnoopProcess
 {
-	Q_OBJECT
+  Q_OBJECT
 
 public:
-	SnoopDataChange(void* owner = NULL);
-	virtual ~SnoopDataChange();
+  SnoopDataChange(void* owner = NULL);
+  virtual ~SnoopDataChange();
 
 protected:
-	virtual bool doOpen();
-	virtual bool doClose();
+  virtual bool doOpen();
+  virtual bool doClose();
 
 signals:
-	void changed(SnoopPacket* packet);
-	void unchanged(SnoopPacket* packet);
+  void changed(SnoopPacket* packet);
+  void unchanged(SnoopPacket* packet);
 
 public slots:
-	void change(SnoopPacket* packet);
+  void change(SnoopPacket* packet);
 
 protected:
-	bool _change(SnoopPacket* packet, INT16* diff);
+  bool _change(SnoopPacket* packet, INT16* diff);
 
 public:
-	SnoopFlowMgr* flowMgr;
-	bool          tcpChange;
-	bool          udpChange;
-	VDataChange   dataChange;
+  SnoopFlowMgr* flowMgr;
+  bool          tcpChange;
+  bool          udpChange;
+  VDataChange   dataChange;
 
 protected:
-		size_t tcpFlowOffset;
+    size_t tcpFlowOffset;
 
 protected slots:
-	void __tcpFlowCreate(SnoopTcpFlowKey* key, SnoopFlowValue* value);
-	void __tcpFlowDelete(SnoopTcpFlowKey* key, SnoopFlowValue* value);
+  void __tcpFlowCreate(SnoopTcpFlowKey* key, SnoopFlowValue* value);
+  void __tcpFlowDelete(SnoopTcpFlowKey* key, SnoopFlowValue* value);
 
 public:
-	virtual void load(VXml xml);
-	virtual void save(VXml xml);
+  virtual void load(VXml xml);
+  virtual void save(VXml xml);
 
 #ifdef QT_GUI_LIB
 public:
-	virtual void optionAddWidget(QLayout* layout);
-	virtual void optionSaveDlg(QDialog* dialog);
+  virtual void optionAddWidget(QLayout* layout);
+  virtual void optionSaveDlg(QDialog* dialog);
 #endif // QT_GUI_LIB
 };
 

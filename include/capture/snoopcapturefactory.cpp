@@ -15,21 +15,21 @@
 // ----------------------------------------------------------------------------
 void SnoopCaptureFactory::explicitLink()
 {
-	SnoopAdapter     adapter;
-	SnoopArpSpoof    arpSpoof;
-	SnoopFile        file;
-	SnoopSourcePcap  pcap;
+  SnoopAdapter     adapter;
+  SnoopArpSpoof    arpSpoof;
+  SnoopFile        file;
+  SnoopSourcePcap  pcap;
 #ifdef WIN32
-	SnoopRemote      remote;
+  SnoopRemote      remote;
 #endif // WIN32
-	SnoopVirtualNat  virtualNAT;
+  SnoopVirtualNat  virtualNAT;
 #ifdef WIN32
-	SnoopWinDivert   winDivert;
+  SnoopWinDivert   winDivert;
 #endif // WIN32
 }
 
 SnoopCapture* SnoopCaptureFactory::createDefaultCapture()
 {
-	SnoopAdapter* adapter = new SnoopAdapter;
-	return adapter;
+  SnoopAdapter* adapter = new SnoopAdapter;
+  return adapter;
 }

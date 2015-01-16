@@ -22,54 +22,54 @@
 /// Base class of all capture classes
 class SnoopCapture : public VObject, protected VRunnable, public VOptionable
 {
-	Q_OBJECT
+  Q_OBJECT
 
 public:
-	SnoopCapture(void* owner = NULL);
-	virtual ~SnoopCapture();
+  SnoopCapture(void* owner = NULL);
+  virtual ~SnoopCapture();
 
 protected:
-	virtual bool doOpen();
-	virtual bool doClose();
+  virtual bool doOpen();
+  virtual bool doClose();
 
 public:
-	virtual int read(SnoopPacket* packet);
-	virtual int write(SnoopPacket* packet);
-	virtual int write(u_char* buf, int size, WINDIVERT_ADDRESS* divertAddr = NULL);
+  virtual int read(SnoopPacket* packet);
+  virtual int write(SnoopPacket* packet);
+  virtual int write(u_char* buf, int size, WINDIVERT_ADDRESS* divertAddr = NULL);
 
 public:
-	void parse(SnoopPacket* packet);
+  void parse(SnoopPacket* packet);
 
 public:
-	virtual SnoopCaptureType captureType() { return SnoopCaptureType::None; }
-	virtual int              dataLink()    { return DLT_NULL; }
-	virtual bool             relay(SnoopPacket* packet);
+  virtual SnoopCaptureType captureType() { return SnoopCaptureType::None; }
+  virtual int              dataLink()    { return DLT_NULL; }
+  virtual bool             relay(SnoopPacket* packet);
 
-	//
-	// Properties
-	//
+  //
+  // Properties
+  //
 public:
-	bool enabled;
-	bool autoRead;
-	bool autoParse;
+  bool enabled;
+  bool autoRead;
+  bool autoParse;
 
 protected:
-	virtual void run();
+  virtual void run();
 
 signals:
-	void captured(SnoopPacket* packet);
+  void captured(SnoopPacket* packet);
 
 protected:
-	SnoopPacket packet;
+  SnoopPacket packet;
 
 public:
-	virtual void load(VXml xml);
-	virtual void save(VXml xml);
+  virtual void load(VXml xml);
+  virtual void save(VXml xml);
 
 #ifdef QT_GUI_LIB
 public: // for VOptionable
-	virtual void optionAddWidget(QLayout* layout);
-	virtual void optionSaveDlg(QDialog* dialog);
+  virtual void optionAddWidget(QLayout* layout);
+  virtual void optionSaveDlg(QDialog* dialog);
 #endif // QT_GUI_LIB
 };
 

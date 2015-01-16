@@ -21,17 +21,17 @@
 class SnoopFilter : public VObject, public VOptionable
 {
 public:
-	SnoopFilter(void* owner = NULL);
-	virtual ~SnoopFilter();
+  SnoopFilter(void* owner = NULL);
+  virtual ~SnoopFilter();
 
 protected:
-	virtual bool doOpen();
-	virtual bool doClose();
+  virtual bool doOpen();
+  virtual bool doClose();
 
 #ifdef QT_GUI_LIB
 public: // for VOptionable
-	virtual void optionAddWidget(QLayout* layout);
-	virtual void optionSaveDlg(QDialog* dialog);
+  virtual void optionAddWidget(QLayout* layout);
+  virtual void optionSaveDlg(QDialog* dialog);
 #endif // QT_GUI_LIB
 };
 
