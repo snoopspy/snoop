@@ -25,7 +25,7 @@ bool SnoopEth::isIp(ETH_HDR* ethHdr, IP_HDR** ipHdr)
 
 bool SnoopEth::isArp(ETH_HDR* ethHdr, ARP_HDR** arpHdr)
 {
-  if (htons(ether_type) != ETHERTYPE_ARP)
+  if (htons(ethHdr->ether_type) != ETHERTYPE_ARP)
     return false;
   if (arpHdr != NULL)
     *arpHdr = (ARP_HDR*)((BYTE*)(ethHdr) + sizeof(ETH_HDR));

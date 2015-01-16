@@ -99,28 +99,29 @@ public:
 // ----------------------------------------------------------------------------
 // SnoopError
 // ----------------------------------------------------------------------------
-class SnoopError : public VError {};
-
-// ----------------------------------------------------------------------------
-// SnoopError Code
-// ----------------------------------------------------------------------------
-static const int VERR_INVALID_ADAPTER_INDEX         = VERR_CATEGORY_SNOOP + 0;
-static const int VERR_IN_PCAP_OPEN                  = VERR_CATEGORY_SNOOP + 1;
-static const int VERR_IN_PCAP_COMPILE               = VERR_CATEGORY_SNOOP + 2;
-static const int VERR_IN_PCAP_SETFILTER             = VERR_CATEGORY_SNOOP + 3;
-static const int VERR_IN_PCAP_NEXT_EX               = VERR_CATEGORY_SNOOP + 4;
-static const int VERR_IN_PCAP_FINDALLDEVS_EX        = VERR_CATEGORY_SNOOP + 5;
-static const int VERR_CANCELED_BY_USER              = VERR_CATEGORY_SNOOP + 6;
-static const int VERR_IN_PCAP_OPEN_DEAD             = VERR_CATEGORY_SNOOP + 7;
-static const int VERR_HOST_NOT_SPECIFIED            = VERR_CATEGORY_SNOOP + 8;
-static const int VERR_CAN_NOT_FIND_ALL_HOST         = VERR_CATEGORY_SNOOP + 9;
-static const int VERR_SESSION_COUNT_IS_ZERO         = VERR_CATEGORY_SNOOP + 10;
-static const int VERR_THE_SAME_SOURCE_AND_TARGET_IP = VERR_CATEGORY_SNOOP + 11;
-static const int VERR_CAN_NOT_FIND_HOST             = VERR_CATEGORY_SNOOP + 12;
-static const int VERR_THE_SAME_REAL_AND_TARGET_MAC  = VERR_CATEGORY_SNOOP + 13;
-static const int VERR_CAN_NOT_OPEN_INFECT_THREAD    = VERR_CATEGORY_SNOOP + 14;
-static const int VERR_IN_PCAP_DUMP_OPEN             = VERR_CATEGORY_SNOOP + 15;
-static const int VERR_CAN_NOT_SPOOF_MYSELF          = VERR_CATEGORY_SNOOP + 16;
+class SnoopError : public VError
+{
+public:
+  enum {
+    INVALID_ADAPTER_INDEX = VERR_CATEGORY_SNOOP,
+    IN_PCAP_OPEN,
+    IN_PCAP_COMPILE,
+    IN_PCAP_SETFILTER,
+    IN_PCAP_NEXT_EX,
+    IN_PCAP_FINDALLDEVS_EX,
+    CANCELED_BY_USER,
+    IN_PCAP_OPEN_DEAD,
+    HOST_NOT_SPECIFIED,
+    CAN_NOT_FIND_ALL_HOST,
+    SESSION_COUNT_IS_ZERO,
+    THE_SAME_SOURCE_AND_TARGET_IP,
+    CAN_NOT_FIND_HOST,
+    THE_SAME_REAL_AND_TARGET_MAC,
+    CAN_NOT_OPEN_INFECT_THREAD,
+    IN_PCAP_DUMP_OPEN,
+    CAN_NOT_SPOOF_MYSELF
+  };
+};
 
 #endif // __SNOOP_COMMON_H__
 

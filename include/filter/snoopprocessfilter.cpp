@@ -72,7 +72,7 @@ bool SnoopProcessFilter::doOpen()
 {
   if (flowMgr == NULL)
   {
-    SET_ERROR(SnoopError, "flowMgr is null", VERR_OBJECT_IS_NULL);
+    SET_ERROR(SnoopError, "flowMgr is null", VError::OBJECT_IS_NULL);
     return false;
   }
 
@@ -117,7 +117,7 @@ bool SnoopProcessFilter::doClose()
 {
   if (flowMgr == NULL)
   {
-    SET_ERROR(SnoopError, "flowMgr is null", VERR_OBJECT_IS_NULL);
+    SET_ERROR(SnoopError, "flowMgr is null", VError::OBJECT_IS_NULL);
     return true;
   }
 

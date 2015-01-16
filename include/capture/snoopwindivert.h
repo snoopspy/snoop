@@ -75,7 +75,7 @@ public: // for VOptionable
 // ----------------------------------------------------------------------------
 // VWinDivertError
 // ----------------------------------------------------------------------------
-VDECLARE_ERROR_CLASS(VWinDivertError)
+class VWinDivertError : public VError {};
 
 #endif // WIN32
 

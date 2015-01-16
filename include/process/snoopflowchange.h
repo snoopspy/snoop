@@ -44,6 +44,7 @@ public:
 
 public:
   SnoopFlowChangeItem();
+  virtual ~SnoopFlowChangeItem();
 
 public:
   bool           enabled;

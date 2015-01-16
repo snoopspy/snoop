@@ -112,14 +112,14 @@ quint32 SnoopNetStatWin::getPID(SnoopTupleFlowKey &infoKey)
       if (dwRet == NO_ERROR) break;
       if (dwRet != ERROR_INSUFFICIENT_BUFFER)
       {
-        LOG_ERROR("GetExtendedTcpTable return %u", dwRet);
+        LOG_ERROR("GetExtendedTcpTable return %lu", dwRet);
         return UNKNOWN_PROCESS_ID;
       }
       if (pTcp != NULL) free(pTcp);
       pTcp  = (MIB_TCPTABLE_OWNER_PID*)malloc(dwTcpSize);
       if (pTcp == NULL)
       {
-        LOG_ERROR("malloc(%d) return null", dwTcpSize);
+        LOG_ERROR("malloc(%lu) return null", dwTcpSize);
         return UNKNOWN_PROCESS_ID;
       }
     }
@@ -156,7 +156,7 @@ quint32 SnoopNetStatWin::getPID(SnoopTupleFlowKey &infoKey)
           break;
         }
       }
-
+    }
   }
 
   if (infoKey.proto == IPPROTO_UDP)
@@ -170,14 +170,14 @@ quint32 SnoopNetStatWin::getPID(SnoopTupleFlowKey &infoKey)
       if (dwRet == NO_ERROR) break;
       if (dwRet != ERROR_INSUFFICIENT_BUFFER)
       {
-        LOG_ERROR("GetExtendedUdpTable return %u", dwRet);
+        LOG_ERROR("GetExtendedUdpTable return %lu", dwRet);
         return UNKNOWN_PROCESS_ID;
       }
       if (pUdp != NULL) free(pUdp);
       pUdp  = (MIB_UDPTABLE_OWNER_PID*)malloc(dwUdpSize);
       if (pUdp == NULL)
       {
-        LOG_ERROR("malloc(%d) return null", dwUdpSize);
+        LOG_ERROR("malloc(%lu) return null", dwUdpSize);
         return UNKNOWN_PROCESS_ID;
       }
     }
@@ -224,7 +224,7 @@ QString SnoopNetStatWin::getProcessName(quint32 pid)
   HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS,0);
   if (hSnapshot == INVALID_HANDLE_VALUE)
   {
-    LOG_FATAL("CreateToolhelp32Snapshot return INVALID_HANDLE_VALUE GetLastError=%u", GetLastError());
+    LOG_FATAL("CreateToolhelp32Snapshot return INVALID_HANDLE_VALUE GetLastError=%lu", GetLastError());
     return UNKNOWN_PROCESS_NAME;
   }
 

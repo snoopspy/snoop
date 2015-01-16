@@ -123,6 +123,9 @@ SnoopWinDivert::~SnoopWinDivert()
   close();
 }
 
+#ifndef ERROR_INVALID_IMAGE_HASH
+#define ERROR_INVALID_IMAGE_HASH 577
+#endif // ERROR_INVALID_IMAGE_HASH
 bool SnoopWinDivert::doOpen()
 {
   if (!enabled)
@@ -192,7 +195,7 @@ bool SnoopWinDivert::doClose()
   if (!lib.WinDivertClose(handle))
   {
     DWORD lastError = GetLastError();
-    LOG_ERROR("WinDivertClose return FALSE last error=%d(0x%x)", lastError, lastError);
+    LOG_ERROR("WinDivertClose return FALSE last error=%lu(0x%lx)", lastError, lastError);
   }
   handle = 0;
 

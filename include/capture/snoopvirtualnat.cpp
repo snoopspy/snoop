@@ -93,7 +93,7 @@ bool SnoopVirtualNat::changeRouteTable()
   res = VProcess::run(qPrintable(command));
   if (!res)
   {
-    SET_ERROR(VError, qformat("can not run %s", qPrintable(command)), VERR_RUN_PROCESS);
+    SET_ERROR(VError, qformat("can not run %s", qPrintable(command)), VError::RUN_PROCESS);
     return false;
   }
 
@@ -105,7 +105,7 @@ bool SnoopVirtualNat::changeRouteTable()
   res = VProcess::run(qPrintable(command));
   if (!res)
   {
-    SET_ERROR(VError, qformat("can not run %s", qPrintable(command)), VERR_RUN_PROCESS);
+    SET_ERROR(VError, qformat("can not run %s", qPrintable(command)), VError::RUN_PROCESS);
     return false;
   }
 
@@ -127,7 +127,7 @@ bool SnoopVirtualNat::recoverRouteTable()
   res = VProcess::run(qPrintable(command));
   if (!res)
   {
-    SET_ERROR(VError, qformat("can not run %s", qPrintable(command)), VERR_RUN_PROCESS);
+    SET_ERROR(VError, qformat("can not run %s", qPrintable(command)), VError::RUN_PROCESS);
     return false;
   }
 
@@ -139,7 +139,7 @@ bool SnoopVirtualNat::recoverRouteTable()
   res = VProcess::run(qPrintable(command));
   if (!res)
   {
-    SET_ERROR(VError, qformat("can not run %s", qPrintable(command)), VERR_RUN_PROCESS);
+    SET_ERROR(VError, qformat("can not run %s", qPrintable(command)), VError::RUN_PROCESS);
     return false;
   }
 

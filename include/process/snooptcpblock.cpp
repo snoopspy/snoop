@@ -28,17 +28,17 @@ bool SnoopTcpBlock::doOpen()
 {
   if (writer == NULL)
   {
-    SET_ERROR(SnoopError, "writer is null", VERR_OBJECT_IS_NULL);
+    SET_ERROR(SnoopError, "writer is null", VError::OBJECT_IS_NULL);
     return false;
   }
   if (forwardRst && forwardFin)
   {
-    SET_ERROR(SnoopError, "both forwardRst and forwardFin can not be true", VERR_NOT_SUPPORTED);
+    SET_ERROR(SnoopError, "both forwardRst and forwardFin can not be true", VError::NOT_SUPPORTED);
     return false;
   }
   if (backwardRst && backwardFin)
   {
-    SET_ERROR(SnoopError, "both backwardRst and backwardFin can not be true", VERR_NOT_SUPPORTED);
+    SET_ERROR(SnoopError, "both backwardRst and backwardFin can not be true", VError::NOT_SUPPORTED);
     return false;
   }
   return SnoopProcess::doOpen();

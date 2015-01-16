@@ -27,7 +27,7 @@ bool SnoopDataChange::doOpen()
 {
   if (tcpChange && flowMgr == NULL)
   {
-    SET_ERROR(SnoopError, "flowMgr is null", VERR_OBJECT_IS_NULL);
+    SET_ERROR(SnoopError, "flowMgr is null", VError::OBJECT_IS_NULL);
     return false;
   }
 
@@ -53,7 +53,7 @@ bool SnoopDataChange::doClose()
 {
   if (tcpChange && flowMgr == NULL)
   {
-    SET_ERROR(SnoopError, "flowMgr is null", VERR_OBJECT_IS_NULL);
+    SET_ERROR(SnoopError, "flowMgr is null", VError::OBJECT_IS_NULL);
     return true;
   }
 

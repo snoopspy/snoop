@@ -75,7 +75,7 @@ bool SnoopDelay::doOpen()
 {
   if (writer == NULL)
   {
-    SET_ERROR(SnoopError, "writer is null", VERR_OBJECT_IS_NULL);
+    SET_ERROR(SnoopError, "writer is null", VError::OBJECT_IS_NULL);
     return false;
   }
   thread = new SnoopDelayThread(this);

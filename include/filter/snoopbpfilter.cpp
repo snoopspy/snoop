@@ -26,7 +26,7 @@ bool SnoopBpFilter::doOpen()
   m_pcap = pcap_open_dead(linkType, snoop::DEFAULT_SNAPLEN); // gilgil temp 2010.09.24
   if (m_pcap == NULL)
   {
-    SET_ERROR(SnoopError, "error in pcap_open_dead return NULL", VERR_IN_PCAP_OPEN_DEAD);
+    SET_ERROR(SnoopError, "error in pcap_open_dead return NULL", SnoopError::IN_PCAP_OPEN_DEAD);
     return false;
   }
 
@@ -34,7 +34,7 @@ bool SnoopBpFilter::doOpen()
   res = pcap_compile(m_pcap, m_code, qPrintable(filter), 1, 0xFFFFFFFF);
   if (res < 0)
   {
-    SET_ERROR(SnoopError, qformat("error in pcap_compile(%s)", pcap_geterr(m_pcap)), VERR_IN_PCAP_COMPILE);
+    SET_ERROR(SnoopError, qformat("error in pcap_compile(%s)", pcap_geterr(m_pcap)), SnoopError::IN_PCAP_COMPILE);
     return false;
   }
 
@@ -63,7 +63,7 @@ bool SnoopBpFilter::_check(BYTE* pktData, uint32_t pktLen)
 {
   if (m_state != VState::Opened)
   {
-    SET_ERROR(VError, qformat("not opened state(%s %s)", qPrintable(name), qPrintable(className())), VERR_NOT_OPENED_STATE);
+    SET_ERROR(VError, qformat("not opened state(%s %s)", qPrintable(name), qPrintable(className())), VError::NOT_OPENED_STATE);
     return false;
   }
   LOG_ASSERT(m_pcap != NULL && m_code != NULL);

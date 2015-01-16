@@ -42,14 +42,14 @@ bool SnoopCapture::doClose()
 int SnoopCapture::read(SnoopPacket* packet)
 {
   Q_UNUSED(packet)
-  SET_ERROR(SnoopError, "read not supported", VERR_NOT_READABLE);
+  SET_ERROR(SnoopError, "read not supported", VError::NOT_READABLE);
   return -1;
 }
 
 int SnoopCapture::write(SnoopPacket* packet)
 {
   Q_UNUSED(packet)
-  SET_ERROR(SnoopError, "write not supported", VERR_NOT_WRITABLE);
+  SET_ERROR(SnoopError, "write not supported", VError::NOT_WRITABLE);
   return -1;
 }
 
@@ -58,7 +58,7 @@ int SnoopCapture::write(u_char* buf, int size, WINDIVERT_ADDRESS* divertAddr)
   Q_UNUSED(buf)
   Q_UNUSED(size)
   Q_UNUSED(divertAddr)
-  SET_ERROR(SnoopError, "write not supported", VERR_NOT_WRITABLE);
+  SET_ERROR(SnoopError, "write not supported", VError::NOT_WRITABLE);
   return -1;
 }
 

@@ -38,8 +38,8 @@ bool SnoopRemote::doOpen()
 
   if (host == "")
   {
-    SET_ERROR(SnoopError, "host is not specified", VERR_HOST_NOT_SPECIFIED);
-    goto _error;
+    SET_ERROR(SnoopError, "host is not specified", SnoopError::HOST_NOT_SPECIFIED);
+    return false;
   }
   source = "rpcap://" + host + "/";
 
@@ -56,8 +56,9 @@ bool SnoopRemote::doOpen()
   i = pcap_findalldevs_ex((char*)qPrintable(source), auth, &interfaces.allDevs, errBuf);
   if (i != 0) // if error occured
   {
-    SET_ERROR(SnoopError, format("error in pcap_findalldevs_ex(%s)", errBuf).c_str(), VERR_IN_PCAP_FINDALLDEVS_EX);
-    goto _error;
+    SET_ERROR(SnoopError, qformat("error in pcap_findalldevs_ex(%s)", errBuf), SnoopError::IN_PCAP_FINDALLDEVS_EX);
+    delete auth;
+    return false;
   }
 
   {
@@ -86,8 +87,8 @@ bool SnoopRemote::doOpen()
   emit interfacesReceived(this, &interfaces, &adapterIndex);
   if (adapterIndex == snoop::INVALID_ADAPTER_INDEX)
   {
-    SET_ERROR(SnoopError, "cancel by user", VERR_CANCELED_BY_USER);
-    goto _error;
+    SET_ERROR(SnoopError, "cancel by user", SnoopError::CANCELED_BY_USER);
+    return false;
   }
 
   const SnoopInterface& intf = interfaces.at(adapterIndex);
@@ -96,16 +97,13 @@ bool SnoopRemote::doOpen()
   bool res = pcapOpen((char*)qPrintable(source), auth, intf.dev);
   if (!res)
   {
-    goto _error;
+    delete auth;
+    return false;
   }
 
   res = SnoopPcap::doOpen();
-  if (auth != NULL) delete auth;
+  delete auth;
   return res;
-
-_error:
-  if (auth != NULL) delete auth;
-  return false;
 }
 
 bool SnoopRemote::doClose()

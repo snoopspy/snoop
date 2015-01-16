@@ -32,12 +32,12 @@ bool SnoopUdpReceiver::doOpen()
 {
   if (flowMgr == NULL)
   {
-    SET_ERROR(SnoopError, "flowMgr is null", VERR_OBJECT_IS_NULL);
+    SET_ERROR(SnoopError, "flowMgr is null", VError::OBJECT_IS_NULL);
     return false;
   }
   if (writer == NULL)
   {
-    SET_ERROR(SnoopError, "writer is null", VERR_OBJECT_IS_NULL);
+    SET_ERROR(SnoopError, "writer is null", VError::OBJECT_IS_NULL);
     return false;
   }
 
@@ -52,12 +52,12 @@ bool SnoopUdpReceiver::doClose()
 {
   if (flowMgr == NULL)
   {
-    SET_ERROR(SnoopError, "flowMgr is null", VERR_OBJECT_IS_NULL);
+    SET_ERROR(SnoopError, "flowMgr is null", VError::OBJECT_IS_NULL);
     return false;
   }
   if (writer == NULL)
   {
-    SET_ERROR(SnoopError, "writer is null", VERR_OBJECT_IS_NULL);
+    SET_ERROR(SnoopError, "writer is null", VError::OBJECT_IS_NULL);
     return false;
   }
 

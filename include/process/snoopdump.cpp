@@ -28,13 +28,13 @@ bool SnoopDump::doOpen()
   m_pcap = pcap_open_dead(linkType, snoop::DEFAULT_SNAPLEN);
   if (m_pcap == NULL)
   {
-    SET_ERROR(SnoopError, "error in pcap_open_dead return NULL", VERR_IN_PCAP_OPEN_DEAD);
+    SET_ERROR(SnoopError, "error in pcap_open_dead return NULL", SnoopError::IN_PCAP_OPEN_DEAD);
     return false;
   }
 
   if (filePath == "")
   {
-    SET_ERROR(VFileError, "file name not specified", VERR_FILENAME_NOT_SPECIFIED);
+    SET_ERROR(VFileError, "file name not specified", VFileError::FILENAME_NOT_SPECIFIED);
     return false;
   }
 
@@ -51,7 +51,7 @@ bool SnoopDump::doOpen()
   m_pcap_dumper = pcap_dump_open(m_pcap, qPrintable(_path + "/" + newFileName));
   if (m_pcap_dumper == NULL)
   {
-    SET_ERROR(SnoopError, pcap_geterr(m_pcap), VERR_IN_PCAP_DUMP_OPEN);
+    SET_ERROR(SnoopError, pcap_geterr(m_pcap), SnoopError::IN_PCAP_DUMP_OPEN);
     return false;
   }
   return true;

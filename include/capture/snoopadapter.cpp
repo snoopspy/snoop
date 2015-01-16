@@ -57,13 +57,13 @@ bool SnoopAdapter::doOpen()
 
   if (adapterIndex == snoop::INVALID_ADAPTER_INDEX)
   {
-    SET_ERROR(SnoopError, "invalid adapter index(-1)", VERR_INVALID_INDEX);
+    SET_ERROR(SnoopError, "invalid adapter index(-1)", SnoopError::INVALID_INDEX);
     return false;
   }
   const SnoopInterface& intf = SnoopInterfaces::instance().at(adapterIndex);
   if (intf.dev == NULL)
   {
-    SET_ERROR(SnoopError, "dev is NULL", VERR_OBJECT_IS_NULL);
+    SET_ERROR(SnoopError, "dev is NULL", VError::OBJECT_IS_NULL);
     return false;
   }
   if (!pcapOpen((char*)qPrintable(intf.name), NULL, intf.dev))

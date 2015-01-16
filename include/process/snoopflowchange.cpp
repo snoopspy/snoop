@@ -33,26 +33,30 @@ SnoopFlowChangeItem::SnoopFlowChangeItem()
   dstPortFixValue   = 0;
 }
 
+SnoopFlowChangeItem::~SnoopFlowChangeItem()
+{
+}
+
 bool SnoopFlowChangeItem::prepare(VError& error)
 {
   if (srcIpChangeType == IpFix && srcIpFixValue == 0)
   {
-    SET_ERROR(VError, "srcIpFixValue is zero", VERR_VALUE_IS_ZERO);
+    SET_ERROR(VError, "srcIpFixValue is zero", VError::VALUE_IS_ZERO);
     return false;
   }
   if (srcPortChangeType == PortFix && srcPortFixValue == 0)
   {
-    SET_ERROR(VError, "srcPortFixValue is zero", VERR_VALUE_IS_ZERO);
+    SET_ERROR(VError, "srcPortFixValue is zero", VError::VALUE_IS_ZERO);
     return false;
   }
   if (dstIpChangeType == IpFix && dstIpFixValue == 0)
   {
-    SET_ERROR(VError, "dstIpFixValue is zero", VERR_VALUE_IS_ZERO);
+    SET_ERROR(VError, "dstIpFixValue is zero", VError::VALUE_IS_ZERO);
     return false;
   }
   if (dstPortChangeType == PortFix && dstPortFixValue == 0)
   {
-    SET_ERROR(VError, "dstPortFixValue is zero", VERR_VALUE_IS_ZERO);
+    SET_ERROR(VError, "dstPortFixValue is zero", VError::VALUE_IS_ZERO);
     return false;
   }
   return true;
@@ -395,12 +399,12 @@ bool SnoopFlowChange::doOpen()
 {
   if (fromFlowMgr == NULL)
   {
-    SET_ERROR(SnoopError, "fromFlowMgr is null", VERR_OBJECT_IS_NULL);
+    SET_ERROR(SnoopError, "fromFlowMgr is null", VError::OBJECT_IS_NULL);
     return false;
   }
   if (toFlowMgr == NULL)
   {
-    SET_ERROR(SnoopError, "toFlowMgr is null", VERR_OBJECT_IS_NULL);
+    SET_ERROR(SnoopError, "toFlowMgr is null", VError::OBJECT_IS_NULL);
     return false;
   }
 
@@ -438,12 +442,12 @@ bool SnoopFlowChange::doClose()
 {
   if (fromFlowMgr == NULL)
   {
-    SET_ERROR(SnoopError, "fromFlowMgr is null", VERR_OBJECT_IS_NULL);
+    SET_ERROR(SnoopError, "fromFlowMgr is null", VError::OBJECT_IS_NULL);
     return true;
   }
   if (toFlowMgr == NULL)
   {
-    SET_ERROR(SnoopError, "toFlowMgr is null", VERR_OBJECT_IS_NULL);
+    SET_ERROR(SnoopError, "toFlowMgr is null", VError::OBJECT_IS_NULL);
     return true;
   }
 

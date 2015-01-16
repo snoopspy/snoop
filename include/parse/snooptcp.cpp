@@ -133,7 +133,7 @@ int SnoopTcp::getOption(
   //
   // Set desc
   //
-  char* desc;
+  const char* desc;
   switch (kind)
   {
     case  0:  desc = "EOL";                                 break;

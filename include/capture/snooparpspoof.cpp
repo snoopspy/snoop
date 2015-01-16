@@ -105,7 +105,10 @@ void SnoopArpSpoofSessionList::add(SnoopArpSpoofSession& session)
   {
     // ----- gilgil temp 2014.03.27 -----
     LOG_DEBUG("***************************");
-    LOG_DEBUG("session(%s %s) is addded!!!");
+    LOG_DEBUG("session(%s %s > %s %s) is addded!!!",
+      qPrintable(session.senderIp.str()), qPrintable(session.senderMac.str()),
+      qPrintable(session.targetIp.str()), qPrintable(session.targetMac.str())
+    );
     LOG_DEBUG("***************************");
     // ----------------------------------
   }
@@ -120,7 +123,10 @@ void SnoopArpSpoofSessionList::del(SnoopArpSpoofSession& session)
   {
     // ----- gilgil temp 2014.03.27 -----
     LOG_DEBUG("****************************");
-    LOG_DEBUG("session(%s %s) is deleted!!!");
+    LOG_DEBUG("session(%s %s > %s %s) is addded!!!",
+      qPrintable(session.senderIp.str()), qPrintable(session.senderMac.str()),
+      qPrintable(session.targetIp.str()), qPrintable(session.targetMac.str())
+    );
     LOG_DEBUG("****************************");
     // ----------------------------------
   }
@@ -290,14 +296,14 @@ bool SnoopArpSpoof::doOpen()
       process.start("sc start RemoteAccess");
       if (!process.waitForFinished())
       {
-        SET_ERROR(VError, "process.waitForStarted(sc start RemoteAccess) return false", VERR_RUN_PROCESS);
+        SET_ERROR(VError, "process.waitForStarted(sc start RemoteAccess) return false", VError::RUN_PROCESS);
         return false;
       }
 
       process.start("sc stop RemoteAccess");
       if (!process.waitForFinished())
       {
-        SET_ERROR(VError, "process.waitForStarted(sc stop RemoteAccess) return false", VERR_RUN_PROCESS);
+        SET_ERROR(VError, "process.waitForStarted(sc stop RemoteAccess) return false", VError::RUN_PROCESS);
         return false;
       }
       done = true;
@@ -312,7 +318,7 @@ bool SnoopArpSpoof::doOpen()
     infectThread = new SnoopArpSpoofInfectThread(this);
     if (!infectThread->open())
     {
-      SET_ERROR(SnoopError, "can not open infect thread", VERR_CAN_NOT_OPEN_THREAD);
+      SET_ERROR(SnoopError, "can not open infect thread", VThreadError::CAN_NOT_OPEN_THREAD);
       return false;
     }
   }
@@ -449,13 +455,13 @@ bool SnoopArpSpoof::retrieveUnknownMacHostList()
     SnoopArpSpoofSession& session = *it;
     if ((session.senderIp == session.targetIp))
     {
-      SET_ERROR(SnoopError, qformat("source ip is same as target ip(%s)", qPrintable(session.senderIp.str())), VERR_THE_SAME_SOURCE_AND_TARGET_IP);
+      SET_ERROR(SnoopError, qformat("source ip is same as target ip(%s)", qPrintable(session.senderIp.str())), SnoopError::THE_SAME_SOURCE_AND_TARGET_IP);
       return false;
     }
 
     if (session.senderIp == netInfo.ip)
     {
-      SET_ERROR(SnoopError, qformat("can not spoof myself(%s)", qPrintable(session.senderIp.str())), VERR_CAN_NOT_SPOOF_MYSELF);
+      SET_ERROR(SnoopError, qformat("can not spoof myself(%s)", qPrintable(session.senderIp.str())), SnoopError::CAN_NOT_SPOOF_MYSELF);
       return false;
     }
   }
@@ -499,7 +505,7 @@ bool SnoopArpSpoof::retrieveUnknownMacHostList()
       SnoopHost* host = findHost.hostList.findByIp(session.senderIp);
       if (host == NULL)
       {
-        SET_ERROR(SnoopError, qformat("can not find host(%s)", qPrintable(session.senderIp.str())), VERR_CAN_NOT_FIND_HOST);
+        SET_ERROR(SnoopError, qformat("can not find host(%s)", qPrintable(session.senderIp.str())), SnoopError::CAN_NOT_FIND_HOST);
         return false;
       }
       session.senderMac = host->mac;
@@ -511,7 +517,7 @@ bool SnoopArpSpoof::retrieveUnknownMacHostList()
       SnoopHost* host = findHost.hostList.findByIp(session.targetIp);
       if (host == NULL)
       {
-        SET_ERROR(SnoopError, qformat("can not find host(%s)", qPrintable(session.targetIp.str())), VERR_CAN_NOT_FIND_HOST);
+        SET_ERROR(SnoopError, qformat("can not find host(%s)", qPrintable(session.targetIp.str())), SnoopError::CAN_NOT_FIND_HOST);
         return false;
       }
       session.targetMac = host->mac;
@@ -524,7 +530,7 @@ bool SnoopArpSpoof::retrieveUnknownMacHostList()
         qformat("real virtual mac(%s) is same as target mac(IP=%s)",
           qPrintable(realVirtualMac.str()),
           qPrintable(session.targetIp.str())),
-        VERR_THE_SAME_REAL_AND_TARGET_MAC);
+        SnoopError::THE_SAME_REAL_AND_TARGET_MAC);
       return false;
     }
   }

@@ -242,6 +242,7 @@ void SnoopAutoDetectAdapter::recv(SnoopPacket* packet)
 #endif // SNOOP_AUTO_DETECT_USE_ADAPTER
 
 #ifdef GTEST
+#include <VDebugNewCancel>
 #include <gtest/gtest.h>
 
 TEST( SnoopAudoDetectAdapter, test )
