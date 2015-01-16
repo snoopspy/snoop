@@ -11,6 +11,7 @@
 #ifndef __PARAM_H__
 #define __PARAM_H__
 
+#include <stdio.h>
 #include <QString>
 
 // ----------------------------------------------------------------------------

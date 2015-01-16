@@ -46,8 +46,8 @@ public:
 	virtual void load(VXml xml);
 	virtual void save(VXml xml);
 
-private:
-	Q_DISABLE_COPY(SnoopInterface) // gilgil temp 2014.11.27
+// private: // gilgil temp 2015.01.16
+//	Q_DISABLE_COPY(SnoopInterface) // gilgil temp 2014.11.27
 };
 
 // ----------------------------------------------------------------------------
@@ -91,7 +91,7 @@ public:
 public:
 	static SnoopInterfaces& instance();
 
-//private:
+// private: // gilgil temp 2015.01.16
 //	Q_DISABLE_COPY(SnoopInterfaces)
 };
 
