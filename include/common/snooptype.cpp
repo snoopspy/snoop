@@ -8,11 +8,11 @@
 Mac::Mac(const QString s)
 {
   int i;
-  UINT8* p;
-  UINT8 ch1, ch2;
+  uint8_t* p;
+  uint8_t ch1, ch2;
 
   QByteArray arr = s.toLatin1();
-  p = (UINT8*)arr.constData();
+  p = (uint8_t*)arr.constData();
   for (i = 0 ; i < MAC_SIZE; i++)
   {
     ch1 = *p++;
@@ -37,7 +37,7 @@ Mac::Mac(const QString s)
 
 QString Mac::str() const
 {
-  UINT8 ch1, ch2;
+  uint8_t ch1, ch2;
   int i, index;
   char buf[MAC_SIZE * 3]; // enough size
 
@@ -80,14 +80,14 @@ Mac Mac::randomMac()
 
 Mac& Mac::cleanMac()
 {
-  static UINT8 _value[] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
+  static uint8_t _value[] = { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
   static Mac res(_value);
   return res;
 }
 
 Mac& Mac::broadcastMac()
 {
-  static UINT8 _value[] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
+  static uint8_t _value[] = { 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF };
   static Mac res(_value);
   return res;
 }

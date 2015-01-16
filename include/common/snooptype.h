@@ -34,13 +34,13 @@ public:
   static const int MAC_SIZE = 6;
 
 protected:
-  UINT8 value[MAC_SIZE];
+  uint8_t value[MAC_SIZE];
 
 public:
   Mac()                   {                                       } // default ctor
-  Mac(const UINT8* value) { memcpy(this->value, value, MAC_SIZE); } // conversion ctor
+  Mac(const uint8_t* value) { memcpy(this->value, value, MAC_SIZE); } // conversion ctor
 
-  operator UINT8*() const { return (UINT8*)value;                 } // cast operator
+  operator uint8_t*() const { return (uint8_t*)value;                 } // cast operator
 
 public:
   Mac(const QString s);
@@ -56,7 +56,7 @@ public:
   bool operator >  (const Mac& rhs) const   { return memcmp(value, rhs.value, MAC_SIZE) >  0; }
   bool operator <= (const Mac& rhs) const   { return memcmp(value, rhs.value, MAC_SIZE) <= 0; }
   bool operator >= (const Mac& rhs) const   { return memcmp(value, rhs.value, MAC_SIZE) >= 0; }
-  bool operator == (const UINT8* rhs) const { return memcmp(value, rhs,       MAC_SIZE) == 0; }
+  bool operator == (const uint8_t* rhs) const { return memcmp(value, rhs,       MAC_SIZE) == 0; }
 
 public:
   void clear()          { *this = cleanMac();               }

@@ -50,7 +50,7 @@ public:
   UINT64       flags;
   UINT64       queueLen;
   UINT64       queueTime;
-  UINT8        tos;
+  uint8_t        tos;
   bool         correctChecksum;
 
 public:

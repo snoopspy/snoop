@@ -16,7 +16,7 @@ bool SnoopEth::is(ETH_HDR* ethHdr, UINT16 etherType, void** networkHdr)
 
 bool SnoopEth::isIp(ETH_HDR* ethHdr, IP_HDR** ipHdr)
 {
-  if (ethHdr->ether_type != ((UINT16)LOBYTE(ETHERTYPE_IP) << 8 | HIBYTE(ETHERTYPE_IP)))
+  if (htons(ethHdr->ether_type) != ETHERTYPE_IP)
     return false;
   if (ipHdr != NULL)
     *ipHdr = (IP_HDR*)((BYTE*)(ethHdr) + sizeof(ETH_HDR));
@@ -25,7 +25,7 @@ bool SnoopEth::isIp(ETH_HDR* ethHdr, IP_HDR** ipHdr)
 
 bool SnoopEth::isArp(ETH_HDR* ethHdr, ARP_HDR** arpHdr)
 {
-  if (ethHdr->ether_type != ((UINT16)LOBYTE(ETHERTYPE_ARP) << 8 | HIBYTE(ETHERTYPE_ARP)))
+  if (htons(ether_type) != ETHERTYPE_ARP)
     return false;
   if (arpHdr != NULL)
     *arpHdr = (ARP_HDR*)((BYTE*)(ethHdr) + sizeof(ETH_HDR));

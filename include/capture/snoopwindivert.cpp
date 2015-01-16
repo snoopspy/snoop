@@ -350,7 +350,7 @@ void SnoopWinDivert::load(VXml xml)
   flags           = (UINT64)xml.getInt("flags", (int)flags);
   queueLen        = (UINT64)xml.getInt("queueLen", (int)queueLen);
   queueTime       = (UINT64)xml.getInt("queueTime", (int)queueTime);
-  tos             = (UINT8) xml.getInt("tos", (int)tos);
+  tos             = (uint8_t) xml.getInt("tos", (int)tos);
   correctChecksum = xml.getBool("correctChecksum", correctChecksum);
 }
 

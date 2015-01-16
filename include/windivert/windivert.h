@@ -35,7 +35,7 @@
 #define __inout_opt
 #include <stdint.h>
 #define INT8    int8_t
-#define UINT8   uint8_t
+#define uint8_t   uint8_t
 #define INT16   int16_t
 #define UINT16  uint16_t
 #define INT32   int32_t
@@ -59,7 +59,7 @@ typedef struct
 {
 	UINT32 IfIdx;                       /* Packet's interface index. */
 	UINT32 SubIfIdx;                    /* Packet's sub-interface index. */
-	UINT8  Direction;                   /* Packet's direction. */
+	uint8_t  Direction;                   /* Packet's direction. */
 } WINDIVERT_ADDRESS, *PWINDIVERT_ADDRESS;
 
 #define WINDIVERT_DIRECTION_OUTBOUND    0
@@ -177,14 +177,14 @@ extern WINDIVERTEXPORT BOOL WinDivertGetParam(
  */
 typedef struct
 {
-	UINT8  HdrLength:4;
-	UINT8  Version:4;
-	UINT8  TOS;
+	uint8_t  HdrLength:4;
+	uint8_t  Version:4;
+	uint8_t  TOS;
 	UINT16 Length;
 	UINT16 Id;
 	UINT16 FragOff0;
-	UINT8  TTL;
-	UINT8  Protocol;
+	uint8_t  TTL;
+	uint8_t  Protocol;
 	UINT16 Checksum;
 	UINT32 SrcAddr;
 	UINT32 DstAddr;
@@ -230,14 +230,14 @@ typedef struct
 
 typedef struct
 {
-	UINT8  TrafficClass0:4;
-	UINT8  Version:4;
-	UINT8  FlowLabel0:4;
-	UINT8  TrafficClass1:4;
+	uint8_t  TrafficClass0:4;
+	uint8_t  Version:4;
+	uint8_t  FlowLabel0:4;
+	uint8_t  TrafficClass1:4;
 	UINT16 FlowLabel1;
 	UINT16 Length;
-	UINT8  NextHdr;
-	UINT8  HopLimit;
+	uint8_t  NextHdr;
+	uint8_t  HopLimit;
 	UINT32 SrcAddr[4];
 	UINT32 DstAddr[4];
 } WINDIVERT_IPV6HDR, *PWINDIVERT_IPV6HDR;
@@ -250,30 +250,30 @@ typedef struct
 #define WINDIVERT_IPV6HDR_SET_TRAFFICCLASS(hdr, val)        \
 	do                                                      \
 	{                                                       \
-		(hdr)->TrafficClass0 = ((UINT8)(val) >> 4);         \
-		(hdr)->TrafficClass1 = (UINT8)(val);                \
+		(hdr)->TrafficClass0 = ((uint8_t)(val) >> 4);         \
+		(hdr)->TrafficClass1 = (uint8_t)(val);                \
 	}                                                       \
 	while (FALSE)
 #define WINDIVERT_IPV6HDR_SET_FLOWLABEL(hdr, val)           \
 	do                                                      \
 	{                                                       \
-		(hdr)->FlowLabel0 = (UINT8)((val) >> 16);           \
+		(hdr)->FlowLabel0 = (uint8_t)((val) >> 16);           \
 		(hdr)->FlowLabel1 = (UINT16)(val);                  \
 	}                                                       \
 	while (FALSE)
 
 typedef struct
 {
-	UINT8  Type;
-	UINT8  Code;
+	uint8_t  Type;
+	uint8_t  Code;
 	UINT16 Checksum;
 	UINT32 Body;
 } WINDIVERT_ICMPHDR, *PWINDIVERT_ICMPHDR;
 
 typedef struct
 {
-	UINT8  Type;
-	UINT8  Code;
+	uint8_t  Type;
+	uint8_t  Code;
 	UINT16 Checksum;
 	UINT32 Body;
 } WINDIVERT_ICMPV6HDR, *PWINDIVERT_ICMPV6HDR;

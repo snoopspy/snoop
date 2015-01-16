@@ -178,7 +178,7 @@ typedef SnoopTransportSessionKey SnoopUdpSessionKey;
 class SnoopTupleFlowKey
 {
 public:
-  UINT8                 proto;
+  uint8_t                 proto;
   SnoopTransportFlowKey flow;
 
   bool operator < (const SnoopTupleFlowKey& rhs) const;

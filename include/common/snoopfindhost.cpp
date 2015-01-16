@@ -158,7 +158,7 @@ int SnoopFindHost::read(Ip& ip, Mac& mac)
   if (scanInterval != 0)
   {
     VTick nowTick = tick();
-    if (nowTick - lastSendTick > (DWORD)scanInterval)
+    if (nowTick - lastSendTick > (VTick)scanInterval)
     {
       sendArpRequestAll();
     }

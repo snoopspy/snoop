@@ -49,7 +49,7 @@ bool SnoopTcpBlock::doClose()
   return SnoopProcess::doClose();
 }
 
-int SnoopTcpBlock::sendForwardBlock(SnoopCapture* capture, SnoopPacket* packet, UINT8 flag, QByteArray msg)
+int SnoopTcpBlock::sendForwardBlock(SnoopCapture* capture, SnoopPacket* packet, uint8_t flag, QByteArray msg)
 {
   if (packet->proto != IPPROTO_TCP)
   {
@@ -115,7 +115,7 @@ int SnoopTcpBlock::sendForwardBlock(SnoopCapture* capture, SnoopPacket* packet, 
   return res;
 }
 
-int SnoopTcpBlock::sendBackwardBlock(SnoopCapture* capture, SnoopPacket* packet, UINT8 flag, QByteArray msg)
+int SnoopTcpBlock::sendBackwardBlock(SnoopCapture* capture, SnoopPacket* packet, uint8_t flag, QByteArray msg)
 {
   if (packet->proto != IPPROTO_TCP)
   {

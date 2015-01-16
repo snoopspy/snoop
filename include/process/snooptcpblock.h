@@ -30,9 +30,9 @@ protected:
   virtual bool doClose();
 
 public:
-  static const UINT8 TCP_BLOCK_TOS_NO = 0x44;
-  static int sendForwardBlock(SnoopCapture* capture, SnoopPacket* packet, UINT8 flag, QByteArray msg = "");
-  static int sendBackwardBlock(SnoopCapture* capture, SnoopPacket* packet, UINT8 flag, QByteArray msg = "");
+  static const uint8_t TCP_BLOCK_TOS_NO = 0x44;
+  static int sendForwardBlock(SnoopCapture* capture, SnoopPacket* packet, uint8_t flag, QByteArray msg = "");
+  static int sendBackwardBlock(SnoopCapture* capture, SnoopPacket* packet, uint8_t flag, QByteArray msg = "");
 
 public slots:
   void tcpBlock(SnoopPacket* packet);

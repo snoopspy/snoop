@@ -26,7 +26,7 @@ public:
   size_t         bytes;
   struct timeval ts;
   bool           created;
-  BYTE*          totalMem;
+  uint8_t*       totalMem;
 };
 
 #ifndef WIN32
@@ -62,7 +62,7 @@ public:
   ///
   /// transport layer(protocol)
   ///
-  UINT8     proto; // IPPROTO_TCP, IPPROTO_UDP, IPPROTO_ICMP, ...
+  uint8_t     proto; // IPPROTO_TCP, IPPROTO_UDP, IPPROTO_ICMP, ...
   TCP_HDR*  tcpHdr;
   UDP_HDR*  udpHdr;
   ICMP_HDR* icmpHdr;

@@ -508,7 +508,7 @@ Snoop_UdpFlow_Map::iterator SnoopFlowMgr::del_UdpFlow(SnoopUdpFlowKey& key)
   Snoop_UdpFlow_Map::iterator it = udpFlow_Map.find(key);
   if (it == udpFlow_Map.end())
   {
-    LOG_FATAL("key(%s:%d > %s:%d) is null", qPrintable(key.srcIp.str()), key.srcIp, qPrintable(key.dstIp.str()), key.dstPort);
+    LOG_FATAL("key(%s:%d > %s:%d) is null", qPrintable(key.srcIp.str()), key.srcPort, qPrintable(key.dstIp.str()), key.dstPort);
     return it;
   }
   emit __udpFlowDeleted((SnoopUdpFlowKey*)&it.key(), (SnoopFlowValue*)&it.value());

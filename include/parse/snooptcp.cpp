@@ -103,11 +103,11 @@ int SnoopTcp::getOption(
   int             tcpOptionLen,
   SnoopTcpOption& snoopTCPOption)
 {
-  UINT8*      p;
-  UINT8       kind;
-  UINT8       len;
+  uint8_t*      p;
+  uint8_t       kind;
+  uint8_t       len;
 
-  p = (UINT8*)tcpOption;
+  p = (uint8_t*)tcpOption;
 
   //
   // Set kind
@@ -171,7 +171,7 @@ int SnoopTcp::getOption(
 
   snoopTCPOption.desc = (BYTE*)desc;
 
-  return (int)(p - (UINT8*)tcpOption);
+  return (int)(p - (uint8_t*)tcpOption);
 _error:
   return 0;
 }

@@ -52,7 +52,7 @@ void SnoopWriteWinDivert::load(VXml xml)
   changeDivertAddr     = xml.getBool("changeDivertAddr", changeDivertAddr);
   divertAddr.IfIdx     = xml.getInt("IfIdx",             divertAddr.IfIdx);
   divertAddr.SubIfIdx  = xml.getInt("SubIfIdx",          divertAddr.SubIfIdx);
-  divertAddr.Direction = (UINT8)xml.getInt("Direction",  (int)divertAddr.Direction);
+  divertAddr.Direction = (uint8_t)xml.getInt("Direction",  (int)divertAddr.Direction);
 }
 
 void SnoopWriteWinDivert::save(VXml xml)

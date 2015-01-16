@@ -5,7 +5,7 @@
 // ----------------------------------------------------------------------------
 // SnoopIp
 // ----------------------------------------------------------------------------
-bool SnoopIp::is(IP_HDR* ipHdr, UINT8 protocol, void** transportHdr)
+bool SnoopIp::is(IP_HDR* ipHdr, uint8_t protocol, void** transportHdr)
 {
   if (ipHdr->ip_p != protocol)
     return false;

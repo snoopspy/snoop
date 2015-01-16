@@ -19,7 +19,7 @@
 class SnoopIp
 {
 public:
-  static bool   is    (IP_HDR* ipHdr, UINT8 protocol, void** transportHdr);
+  static bool   is    (IP_HDR* ipHdr, uint8_t protocol, void** transportHdr);
   static bool   isTcp (IP_HDR* ipHdr, TCP_HDR**  tcpHdr);
   static bool   isUdp (IP_HDR* ipHdr, UDP_HDR**  udpHdr);
   static bool   isIcmp(IP_HDR* ipHdr, ICMP_HDR** icmpHdr);

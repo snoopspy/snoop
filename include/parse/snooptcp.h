@@ -20,8 +20,8 @@
 #pragma pack(push, 1)
 typedef struct
 {
-  UINT8 kind;
-  UINT8 len;
+  uint8_t kind;
+  uint8_t len;
   BYTE* value;
   BYTE* desc;
 } SnoopTcpOption;
