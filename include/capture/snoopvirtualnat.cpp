@@ -45,7 +45,7 @@ bool SnoopVirtualNat::doOpen()
 
   if (!changeRouteTable())
   {
-    SET_ERROR(VError, "error in change route info", VERR_UNKNOWN);
+    SET_ERROR(VError, "error in change route info", VError::UNKNOWN);
     return false;
   }
 

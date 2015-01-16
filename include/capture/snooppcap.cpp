@@ -63,7 +63,7 @@ int SnoopPcap::read(SnoopPacket* packet)
   if (m_state != VState::Opened)
   {
     SET_DEBUG_ERROR(VError, qformat("not opened state(%s)", qPrintable(className())), VERR_NOT_OPENED_STATE);
-    return VERR_FAIL;
+    return VError::FAIL;
   }
   LOG_ASSERT(m_pcap != NULL);
   
@@ -73,11 +73,11 @@ int SnoopPcap::read(SnoopPacket* packet)
   switch (i) {
     case -2: // if EOF was reached reading from an offline capture
       SET_DEBUG_ERROR(SnoopError, qformat("pcap_next_ex return -2(%s)", pcap_geterr(m_pcap)), VERR_IN_PCAP_NEXT_EX);
-      res = VERR_FAIL;
+      res = VError::FAIL;
       break;
     case -1: // if an error occurred
       SET_DEBUG_ERROR(SnoopError, qformat("pcap_next_ex return -1(%s)", pcap_geterr(m_pcap)), VERR_IN_PCAP_NEXT_EX);
-      res = VERR_FAIL;
+      res = VError::FAIL;
       break;
     case 0 : // if the timeout occurs
       res = 0;
@@ -102,7 +102,7 @@ int SnoopPcap::write(u_char* buf, int size, WINDIVERT_ADDRESS* divertAddr)
   int res = pcap_sendpacket(m_pcap, (const u_char*)buf, size);
   if (res == 0) return size;
   LOG_ERROR("pcap_sendpacket return %d", res); // may be -1? // gilgil temp 2013.11.29
-  return VERR_FAIL;
+  return VError::FAIL;
 }
 
 bool SnoopPcap::relay(SnoopPacket* packet)

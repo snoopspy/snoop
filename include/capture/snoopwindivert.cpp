@@ -234,7 +234,7 @@ int SnoopWinDivert::read(SnoopPacket* packet)
   if (!lib.ok)
   {
     error = lib.error;
-    return VERR_FAIL;
+    return VError::FAIL;
   }
 
   packet->clear();
@@ -244,7 +244,7 @@ int SnoopWinDivert::read(SnoopPacket* packet)
   {
     DWORD lastError = GetLastError();
     SET_DEBUG_ERROR(VWinDivertError, qformat("WinDivertRecv return FALSE last error=%d(0x%x)", lastError, lastError), lastError);
-    return VERR_FAIL;
+    return VError::FAIL;
   }
   readLen += sizeof(ETH_HDR);
 
@@ -324,7 +324,7 @@ int SnoopWinDivert::write(u_char* buf, int size, WINDIVERT_ADDRESS* divertAddr)
   {
     DWORD lastError = GetLastError();
     SET_DEBUG_ERROR(VWinDivertError, qformat("WinDivertSend return FALSE last error=%d(0x%x)", lastError, lastError), lastError);
-    return VERR_FAIL;
+    return VError::FAIL;
   }
   return (int)writeLen;
 }
@@ -337,7 +337,7 @@ SnoopCaptureType SnoopWinDivert::captureType()
 
 bool SnoopWinDivert::relay(SnoopPacket* packet)
 {
-  return write(packet) != VERR_FAIL;
+  return write(packet) != VError::FAIL;
 }
 
 void SnoopWinDivert::load(VXml xml)

@@ -108,7 +108,7 @@ int SnoopTcpBlock::sendForwardBlock(SnoopCapture* capture, SnoopPacket* packet, 
   // Write
   //
   int res = capture->write(buf, bufSize, &packet->divertAddr);
-  if (res == VERR_FAIL)
+  if (res == VError::FAIL)
   {
     LOG_ERROR("capture->write return %d", res);
   }
@@ -180,7 +180,7 @@ int SnoopTcpBlock::sendBackwardBlock(SnoopCapture* capture, SnoopPacket* packet,
   // Write
   //
   int res = capture->write(buf, bufSize, &packet->divertAddr);
-  if (res == VERR_FAIL)
+  if (res == VError::FAIL)
   {
     LOG_ERROR("capture->write return %d", res);
   }

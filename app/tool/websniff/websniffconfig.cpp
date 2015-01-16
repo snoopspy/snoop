@@ -170,13 +170,13 @@ bool HttpSniffConfig::saveToFile(QString fileName)
   {
 	if (!QFile::remove(fileName))
 	{
-	  SET_ERROR(VError, qformat("can not remove file (%s)", qPrintable(fileName)), VERR_UNKNOWN);
+    SET_ERROR(VError, qformat("can not remove file (%s)", qPrintable(fileName)), VError::UNKNOWN);
 	  return false;
 	}
   }
   if (!QFile::copy(srcFileName, fileName))
   {
-	SET_ERROR(VError, qformat("can not copy file (%s > %s)", qPrintable(srcFileName), qPrintable(fileName)), VERR_UNKNOWN);
+  SET_ERROR(VError, qformat("can not copy file (%s > %s)", qPrintable(srcFileName), qPrintable(fileName)), VError::UNKNOWN);
 	return false;
   }
 

@@ -148,7 +148,7 @@ protected:
     while (active())
     {
       int writeLen = udpClient.write("test");
-      if (writeLen == VERR_FAIL) break;
+      if (writeLen == VError::FAIL) break;
       msleep(50);
     }
     udpClient.close();
