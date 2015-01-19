@@ -23,9 +23,9 @@ public:
   static bool   isTcp (IP_HDR* ipHdr, TCP_HDR**  tcpHdr);
   static bool   isUdp (IP_HDR* ipHdr, UDP_HDR**  udpHdr);
   static bool   isIcmp(IP_HDR* ipHdr, ICMP_HDR** icmpHdr);
-  static UINT16 checksum(IP_HDR* ipHdr);
-  static UINT16 recalculateChecksum(UINT16 oldChecksum, UINT16 oldValue, UINT16 newValue);
-  static UINT16 recalculateChecksum(UINT16 oldChecksum, UINT32 oldValue, UINT32 newValue);
+  static uint16_t checksum(IP_HDR* ipHdr);
+  static uint16_t recalculateChecksum(uint16_t oldChecksum, uint16_t oldValue, uint16_t newValue);
+  static uint16_t recalculateChecksum(uint16_t oldChecksum, uint32_t oldValue, uint32_t newValue);
 
 public:
   static bool parse(SnoopPacket* packet);

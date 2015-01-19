@@ -57,7 +57,7 @@ bool SnoopFindHost::findAll()
     if (nowTick - startTick > findAllTimeout)
     {
       {
-        SET_ERROR(SnoopError, "can not find all host", VERR_CAN_NOT_FIND_ALL_HOST);
+        SET_ERROR(SnoopError, "can not find all host", SnoopError::CAN_NOT_FIND_ALL_HOST);
       }
       logUnfoundHost();
       return false;
@@ -120,7 +120,7 @@ void SnoopFindHost::logUnfoundHost(VLog* log)
 int SnoopFindHost::sendArpRequest(Ip ip)
 {
   static const int BUF_SIZE = sizeof(ETH_HDR) + sizeof(ARP_HDR);
-  BYTE buf[BUF_SIZE];
+  uint8_t buf[BUF_SIZE];
   ETH_HDR* ethHdr = (ETH_HDR*)buf;
   ARP_HDR* arpHdr = (ARP_HDR*)(buf + sizeof(ETH_HDR));
 

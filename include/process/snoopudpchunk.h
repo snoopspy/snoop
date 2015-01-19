@@ -23,9 +23,9 @@ public:
   static const int INFO_SIZE = 8;
 
 public:
-  QByteArray dscr; // 4 BYTE
-  quint16    id;   // 2 BYTE
-  quint16    len;  // 2 BYTE
+  QByteArray dscr; // 4 uint8_t
+  quint16    id;   // 2 uint8_t
+  quint16    len;  // 2 uint8_t
 };
 
 // ----------------------------------------------------------------------------

@@ -101,7 +101,7 @@ void SnoopUdpReceiver::doSplit(SnoopUdpChunk& chunk, SnoopPacket* packet)
   packet->udpHdr->uh_ulen = htons((u_int16_t)(sizeof(UDP_HDR) + newDataLen));
 
   // UDP Data
-  BYTE* p = (BYTE*)newUdpData.data();
+  uint8_t* p = (uint8_t*)newUdpData.data();
   memcpy(packet->data, p, newUdpData.length());
 
   // Checksum

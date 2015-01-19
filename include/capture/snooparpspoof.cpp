@@ -425,7 +425,7 @@ bool SnoopArpSpoof::relay(SnoopPacket* packet)
   // if (SnoopIP::isTCP(ipHdr, &tcpHdr) && ((tcpHdr->rsvd_flags & TCP_FLAG_SYN) != 0)) // gilgil temp 2009.09.01
   if (packet->tcpHdr != NULL && ((packet->tcpHdr->th_flags & TH_SYN) != 0))
   {
-    UINT16 newChecksum = SnoopTcp::checksum(packet->ipHdr, packet->tcpHdr); // gilgil temp 2008.10.20
+    uint16_t newChecksum = SnoopTcp::checksum(packet->ipHdr, packet->tcpHdr); // gilgil temp 2008.10.20
     packet->tcpHdr->th_sum = htons(newChecksum);
   }
   // --------------------------------
@@ -541,7 +541,7 @@ bool SnoopArpSpoof::retrieveUnknownMacHostList()
 bool SnoopArpSpoof::sendArpInfect(SnoopArpSpoofSession& session)
 {
   static const int BUF_SIZE = sizeof(ETH_HDR) + sizeof(ARP_HDR);
-  BYTE buf[BUF_SIZE];
+  uint8_t buf[BUF_SIZE];
   ETH_HDR* ethHdr = (ETH_HDR*)buf;
   ARP_HDR* arpHdr = (ARP_HDR*)(buf + sizeof(ETH_HDR));
 
@@ -595,7 +595,7 @@ bool SnoopArpSpoof::sendArpInfectAll()
 bool SnoopArpSpoof::sendArpRecover(SnoopArpSpoofSession& session)
 {
   static const int BUF_SIZE = sizeof(ETH_HDR) + sizeof(ARP_HDR);
-  BYTE buf[BUF_SIZE];
+  uint8_t buf[BUF_SIZE];
   ETH_HDR* ethHdr = (ETH_HDR*)buf;
   ARP_HDR* arpHdr = (ARP_HDR*)(buf + sizeof(ETH_HDR));
 
@@ -651,7 +651,7 @@ void SnoopArpSpoof::preventArpRecover(ETH_HDR* ethHdr, ARP_HDR* arpHdr)
   Mac    srcMac    = ethHdr->ether_shost;
   Mac    dstMac    = ethHdr->ether_dhost;
 
-  UINT16 operation = ntohs(arpHdr->ar_op);
+  uint16_t operation = ntohs(arpHdr->ar_op);
   Mac    senderHa  = arpHdr->ar_sa;
   Ip     senderIp  = ntohl(arpHdr->ar_si);
   Mac    targetHa  = arpHdr->ar_ta;

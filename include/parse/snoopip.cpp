@@ -10,7 +10,7 @@ bool SnoopIp::is(IP_HDR* ipHdr, uint8_t protocol, void** transportHdr)
   if (ipHdr->ip_p != protocol)
     return false;
   if (transportHdr != NULL)
-    *transportHdr = (void*)((BYTE*)(ipHdr) + ipHdr->ip_hl * sizeof(UINT32));
+    *transportHdr = (void*)((uint8_t*)(ipHdr) + ipHdr->ip_hl * sizeof(uint32_t));
   return true;
 }
 
@@ -19,7 +19,7 @@ bool SnoopIp::isTcp(IP_HDR* ipHdr, TCP_HDR** tcpHdr)
   if (ipHdr->ip_p != IPPROTO_TCP)
     return false;
   if (tcpHdr != NULL)
-    *tcpHdr = (TCP_HDR*)((BYTE*)(ipHdr) + ipHdr->ip_hl * sizeof(UINT32));
+    *tcpHdr = (TCP_HDR*)((uint8_t*)(ipHdr) + ipHdr->ip_hl * sizeof(uint32_t));
   return true;
 }
 
@@ -28,7 +28,7 @@ bool SnoopIp::isUdp(IP_HDR* ipHdr, UDP_HDR** udpHdr)
   if (ipHdr->ip_p != IPPROTO_UDP)
     return false;
   if (udpHdr != NULL)
-    *udpHdr = (UDP_HDR*)((BYTE*)(ipHdr) + ipHdr->ip_hl * sizeof(UINT32));
+    *udpHdr = (UDP_HDR*)((uint8_t*)(ipHdr) + ipHdr->ip_hl * sizeof(uint32_t));
   return true;
 }
 
@@ -37,23 +37,23 @@ bool SnoopIp::isIcmp(IP_HDR* ipHdr, ICMP_HDR** icmpHdr)
   if (ipHdr->ip_p != IPPROTO_ICMP)
     return false;
   if (icmpHdr != NULL)
-    *icmpHdr = (ICMP_HDR*)((BYTE*)(ipHdr) + ipHdr->ip_hl * sizeof(UINT32));
+    *icmpHdr = (ICMP_HDR*)((uint8_t*)(ipHdr) + ipHdr->ip_hl * sizeof(uint32_t));
   return true;
 }
 
 //
 // All ipHdr field except ipHdr.ip_sum
 //
-UINT16 SnoopIp::checksum(IP_HDR* ipHdr)
+uint16_t SnoopIp::checksum(IP_HDR* ipHdr)
 {
   int i;
-  UINT32 sum;
-  UINT16 *p;
+  uint32_t sum;
+  uint16_t *p;
 
   sum = 0;
 
-  // Add ipHdr buffer as array of UINT16
-  p = (UINT16*)(ipHdr);
+  // Add ipHdr buffer as array of uint16_t
+  p = (uint16_t*)(ipHdr);
   for (i = 0; i < (int)sizeof(IP_HDR) / 2; i++)
   {
     sum += ntohs(*p);
@@ -72,27 +72,27 @@ UINT16 SnoopIp::checksum(IP_HDR* ipHdr)
   }
   sum = ~sum;
 
-  return (UINT16)sum;
+  return (uint16_t)sum;
 }
 
 //
-// Calculate Checksum on condition that only one value(UINT16) is changed.
+// Calculate Checksum on condition that only one value(uint16_t) is changed.
 //
-UINT16 SnoopIp::recalculateChecksum(UINT16 oldChecksum, UINT16 oldValue, UINT16 newValue)
+uint16_t SnoopIp::recalculateChecksum(uint16_t oldChecksum, uint16_t oldValue, uint16_t newValue)
 {
-  UINT32 sum;
+  uint32_t sum;
 
   sum = oldValue + (~newValue & 0xFFFF);
   sum += oldChecksum;
   sum = (sum & 0xFFFF) + (sum >> 16);
-  return (UINT16)(sum + (sum >> 16));
+  return (uint16_t)(sum + (sum >> 16));
 }
 
-UINT16 SnoopIp::recalculateChecksum(UINT16 oldChecksum, UINT32 oldValue, UINT32 newValue)
+uint16_t SnoopIp::recalculateChecksum(uint16_t oldChecksum, uint32_t oldValue, uint32_t newValue)
 {
-  UINT16 oldValue16;
-  UINT16 newValue16;
-  UINT16 sum;
+  uint16_t oldValue16;
+  uint16_t newValue16;
+  uint16_t sum;
 
   oldValue16 = (oldValue & 0xFFFF0000) >> 16;
   newValue16 = (newValue & 0xFFFF0000) >> 16;

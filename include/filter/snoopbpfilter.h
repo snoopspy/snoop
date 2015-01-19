@@ -37,7 +37,7 @@ public:
   int     linkType;
 
 public:
-  bool _check(BYTE* pktData, uint32_t pktLen);
+  bool _check(uint8_t* pktData, uint32_t pktLen);
 
 public slots:
   void check(SnoopPacket* packet);

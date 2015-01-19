@@ -58,12 +58,12 @@ int SnoopTcpBlock::sendForwardBlock(SnoopCapture* capture, SnoopPacket* packet, 
   }
 
   int bufSize = sizeof(ETH_HDR) + sizeof(IP_HDR) + sizeof(TCP_HDR) + msg.length();
-  QByteArray ba; ba.resize(bufSize); BYTE* buf = (BYTE*)ba.data();
+  QByteArray ba; ba.resize(bufSize); uint8_t* buf = (uint8_t*)ba.data();
 
   ETH_HDR* ethHdr = (ETH_HDR*) &buf[0];
   IP_HDR*  ipHdr  = (IP_HDR*)  &buf[sizeof(ETH_HDR)];
   TCP_HDR* tcpHdr = (TCP_HDR*) &buf[sizeof(ETH_HDR) + sizeof(IP_HDR)];
-  BYTE*    data   = (BYTE*)    &buf[sizeof(ETH_HDR) + sizeof(IP_HDR) + sizeof(TCP_HDR)];
+  uint8_t*    data   = (uint8_t*)    &buf[sizeof(ETH_HDR) + sizeof(IP_HDR) + sizeof(TCP_HDR)];
 
   //
   // Ethernet Header
@@ -84,11 +84,11 @@ int SnoopTcpBlock::sendForwardBlock(SnoopCapture* capture, SnoopPacket* packet, 
   int tcpDataLen;
   if (!SnoopTcp::isData(packet->ipHdr, packet->tcpHdr, NULL, &tcpDataLen)) tcpDataLen = 0;
   int flagAddLen = ((packet->tcpHdr->th_flags & (TH_SYN | TH_FIN))) ? 1 : 0;
-  UINT32 newSeq = ntohl(packet->tcpHdr->th_seq) + tcpDataLen + flagAddLen;
+  uint32_t newSeq = ntohl(packet->tcpHdr->th_seq) + tcpDataLen + flagAddLen;
 
   memcpy(tcpHdr, packet->tcpHdr, sizeof(TCP_HDR));
   tcpHdr->th_seq   = htonl(newSeq);
-  tcpHdr->th_off   = sizeof(TCP_HDR) / sizeof(UINT32);
+  tcpHdr->th_off   = sizeof(TCP_HDR) / sizeof(uint32_t);
   tcpHdr->th_flags = flag | TH_ACK;
   tcpHdr->th_win   = 0;
 
@@ -124,7 +124,7 @@ int SnoopTcpBlock::sendBackwardBlock(SnoopCapture* capture, SnoopPacket* packet,
   }
 
   int bufSize = sizeof(ETH_HDR) + sizeof(IP_HDR) + sizeof(TCP_HDR) + msg.length();
-  QByteArray ba; ba.resize(bufSize); BYTE* buf = (BYTE*)ba.data();
+  QByteArray ba; ba.resize(bufSize); uint8_t* buf = (uint8_t*)ba.data();
 
   ETH_HDR* ethHdr = (ETH_HDR*) &buf[0];
   IP_HDR*  ipHdr  = (IP_HDR*)  &buf[sizeof(ETH_HDR)];
@@ -154,14 +154,14 @@ int SnoopTcpBlock::sendBackwardBlock(SnoopCapture* capture, SnoopPacket* packet,
   int tcpDataLen;
   if (!SnoopTcp::isData(packet->ipHdr, packet->tcpHdr, NULL, &tcpDataLen)) tcpDataLen = 0;
   int flagAddLen = ((packet->tcpHdr->th_flags & (TH_SYN | TH_FIN))) ? 1 : 0;
-  UINT32 newSeq = ntohl(packet->tcpHdr->th_seq) + tcpDataLen + flagAddLen;
+  uint32_t newSeq = ntohl(packet->tcpHdr->th_seq) + tcpDataLen + flagAddLen;
 
   memcpy(tcpHdr, packet->tcpHdr, sizeof(TCP_HDR));
   tcpHdr->th_sport = packet->tcpHdr->th_dport;
   tcpHdr->th_dport = packet->tcpHdr->th_sport;
   tcpHdr->th_seq   = packet->tcpHdr->th_ack;
   tcpHdr->th_ack   = htonl(newSeq);
-  tcpHdr->th_off   = sizeof(TCP_HDR) / sizeof(UINT32);
+  tcpHdr->th_off   = sizeof(TCP_HDR) / sizeof(uint32_t);
   tcpHdr->th_flags = flag | TH_ACK;
   tcpHdr->th_win   = 0;
 

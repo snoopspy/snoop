@@ -5,12 +5,12 @@
 // ----------------------------------------------------------------------------
 // SnoopEth
 // ----------------------------------------------------------------------------
-bool SnoopEth::is(ETH_HDR* ethHdr, UINT16 etherType, void** networkHdr)
+bool SnoopEth::is(ETH_HDR* ethHdr, uint16_t etherType, void** networkHdr)
 {
   if (ntohs(ethHdr->ether_type) != etherType)
     return false;
   if (networkHdr != NULL)
-    *networkHdr = (void*)((BYTE*)(ethHdr) + sizeof(ETH_HDR));
+    *networkHdr = (void*)((uint8_t*)(ethHdr) + sizeof(ETH_HDR));
   return true;
 }
 
@@ -19,7 +19,7 @@ bool SnoopEth::isIp(ETH_HDR* ethHdr, IP_HDR** ipHdr)
   if (htons(ethHdr->ether_type) != ETHERTYPE_IP)
     return false;
   if (ipHdr != NULL)
-    *ipHdr = (IP_HDR*)((BYTE*)(ethHdr) + sizeof(ETH_HDR));
+    *ipHdr = (IP_HDR*)((uint8_t*)(ethHdr) + sizeof(ETH_HDR));
   return true;
 }
 
@@ -28,7 +28,7 @@ bool SnoopEth::isArp(ETH_HDR* ethHdr, ARP_HDR** arpHdr)
   if (htons(ethHdr->ether_type) != ETHERTYPE_ARP)
     return false;
   if (arpHdr != NULL)
-    *arpHdr = (ARP_HDR*)((BYTE*)(ethHdr) + sizeof(ETH_HDR));
+    *arpHdr = (ARP_HDR*)((uint8_t*)(ethHdr) + sizeof(ETH_HDR));
   return true;
 }
 

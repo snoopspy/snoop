@@ -87,16 +87,16 @@ void SnoopDataChange::change(SnoopPacket* packet)
 
       if (flowItem->seqDiff != 0)
       {
-        UINT32 oldSeq = ntohl(packet->tcpHdr->th_seq);
-        UINT32 newSeq = oldSeq + flowItem->seqDiff;
+        uint32_t oldSeq = ntohl(packet->tcpHdr->th_seq);
+        uint32_t newSeq = oldSeq + flowItem->seqDiff;
         packet->tcpHdr->th_seq = htonl(newSeq);
         packet->tcpHdr->th_sum = htons(SnoopIp::recalculateChecksum(ntohs(packet->tcpHdr->th_sum), oldSeq, newSeq));
       }
 
       if (flowItem->ackDiff != 0)
       {
-        UINT32 oldAck = ntohl(packet->tcpHdr->th_ack);
-        UINT32 newAck = oldAck + flowItem->ackDiff;
+        uint32_t oldAck = ntohl(packet->tcpHdr->th_ack);
+        uint32_t newAck = oldAck + flowItem->ackDiff;
         packet->tcpHdr->th_ack = htonl(newAck);
         packet->tcpHdr->th_sum = htons(SnoopIp::recalculateChecksum(ntohs(packet->tcpHdr->th_sum), oldAck, newAck));
       }
@@ -104,7 +104,7 @@ void SnoopDataChange::change(SnoopPacket* packet)
       //
       // check data change
       //
-      INT16 diff = 0;
+      int16_t diff = 0;
       _changed = _change(packet, &diff);
       if (_changed)
       {
@@ -137,14 +137,14 @@ void SnoopDataChange::change(SnoopPacket* packet)
       //
       // check data change
       //
-      INT16 diff = 0;
+      int16_t diff = 0;
       _changed = _change(packet, &diff);
       if (_changed)
       {
         if (diff != 0)
         {
-          UINT16 oldLen = ntohs(packet->udpHdr->uh_ulen);
-          UINT16 newLen = oldLen + diff;
+          uint16_t oldLen = ntohs(packet->udpHdr->uh_ulen);
+          uint16_t newLen = oldLen + diff;
           packet->udpHdr->uh_ulen = htons(newLen);
         }
         packet->udpHdr->uh_sum = htons(SnoopUdp::checksum(packet->ipHdr, packet->udpHdr));
@@ -161,9 +161,9 @@ void SnoopDataChange::change(SnoopPacket* packet)
   }
 }
 
-bool SnoopDataChange::_change(SnoopPacket* packet, INT16* diff)
+bool SnoopDataChange::_change(SnoopPacket* packet, int16_t* diff)
 {
-  BYTE* data = packet->data;
+  uint8_t* data = packet->data;
   int   len  = packet->dataLen;
   if (data == NULL || len == 0) return false;
 
@@ -173,16 +173,16 @@ bool SnoopDataChange::_change(SnoopPacket* packet, INT16* diff)
   if (dataChange.change(ba))
   {
     _changed   = true;
-    int newLen = (UINT16)ba.size();
+    int newLen = (uint16_t)ba.size();
     memcpy(data, ba.constData(), (size_t)ba.size());
 
     if (newLen != len)
     {
-      INT16  diff16   = newLen- len;
-      UINT16 oldLen16 = ntohs(packet->ipHdr->ip_len);
-      UINT16 newLen16 = oldLen16 + (UINT16)diff16;
+      int16_t  diff16   = newLen- len;
+      uint16_t oldLen16 = ntohs(packet->ipHdr->ip_len);
+      uint16_t newLen16 = oldLen16 + (uint16_t)diff16;
 
-      packet->pktHdr->caplen += (UINT32)diff16;
+      packet->pktHdr->caplen += (uint32_t)diff16;
       if (packet->pktHdr->caplen > 1514)
       {
         LOG_WARN("packet->pktHdr->caplen is %u", packet->pktHdr->caplen);

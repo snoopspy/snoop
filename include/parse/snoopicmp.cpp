@@ -5,7 +5,7 @@
 // ----------------------------------------------------------------------------
 // SnoopIcmp
 // ----------------------------------------------------------------------------
-bool SnoopIcmp::isData(IP_HDR* ipHdr, ICMP_HDR* icmpHdr, BYTE** icmpData, int* icmpDataLen)
+bool SnoopIcmp::isData(IP_HDR* ipHdr, ICMP_HDR* icmpHdr, uint8_t** icmpData, int* icmpDataLen)
 {
   Q_UNUSED(ipHdr)
   Q_UNUSED(icmpHdr)
@@ -16,7 +16,7 @@ bool SnoopIcmp::isData(IP_HDR* ipHdr, ICMP_HDR* icmpHdr, BYTE** icmpData, int* i
   int _icmpDataLen;
 
   if (icmpData != NULL)
-    *icmpData = (BYTE*)(icmpHdr) + sizeof(ICMP_HDR);
+    *icmpData = (uint8_t*)(icmpHdr) + sizeof(ICMP_HDR);
     icmpHdr->dun.
   _icmpDataLen = ntohs(icmpHdr-> uh_ulen) - sizeof(ICMP_HDR);
   if (icmpDataLen != NULL)
@@ -29,7 +29,7 @@ bool SnoopIcmp::isData(IP_HDR* ipHdr, ICMP_HDR* icmpHdr, BYTE** icmpData, int* i
 // All icmpHdr field except icmpHdr.uh_sum
 // Added ipHdr.ip_src, ipHdr.ip_dst, icmpHdrDataLen and IPPROTO_ICMP
 //
-UINT16 SnoopIcmp::checksum(IP_HDR* ipHdr, ICMP_HDR* icmpHdr)
+uint16_t SnoopIcmp::checksum(IP_HDR* ipHdr, ICMP_HDR* icmpHdr)
 {
   Q_UNUSED(ipHdr)
   Q_UNUSED(icmpHdr)
@@ -38,15 +38,15 @@ UINT16 SnoopIcmp::checksum(IP_HDR* ipHdr, ICMP_HDR* icmpHdr)
   /* gilgil temp 2009.09.08
   int i;
   int icmpHdrDataLen;
-  UINT16 *p;
-  UINT32 src, dst;
-  UINT32 sum;
+  uint16_t *p;
+  uint32_t src, dst;
+  uint32_t sum;
 
   icmpHdrDataLen = ntohs(icmpHdr->uh_ulen);
   sum = 0;
 
-  // Add icmpHdr & data buffer as array of UINT16
-  p = (UINT16*)icmpHdr;
+  // Add icmpHdr & data buffer as array of uint16_t
+  p = (uint16_t*)icmpHdr;
   for (i = 0; i < icmpHdrDataLen / 2; i++)
   {
     sum += htons(*p);
@@ -69,14 +69,14 @@ UINT16 SnoopIcmp::checksum(IP_HDR* ipHdr, ICMP_HDR* icmpHdr)
   sum += ((dst & 0xFFFF0000) >> 16) + (dst & 0x0000FFFF);
 
   // Add extra onformation
-  sum += (UINT32)icmpHdrDataLen + IPPROTO_ICMP;
+  sum += (uint32_t)icmpHdrDataLen + IPPROTO_ICMP;
 
   // Recalculate sum
   while ((sum >> 16) > 0)
     sum = (sum & 0xFFFF) + (sum >> 16);
   sum = ~sum;
 
-  return (UINT16)sum;
+  return (uint16_t)sum;
   */
 }
 

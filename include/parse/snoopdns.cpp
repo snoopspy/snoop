@@ -10,29 +10,29 @@ QByteArray SnoopDnsQuestion::encode()
 
   res = SnoopDns::encodeName(this->name);
 
-  UINT16 _type = htons(this->type);
-  res.append((const char*)&_type, sizeof(UINT16));
+  uint16_t _type = htons(this->type);
+  res.append((const char*)&_type, sizeof(uint16_t));
 
-  UINT16 __class = htons(this->_class);
-  res.append((const char*)&__class, sizeof(UINT16));
+  uint16_t __class = htons(this->_class);
+  res.append((const char*)&__class, sizeof(uint16_t));
 
   return res;
 }
 
-bool SnoopDnsQuestion::decode(BYTE* udpData, int dataLen, int* offset)
+bool SnoopDnsQuestion::decode(uint8_t* udpData, int dataLen, int* offset)
 {
   this->name = SnoopDns::decodeName(udpData, dataLen, offset);
   if (this->name == "") return false;
 
-  if (*offset + sizeof(UINT16) > dataLen) return false;
-  UINT16* _type = (UINT16*)(udpData + *offset);
+  if (*offset + sizeof(uint16_t) > dataLen) return false;
+  uint16_t* _type = (uint16_t*)(udpData + *offset);
   this->type = ntohs(*_type);
-  *offset += sizeof(UINT16);
+  *offset += sizeof(uint16_t);
 
-  if (*offset + sizeof(UINT16) > dataLen) return false;
-  UINT16* __class = (UINT16*)(udpData + *offset);
+  if (*offset + sizeof(uint16_t) > dataLen) return false;
+  uint16_t* __class = (uint16_t*)(udpData + *offset);
   this->_class = ntohs(*__class);
-  *offset += sizeof(UINT16);
+  *offset += sizeof(uint16_t);
 
   if (*offset > dataLen) return false;
   return true;
@@ -51,7 +51,7 @@ QByteArray SnoopDnsQuestions::encode()
   return res;
 }
 
-bool SnoopDnsQuestions::decode(BYTE* udpData, int dataLen, int count, int* offset)
+bool SnoopDnsQuestions::decode(uint8_t* udpData, int dataLen, int count, int* offset)
 {
   for (int i = 0; i < count; i++)
   {
@@ -74,47 +74,47 @@ QByteArray SnoopDnsResourceRecord::encode()
   res.append((char)0x0C);
 
 
-  UINT16 _type = htons(this->type);
-  res.append((const char*)&_type, sizeof(UINT16));
+  uint16_t _type = htons(this->type);
+  res.append((const char*)&_type, sizeof(uint16_t));
 
-  UINT16 __class = htons(this->_class);
-  res.append((const char*)&__class, sizeof(UINT16));
+  uint16_t __class = htons(this->_class);
+  res.append((const char*)&__class, sizeof(uint16_t));
 
-  UINT32 _ttl = htonl(this->ttl);
-  res.append((const char*)&_ttl, sizeof(UINT32));
+  uint32_t _ttl = htonl(this->ttl);
+  res.append((const char*)&_ttl, sizeof(uint32_t));
 
-  UINT16 _dataLength = htons(this->dataLength);
-  res.append((const char*)&_dataLength, sizeof(UINT16));
+  uint16_t _dataLength = htons(this->dataLength);
+  res.append((const char*)&_dataLength, sizeof(uint16_t));
 
   res += data;
 
   return res;
 }
 
-bool SnoopDnsResourceRecord::decode(BYTE* udpData, int dataLen, int* offset)
+bool SnoopDnsResourceRecord::decode(uint8_t* udpData, int dataLen, int* offset)
 {
   this->name = SnoopDns::decodeName(udpData, dataLen, offset);
   if (this->name == "") return false;
 
-  if (*offset + sizeof(UINT16) > dataLen) return false;
-  UINT16* _type = (UINT16*)(udpData + *offset);
+  if (*offset + sizeof(uint16_t) > dataLen) return false;
+  uint16_t* _type = (uint16_t*)(udpData + *offset);
   this->type = ntohs(*_type);
-  *offset += sizeof(UINT16);
+  *offset += sizeof(uint16_t);
 
-  if (*offset  + sizeof(UINT16) > dataLen) return false;
-  UINT16* __class = (UINT16*)(udpData + *offset);
+  if (*offset  + sizeof(uint16_t) > dataLen) return false;
+  uint16_t* __class = (uint16_t*)(udpData + *offset);
   this->_class = ntohs(*__class);
-  *offset += sizeof(UINT16);
+  *offset += sizeof(uint16_t);
 
-  if (*offset  + sizeof(UINT32) > dataLen) return false;
-  UINT32* _ttl = (UINT32*)(udpData + *offset);
+  if (*offset  + sizeof(uint32_t) > dataLen) return false;
+  uint32_t* _ttl = (uint32_t*)(udpData + *offset);
   this->ttl = ntohl(*_ttl);
-  *offset += sizeof(UINT32);
+  *offset += sizeof(uint32_t);
 
-  if (*offset  + sizeof(UINT16) > dataLen) return false;
-  UINT16* _dataLength = (UINT16*)(udpData + *offset);
+  if (*offset  + sizeof(uint16_t) > dataLen) return false;
+  uint16_t* _dataLength = (uint16_t*)(udpData + *offset);
   this->dataLength= ntohs(*_dataLength);
-  *offset += sizeof(UINT16);
+  *offset += sizeof(uint16_t);
 
   if (*offset + this->dataLength > dataLen) return false;
   const char* data = (const char*)(udpData + *offset);
@@ -137,7 +137,7 @@ QByteArray SnoopDnsResourceRecords::encode()
   return res;
 }
 
-bool SnoopDnsResourceRecords::decode(BYTE* udpData, int dataLen, int count, int* offset)
+bool SnoopDnsResourceRecords::decode(uint8_t* udpData, int dataLen, int count, int* offset)
 {
   for (int i = 0; i < count; i++)
   {
@@ -158,23 +158,23 @@ QByteArray SnoopDns::encode()
 
   // ----- gilgil temp 2014.03.22 -----
   /*
-  UINT16 _id = htons(dnsHdr.id);
-  res.append((const char*)&_id, sizeof(UINT16));
+  uint16_t _id = htons(dnsHdr.id);
+  res.append((const char*)&_id, sizeof(uint16_t));
 
-  UINT16 _flags = htons(dnsHdr.flags);
-  res.append((const char*)&_flags, sizeof(UINT16));
+  uint16_t _flags = htons(dnsHdr.flags);
+  res.append((const char*)&_flags, sizeof(uint16_t));
 
-  UINT16 _num_q = htons(dnsHdr.num_q);
-  res.append((const char*)&_num_q, sizeof(UINT16));
+  uint16_t _num_q = htons(dnsHdr.num_q);
+  res.append((const char*)&_num_q, sizeof(uint16_t));
 
-  UINT16 _num_answ_rr = htons(dnsHdr.num_answ_rr);
-  res.append((const char*)&_num_answ_rr, sizeof(UINT16));
+  uint16_t _num_answ_rr = htons(dnsHdr.num_answ_rr);
+  res.append((const char*)&_num_answ_rr, sizeof(uint16_t));
 
-  UINT16 _num_auth_rr = htons(dnsHdr.num_auth_rr);
-  res.append((const char*)&_num_auth_rr, sizeof(UINT16));
+  uint16_t _num_auth_rr = htons(dnsHdr.num_auth_rr);
+  res.append((const char*)&_num_auth_rr, sizeof(uint16_t));
 
-  UINT16 _num_addi_rr = htons(dnsHdr.num_addi_rr);
-  res.append((const char*)&_num_addi_rr, sizeof(UINT16));
+  uint16_t _num_addi_rr = htons(dnsHdr.num_addi_rr);
+  res.append((const char*)&_num_addi_rr, sizeof(uint16_t));
   */
   // ----------------------------------
 
@@ -186,7 +186,7 @@ QByteArray SnoopDns::encode()
   return res;
 }
 
-bool SnoopDns::decode(BYTE* udpData, int dataLen, int* offset)
+bool SnoopDns::decode(uint8_t* udpData, int dataLen, int* offset)
 {
   if (*offset + sizeof(DNS_HDR) > dataLen) return false;
   memcpy(&this->dnsHdr, udpData, sizeof(DNS_HDR));
@@ -214,8 +214,8 @@ QByteArray SnoopDns::encodeName(QString name)
   for (int i = 0; i < count; i++)
   {
     QString label = labels.at(i);
-    BYTE size = label.size();
-    res.append((const char*)&size, sizeof(BYTE));
+    uint8_t size = label.size();
+    res.append((const char*)&size, sizeof(uint8_t));
     res += label;
   }
   res.append((char)0x00);
@@ -223,15 +223,15 @@ QByteArray SnoopDns::encodeName(QString name)
   return res;
 }
 
-QString SnoopDns::decodeName(BYTE* udpData, int dataLen, int* offset)
+QString SnoopDns::decodeName(uint8_t* udpData, int dataLen, int* offset)
 {
-  BYTE* p = (BYTE*)(udpData + *offset);
+  uint8_t* p = (uint8_t*)(udpData + *offset);
   QString res;
   bool first = true;
   while (true)
   {
     if (p - udpData > dataLen) return false;
-    BYTE count = *p++;
+    uint8_t count = *p++;
     if (count == 0) break;
 
     if (count == 0xC0)

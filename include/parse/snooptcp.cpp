@@ -5,10 +5,10 @@
 // ----------------------------------------------------------------------------
 // SnoopTcp
 // ----------------------------------------------------------------------------
-bool SnoopTcp::isData(IP_HDR* ipHdr, TCP_HDR* tcpHdr, BYTE** tcpData, int* tcpDataLen)
+bool SnoopTcp::isData(IP_HDR* ipHdr, TCP_HDR* tcpHdr, uint8_t** tcpData, int* tcpDataLen)
 {
-  int   tcpHdrLen   = tcpHdr->th_off * sizeof(UINT32);
-  BYTE* _tcpData    = (BYTE*)(tcpHdr) + tcpHdrLen;
+  int   tcpHdrLen   = tcpHdr->th_off * sizeof(uint32_t);
+  uint8_t* _tcpData    = (uint8_t*)(tcpHdr) + tcpHdrLen;
   int   _tcpDataLen = ntohs(ipHdr->ip_len) - sizeof(IP_HDR) - tcpHdrLen;
   
   if (_tcpDataLen > 0)
@@ -22,12 +22,12 @@ bool SnoopTcp::isData(IP_HDR* ipHdr, TCP_HDR* tcpHdr, BYTE** tcpData, int* tcpDa
   return false;
 }
 
-bool SnoopTcp::isOption(TCP_HDR* tcpHdr, BYTE** tcpOption, int* tcpOptionLen)
+bool SnoopTcp::isOption(TCP_HDR* tcpHdr, uint8_t** tcpOption, int* tcpOptionLen)
 {
-  int tcpHdrLen = tcpHdr->th_off * sizeof(UINT32);
+  int tcpHdrLen = tcpHdr->th_off * sizeof(uint32_t);
   int _tcpOptionLen = tcpHdrLen - sizeof(TCP_HDR);
   if (tcpOption != NULL)
-    *tcpOption = (BYTE*)tcpHdr + sizeof(TCP_HDR);
+    *tcpOption = (uint8_t*)tcpHdr + sizeof(TCP_HDR);
   if (tcpOptionLen != NULL)
     *tcpOptionLen = _tcpOptionLen;
   return _tcpOptionLen > 0;
@@ -38,19 +38,19 @@ bool SnoopTcp::isOption(TCP_HDR* tcpHdr, BYTE** tcpOption, int* tcpOptionLen)
 // All data buffer(padding)
 // ipHdr.ip_src, ipHdr.ip_dst, tcpHdrDataLen and IPPROTO_TCP
 //
-UINT16 SnoopTcp::checksum(IP_HDR* ipHdr, TCP_HDR* tcpHdr)
+uint16_t SnoopTcp::checksum(IP_HDR* ipHdr, TCP_HDR* tcpHdr)
 {
   int i;
   int tcpHdrDataLen;
-  UINT32 src, dst;
-  UINT32 sum;
-  UINT16 *p;
+  uint32_t src, dst;
+  uint32_t sum;
+  uint16_t *p;
   
   tcpHdrDataLen = ntohs(ipHdr->ip_len) - sizeof(IP_HDR);
   sum = 0;
 
   // Add tcpHdr and data buffer as array of UIN16
-  p = (UINT16*)tcpHdr;
+  p = (uint16_t*)tcpHdr;
   for (i = 0; i < tcpHdrDataLen / 2; i++)
   {
     sum += htons(*p);
@@ -73,7 +73,7 @@ UINT16 SnoopTcp::checksum(IP_HDR* ipHdr, TCP_HDR* tcpHdr)
   sum += ((dst & 0xFFFF0000) >> 16) + (dst & 0x0000FFFF);
 
   // Add extra information
-  sum += (UINT32)(tcpHdrDataLen) + IPPROTO_TCP;
+  sum += (uint32_t)(tcpHdrDataLen) + IPPROTO_TCP;
 
   // Recalculate sum
   while(sum >> 16)
@@ -82,7 +82,7 @@ UINT16 SnoopTcp::checksum(IP_HDR* ipHdr, TCP_HDR* tcpHdr)
   }
   sum = ~sum;
 
-  return (UINT16)sum;
+  return (uint16_t)sum;
 }
 
 bool SnoopTcp::parse(SnoopPacket* packet)
@@ -126,7 +126,7 @@ int SnoopTcp::getOption(
     snoopTCPOption.len = len;
 
     if (tcpOptionLen < len - 2) goto _error;
-    snoopTCPOption.value = (BYTE*)p;
+    snoopTCPOption.value = (uint8_t*)p;
     p += len - 2; // p++; tcpOptionLen--; // remove warning
   }
 
@@ -169,7 +169,7 @@ int SnoopTcp::getOption(
     default : desc = "UNKNOWN";                             break;
   }
 
-  snoopTCPOption.desc = (BYTE*)desc;
+  snoopTCPOption.desc = (uint8_t*)desc;
 
   return (int)(p - (uint8_t*)tcpOption);
 _error:

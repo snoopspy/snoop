@@ -2131,7 +2131,7 @@ libnet_check_iface(libnet_t *l);
 /*
  * [Internal] 
  */
-BYTE *
+uint8_t *
 libnet_win32_get_remote_mac(libnet_t *l, DWORD IP);
 
 /*
@@ -2143,7 +2143,7 @@ libnet_close_link_interface(libnet_t *l);
 /*
  * [Internal] 
  */
-BYTE * 
+uint8_t * 
 libnet_win32_read_arp_table(DWORD IP);
 #endif
 #endif  /* __LIBNET_FUNCTIONS_H */

@@ -17,7 +17,7 @@ public:
   typedef HANDLE (*WinDivertOpenFunc)(
       __in        const char *filter,
       __in        DIVERT_LAYER layer,
-      __in        INT16 priority,
+      __in        int16_t priority,
       __in        UINT64 flags);
   WinDivertOpenFunc WinDivertOpen;
 
@@ -348,7 +348,7 @@ void SnoopWinDivert::load(VXml xml)
   SnoopCapture::load(xml);
 
   filter          = xml.getStr("filter", filter);
-  priority        = (UINT16)xml.getInt("priority", (int)priority);
+  priority        = (uint16_t)xml.getInt("priority", (int)priority);
   layer           = (DIVERT_LAYER)xml.getInt("layer", (int)layer);
   flags           = (UINT64)xml.getInt("flags", (int)flags);
   queueLen        = (UINT64)xml.getInt("queueLen", (int)queueLen);

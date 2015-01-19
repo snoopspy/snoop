@@ -84,18 +84,18 @@ void SnoopFlowChangeItem::load(VXml xml)
   srcIpChangeType   = (IpChangeType)xml.getInt("srcIpChangeType", (int)srcIpChangeType);
   srcIpFixValue     = xml.getStr("srcIpFixValue", srcIpFixValue.str());
 
-  srcPort           = (UINT16)xml.getInt("srcPort", (int)srcPort);
+  srcPort           = (uint16_t)xml.getInt("srcPort", (int)srcPort);
   srcPortChangeType = (PortChangeType)xml.getInt("srcPortChangeType", (int)srcPortChangeType);
-  srcPortFixValue   = (UINT16)xml.getInt("srcPortFixValue", (int)srcPortFixValue);
+  srcPortFixValue   = (uint16_t)xml.getInt("srcPortFixValue", (int)srcPortFixValue);
 
   dstIp             = xml.getStr("dstIp", dstIp.str());
   dstIpMask         = xml.getStr("dstIpMask", dstIpMask.str());
   dstIpChangeType   = (IpChangeType)xml.getInt("dstIpChangeType", (int)dstIpChangeType);
   dstIpFixValue     = xml.getStr("dstIpFixValue", dstIpFixValue.str());
 
-  dstPort           = (UINT16)xml.getInt("dstPort", (int)dstPort);
+  dstPort           = (uint16_t)xml.getInt("dstPort", (int)dstPort);
   dstPortChangeType = (PortChangeType)xml.getInt("dstPortChangeType", (int)dstPortChangeType);
-  dstPortFixValue   = (UINT16)xml.getInt("dstPortFixValue", (int)dstPortFixValue);
+  dstPortFixValue   = (uint16_t)xml.getInt("dstPortFixValue", (int)dstPortFixValue);
 }
 
 void SnoopFlowChangeItem::save(VXml xml)
@@ -475,36 +475,36 @@ bool SnoopFlowChange::doClose()
 void SnoopFlowChange::_changeTcpFlow(SnoopPacket* packet, SnoopFlowChangeFlowItem* flowItem)
 {
   Ip     oldSrcIp   = ntohl(packet->ipHdr->ip_src);
-  UINT16 oldSrcPort = ntohs(packet->tcpHdr->th_sport);
+  uint16_t oldSrcPort = ntohs(packet->tcpHdr->th_sport);
   Ip     oldDstIp   = ntohl(packet->ipHdr->ip_dst);
-  UINT16 oldDstPort = ntohs(packet->tcpHdr->th_dport);
+  uint16_t oldDstPort = ntohs(packet->tcpHdr->th_dport);
 
   Ip     newSrcIp   = flowItem->to.srcIp;
-  UINT16 newSrcPort = flowItem->to.srcPort;
+  uint16_t newSrcPort = flowItem->to.srcPort;
   Ip     newDstIp   = flowItem->to.dstIp;
-  UINT16 newDstPort = flowItem->to.dstPort;
+  uint16_t newDstPort = flowItem->to.dstPort;
 
   packet->ipHdr->ip_src    = htonl(newSrcIp);
   packet->tcpHdr->th_sport = htons(newSrcPort);
   packet->ipHdr->ip_dst    = htonl(newDstIp);
   packet->tcpHdr->th_dport = htons(newDstPort);
 
-  UINT16 oldIpChecksum  = ntohs(packet->ipHdr->ip_sum);
-  UINT16 oldTcpChecksum = ntohs(packet->tcpHdr->th_sum);
+  uint16_t oldIpChecksum  = ntohs(packet->ipHdr->ip_sum);
+  uint16_t oldTcpChecksum = ntohs(packet->tcpHdr->th_sum);
 
-  UINT16 newIpChecksum;
+  uint16_t newIpChecksum;
   newIpChecksum = SnoopIp::recalculateChecksum(oldIpChecksum, oldSrcIp, newSrcIp);
   newIpChecksum = SnoopIp::recalculateChecksum(newIpChecksum, oldDstIp, newDstIp);
-  // UINT16 correctIpChecksum = SnoopIp::checksum(packet->ipHdr); // gilgil temp 2014.03.25
+  // uint16_t correctIpChecksum = SnoopIp::checksum(packet->ipHdr); // gilgil temp 2014.03.25
   // LOG_DEBUG("ip checksum=0x%x 0x%x 0x%x", oldIpChecksum, newIpChecksum, correctIpChecksum); // gilgil temp 2014.03.25
   packet->ipHdr->ip_sum = htons(newIpChecksum);
 
-  UINT16 newTcpChecksum;
+  uint16_t newTcpChecksum;
   newTcpChecksum = SnoopIp::recalculateChecksum(oldTcpChecksum, oldSrcIp,   newSrcIp);
   newTcpChecksum = SnoopIp::recalculateChecksum(newTcpChecksum, oldDstIp,   newDstIp);
   newTcpChecksum = SnoopIp::recalculateChecksum(newTcpChecksum, oldSrcPort, newSrcPort);
   newTcpChecksum = SnoopIp::recalculateChecksum(newTcpChecksum, oldDstPort, newDstPort);
-  // UINT16 correctTcpChecksum = SnoopTcp::checksum(packet->ipHdr, packet->tcpHdr);  // gilgil temp 2014.03.25
+  // uint16_t correctTcpChecksum = SnoopTcp::checksum(packet->ipHdr, packet->tcpHdr);  // gilgil temp 2014.03.25
   // LOG_DEBUG("tcp checksum=0x%x 0x%x 0x%x", oldTcpChecksum, newTcpChecksum, correctTcpChecksum); // gilgil temp 2014.03.25
   packet->tcpHdr->th_sum = htons(newTcpChecksum);
 
@@ -519,36 +519,36 @@ void SnoopFlowChange::_changeTcpFlow(SnoopPacket* packet, SnoopFlowChangeFlowIte
 void SnoopFlowChange::_changeUdpFlow(SnoopPacket* packet, SnoopFlowChangeFlowItem* flowItem)
 {
   Ip     oldSrcIp   = ntohl(packet->ipHdr->ip_src);
-  UINT16 oldSrcPort = ntohs(packet->udpHdr->uh_sport);
+  uint16_t oldSrcPort = ntohs(packet->udpHdr->uh_sport);
   Ip     oldDstIp   = ntohl(packet->ipHdr->ip_dst);
-  UINT16 oldDstPort = ntohs(packet->udpHdr->uh_dport);
+  uint16_t oldDstPort = ntohs(packet->udpHdr->uh_dport);
 
   Ip     newSrcIp   = flowItem->to.srcIp;
-  UINT16 newSrcPort = flowItem->to.srcPort;
+  uint16_t newSrcPort = flowItem->to.srcPort;
   Ip     newDstIp   = flowItem->to.dstIp;
-  UINT16 newDstPort = flowItem->to.dstPort;
+  uint16_t newDstPort = flowItem->to.dstPort;
 
   packet->ipHdr->ip_src    = htonl(newSrcIp);
   packet->udpHdr->uh_sport = htons(newSrcPort);
   packet->ipHdr->ip_dst    = htonl(newDstIp);
   packet->udpHdr->uh_dport = htons(newDstPort);
 
-  UINT16 oldIpChecksum  = ntohs(packet->ipHdr->ip_sum);
-  UINT16 oldUdpChecksum = ntohs(packet->udpHdr->uh_sum);
+  uint16_t oldIpChecksum  = ntohs(packet->ipHdr->ip_sum);
+  uint16_t oldUdpChecksum = ntohs(packet->udpHdr->uh_sum);
 
-  UINT16 newIpChecksum;
+  uint16_t newIpChecksum;
   newIpChecksum = SnoopIp::recalculateChecksum(oldIpChecksum, oldSrcIp, newSrcIp);
   newIpChecksum = SnoopIp::recalculateChecksum(newIpChecksum, oldDstIp, newDstIp);
-  // UINT16 correctIpChecksum = SnoopIp::checksum(packet->ipHdr); // gilgil temp 2014.03.25
+  // uint16_t correctIpChecksum = SnoopIp::checksum(packet->ipHdr); // gilgil temp 2014.03.25
   // LOG_DEBUG("ip checksum=0x%x 0x%x 0x%x", oldIpChecksum, newIpChecksum, correctIpChecksum); // gilgil temp 2014.03.25
   packet->ipHdr->ip_sum = htons(newIpChecksum);
 
-  UINT16 newUdpChecksum;
+  uint16_t newUdpChecksum;
   newUdpChecksum = SnoopIp::recalculateChecksum(oldUdpChecksum, oldSrcIp,   newSrcIp);
   newUdpChecksum = SnoopIp::recalculateChecksum(newUdpChecksum, oldDstIp,   newDstIp);
   newUdpChecksum = SnoopIp::recalculateChecksum(newUdpChecksum, oldSrcPort, newSrcPort);
   newUdpChecksum = SnoopIp::recalculateChecksum(newUdpChecksum, oldDstPort, newDstPort);
-  // UINT16 correctTcpChecksum = SnoopTcp::checksum(packet->ipHdr, packet->tcpHdr);  // gilgil temp 2014.03.25
+  // uint16_t correctTcpChecksum = SnoopTcp::checksum(packet->ipHdr, packet->tcpHdr);  // gilgil temp 2014.03.25
   // LOG_DEBUG("tcp checksum=0x%x 0x%x 0x%x", oldTcpChecksum, newTcpChecksum, correctTcpChecksum); // gilgil temp 2014.03.25
   packet->udpHdr->uh_sum = htons(newUdpChecksum);
 

@@ -36,10 +36,10 @@
 #include <stdint.h>
 #define INT8    int8_t
 #define uint8_t   uint8_t
-#define INT16   int16_t
-#define UINT16  uint16_t
-#define INT32   int32_t
-#define UINT32  uint32_t
+#define int16_t   int16_t
+#define uint16_t  uint16_t
+#define int32_t   int32_t
+#define uint32_t  uint32_t
 #define INT64   int64_t
 #define UINT64  uint64_t
 #endif      /* __MINGW32__ */
@@ -57,8 +57,8 @@ extern "C" {
  */
 typedef struct
 {
-	UINT32 IfIdx;                       /* Packet's interface index. */
-	UINT32 SubIfIdx;                    /* Packet's sub-interface index. */
+	uint32_t IfIdx;                       /* Packet's interface index. */
+	uint32_t SubIfIdx;                    /* Packet's sub-interface index. */
 	uint8_t  Direction;                   /* Packet's direction. */
 } WINDIVERT_ADDRESS, *PWINDIVERT_ADDRESS;
 
@@ -99,7 +99,7 @@ typedef enum
 extern WINDIVERTEXPORT HANDLE WinDivertOpen(
 	__in        const char *filter,
 	__in        WINDIVERT_LAYER layer,
-	__in        INT16 priority,
+	__in        int16_t priority,
 	__in        UINT64 flags);
 
 /*
@@ -180,14 +180,14 @@ typedef struct
 	uint8_t  HdrLength:4;
 	uint8_t  Version:4;
 	uint8_t  TOS;
-	UINT16 Length;
-	UINT16 Id;
-	UINT16 FragOff0;
+	uint16_t Length;
+	uint16_t Id;
+	uint16_t FragOff0;
 	uint8_t  TTL;
 	uint8_t  Protocol;
-	UINT16 Checksum;
-	UINT32 SrcAddr;
-	UINT32 DstAddr;
+	uint16_t Checksum;
+	uint32_t SrcAddr;
+	uint32_t DstAddr;
 } WINDIVERT_IPHDR, *PWINDIVERT_IPHDR;
 
 #define WINDIVERT_IPHDR_GET_FRAGOFF(hdr)                    \
@@ -234,18 +234,18 @@ typedef struct
 	uint8_t  Version:4;
 	uint8_t  FlowLabel0:4;
 	uint8_t  TrafficClass1:4;
-	UINT16 FlowLabel1;
-	UINT16 Length;
+	uint16_t FlowLabel1;
+	uint16_t Length;
 	uint8_t  NextHdr;
 	uint8_t  HopLimit;
-	UINT32 SrcAddr[4];
-	UINT32 DstAddr[4];
+	uint32_t SrcAddr[4];
+	uint32_t DstAddr[4];
 } WINDIVERT_IPV6HDR, *PWINDIVERT_IPV6HDR;
 
 #define WINDIVERT_IPV6HDR_GET_TRAFFICCLASS(hdr)             \
 	((((hdr)->TrafficClass0) << 4) | ((hdr)->TrafficClass1))
 #define WINDIVERT_IPV6HDR_GET_FLOWLABEL(hdr)                \
-	((((UINT32)(hdr)->FlowLabel0) << 16) | ((UINT32)(hdr)->FlowLabel1))
+	((((uint32_t)(hdr)->FlowLabel0) << 16) | ((uint32_t)(hdr)->FlowLabel1))
 
 #define WINDIVERT_IPV6HDR_SET_TRAFFICCLASS(hdr, val)        \
 	do                                                      \
@@ -258,7 +258,7 @@ typedef struct
 	do                                                      \
 	{                                                       \
 		(hdr)->FlowLabel0 = (uint8_t)((val) >> 16);           \
-		(hdr)->FlowLabel1 = (UINT16)(val);                  \
+		(hdr)->FlowLabel1 = (uint16_t)(val);                  \
 	}                                                       \
 	while (FALSE)
 
@@ -266,44 +266,44 @@ typedef struct
 {
 	uint8_t  Type;
 	uint8_t  Code;
-	UINT16 Checksum;
-	UINT32 Body;
+	uint16_t Checksum;
+	uint32_t Body;
 } WINDIVERT_ICMPHDR, *PWINDIVERT_ICMPHDR;
 
 typedef struct
 {
 	uint8_t  Type;
 	uint8_t  Code;
-	UINT16 Checksum;
-	UINT32 Body;
+	uint16_t Checksum;
+	uint32_t Body;
 } WINDIVERT_ICMPV6HDR, *PWINDIVERT_ICMPV6HDR;
 
 typedef struct
 {
-	UINT16 SrcPort;
-	UINT16 DstPort;
-	UINT32 SeqNum;
-	UINT32 AckNum;
-	UINT16 Reserved1:4;
-	UINT16 HdrLength:4;
-	UINT16 Fin:1;
-	UINT16 Syn:1;
-	UINT16 Rst:1;
-	UINT16 Psh:1;
-	UINT16 Ack:1;
-	UINT16 Urg:1;
-	UINT16 Reserved2:2;
-	UINT16 Window;
-	UINT16 Checksum;
-	UINT16 UrgPtr;
+	uint16_t SrcPort;
+	uint16_t DstPort;
+	uint32_t SeqNum;
+	uint32_t AckNum;
+	uint16_t Reserved1:4;
+	uint16_t HdrLength:4;
+	uint16_t Fin:1;
+	uint16_t Syn:1;
+	uint16_t Rst:1;
+	uint16_t Psh:1;
+	uint16_t Ack:1;
+	uint16_t Urg:1;
+	uint16_t Reserved2:2;
+	uint16_t Window;
+	uint16_t Checksum;
+	uint16_t UrgPtr;
 } WINDIVERT_TCPHDR, *PWINDIVERT_TCPHDR;
 
 typedef struct
 {
-	UINT16 SrcPort;
-	UINT16 DstPort;
-	UINT16 Length;
-	UINT16 Checksum;
+	uint16_t SrcPort;
+	uint16_t DstPort;
+	uint16_t Length;
+	uint16_t Checksum;
 } WINDIVERT_UDPHDR, *PWINDIVERT_UDPHDR;
 
 /*
@@ -335,14 +335,14 @@ extern WINDIVERTEXPORT BOOL WinDivertHelperParsePacket(
  */
 extern WINDIVERTEXPORT BOOL WinDivertHelperParseIPv4Address(
 	__in        const char *addrStr,
-	__out_opt   UINT32 *pAddr);
+	__out_opt   uint32_t *pAddr);
 
 /*
  * Parse an IPv6 address.
  */
 extern WINDIVERTEXPORT BOOL WinDivertHelperParseIPv6Address(
 	__in        const char *addrStr,
-	__out_opt   UINT32 *pAddr);
+	__out_opt   uint32_t *pAddr);
 
 /*
  * Calculate IPv4/IPv6/ICMP/ICMPv6/TCP/UDP checksums.
@@ -391,7 +391,7 @@ typedef PWINDIVERT_UDPHDR PDIVERT_UDPHDR;
 extern WINDIVERTEXPORT HANDLE DivertOpen(
 	__in        const char *filter,
 	__in        DIVERT_LAYER layer,
-	__in        INT16 priority,
+	__in        int16_t priority,
 	__in        UINT64 flags);
 extern WINDIVERTEXPORT BOOL DivertRecv(
 	__in        HANDLE handle,
@@ -428,10 +428,10 @@ extern WINDIVERTEXPORT BOOL DivertHelperParsePacket(
 	__out_opt   UINT *pDataLen);
 extern WINDIVERTEXPORT BOOL DivertHelperParseIPv4Address(
 	__in        const char *addrStr,
-	__out_opt   UINT32 *pAddr);
+	__out_opt   uint32_t *pAddr);
 extern WINDIVERTEXPORT BOOL DivertHelperParseIPv6Address(
 	__in        const char *addrStr,
-	__out_opt   UINT32 *pAddr);
+	__out_opt   uint32_t *pAddr);
 extern WINDIVERTEXPORT UINT DivertHelperCalcChecksums(
 	__inout     PVOID pPacket,
 	__in        UINT packetLen,

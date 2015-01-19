@@ -19,7 +19,7 @@
 class SnoopEth
 {
 public:
-  static bool is   (ETH_HDR* ethHdr, UINT16 etherType, void** networkHdr);
+  static bool is   (ETH_HDR* ethHdr, uint16_t etherType, void** networkHdr);
   static bool isIp (ETH_HDR* ethHdr, IP_HDR** ipHdr);
   static bool isArp(ETH_HDR* ethHdr, ARP_HDR** arpHdr);
   

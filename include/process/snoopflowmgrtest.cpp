@@ -153,7 +153,7 @@ void SnoopFlowMgrTest::__macCaptured(SnoopPacket* packet)
 
   size_t packets = packet->flowValue->packets;
   size_t bytes   = packet->flowValue->bytes;
-  BYTE* mem = packet->flowValue->totalMem + macFlowOffset;
+  uint8_t* mem = packet->flowValue->totalMem + macFlowOffset;
   LOG_DEBUG("%s > %s pkts=%zu bytes=%zu mem=%p", qPrintable(key->srcMac.str()), qPrintable(key->dstMac.str()), packets, bytes, mem);
 }
 
@@ -175,7 +175,7 @@ void SnoopFlowMgrTest::__ipCaptured(SnoopPacket* packet)
 
   size_t packets = packet->flowValue->packets;
   size_t bytes   = packet->flowValue->bytes;
-  BYTE* mem = packet->flowValue->totalMem + ipFlowOffset;
+  uint8_t* mem = packet->flowValue->totalMem + ipFlowOffset;
   LOG_DEBUG("%s > %s pkts=%zu bytes=%zu mem=%p", qPrintable(key->srcIp.str()), qPrintable(key->dstIp.str()), packets, bytes, mem);
 }
 
@@ -197,7 +197,7 @@ void SnoopFlowMgrTest::__tcpCaptured(SnoopPacket* packet)
 
   size_t packets = packet->flowValue->packets;
   size_t bytes   = packet->flowValue->bytes;
-  BYTE* mem = packet->flowValue->totalMem + tcpFlowOffset;
+  uint8_t* mem = packet->flowValue->totalMem + tcpFlowOffset;
   LOG_DEBUG("%s:%d > %s:%d pkts=%zu bytes=%zu mem=%p", qPrintable(key->srcIp.str()), key->srcPort, qPrintable(key->dstIp.str()), key->dstPort, packets, bytes, mem);
 }
 
@@ -219,7 +219,7 @@ void SnoopFlowMgrTest::__udpCaptured(SnoopPacket* packet)
 
   size_t packets = packet->flowValue->packets;
   size_t bytes   = packet->flowValue->bytes;
-  BYTE* mem = packet->flowValue->totalMem + udpFlowOffset;
+  uint8_t* mem = packet->flowValue->totalMem + udpFlowOffset;
   LOG_DEBUG("%s:%d > %s:%d pkts=%zu bytes=%zu mem=%p", qPrintable(key->srcIp.str()), key->srcPort, qPrintable(key->dstIp.str()), key->dstPort, packets, bytes, mem);
 }
 

@@ -44,7 +44,7 @@ public:
   /// packet
   ///
   PKT_HDR*  pktHdr;
-  BYTE*     pktData;
+  uint8_t*     pktData;
 
   ///
   /// datalink layer
@@ -55,7 +55,7 @@ public:
   ///
   /// network layer
   ///
-  UINT16    netType; // ETHERTYPE_IP, ETHERTYPE_ARP, ...
+  uint16_t    netType; // ETHERTYPE_IP, ETHERTYPE_ARP, ...
   IP_HDR*   ipHdr;
   ARP_HDR*  arpHdr;
 
@@ -70,7 +70,7 @@ public:
   ///
   /// data
   ///
-  BYTE*     data;
+  uint8_t*     data;
   int       dataLen;
 
   ///

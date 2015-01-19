@@ -25,7 +25,7 @@ void Snoop_MacFlow_Map::clear()
 {
   for (Snoop_MacFlow_Map::iterator it = begin(); it != end(); it++)
   {
-    BYTE* totalMem = it.value().totalMem;
+    uint8_t* totalMem = it.value().totalMem;
     delete[] totalMem;
   }
   QMap<SnoopMacFlowKey, SnoopFlowValue>::clear();
@@ -35,7 +35,7 @@ Snoop_MacFlow_Map::iterator Snoop_MacFlow_Map::erase(SnoopMacFlowKey& key)
 {
   Snoop_MacFlow_Map::iterator it = find(key);
   LOG_ASSERT(it != end());
-  BYTE* totalMem = it.value().totalMem;
+  uint8_t* totalMem = it.value().totalMem;
   delete[] totalMem;
   return QMap<SnoopMacFlowKey, SnoopFlowValue>::erase(it);
 }
@@ -57,7 +57,7 @@ void Snoop_IpFlow_Map::clear()
 {
   for (Snoop_IpFlow_Map::iterator it = begin(); it != end(); it++)
   {
-    BYTE* totalMem = it.value().totalMem;
+    uint8_t* totalMem = it.value().totalMem;
     delete[] totalMem;
   }
   QMap<SnoopIpFlowKey, SnoopFlowValue>::clear();
@@ -67,7 +67,7 @@ Snoop_IpFlow_Map::iterator Snoop_IpFlow_Map::erase(SnoopIpFlowKey& key)
 {
   Snoop_IpFlow_Map::iterator it = find(key);
   LOG_ASSERT(it != end());
-  BYTE* totalMem = it.value().totalMem;
+  uint8_t* totalMem = it.value().totalMem;
   delete[] totalMem;
   return QMap<SnoopIpFlowKey, SnoopFlowValue>::erase(it);
 }
@@ -89,7 +89,7 @@ void Snoop_TcpFlow_Map::clear()
 {
   for (Snoop_TcpFlow_Map::iterator it = begin(); it != end(); it++)
   {
-    BYTE* totalMem = it.value().totalMem;
+    uint8_t* totalMem = it.value().totalMem;
     delete[] totalMem;
   }
   QMap<SnoopTcpFlowKey, SnoopFlowValue>::clear();
@@ -99,7 +99,7 @@ Snoop_TcpFlow_Map::iterator Snoop_TcpFlow_Map::erase(SnoopTcpFlowKey& key)
 {
   Snoop_TcpFlow_Map::iterator it = find(key);
   LOG_ASSERT(it != end());
-  BYTE* totalMem = it.value().totalMem;
+  uint8_t* totalMem = it.value().totalMem;
   delete[] totalMem;
   return QMap<SnoopTcpFlowKey, SnoopFlowValue>::erase(it);
 }
@@ -121,7 +121,7 @@ void Snoop_UdpFlow_Map::clear()
 {
   for (Snoop_UdpFlow_Map::iterator it = begin(); it != end(); it++)
   {
-    BYTE* totalMem = it.value().totalMem;
+    uint8_t* totalMem = it.value().totalMem;
     delete[] totalMem;
   }
   QMap<SnoopUdpFlowKey, SnoopFlowValue>::clear();
@@ -131,7 +131,7 @@ Snoop_TcpFlow_Map::iterator Snoop_UdpFlow_Map::erase(SnoopUdpFlowKey& key)
 {
   Snoop_UdpFlow_Map::iterator it = find(key);
   LOG_ASSERT(it != end());
-  BYTE* totalMem = it.value().totalMem;
+  uint8_t* totalMem = it.value().totalMem;
   delete[] totalMem;
   return QMap<SnoopUdpFlowKey, SnoopFlowValue>::erase(it);
 }
@@ -391,7 +391,7 @@ Snoop_MacFlow_Map::iterator SnoopFlowMgr::add_MacFlow(SnoopMacFlowKey& key, stru
   value.bytes   = 0;
   value.ts      = ts;
   value.created = created;
-  value.totalMem = new BYTE[macFlow_Items.totalMemSize];
+  value.totalMem = new uint8_t[macFlow_Items.totalMemSize];
   memset(value.totalMem, 0, macFlow_Items.totalMemSize);
   Snoop_MacFlow_Map::iterator it = macFlow_Map.insert(key, value);
   if (created)
@@ -425,7 +425,7 @@ Snoop_IpFlow_Map::iterator SnoopFlowMgr::add_IpFlow(SnoopIpFlowKey& key, struct 
   value.bytes   = 0;
   value.ts      = ts;
   value.created = created;
-  value.totalMem = new BYTE[ipFlow_Items.totalMemSize];
+  value.totalMem = new uint8_t[ipFlow_Items.totalMemSize];
   memset(value.totalMem, 0, ipFlow_Items.totalMemSize);
   Snoop_IpFlow_Map::iterator it = ipFlow_Map.insert(key, value);
   if (created)
@@ -459,7 +459,7 @@ Snoop_TcpFlow_Map::iterator SnoopFlowMgr::add_TcpFlow(SnoopTcpFlowKey& key, stru
   value.bytes   = 0;
   value.ts      = ts;
   value.created = created;
-  value.totalMem = new BYTE[tcpFlow_Items.totalMemSize];
+  value.totalMem = new uint8_t[tcpFlow_Items.totalMemSize];
   memset(value.totalMem, 0, tcpFlow_Items.totalMemSize);
   Snoop_TcpFlow_Map::iterator it = tcpFlow_Map.insert(key, value);
   if (created)
@@ -493,7 +493,7 @@ Snoop_UdpFlow_Map::iterator SnoopFlowMgr::add_UdpFlow(SnoopUdpFlowKey& key, stru
   value.bytes   = 0;
   value.ts      = ts;
   value.created = created;
-  value.totalMem = new BYTE[udpFlow_Items.totalMemSize];
+  value.totalMem = new uint8_t[udpFlow_Items.totalMemSize];
   memset(value.totalMem, 0, udpFlow_Items.totalMemSize);
   Snoop_UdpFlow_Map::iterator it = udpFlow_Map.insert(key, value);
   if (created)
@@ -563,8 +563,8 @@ void SnoopFlowMgr::process(SnoopPacket* packet)
       {
         if (tcpFlow_Items.count() > 0)
         {
-          UINT16 srcPort = ntohs(packet->tcpHdr->th_sport);
-          UINT16 dstPort = ntohs(packet->tcpHdr->th_dport);
+          uint16_t srcPort = ntohs(packet->tcpHdr->th_sport);
+          uint16_t dstPort = ntohs(packet->tcpHdr->th_dport);
 
           SnoopTcpFlowKey key;
           key.srcIp   = srcIp;
@@ -582,8 +582,8 @@ void SnoopFlowMgr::process(SnoopPacket* packet)
       {
         if (udpFlow_Items.count() > 0)
         {
-          UINT16 srcPort = ntohs(packet->udpHdr->uh_sport);
-          UINT16 dstPort = ntohs(packet->udpHdr->uh_dport);
+          uint16_t srcPort = ntohs(packet->udpHdr->uh_sport);
+          uint16_t dstPort = ntohs(packet->udpHdr->uh_dport);
 
           SnoopUdpFlowKey key;
           key.srcIp   = srcIp;

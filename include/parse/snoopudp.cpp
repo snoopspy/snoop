@@ -5,14 +5,14 @@
 // ----------------------------------------------------------------------------
 // SnoopUdp
 // ----------------------------------------------------------------------------
-bool SnoopUdp::isData(IP_HDR* ipHdr, UDP_HDR* udpHdr, BYTE** udpData, int* udpDataLen)
+bool SnoopUdp::isData(IP_HDR* ipHdr, UDP_HDR* udpHdr, uint8_t** udpData, int* udpDataLen)
 {
   Q_UNUSED(ipHdr)
 
   int _udpDataLen;
 
   if (udpData != NULL)
-    *udpData = (BYTE*)(udpHdr) + sizeof(UDP_HDR);
+    *udpData = (uint8_t*)(udpHdr) + sizeof(UDP_HDR);
   _udpDataLen = ntohs(udpHdr->uh_ulen) - sizeof(UDP_HDR);
   if (udpDataLen != NULL)
     *udpDataLen = _udpDataLen;
@@ -24,19 +24,19 @@ bool SnoopUdp::isData(IP_HDR* ipHdr, UDP_HDR* udpHdr, BYTE** udpData, int* udpDa
 // All data buffer(padding)
 // ipHdr.ip_src, ipHdr.ip_dst, udpHdrDataLen and IPPROTO_UDP
 //
-UINT16 SnoopUdp::checksum(IP_HDR* ipHdr, UDP_HDR* udpHdr)
+uint16_t SnoopUdp::checksum(IP_HDR* ipHdr, UDP_HDR* udpHdr)
 {
   int i;
   int udpHdrDataLen;
-  UINT16 *p;
-  UINT32 src, dst;
-  UINT32 sum;
+  uint16_t *p;
+  uint32_t src, dst;
+  uint32_t sum;
 
   udpHdrDataLen = ntohs(udpHdr->uh_ulen);
   sum = 0;
 
-  // Add udpHdr & data buffer as array of UINT16
-  p = (UINT16*)udpHdr;
+  // Add udpHdr & data buffer as array of uint16_t
+  p = (uint16_t*)udpHdr;
   for (i = 0; i < udpHdrDataLen / 2; i++)
   {
     sum += htons(*p);
@@ -59,7 +59,7 @@ UINT16 SnoopUdp::checksum(IP_HDR* ipHdr, UDP_HDR* udpHdr)
   sum += ((dst & 0xFFFF0000) >> 16) + (dst & 0x0000FFFF);
 
   // Add extra information
-  sum += (UINT32)udpHdrDataLen + IPPROTO_UDP;
+  sum += (uint32_t)udpHdrDataLen + IPPROTO_UDP;
 
   // Recalculate sum
   while ((sum >> 16) > 0)
@@ -68,7 +68,7 @@ UINT16 SnoopUdp::checksum(IP_HDR* ipHdr, UDP_HDR* udpHdr)
   }
   sum = ~sum;
 
-  return (UINT16)sum;
+  return (uint16_t)sum;
 }
 
 bool SnoopUdp::parse(SnoopPacket* packet)

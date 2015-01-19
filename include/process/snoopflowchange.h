@@ -57,18 +57,18 @@ public:
   IpChangeType   srcIpChangeType;
   Ip             srcIpFixValue;
 
-  UINT16         srcPort;
+  uint16_t         srcPort;
   PortChangeType srcPortChangeType;
-  UINT16         srcPortFixValue;
+  uint16_t         srcPortFixValue;
 
   Ip             dstIp;
   Ip             dstIpMask;
   IpChangeType   dstIpChangeType;
   Ip             dstIpFixValue;
 
-  UINT16         dstPort;
+  uint16_t         dstPort;
   PortChangeType dstPortChangeType;
-  UINT16         dstPortFixValue;
+  uint16_t         dstPortFixValue;
 
 public:
   bool prepare(VError& error);
@@ -124,8 +124,8 @@ public:
   virtual ~SnoopFlowChangeItems();
 
 protected:
-  UINT16 lastAutoIncSrcPort;
-  UINT16 lastAutoIncDstPort;
+  uint16_t lastAutoIncSrcPort;
+  uint16_t lastAutoIncDstPort;
 
 public:
   bool prepare(VError& error);

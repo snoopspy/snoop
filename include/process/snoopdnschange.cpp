@@ -231,18 +231,18 @@ void SnoopDnsChange::check(SnoopPacket* packet)
       responseAnswer.ttl        = 3600;   // (0x00000E10) 3600 seconds
       responseAnswer.dataLength = 0x0004; // IP address length
       Ip ip                     = htonl(changeItem.ip);
-      responseAnswer.data.append((const char*)&ip, sizeof(UINT32));
+      responseAnswer.data.append((const char*)&ip, sizeof(uint32_t));
       response.answers.push_back(responseAnswer);
     }
 
     QByteArray responseMsg = response.encode();
 
     int      bufSize = sizeof(ETH_HDR) + sizeof(IP_HDR) + sizeof(UDP_HDR) + responseMsg.size();
-    BYTE*    buf     = new BYTE[bufSize];
+    uint8_t*    buf     = new uint8_t[bufSize];
     ETH_HDR* ethHdr  = (ETH_HDR*)buf;
     IP_HDR*  ipHdr   = (IP_HDR*) (buf + sizeof(ETH_HDR));
     UDP_HDR* udpHdr  = (UDP_HDR*)(buf + sizeof(ETH_HDR) + sizeof(IP_HDR));
-    BYTE*    udpData = (BYTE*)   (buf + sizeof(ETH_HDR) + sizeof(IP_HDR) + sizeof(UDP_HDR));
+    uint8_t*    udpData = (uint8_t*)   (buf + sizeof(ETH_HDR) + sizeof(IP_HDR) + sizeof(UDP_HDR));
 
     ethHdr->ether_dhost = packet->ethHdr->ether_shost;
     ethHdr->ether_shost = packet->ethHdr->ether_dhost;
@@ -256,7 +256,7 @@ void SnoopDnsChange::check(SnoopPacket* packet)
 
     udpHdr->uh_sport = packet->udpHdr->uh_dport;
     udpHdr->uh_dport = packet->udpHdr->uh_sport;
-    udpHdr->uh_ulen  = htons(sizeof(UDP_HDR) + (UINT16)responseMsg.size());
+    udpHdr->uh_ulen  = htons(sizeof(UDP_HDR) + (uint16_t)responseMsg.size());
 
     memcpy(udpData, responseMsg.data(), responseMsg.size());
 #ifdef WIN32

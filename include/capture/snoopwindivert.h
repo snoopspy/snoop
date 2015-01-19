@@ -45,7 +45,7 @@ public:
 
 public:
   QString      filter;
-  UINT16       priority;
+  uint16_t       priority;
   DIVERT_LAYER layer;
   UINT64       flags;
   UINT64       queueLen;
