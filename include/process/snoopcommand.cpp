@@ -65,7 +65,7 @@ void operator << (QTreeWidgetItem& treeWidgetItem, SnoopCommandItem& item)
   treeWidgetItem.setCheckState(SnoopCommandItem::ENABLED_IDX, item.enabled ? Qt::Checked : Qt::Unchecked);
   treeWidgetItem.setText(SnoopCommandItem::COMMAND_IDX, item.command);
   treeWidgetItem.setCheckState(SnoopCommandItem::SYNC_IDX, item.sync ? Qt::Checked : Qt::Unchecked);
-  treeWidgetItem.setFlags(treeWidgetItem.flags() | Qt::ItemFlag::ItemIsEditable);
+  treeWidgetItem.setFlags(treeWidgetItem.flags() | Qt::ItemIsEditable);
 }
 
 void operator << (SnoopCommandItem& item, QTreeWidgetItem& treeWidgetItem)
