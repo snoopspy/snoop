@@ -13,6 +13,10 @@ contains(QT, gui) {
 android-g++ {
   SNOOP_LIB_NAME = $${SNOOP_LIB_NAME}_android
 }
+CONFIG(GTEST) {
+	SNOOP_LIB_NAME = $${SNOOP_LIB_NAME}_test
+}
+message($${SNOOP_LIB_NAME}) # gilgil temp 2015.01.20
 
 #-------------------------------------------------
 # snoop

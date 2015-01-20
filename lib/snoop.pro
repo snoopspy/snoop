@@ -1,8 +1,6 @@
 CONFIG(SNOOP_LIB_BUILD_GUI) {
-  message("SNOOP_LIB_BUILD_GUI") # gilgil temp 2014.12.28
   QT += gui widgets
 } else {
-  message("not SNOOP_LIB_BUILD_GUI")  # gilgil temp 2014.12.28
   QT -= gui
 }
 
