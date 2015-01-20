@@ -36,7 +36,7 @@ bool SnoopFile::doOpen()
   }
   if (!QFile::exists(fileName))
   {
-    SET_ERROR(VFileError, qformat("file(%s) not exist", qPrintable(fileName)), VFileError::FILE_NOT_EXIST);
+    SET_ERROR(VFileError, QString("file(%s) not exist").arg(fileName), VFileError::FILE_NOT_EXIST);
     return false;
   }
   QString source = "file://" + fileName;

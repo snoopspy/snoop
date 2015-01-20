@@ -62,7 +62,7 @@ int SnoopPcap::read(SnoopPacket* packet)
 {
   if (m_state != VState::Opened)
   {
-    SET_DEBUG_ERROR(VError, qformat("not opened state(%s)", qPrintable(className())), VError::NOT_OPENED_STATE);
+    SET_DEBUG_ERROR(VError, QString("not opened state(%1)").arg(className()), VError::NOT_OPENED_STATE);
     return VError::FAIL;
   }
   LOG_ASSERT(m_pcap != NULL);
@@ -72,11 +72,11 @@ int SnoopPcap::read(SnoopPacket* packet)
   int i = pcap_next_ex(m_pcap, (pcap_pkthdr**)&packet->pktHdr, (const u_char**)&packet->pktData);
   switch (i) {
     case -2: // if EOF was reached reading from an offline capture
-      SET_DEBUG_ERROR(SnoopError, qformat("pcap_next_ex return -2(%s)", pcap_geterr(m_pcap)), SnoopError::IN_PCAP_NEXT_EX);
+      SET_DEBUG_ERROR(SnoopError, QString("pcap_next_ex return -2(%1)").arg(pcap_geterr(m_pcap)), SnoopError::IN_PCAP_NEXT_EX);
       res = VError::FAIL;
       break;
     case -1: // if an error occurred
-      SET_DEBUG_ERROR(SnoopError, qformat("pcap_next_ex return -1(%s)", pcap_geterr(m_pcap)), SnoopError::IN_PCAP_NEXT_EX);
+      SET_DEBUG_ERROR(SnoopError, QString("pcap_next_ex return -1(%1)").arg(pcap_geterr(m_pcap)), SnoopError::IN_PCAP_NEXT_EX);
       res = VError::FAIL;
       break;
     case 0 : // if the timeout occurs
@@ -152,7 +152,7 @@ bool SnoopPcap::pcapOpen(char* source, pcap_rmtauth* auth, pcap_if_t* dev)
 #endif // linux
   if (m_pcap == NULL)
   {
-    SET_ERROR(SnoopError, qformat("error in pcap_open(%s)", errBuf), SnoopError::IN_PCAP_OPEN);
+    SET_ERROR(SnoopError, QString("error in pcap_open(%1)").arg(errBuf), SnoopError::IN_PCAP_OPEN);
     return false;
   }
   m_dataLink = pcap_datalink(m_pcap);
@@ -185,12 +185,12 @@ bool SnoopPcap::pcapProcessFilter(pcap_if_t* dev)
     uNetMask = 0xFFFFFFFF;
   if (pcap_compile(m_pcap, &code, qPrintable(filter), 1, uNetMask) < 0)
   {
-    SET_ERROR(SnoopError, qformat("error in pcap_compile(%s)", pcap_geterr(m_pcap)), SnoopError::IN_PCAP_COMPILE);
+    SET_ERROR(SnoopError, QString("error in pcap_compile(%1)").arg(pcap_geterr(m_pcap)), SnoopError::IN_PCAP_COMPILE);
     return false;
   }
   if (pcap_setfilter(m_pcap, &code) < 0)
   {
-    SET_ERROR(SnoopError, qformat("error in pcap_setfilter(%s)", pcap_geterr(m_pcap)), SnoopError::IN_PCAP_SETFILTER);
+    SET_ERROR(SnoopError, QString("error in pcap_setfilter(%1)").arg(pcap_geterr(m_pcap)), SnoopError::IN_PCAP_SETFILTER);
     return false;
   }
   return true;

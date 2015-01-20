@@ -215,7 +215,7 @@ bool Scene::loadFromFile(QString fileName, QString& errStr)
   bool res = this->graph->loadFromFile(fileName, "graph");
   if (!res)
   {
-    errStr = qformat("can not open file(%s)", qPrintable(fileName));
+    errStr = QString("can not open file(%1)").arg(fileName);
     LOG_ERROR("%s", qPrintable(errStr));
     return false;
   }
@@ -242,7 +242,7 @@ bool Scene::loadFromFile(QString fileName, QString& errStr)
       VObject* object   = this->graph->objectList.findByName(name);
       if (object == NULL)
       {
-        errStr = qformat("can not find object ('%s')", qPrintable(name));
+        errStr = QString("can not find object ('%1')").arg(name);
         LOG_ERROR("%s", qPrintable(errStr));
         return false;
       }

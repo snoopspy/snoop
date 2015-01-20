@@ -212,7 +212,7 @@ bool SnoopRtm::loadFromSystem()
   items.clear();
 
   char buf[vd::DEFAULT_BUF_SIZE];
-  char* command = "route -n";
+  const char* command = "route -n";
 
   FILE* fp = popen(command, "r");
   if (fp == NULL)
@@ -290,7 +290,7 @@ bool SnoopRtm::recoverSystem()
     res = VProcess::run(qPrintable(command));
     if (!res)
     {
-      SET_ERROR(VError, qformat("can not run %s", qPrintable(command)), VError::RUN_PROCESS);
+      SET_ERROR(VError, QString("can not run %1").arg(command), VError::RUN_PROCESS);
       return false;
     }
   }

@@ -64,7 +64,7 @@ QString Mac::str() const
   return (QString(buf));
 }
 
-QString Mac::qformat(QString format)
+QString Mac::qformat(QString format) // gilgil temp 2015.01.20
 {
   return ::qformat(qPrintable(format), value[0], value[1], value[2], value[3], value[4], value[5]);
 }

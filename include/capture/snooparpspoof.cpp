@@ -455,13 +455,13 @@ bool SnoopArpSpoof::retrieveUnknownMacHostList()
     SnoopArpSpoofSession& session = *it;
     if ((session.senderIp == session.targetIp))
     {
-      SET_ERROR(SnoopError, qformat("source ip is same as target ip(%s)", qPrintable(session.senderIp.str())), SnoopError::THE_SAME_SOURCE_AND_TARGET_IP);
+      SET_ERROR(SnoopError, QString("source ip is same as target ip(%1)").arg(session.senderIp.str()), SnoopError::THE_SAME_SOURCE_AND_TARGET_IP);
       return false;
     }
 
     if (session.senderIp == netInfo.ip)
     {
-      SET_ERROR(SnoopError, qformat("can not spoof myself(%s)", qPrintable(session.senderIp.str())), SnoopError::CAN_NOT_SPOOF_MYSELF);
+      SET_ERROR(SnoopError, QString("can not spoof myself(%1)").arg(session.senderIp.str()), SnoopError::CAN_NOT_SPOOF_MYSELF);
       return false;
     }
   }
@@ -505,7 +505,7 @@ bool SnoopArpSpoof::retrieveUnknownMacHostList()
       SnoopHost* host = findHost.hostList.findByIp(session.senderIp);
       if (host == NULL)
       {
-        SET_ERROR(SnoopError, qformat("can not find host(%s)", qPrintable(session.senderIp.str())), SnoopError::CAN_NOT_FIND_HOST);
+        SET_ERROR(SnoopError, QString("can not find host(%1)").arg(session.senderIp.str()), SnoopError::CAN_NOT_FIND_HOST);
         return false;
       }
       session.senderMac = host->mac;
@@ -517,7 +517,7 @@ bool SnoopArpSpoof::retrieveUnknownMacHostList()
       SnoopHost* host = findHost.hostList.findByIp(session.targetIp);
       if (host == NULL)
       {
-        SET_ERROR(SnoopError, qformat("can not find host(%s)", qPrintable(session.targetIp.str())), SnoopError::CAN_NOT_FIND_HOST);
+        SET_ERROR(SnoopError, QString("can not find host(%1)").arg(session.targetIp.str()), SnoopError::CAN_NOT_FIND_HOST);
         return false;
       }
       session.targetMac = host->mac;
@@ -527,9 +527,9 @@ bool SnoopArpSpoof::retrieveUnknownMacHostList()
     if (realVirtualMac == session.targetMac)
     {
       SET_ERROR(SnoopError,
-        qformat("real virtual mac(%s) is same as target mac(IP=%s)",
-          qPrintable(realVirtualMac.str()),
-          qPrintable(session.targetIp.str())),
+        QString("real virtual mac(%1) is same as target mac(IP=%2)")
+        .arg(realVirtualMac.str())
+        .arg(session.targetIp.str()),
         SnoopError::THE_SAME_REAL_AND_TARGET_MAC);
       return false;
     }

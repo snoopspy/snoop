@@ -34,7 +34,7 @@ bool SnoopBpFilter::doOpen()
   res = pcap_compile(m_pcap, m_code, qPrintable(filter), 1, 0xFFFFFFFF);
   if (res < 0)
   {
-    SET_ERROR(SnoopError, qformat("error in pcap_compile(%s)", pcap_geterr(m_pcap)), SnoopError::IN_PCAP_COMPILE);
+    SET_ERROR(SnoopError, QString("error in pcap_compile(%1)").arg(pcap_geterr(m_pcap)), SnoopError::IN_PCAP_COMPILE);
     return false;
   }
 
@@ -63,7 +63,7 @@ bool SnoopBpFilter::_check(uint8_t* pktData, uint32_t pktLen)
 {
   if (m_state != VState::Opened)
   {
-    SET_ERROR(VError, qformat("not opened state(%s %s)", qPrintable(name), qPrintable(className())), VError::NOT_OPENED_STATE);
+    SET_ERROR(VError, QString("not opened state(%1 %2)").arg(name).arg(className()), VError::NOT_OPENED_STATE);
     return false;
   }
   LOG_ASSERT(m_pcap != NULL && m_code != NULL);

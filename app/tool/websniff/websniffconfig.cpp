@@ -170,13 +170,13 @@ bool HttpSniffConfig::saveToFile(QString fileName)
   {
 	if (!QFile::remove(fileName))
 	{
-    SET_ERROR(VError, qformat("can not remove file (%s)", qPrintable(fileName)), VError::UNKNOWN);
+    SET_ERROR(VError, QString("can not remove file (%1)").arg(fileName), VError::UNKNOWN);
 	  return false;
 	}
   }
   if (!QFile::copy(srcFileName, fileName))
   {
-  SET_ERROR(VError, qformat("can not copy file (%s > %s)", qPrintable(srcFileName), qPrintable(fileName)), VError::UNKNOWN);
+  SET_ERROR(VError, QString("can not copy file (%1 > %2)").arg(srcFileName).arg(fileName), VError::UNKNOWN);
 	return false;
   }
 
@@ -222,7 +222,7 @@ bool HttpSniffConfig::saveToGraph(VGraph& graph)
 	for (int i = 0; i < count; i++)
 	{
 	  if (filter != "") filter += " or ";
-	  QString oneFilter = qformat("tcp.DstPort==%d", httpPortList.at(i));
+    QString oneFilter = QString("tcp.DstPort==%1").arg(httpPortList.at(i));
 	  filter += oneFilter;
 	}
 
@@ -230,7 +230,7 @@ bool HttpSniffConfig::saveToGraph(VGraph& graph)
 	for (int i = 0; i < count; i++)
 	{
 	  if (filter != "") filter += " or ";
-	  QString oneFilter = qformat("tcp.DstPort==%d", httpsPortList.at(i));
+    QString oneFilter = QString("tcp.DstPort==%1").arg(httpsPortList.at(i));
 	  filter += oneFilter;
 	}
 
@@ -239,7 +239,7 @@ bool HttpSniffConfig::saveToGraph(VGraph& graph)
 	  filter += " or udp.DstPort==53";
 	}
 
-	wdOutbound->filter = qformat("(ifIdx!=1) and outbound and (%s)", qPrintable(filter));
+  wdOutbound->filter = QString("(ifIdx!=1) and outbound and (%1)").arg(filter);
 	LOG_INFO("wdOutbound->filter = \"%s\"", qPrintable(wdOutbound->filter));
   }
 
@@ -256,12 +256,12 @@ bool HttpSniffConfig::saveToGraph(VGraph& graph)
 
 	wdInbound->enabled = true;
 
-	QString filter = qformat("tcp.SrcPort==%d or tcp.SrcPort==%d", proxyHttpInPort, proxyHttpsInPort);
+  QString filter = QString("tcp.SrcPort==%1 or tcp.SrcPort==%2").arg(proxyHttpInPort).arg(proxyHttpsInPort);
 	if (sslStripEnabled)
 	{
-	  filter += qformat(" or tcp.SrcPort==%d", proxyStripInPort);
+    filter += QString(" or tcp.SrcPort==%1").arg(proxyStripInPort);
 	}
-	filter = qformat("(ifIdx==1) and (%s)", qPrintable(filter));
+  filter = QString("(ifIdx==1) and (%1)").arg(filter);
 
 	wdInbound->filter = filter;
 	LOG_INFO("wdInbound->filter = \"%s\"", qPrintable(wdInbound->filter));
@@ -288,7 +288,7 @@ bool HttpSniffConfig::saveToGraph(VGraph& graph)
 	for (int i = 0; i < count; i++)
 	{
 	  if (filter != "") filter += " or ";
-	  QString oneFilter = qformat("tcp dst port %d", httpPortList.at(i));
+    QString oneFilter = QString("tcp dst port %1").arg(httpPortList.at(i));
 	  filter += oneFilter;
 	}
 
@@ -296,7 +296,7 @@ bool HttpSniffConfig::saveToGraph(VGraph& graph)
 	for (int i = 0; i < count; i++)
 	{
 	  if (filter != "") filter += " or ";
-	  QString oneFilter = qformat("tcp dst port %d", httpsPortList.at(i));
+    QString oneFilter = QString("tcp dst port %1").arg(httpsPortList.at(i));
 	  filter += oneFilter;
 	}
 
@@ -650,15 +650,14 @@ bool HttpSniffConfig::saveToGraph(VGraph& graph)
 	  return false;
 	}
 
-	QString filter = qformat("tcp.SrcPort==%d or tcp.DstPort==%d or tcp.SrcPort==%d or tcp.DstPort==%d",
-	  this->proxyHttpOutPort, this->proxyHttpOutPort, this->proxyHttpsOutPort, this->proxyHttpsOutPort);
+  QString filter = QString("tcp.SrcPort==%1 or tcp.DstPort==%2 or tcp.SrcPort==%3 or tcp.DstPort==%4")
+    .arg(this->proxyHttpOutPort).arg(this->proxyHttpOutPort).arg(this->proxyHttpsOutPort).arg(this->proxyHttpsOutPort);
 
 	if (sslStripEnabled)
 	{
-	  filter += qformat(" or tcp.SrcPort==%d or tcp.DstPort==%d",
-		this->proxyStripOutPort, this->proxyStripOutPort);
+    filter += QString(" or tcp.SrcPort==%1 or tcp.DstPort==%2").arg(this->proxyStripOutPort).arg(this->proxyStripOutPort);
 	}
-	filter = qformat("(ifIdx==1) and outbound and (%s)", qPrintable(filter));
+  filter = QString("(ifIdx==1) and outbound and (%1)").arg(filter);
 
 	wdProxy->filter = filter;
 	LOG_INFO("wdProxy->filter = \"%s\"", qPrintable(wdProxy->filter));

@@ -46,7 +46,7 @@ bool SnoopDump::doOpen()
   QDateTime now = QDateTime::currentDateTime();
   QString newFileName = qformat(qPrintable(_fileName),
     now.date().year(), now.date().month(), now.date().day(),
-    now.time().hour(), now.time().minute(), now.time().second(), now.time().msec());
+    now.time().hour(), now.time().minute(), now.time().second(), now.time().msec()); // gilgil temp 2015.01.20
 
   m_pcap_dumper = pcap_dump_open(m_pcap, qPrintable(_path + "/" + newFileName));
   if (m_pcap_dumper == NULL)

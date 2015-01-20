@@ -184,7 +184,7 @@ int SnoopAutoDetectAdapter::detect(QString& host)
   {
     SnoopAutoDetectAdapterItem* item = new SnoopAutoDetectAdapterItem(this);
     item->adapter.adapterIndex = i;
-    item->adapter.filter = qformat("(host %s) and (arp or udp or tcp)", qPrintable(host)); // arp(finding gateway), udp(resolve domainname or "test") 
+    item->adapter.filter = QString("(host %1) and (arp or udp or tcp)").arg(host); // arp(finding gateway), udp(resolve domainname or "test")
     items.push_back(item);
     if (!item->open())
     {

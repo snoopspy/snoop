@@ -23,7 +23,7 @@ bool Main::doOpen()
 {
   if (!graph.loadFromFile(fileName, "graph"))
   {
-    SET_ERROR(VError, qformat("can not open file(%s)", qPrintable(fileName)), VERR_INVALID_FILENAME);
+    SET_ERROR(VError, QString("can not open file(%1)").arg(fileName), VERR_INVALID_FILENAME);
     return false;
   }
 

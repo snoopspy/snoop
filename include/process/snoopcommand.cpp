@@ -44,7 +44,7 @@ bool SnoopCommandItem::execute(VError& error)
   process->start(command);
   if (!process->waitForStarted())
   {
-    SET_ERROR(VError, qformat("process->waitForStarted(%s) return false", qPrintable(command)), VError::RUN_PROCESS);
+    SET_ERROR(VError, QString("process->waitForStarted(%1) return false").arg(command), VError::RUN_PROCESS);
     return false;
   }
 
@@ -52,7 +52,7 @@ bool SnoopCommandItem::execute(VError& error)
   {
     if (!process->waitForFinished())
     {
-      SET_ERROR(VError, qformat("process->waitForFinished(%s) return false", qPrintable(command)), VError::RUN_PROCESS);
+      SET_ERROR(VError, QString("process->waitForFinished(%1) return false").arg(command), VError::RUN_PROCESS);
       return false;
     }
   }
