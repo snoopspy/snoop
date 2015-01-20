@@ -64,10 +64,14 @@ QString Mac::str() const
   return (QString(buf));
 }
 
+// ----- gilgil temp 2015.01.20 -----
+/*
 QString Mac::qformat(QString format) // gilgil temp 2015.01.20
 {
   return ::qformat(qPrintable(format), value[0], value[1], value[2], value[3], value[4], value[5]);
 }
+*/
+// ----------------------------------
 
 Mac Mac::randomMac()
 {

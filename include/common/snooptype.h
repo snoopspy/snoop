@@ -48,7 +48,7 @@ public:
 
 public:
   QString str() const;
-  QString qformat(QString format); // gilgil temp 2015.01.20
+  // QString qformat(QString format); // gilgil temp 2015.01.20
 
   bool operator == (const Mac& rhs) const   { return memcmp(value, rhs.value, MAC_SIZE) == 0; }
   bool operator != (const Mac& rhs) const   { return memcmp(value, rhs.value, MAC_SIZE) != 0; }
