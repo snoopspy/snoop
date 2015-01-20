@@ -1,4 +1,4 @@
-#include <arpa/inet.h>
+#include <VNet>
 #include <SnoopUdpChunk>
 
 // ----------------------------------------------------------------------------

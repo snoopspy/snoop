@@ -73,7 +73,7 @@ private: // singleton
         case ERROR_INVALID_PARAMETER: errorMsg = "ERROR_INVALID_PARAMETER"; break;
         case ERROR_MOD_NOT_FOUND    : errorMsg = "ERROR_MOD_NOT_FOUND"; break;
       }
-      QString msg = qformat("load(\"WinDivert.dll\") return false error=%s(%u)", qPrintable(errorMsg), lastError);
+      QString msg = QString("load(\"WinDivert.dll\") return false error=%1(%2)").arg(errorMsg).arg(lastError);
       SET_ERROR(VWinDivertError, msg, (int)lastError);
       return;
     }
@@ -153,9 +153,9 @@ bool SnoopWinDivert::doOpen()
       case ERROR_FILE_NOT_FOUND:     msg = "ERROR_FILE_NOT_FOUND";        break;
       case ERROR_ACCESS_DENIED:      msg = "ERROR_ACCESS_DENIED";         break;
       case ERROR_INVALID_IMAGE_HASH: msg = "ERROR_INVALID_IMAGE_HASH";    break;
-      default:                       msg = qformat("unknown error %u", lastError); break;
+      default:                       msg = QString("unknown error %1").arg(lastError); break;
     }
-    SET_ERROR(VWinDivertError, qformat("error in WinDivertOpen %s", qPrintable(msg)), lastError);
+    SET_ERROR(VWinDivertError, QString("error in WinDivertOpen %1").arg(msg), lastError);
     return false;
   }
 
@@ -246,7 +246,7 @@ int SnoopWinDivert::read(SnoopPacket* packet)
   if (!res)
   {
     DWORD lastError = GetLastError();
-    SET_DEBUG_ERROR(VWinDivertError, qformat("WinDivertRecv return FALSE last error=%d(0x%x)", lastError, lastError), lastError);
+    SET_DEBUG_ERROR(VWinDivertError, QString("WinDivertRecv return FALSE last error=%1(0x%2)").arg(lastError).arg(lastError, 0, 16), lastError);
     return VError::FAIL;
   }
   readLen += sizeof(ETH_HDR);
@@ -326,7 +326,7 @@ int SnoopWinDivert::write(u_char* buf, int size, WINDIVERT_ADDRESS* divertAddr)
   if (!res)
   {
     DWORD lastError = GetLastError();
-    SET_DEBUG_ERROR(VWinDivertError, qformat("WinDivertSend return FALSE last error=%d(0x%x)", lastError, lastError), lastError);
+    SET_DEBUG_ERROR(VWinDivertError, QString("WinDivertSend return FALSE last error=%1(0x%2)").arg(lastError).arg(lastError, 0, 16), lastError);
     return VError::FAIL;
   }
   return (int)writeLen;

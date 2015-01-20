@@ -56,7 +56,7 @@ bool SnoopRemote::doOpen()
   i = pcap_findalldevs_ex((char*)qPrintable(source), auth, &interfaces.allDevs, errBuf);
   if (i != 0) // if error occured
   {
-    SET_ERROR(SnoopError, qformat("error in pcap_findalldevs_ex(%s)", errBuf), SnoopError::IN_PCAP_FINDALLDEVS_EX);
+    SET_ERROR(SnoopError, QString("error in pcap_findalldevs_ex(%1)").arg(errBuf), SnoopError::IN_PCAP_FINDALLDEVS_EX);
     delete auth;
     return false;
   }

@@ -8,7 +8,8 @@ REGISTER_METACLASS(SnoopDump, SnoopProcess)
 // ----------------------------------------------------------------------------
 // SnoopDump
 // ----------------------------------------------------------------------------
-const char* SnoopDump::DEFAULT_DUMP_FILE_NAME = "pcap/%04d%02d%02d.%02d%02d.%02d.%03d.pcap";
+// const char* SnoopDump::DEFAULT_DUMP_FILE_NAME = "pcap/%04d%02d%02d.%02d%02d.%02d.%03d.pcap"; // gilgil temp 2015.01.20
+const char* SnoopDump::DEFAULT_DUMP_FILE_NAME = "pcap/%1%2%3%4%5%6%7.pcap";
 
 SnoopDump::SnoopDump(void* owner) : SnoopProcess(owner)
 {
@@ -44,9 +45,23 @@ bool SnoopDump::doOpen()
   if (_fileName == "") _fileName = DEFAULT_DUMP_FILE_NAME;
 
   QDateTime now = QDateTime::currentDateTime();
+  // ----- gilgil temp 2015.01.20 -----
+  /*
   QString newFileName = qformat(qPrintable(_fileName),
     now.date().year(), now.date().month(), now.date().day(),
     now.time().hour(), now.time().minute(), now.time().second(), now.time().msec()); // gilgil temp 2015.01.20
+  */
+  // const char* SnoopDump::DEFAULT_DUMP_FILE_NAME = "pcap/%04d%02d%02d.%02d%02d.%02d.%03d.pcap"; // gilgil temp 2015.01.20
+
+  QString newFileName = QString(_fileName)
+    .arg(now.date().year(),   4, 10)
+    .arg(now.date().month(),  2, 10)
+    .arg(now.date().day(),    2, 10)
+    .arg(now.time().hour(),   2, 10)
+    .arg(now.time().minute(), 2, 10)
+    .arg(now.time().second(), 2, 10)
+    .arg(now.time().msec(),   3, 10);
+  // ----------------------------------
 
   m_pcap_dumper = pcap_dump_open(m_pcap, qPrintable(_path + "/" + newFileName));
   if (m_pcap_dumper == NULL)
