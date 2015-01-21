@@ -224,7 +224,7 @@ QString SnoopNetStatWin::getProcessName(quint32 pid)
   HANDLE hSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS,0);
   if (hSnapshot == INVALID_HANDLE_VALUE)
   {
-    LOG_FATAL("CreateToolhelp32Snapshot return INVALID_HANDLE_VALUE GetLastError=%lu", GetLastError());
+    LOG_FATAL("CreateToolhelp32Snapshot return INVALID_HANDLE_VALUE GetLastError=%d", (int)GetLastError());
     return UNKNOWN_PROCESS_NAME;
   }
 
@@ -267,12 +267,14 @@ QString SnoopNetStatWin::getProcessName(quint32 pid)
 // ----------------------------------------------------------------------------
 quint32 SnoopNetStatLinux::getPID(SnoopTupleFlowKey& infoKey)
 {
+  Q_UNUSED(infoKey)
   LOG_ERROR("not implemented"); // gilgil temp 2013.02.08
   return UNKNOWN_PROCESS_ID;
 }
 
 QString SnoopNetStatLinux::getProcessName(quint32 pid)
 {
+  Q_UNUSED(pid)
   LOG_ERROR("not implemented"); // gilgil temp 2013.02.08
   return UNKNOWN_PROCESS_NAME;
 }
