@@ -11,7 +11,7 @@
 #ifndef __SNOOP_COMMON_H__
 #define __SNOOP_COMMON_H__
 
-#include <VCommon>
+#include <VBase>
 #include <VNet>
 // #include <VDesign> // gilgil temp 2014.11.27
 #include <VError>

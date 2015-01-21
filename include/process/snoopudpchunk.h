@@ -11,7 +11,7 @@
 #ifndef __SNOOP_UDP_CHUNK_H__
 #define __SNOOP_UDP_CHUNK_H__
 
-#include <VCommon>
+#include <VBase>
 
 // ----------------------------------------------------------------------------
 // SnoopUdpChunkInfo
