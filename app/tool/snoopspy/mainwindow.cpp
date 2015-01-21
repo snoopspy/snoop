@@ -12,18 +12,18 @@ Param::Param()
   autoOpen = false;
 }
 
-bool Param::parse(int argc, char* argv[])
+bool Param::parse(QStringList arguments)
 {
   //
   // snoopspy [< filename > [autoopen]]
   //
-  if (argc >= 2)
+  if (arguments.size() >= 2)
   {
-    fileName = argv[1];
+    fileName = arguments[1];
   }
-  if (argc >= 3)
+  if (arguments.size() >= 3)
   {
-    QString s = QString(argv[2]).toLower();
+    QString s = QString(arguments[2]).toLower();
     autoOpen = s == "autoopen";
   }
 
@@ -112,9 +112,9 @@ void MainWindow::loadControl()
   scene->addClasses();
   ui->treeWidget->expandAll();
 
-  VApp& app = VApp::instance();
+  QCoreApplication* app = QApplication::instance();
   Param param;
-  param.parse(app.argc(), app.argv());
+  param.parse(app->arguments());
   if (param.fileName != "")
   {
     this->fileName = param.fileName;
@@ -187,7 +187,7 @@ void MainWindow::setControl()
 
 void MainWindow::runProcess(QString processName)
 {
-  QString url = "file:///" + VApp::_filePath() + processName;
+  QString url = "file:///" + QCoreApplication::applicationDirPath() + QDir::separator() + processName;
   if (!QDesktopServices::openUrl(QUrl(url)))
   {
     LOG_ERROR("can not open url(%s)", qPrintable(url));
@@ -372,7 +372,7 @@ void MainWindow::on_actionStart_triggered()
   bool res = scene->graph->open();
   if (!res)
   {
-    QString msg = QString::fromLocal8Bit(scene->graph->error.msg);
+    QString msg = scene->graph->error.msg;
     QMessageBox::information(this, "error", msg);
   }
   setControl();

@@ -36,7 +36,7 @@ public:
   bool    autoOpen;
 
 public:
-  bool parse(int argc, char* argv[]);
+  bool parse(QStringList arguments);
 };
 
 // ----------------------------------------------------------------------------

@@ -191,7 +191,7 @@ Node* Scene::findNodeByName(QString name)
   for (int i = 0; i < _count; i++)
   {
     QGraphicsItem* item = this->items().at(i);
-    if (!IS_CLASS(item, Node*)) continue;
+    if (dynamic_cast<Node*>(item) == NULL) continue;
     Node* res = dynamic_cast<Node*>(item);
     if (res->object->name == name)
     {
