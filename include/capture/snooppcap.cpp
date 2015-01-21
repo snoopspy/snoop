@@ -11,7 +11,7 @@
 SnoopPcap::SnoopPcap(void* owner) : SnoopCapture(owner)
 {
   filter       = "";
-  snapLen      = SnoopBase::DEFAULT_SNAPLEN;
+  snapLen      = SnoopBase::DEFAULT_SNAP_LEN;
   flags        = PCAP_OPENFLAG_PROMISCUOUS;
   readTimeout  = SnoopBase::DEFAULT_READ_TIMEOUT;
   m_pcap       = NULL;

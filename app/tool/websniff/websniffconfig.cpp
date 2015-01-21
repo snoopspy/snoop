@@ -99,7 +99,7 @@ HttpSniffConfig::HttpSniffConfig()
   dumpEnabled         = true;
   dumpFilePath        = "pcap/websniff_%04d%02d%02d.%02d%02d.%02d.%03d.pcap";
   writeAdapterEnabled = false;
-  writeAdapterIndex = snoop::INVALID_ADAPTER_INDEX;
+  writeAdapterIndex = SnoopBase::INVALID_ADAPTER_INDEX;
 }
 
 HttpSniffConfig::~HttpSniffConfig()

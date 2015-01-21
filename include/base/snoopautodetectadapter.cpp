@@ -249,6 +249,6 @@ TEST( SnoopAudoDetectAdapter, test )
 {
   SnoopAutoDetectAdapter& ada = SnoopAutoDetectAdapter::instance();
   int adapterIndex = ada.detect("8.8.8.8");
-  EXPECT_TRUE( adapterIndex != snoop::INVALID_ADAPTER_INDEX);
+  EXPECT_TRUE( adapterIndex != SnoopBase::INVALID_ADAPTER_INDEX);
 }
 #endif // GTEST
