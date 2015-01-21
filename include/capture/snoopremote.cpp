@@ -14,7 +14,7 @@ SnoopRemote::SnoopRemote(void* owner) : SnoopPcap(owner)
   host         = "";
   userName     = "";
   password     = "";
-  adapterIndex = snoop::INVALID_ADAPTER_INDEX;
+  adapterIndex = SnoopBase::INVALID_ADAPTER_INDEX;
 }
 
 SnoopRemote::~SnoopRemote()
@@ -85,7 +85,7 @@ bool SnoopRemote::doOpen()
   }
 
   emit interfacesReceived(this, &interfaces, &adapterIndex);
-  if (adapterIndex == snoop::INVALID_ADAPTER_INDEX)
+  if (adapterIndex == SnoopBase::INVALID_ADAPTER_INDEX)
   {
     SET_ERROR(SnoopError, "cancel by user", SnoopError::CANCELED_BY_USER);
     return false;

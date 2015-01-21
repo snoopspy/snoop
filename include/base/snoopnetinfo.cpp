@@ -7,7 +7,7 @@
 SnoopNetInfoAdapterIndex::SnoopNetInfoAdapterIndex(SnoopNetInfo* netInfo)
 {
   this->netInfo = netInfo;
-  m_adapterIndex = snoop::INVALID_ADAPTER_INDEX;
+  m_adapterIndex = SnoopBase::INVALID_ADAPTER_INDEX;
 }
 
 SnoopNetInfoAdapterIndex::operator int()

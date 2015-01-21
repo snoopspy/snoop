@@ -15,7 +15,7 @@ int run(int argc, char *argv[])
 int main(int argc, char *argv[])
 {
   VApp::initialize();
-  LOG_INFO("httpsniff version 3 started %s / %s", VDREAM_VERSION, SNOOP_VERSION);
+  LOG_INFO("httpsniff version 3 started %s / %s", VBase::VDREAM_VERSION, SnoopBase::SNOOP_VERSION);
   VApp::instance().setArguments(argc, argv);
   explicitLink();
   int res = run(argc, argv);

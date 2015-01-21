@@ -15,7 +15,7 @@ int SnoopAutoDetectAdapter::detect(QString& host)
   if (res != NO_ERROR)
   {
     LOG_FATAL("GetBestInterface return %d", res);
-    return snoop::INVALID_ADAPTER_INDEX;
+	return SnoopBase::INVALID_ADAPTER_INDEX;
   }
 
   foreach (const SnoopInterface& intf, SnoopInterfaces::instance())
@@ -25,7 +25,7 @@ int SnoopAutoDetectAdapter::detect(QString& host)
   }
 
   LOG_FATAL("can not find appropriate adapter for %s", qPrintable(host));
-  return snoop::INVALID_ADAPTER_INDEX;;
+  return SnoopBase::INVALID_ADAPTER_INDEX;;
 }
 
 #endif // SNOOP_AUTO_DETECT_USE_GETBESTINTERFACE
@@ -44,7 +44,7 @@ int SnoopAutoDetectAdapter::detect(QString host)
 {
   Ip ip = host;
   SnoopRtmEntry* entry = SnoopRtm::instance().getBestEntry(ip);
-  if (entry == NULL) return snoop::INVALID_ADAPTER_INDEX;
+  if (entry == NULL) return SnoopBase::INVALID_ADAPTER_INDEX;
 
   QString intfName = entry->intf;
   SnoopInterfaces& intfs = SnoopInterfaces::instance();
@@ -66,7 +66,7 @@ int SnoopAutoDetectAdapter::detect(QString host)
       return i;
   }
 #endif // linux
-  return snoop::INVALID_ADAPTER_INDEX;
+  return SnoopBase::INVALID_ADAPTER_INDEX;
 }
 
 #endif // SNOOP_AUTO_DETECT_USE_RTM
@@ -113,7 +113,7 @@ void SnoopAutoDetectAdapterItem::recv(SnoopPacket* packet)
     LOG_ERROR("adapter is null");
     return;
   }
-  if (detect->m_adapterIndex != snoop::INVALID_ADAPTER_INDEX) return;
+  if (detect->m_adapterIndex != SnoopBase::INVALID_ADAPTER_INDEX) return;
   int adapterIndex = adapter.adapterIndex;
   detect->m_adapterIndex = adapterIndex;
   const SnoopInterface& intf = SnoopInterfaces::instance().at(adapterIndex);
@@ -160,7 +160,7 @@ protected:
 // ----------------------------------------------------------------------------
 SnoopAutoDetectAdapter::SnoopAutoDetectAdapter() : m_event(false, false)
 {
-  m_adapterIndex = snoop::INVALID_ADAPTER_INDEX;
+  m_adapterIndex = SnoopBase::INVALID_ADAPTER_INDEX;
 }
 
 SnoopAutoDetectAdapter::~SnoopAutoDetectAdapter()
@@ -170,7 +170,7 @@ SnoopAutoDetectAdapter::~SnoopAutoDetectAdapter()
 int SnoopAutoDetectAdapter::detect(QString& host)
 {
   LOG_DEBUG("stt"); // gilgil temp 2012.08.11
-  if (m_adapterIndex != snoop::INVALID_ADAPTER_INDEX)
+  if (m_adapterIndex != SnoopBase::INVALID_ADAPTER_INDEX)
   {
     return m_adapterIndex;
   }
@@ -231,7 +231,7 @@ void SnoopAutoDetectAdapter::recv(SnoopPacket* packet)
     return;
   }
   SnoopAutoDetectAdapter* detect = (SnoopAutoDetectAdapter*)adapter->owner;
-  if (detect->m_adapterIndex != snoop::INVALID_ADAPTER_INDEX) return;
+  if (detect->m_adapterIndex != SnoopBase::INVALID_ADAPTER_INDEX) return;
   int adapterIndex = adapter->adapterIndex;
   detect->m_adapterIndex = adapterIndex;
   const SnoopInterface& intf = SnoopInterfaces::instance().at(adapterIndex);

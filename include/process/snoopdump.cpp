@@ -26,7 +26,7 @@ SnoopDump::~SnoopDump()
 
 bool SnoopDump::doOpen()
 {
-  m_pcap = pcap_open_dead(linkType, snoop::DEFAULT_SNAPLEN);
+  m_pcap = pcap_open_dead(linkType, SnoopBase::DEFAULT_SNAP_LEN);
   if (m_pcap == NULL)
   {
     SET_ERROR(SnoopError, "error in pcap_open_dead return NULL", SnoopError::IN_PCAP_OPEN_DEAD);

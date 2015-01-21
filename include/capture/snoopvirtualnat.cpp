@@ -7,10 +7,10 @@ REGISTER_METACLASS(SnoopVirtualNat, SnoopCapture)
 // ----------------------------------------------------------------------------
 SnoopVirtualNat::SnoopVirtualNat(void* owner) : SnoopCapture(owner)
 { 
-  virAdapterIndex = snoop::INVALID_ADAPTER_INDEX;
+  virAdapterIndex = SnoopBase::INVALID_ADAPTER_INDEX;
   VObject::connect(&virAdapter, SIGNAL(captured(SnoopPacket*)), this, SLOT(myVirtualRecv(SnoopPacket*)), Qt::DirectConnection);
 
-  realAdapterIndex    = snoop::DEFAULT_ADAPTER_INDEX;
+  realAdapterIndex = SnoopBase::DEFAULT_ADAPTER_INDEX;
   VObject::connect(&realAdapter, SIGNAL(captured(SnoopPacket*)), this, SLOT(myRealRecv(SnoopPacket*)), Qt::DirectConnection);
 }
 

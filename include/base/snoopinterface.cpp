@@ -16,7 +16,7 @@ public:
 // ----------------------------------------------------------------------------
 SnoopInterface::SnoopInterface()
 {
-  index         = snoop::INVALID_ADAPTER_INDEX;
+  index         = SnoopBase::INVALID_ADAPTER_INDEX;
   name          = "";
   description   = "";
   dev           = NULL;
@@ -166,7 +166,7 @@ void SnoopInterfaces::initialize()
   //
   {
     int bestAdapterIndex = getBestAdapterIndex();
-    if (bestAdapterIndex != snoop::INVALID_ADAPTER_INDEX)
+	if (bestAdapterIndex != SnoopBase::INVALID_ADAPTER_INDEX)
     {
       SnoopInterface& nullInterface = (SnoopInterface&)at(0);
       SnoopInterface& bestInterface = (SnoopInterface&)at(bestAdapterIndex);

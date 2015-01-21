@@ -7,7 +7,7 @@ REGISTER_METACLASS(SnoopWriteAdapter, SnoopProcess)
 // ----------------------------------------------------------------------------
 SnoopWriteAdapter::SnoopWriteAdapter(void* owner) : SnoopAdapter(owner)
 {
-  adapterIndex = snoop::INVALID_ADAPTER_INDEX;
+  adapterIndex = SnoopBase::INVALID_ADAPTER_INDEX;
   autoRead     = false;
   autoParse    = false;
   srcMac       = Mac::cleanMac();

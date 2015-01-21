@@ -7,7 +7,7 @@ SnoopFindHost::SnoopFindHost(void* owner) : SnoopAdapter(owner)
 {
   filter         = "arp";
 
-  findAllTimeout = snoop::DEFAULT_TIMEOUT;
+  findAllTimeout = SnoopBase::DEFAULT_TIMEOUT;
   scanInterval   = 0;
   sendInterval   = 0;
   hostList.clear();

@@ -28,45 +28,18 @@
 #endif // linux
 
 // ----------------------------------------------------------------------------
-// Link Library
+// SnoopBase
 // ----------------------------------------------------------------------------
-// ----- gilgil temp 2014.03.28 -----
-/*
-#ifdef _MSC_VER
-  #ifdef _DEBUG
-    #ifdef QT_GUI_LIB
-      #pragma comment(lib, "snoopd_gui.lib")
-    #else
-      #pragma comment(lib, "snoopd.lib")
-    #endif // QT_GUI_LIB
-  #else  _DEBUG
-    #ifdef QT_GUI_LIB
-      #pragma comment(lib, "snoop_gui.lib")
-    #else
-      #pragma comment(lib, "snoop.lib")
-    #endif // QT_GUI_LIB
-  #endif // _DEBUG
-  #pragma comment(lib, "wpcap.lib")
-  #pragma comment(lib, "Iphlpapi.lib")
-#endif // _MSC_VER
-*/
-// ----------------------------------
-
-// ----------------------------------------------------------------------------
-// Snoop Version
-// ----------------------------------------------------------------------------
-extern const char* SNOOP_VERSION;
-
-// ----------------------------------------------------------------------------
-// Constant
-// ----------------------------------------------------------------------------
-namespace snoop
+class SnoopBase
 {
-  static const int DEFAULT_READTIMEOUT    =  1;
-  static const int DEFAULT_SNAPLEN        =  1600;
-  static const int DEFAULT_TIMEOUT        =  5000;
-  static const int INVALID_ADAPTER_INDEX  =  -1;
-  static const int DEFAULT_ADAPTER_INDEX  =  0;
+public:
+	static const char* SNOOP_VERSION;
+
+	static const int DEFAULT_READ_TIMEOUT   =  1;
+	static const int DEFAULT_SNAP_LEN       =  1600;
+	static const int DEFAULT_TIMEOUT        =  5000;
+	static const int INVALID_ADAPTER_INDEX  =  -1;
+	static const int DEFAULT_ADAPTER_INDEX  =  0;
 };
 
 // ----------------------------------------------------------------------------

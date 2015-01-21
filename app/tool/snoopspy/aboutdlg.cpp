@@ -32,8 +32,8 @@ AboutDlg::~AboutDlg()
 
 void AboutDlg::showEvent(QShowEvent *)
 {
-  ui->lblVDreamVersion->setText(VDREAM_VERSION);
-  ui->lblSnoopVersion->setText(SNOOP_VERSION);
+  ui->lblVDreamVersion->setText(VBase::VDREAM_VERSION);
+  ui->lblSnoopVersion->setText(SnoopBase::SNOOP_VERSION);
 }
 
 void AboutDlg::on_btnOK_clicked()

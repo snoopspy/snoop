@@ -8,7 +8,7 @@ REGISTER_METACLASS(SnoopAdapter, SnoopCapture)
 // ----------------------------------------------------------------------------
 SnoopAdapterIndex::SnoopAdapterIndex()
 {
-  m_adapterIndex = snoop::INVALID_ADAPTER_INDEX;
+  m_adapterIndex = SnoopBase::INVALID_ADAPTER_INDEX;
 }
 
 SnoopAdapterIndex::operator int()
@@ -39,7 +39,7 @@ void SnoopAdapterIndex::setAdapterIndex(int value)
 SnoopAdapter::SnoopAdapter(void* owner) : SnoopPcap(owner)
 {
   // SnoopInterface::allInterfaces(); // for dependency // gilgil temp 2012.08.16
-  adapterIndex = snoop::DEFAULT_ADAPTER_INDEX;
+  adapterIndex = SnoopBase::DEFAULT_ADAPTER_INDEX;
 }
 
 SnoopAdapter::~SnoopAdapter()
@@ -55,7 +55,7 @@ bool SnoopAdapter::doOpen()
     return true;
   }
 
-  if (adapterIndex == snoop::INVALID_ADAPTER_INDEX)
+  if (adapterIndex == SnoopBase::INVALID_ADAPTER_INDEX)
   {
     SET_ERROR(SnoopError, "invalid adapter index(-1)", SnoopError::INVALID_INDEX);
     return false;
