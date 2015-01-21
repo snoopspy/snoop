@@ -1,1 +1,1 @@
-#include <common/snoopautodetectadapter.h>
+#include <base/snoopautodetectadapter.h>

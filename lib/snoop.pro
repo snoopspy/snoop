@@ -57,17 +57,17 @@ SOURCES += \
   ../include/parse/snooptcp.cpp \
   ../include/parse/snoopip.cpp \
   ../include/parse/snoopudpdata.cpp \
-  ../include/common/snoopautodetectadapter.cpp \
-  ../include/common/snooptype.cpp \
-  ../include/common/snoopfindhost.cpp \
-  ../include/common/snooptypekey.cpp \
-  ../include/common/snoopnetinfo.cpp \
-  ../include/common/snoophostlist.cpp \
-  ../include/common/snooprtm.cpp \
-  ../include/common/snoopnetstat.cpp \
-  ../include/common/snoopinterface.cpp \
-  ../include/common/snooppacket.cpp \
-    ../include/common/snoopbase.cpp
+  ../include/base/snoopautodetectadapter.cpp \
+  ../include/base/snooptype.cpp \
+  ../include/base/snoopfindhost.cpp \
+  ../include/base/snooptypekey.cpp \
+  ../include/base/snoopnetinfo.cpp \
+  ../include/base/snoophostlist.cpp \
+  ../include/base/snooprtm.cpp \
+  ../include/base/snoopnetstat.cpp \
+  ../include/base/snoopinterface.cpp \
+  ../include/base/snooppacket.cpp \
+	../include/base/snoopbase.cpp
 
 HEADERS += \
   ../include/process/snoopdump.h \
@@ -115,17 +115,17 @@ HEADERS += \
   ../include/parse/snooptcpdata.h \
   ../include/parse/snoopudpdata.h \
   ../include/parse/snoopicmp.h \
-  ../include/common/snoopinterface.h \
-  ../include/common/snoopfindhost.h \
-  ../include/common/snooptypekey.h \
-  ../include/common/snooppacket.h \
-  ../include/common/snoopautodetectadapter.h \
-  ../include/common/snooprtm.h \
-  ../include/common/snoop.h \
-  ../include/common/snooptype.h \
-  ../include/common/snoopnetinfo.h \
-  ../include/common/snoopnetstat.h \
-  ../include/common/snoophostlist.h \
+  ../include/base/snoopinterface.h \
+  ../include/base/snoopfindhost.h \
+  ../include/base/snooptypekey.h \
+  ../include/base/snooppacket.h \
+  ../include/base/snoopautodetectadapter.h \
+  ../include/base/snooprtm.h \
+  ../include/base/snoop.h \
+  ../include/base/snooptype.h \
+  ../include/base/snoopnetinfo.h \
+  ../include/base/snoopnetstat.h \
+  ../include/base/snoophostlist.h \
   ../include/libnet/libnet-headers.h \
   ../include/libnet/libnet-structures.h \
   ../include/libnet/libnet-functions.h \
@@ -133,4 +133,4 @@ HEADERS += \
   ../include/libnet/config.h \
   ../include/libnet/libnet-asn1.h \
   ../include/libnet/libnet-macros.h \
-    ../include/common/snoopbase.h
+	../include/base/snoopbase.h
