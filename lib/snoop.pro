@@ -65,9 +65,9 @@ SOURCES += \
   ../include/common/snoophostlist.cpp \
   ../include/common/snooprtm.cpp \
   ../include/common/snoopnetstat.cpp \
-  ../include/common/snoopcommon.cpp \
   ../include/common/snoopinterface.cpp \
   ../include/common/snooppacket.cpp \
+    ../include/common/snoopbase.cpp
 
 HEADERS += \
   ../include/process/snoopdump.h \
@@ -124,7 +124,6 @@ HEADERS += \
   ../include/common/snoop.h \
   ../include/common/snooptype.h \
   ../include/common/snoopnetinfo.h \
-  ../include/common/snoopcommon.h \
   ../include/common/snoopnetstat.h \
   ../include/common/snoophostlist.h \
   ../include/libnet/libnet-headers.h \
@@ -133,4 +132,5 @@ HEADERS += \
   ../include/libnet/libnet-types.h \
   ../include/libnet/config.h \
   ../include/libnet/libnet-asn1.h \
-  ../include/libnet/libnet-macros.h
+  ../include/libnet/libnet-macros.h \
+    ../include/common/snoopbase.h

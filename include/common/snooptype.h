@@ -11,7 +11,7 @@
 #ifndef __SNOOP_TYPE_H__
 #define __SNOOP_TYPE_H__
 
-#include <SnoopCommon>
+#include <SnoopBase>
 
 #pragma pack(push, 1)
 #include <libnet/config.h>

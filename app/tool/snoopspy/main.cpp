@@ -1,6 +1,6 @@
 #include <QApplication>
 #include <VApp>
-#include <SnoopCommon>
+#include <SnoopBase>
 #include "mainwindow.h"
 #include "explicit_link.h"
 

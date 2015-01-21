@@ -1,4 +1,4 @@
-#include <SnoopCommon>
+#include <SnoopBase>
 
 // ----------------------------------------------------------------------------
 // Snoop Version

@@ -1,7 +1,7 @@
 #include "aboutdlg.h"
 #include "ui_aboutdlg.h"
 #include <VBase>
-#include <SnoopCommon>
+#include <SnoopBase>
 
 AboutDlg::AboutDlg(QWidget *parent) :
     QDialog(parent),

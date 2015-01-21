@@ -1,6 +1,6 @@
 // ----------------------------------------------------------------------------
 //
-// Snoop Component Suite version 9.0
+// Snoop Component Suite version 9.01
 //
 // http://www.gilgil.net
 //
@@ -8,12 +8,11 @@
 //
 // ----------------------------------------------------------------------------
 
-#ifndef __SNOOP_COMMON_H__
-#define __SNOOP_COMMON_H__
+#ifndef __SNOOP_BASE_H__
+#define __SNOOP_BASE_H__
 
 #include <VBase>
 #include <VNet>
-// #include <VDesign> // gilgil temp 2014.11.27
 #include <VError>
 #include <VLog>
 #include <VXml>
@@ -123,5 +122,4 @@ public:
   };
 };
 
-#endif // __SNOOP_COMMON_H__
-
+#endif // __SNOOP_BASE_H__
