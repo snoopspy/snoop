@@ -115,7 +115,7 @@ bool SnoopRtm::loadFromSystem()
   items.clear();
 
   bool persistentMode = false;
-  char buf[vd::DEFAULT_BUF_SIZE];
+  char buf[VBase::BUF_SIZE];
   char* command = "route -4 print";
 
   FILE* fp = popen(command, "r");
@@ -127,7 +127,7 @@ bool SnoopRtm::loadFromSystem()
 
   while (true)
   {
-    char* p = fgets(buf, vd::DEFAULT_BUF_SIZE, fp);
+	char* p = fgets(buf, VBase::BUF_SIZE, fp);
     if (p == NULL) break;
     QString s = buf;
 
@@ -211,7 +211,7 @@ bool SnoopRtm::loadFromSystem()
 {
   items.clear();
 
-  char buf[vd::DEFAULT_BUF_SIZE];
+  char buf[VBase::BUF_SIZE];
   const char* command = "route -n";
 
   FILE* fp = popen(command, "r");
@@ -223,7 +223,7 @@ bool SnoopRtm::loadFromSystem()
 
   while (true)
   {
-    char* p = fgets(buf, vd::DEFAULT_BUF_SIZE, fp);
+	char* p = fgets(buf, VBase::BUF_SIZE, fp);
     if (p == NULL) break;
     QString s = buf;
 
