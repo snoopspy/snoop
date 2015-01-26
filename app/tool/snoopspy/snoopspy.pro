@@ -11,7 +11,7 @@ include(../../../lib/snoop.pri)
 
 TARGET        = snoopspy
 TEMPLATE      = app
-DESTDIR       = ../../bin
+DESTDIR   = $${PWD}/../../../bin
 win32:RC_FILE = snoopspy.rc
 
 SOURCES += \

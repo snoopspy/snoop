@@ -12,7 +12,7 @@ include(../../../lib/snoop.pri)
 
 TARGET   = websniff
 TEMPLATE = app
-DESTDIR  = ../../bin
+DESTDIR   = $${PWD}/../../../bin
 
 SOURCES += main.cpp\
     dialog.cpp \
