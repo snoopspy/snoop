@@ -7,4 +7,4 @@ moc_*
 *.o
 *.so
 *.user
-
+bin/
