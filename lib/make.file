@@ -1,0 +1,42 @@
+all: debug release
+
+debug: snoop_test_d snoop_d snoop_gui_d 
+
+release: snoop_test snoop snoop_gui
+
+snoop_test_d:
+	qmake snoop_test.pro "CONFIG+=debug" "QT-=gui"
+	make -f Makefile
+	make clean -f Makefile
+
+snoop_d:
+	qmake snoop.pro "CONFIG+=debug" "QT-=gui"
+	make -f Makefile
+	make clean -f Makefile
+
+snoop_gui_d:
+	qmake snoop_gui.pro "CONFIG+=debug" "QT-=gui"
+	make -f Makefile
+	make clean -f Makefile
+
+snoop_test:
+	qmake snoop_test.pro "CONFIG+=release" "QT-=gui"
+	make -f Makefile
+	make clean -f Makefile
+
+snoop:
+	qmake snoop.pro "CONFIG+=release" "QT-=gui"
+	make -f Makefile
+	make clean -f Makefile
+
+snoop_gui:
+	qmake snoop_gui.pro "CONFIG+=release" "QT-=gui"
+	make -f Makefile
+	make clean -f Makefile
+
+clean:
+	echo "clean in make.file"
+	rm -rf *.o
+	rm -rf moc_*.*
+	rm -rf Makefile
+
