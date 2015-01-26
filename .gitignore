@@ -2,6 +2,7 @@ Makefile
 build*/
 ui_*
 moc_*
+qrc_*
 *.a
 *.autosave
 *.bak
