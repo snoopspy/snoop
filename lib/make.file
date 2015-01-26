@@ -17,6 +17,7 @@ snoop_d:
 snoop_gui_d:
 	qmake snoop_gui.pro "CONFIG+=debug" "QT-=gui"
 	make -f Makefile
+	cp ui_* ../include
 	make clean -f Makefile
 
 snoop_test:
@@ -32,6 +33,7 @@ snoop:
 snoop_gui:
 	qmake snoop_gui.pro "CONFIG+=release" "QT-=gui"
 	make -f Makefile
+	cp ui_* ../include
 	make clean -f Makefile
 
 clean:
