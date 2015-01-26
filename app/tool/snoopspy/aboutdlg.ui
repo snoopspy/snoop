@@ -39,7 +39,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>SnoopSpy version 3.0</string>
+    <string>SnoopSpy version 9.1</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>

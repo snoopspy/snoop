@@ -23,7 +23,7 @@ bool Main::doOpen()
 {
   if (!graph.loadFromFile(fileName, "graph"))
   {
-    SET_ERROR(VError, QString("can not open file(%1)").arg(fileName), VERR_INVALID_FILENAME);
+    SET_ERROR(VFileError, QString("can not open file(%1)").arg(fileName), VFileError::INVALID_FILENAME);
     return false;
   }
 
@@ -69,7 +69,7 @@ int main(int argc, char *argv[])
   main.fileName = param.fileName;
   if (!main.open())
   {
-    printf("%s\n", main.error.msg);
+    printf("%s\n", qPrintable(main.error.msg));
     return 0;
   }
 

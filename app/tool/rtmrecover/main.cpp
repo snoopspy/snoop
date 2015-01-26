@@ -1,33 +1,32 @@
+#include <iostream>
+#include <QCoreApplication>
 #include <VApp>
 #include <SnoopRtm>
-#include <iostream>
 #include <VDebugNew>
 
-void run()
+void run(QCoreApplication& a)
 {
-  VApp& app = VApp::instance();
-
   QString fileName;
-  if (app.argc() > 1) fileName = app.argv()[1];
+  if (a.arguments().count() > 1) fileName = a.arguments().at(1);
 
   SnoopRtm& rtm = SnoopRtm::instance();
   if (fileName == "")
   {
     if (!rtm.loadFromSystem())
     {
-      std::cout << "rtm.loadFromSystem return false " << rtm.error.msg << std::endl;
+      std::cout << "rtm.loadFromSystem return false " << qPrintable(rtm.error.msg) << std::endl;
       return;
     }
     if (!rtm.saveToFile(SnoopRtm::DEFAULT_RTM_FILE_NAME, ""))
     {
-      std::cout << "rtm.saveToFile return false " << rtm.error.msg << std::endl;
+      std::cout << "rtm.saveToFile return false " << qPrintable(rtm.error.msg) << std::endl;
       return;
     }
   } else
   {
     if (!rtm.loadFromFile(fileName, ""))
     {
-      std::cout << format("can not open file(%s)", qPrintable(fileName)) << std::endl;
+      std::cout << qPrintable(QString("can not open file(%1)").arg(fileName)) << std::endl;
     }
     if (!rtm.recoverSystem())
     {
@@ -38,8 +37,8 @@ void run()
 
 int main(int argc, char* argv[])
 {
+  QCoreApplication a(argc, argv);
   VApp::initialize(true, false, "stdout");
-  VApp::instance().setArguments(argc, argv);
-  run();
+  run(a);
   VApp::finalize(false);
 }

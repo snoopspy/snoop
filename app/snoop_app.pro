@@ -6,5 +6,5 @@ SUBDIRS += \
   tool/snoopspy \
   tool/snooptest \
   tool/sscon \
-  tool/unittest \
-  tool/websniff
+	tool/unittest
+#  tool/websniff // gilgil temp 2015.01.26

@@ -4,9 +4,9 @@
 // Snoop Version
 // ----------------------------------------------------------------------------
 #ifdef _DEBUG
-const char* SNOOP_VERSION = "Snoop 9.1  Debug   Build( "__DATE__ " " __TIME__" )";
+const char* SnoopBase::SNOOP_VERSION = "Snoop 9.1  Debug   Build( "__DATE__ " " __TIME__" )";
 #else // RELEASE
-const char* SNOOP_VERSION = "Snoop 9.1  Release Build( "__DATE__ " " __TIME__" )";
+const char* SnoopBase::SNOOP_VERSION = "Snoop 9.1  Release Build( "__DATE__ " " __TIME__" )";
 #endif // _DEBUG
 
 // ----------------------------------------------------------------------------
