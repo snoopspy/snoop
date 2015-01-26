@@ -1,5 +1,6 @@
 Makefile
 build*/
+ui_*
 moc_*
 *.a
 *.autosave
