@@ -7,7 +7,7 @@
 QT       += core
 QT       -= gui
 
-include (../../../../other/googletest/unittest.pri)
+include(../../../../../google/gtest/gtest.pri)
 include(../../../lib/snoop.pri)
 
 TARGET    = unittest
@@ -16,5 +16,4 @@ CONFIG   -= app_bundle
 TEMPLATE  = app
 DESTDIR   = $${PWD}/../../../bin
 
-SOURCES += main.cpp \
-    ../../include/common/snoopautodetectadapter.cpp
+SOURCES += main.cpp
