@@ -198,30 +198,30 @@ void SnoopUdpReceiver::split(SnoopPacket* packet)
   if (autoBlockOnSplit) packet->drop = true;
 }
 
-void SnoopUdpReceiver::load(VXml xml)
+void SnoopUdpReceiver::load(VRep& rep)
 {
   SnoopProcess::load(xml);
 
-  QString flowMgrName = xml.getStr("flowMgr", "");
+  QString flowMgrName = rep.getStr("flowMgr", "");
   if (flowMgrName != "") flowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findByName(flowMgrName));
-  QString writerName = xml.getStr("writer", "");
+  QString writerName = rep.getStr("writer", "");
   if (writerName != "") writer = (SnoopCapture*)(((VGraph*)owner)->objectList.findByName(writerName));
-  dscr             = xml.getArr("dscr",       dscr);
-  headerSize       = xml.getInt("headerSize", headerSize);
-  autoBlockOnSplit = xml.getBool("autoBlockOnSplit", autoBlockOnSplit);
+  dscr             = rep.getArr("dscr",       dscr);
+  headerSize       = rep.getInt("headerSize", headerSize);
+  autoBlockOnSplit = rep.getBool("autoBlockOnSplit", autoBlockOnSplit);
 }
 
-void SnoopUdpReceiver::save(VXml xml)
+void SnoopUdpReceiver::save(VRep& rep)
 {
   SnoopProcess::save(xml);
 
   QString flowMgrName = flowMgr == NULL ? "" : flowMgr->name;
-  xml.setStr("flowMgr", flowMgrName);
+  rep.setStr("flowMgr", flowMgrName);
   QString writerName = writer == NULL ? "" : writer->name;
-  xml.setStr("writer", writerName);
-  xml.setArr("dscr",       dscr);
-  xml.setInt("headerSize", headerSize);
-  xml.setBool("autoBlockOnSplit", autoBlockOnSplit);
+  rep.setStr("writer", writerName);
+  rep.setArr("dscr",       dscr);
+  rep.setInt("headerSize", headerSize);
+  rep.setBool("autoBlockOnSplit", autoBlockOnSplit);
 }
 
 #ifdef QT_GUI_LIB

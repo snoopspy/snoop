@@ -14,7 +14,7 @@
 #include "arrow.h"
 #include "signalslotform.h"
 
-class Scene : public QGraphicsScene, public VXmlable
+class Scene : public QGraphicsScene, public VSerializable
 {
   Q_OBJECT
 
@@ -73,8 +73,8 @@ protected:
   virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 };
 
 #endif // SCENE_H

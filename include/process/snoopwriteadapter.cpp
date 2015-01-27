@@ -40,20 +40,20 @@ void SnoopWriteAdapter::move(SnoopPacket* packet)
   emit moved(packet);
 }
 
-void SnoopWriteAdapter::load(VXml xml)
+void SnoopWriteAdapter::load(VRep& rep)
 {
   SnoopAdapter::load(xml);
 
-  srcMac = xml.getStr("srcMac", srcMac.str());
-  dstMac = xml.getStr("dstMac", dstMac.str());
+  srcMac = rep.getStr("srcMac", srcMac.str());
+  dstMac = rep.getStr("dstMac", dstMac.str());
 }
 
-void SnoopWriteAdapter::save(VXml xml)
+void SnoopWriteAdapter::save(VRep& rep)
 {
   SnoopAdapter::save(xml);
 
-  xml.setStr("srcMac", srcMac.str());
-  xml.setStr("dstMac", dstMac.str());
+  rep.setStr("srcMac", srcMac.str());
+  rep.setStr("dstMac", dstMac.str());
 }
 
 #ifdef QT_GUI_LIB

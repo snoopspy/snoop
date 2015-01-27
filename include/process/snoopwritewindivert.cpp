@@ -45,24 +45,24 @@ void SnoopWriteWinDivert::move(SnoopPacket* packet)
   emit moved(packet);
 }
 
-void SnoopWriteWinDivert::load(VXml xml)
+void SnoopWriteWinDivert::load(VRep& rep)
 {
   SnoopWinDivert::load(xml);
 
-  changeDivertAddr     = xml.getBool("changeDivertAddr", changeDivertAddr);
-  divertAddr.IfIdx     = xml.getInt("IfIdx",             divertAddr.IfIdx);
-  divertAddr.SubIfIdx  = xml.getInt("SubIfIdx",          divertAddr.SubIfIdx);
-  divertAddr.Direction = (uint8_t)xml.getInt("Direction",  (int)divertAddr.Direction);
+  changeDivertAddr     = rep.getBool("changeDivertAddr", changeDivertAddr);
+  divertAddr.IfIdx     = rep.getInt("IfIdx",             divertAddr.IfIdx);
+  divertAddr.SubIfIdx  = rep.getInt("SubIfIdx",          divertAddr.SubIfIdx);
+  divertAddr.Direction = (uint8_t)rep.getInt("Direction",  (int)divertAddr.Direction);
 }
 
-void SnoopWriteWinDivert::save(VXml xml)
+void SnoopWriteWinDivert::save(VRep& rep)
 {
   SnoopWinDivert::save(xml);
 
-  xml.setBool("changeDivertAddr", changeDivertAddr);
-  xml.setInt("IfIdx",             divertAddr.IfIdx);
-  xml.setInt("SubIfIdx",          divertAddr.SubIfIdx);
-  xml.setInt("Direction",         (int)divertAddr.Direction);
+  rep.setBool("changeDivertAddr", changeDivertAddr);
+  rep.setInt("IfIdx",             divertAddr.IfIdx);
+  rep.setInt("SubIfIdx",          divertAddr.SubIfIdx);
+  rep.setInt("Direction",         (int)divertAddr.Direction);
 }
 
 #ifdef QT_GUI_LIB

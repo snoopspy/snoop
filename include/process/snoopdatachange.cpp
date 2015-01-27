@@ -219,26 +219,26 @@ void SnoopDataChange::__tcpFlowDelete(SnoopTcpFlowKey* key, SnoopFlowValue* valu
   // LOG_DEBUG(""); // gilgil temp 2014.03.13
 }
 
-void SnoopDataChange::load(VXml xml)
+void SnoopDataChange::load(VRep& rep)
 {
   SnoopProcess::load(xml);
 
-  QString flowMgrName = xml.getStr("flowMgr", "");
+  QString flowMgrName = rep.getStr("flowMgr", "");
   if (flowMgrName != "") flowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findByName(flowMgrName));
-  tcpChange = xml.getBool("tcpChange", tcpChange);
-  udpChange = xml.getBool("udpChange", udpChange);
-  dataChange.load(xml.gotoChild("dataChange"));
+  tcpChange = rep.getBool("tcpChange", tcpChange);
+  udpChange = rep.getBool("udpChange", udpChange);
+  dataChange.load(rep.gotoChild("dataChange"));
 }
 
-void SnoopDataChange::save(VXml xml)
+void SnoopDataChange::save(VRep& rep)
 {
   SnoopProcess::save(xml);
 
   QString flowMgrName = flowMgr == NULL ? "" : flowMgr->name;
-  xml.setStr("flowMgr", flowMgrName);
-  xml.setBool("tcpChange", tcpChange);
-  xml.setBool("udpChange", udpChange);
-  dataChange.save(xml.gotoChild("dataChange"));
+  rep.setStr("flowMgr", flowMgrName);
+  rep.setBool("tcpChange", tcpChange);
+  rep.setBool("udpChange", udpChange);
+  dataChange.save(rep.gotoChild("dataChange"));
 }
 
 #ifdef QT_GUI_LIB

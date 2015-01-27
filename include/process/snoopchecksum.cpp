@@ -46,22 +46,22 @@ void SnoopChecksum::calculate(SnoopPacket* packet)
   emit calculated(packet);
 }
 
-void SnoopChecksum::load(VXml xml)
+void SnoopChecksum::load(VRep& rep)
 {
   SnoopProcess::load(xml);
 
-  ipChecksum  = xml.getBool("ipChecksum",  ipChecksum);
-  tcpChecksum = xml.getBool("tcpChecksum", tcpChecksum);
-  udpChecksum = xml.getBool("udpChecksum", udpChecksum);
+  ipChecksum  = rep.getBool("ipChecksum",  ipChecksum);
+  tcpChecksum = rep.getBool("tcpChecksum", tcpChecksum);
+  udpChecksum = rep.getBool("udpChecksum", udpChecksum);
 }
 
-void SnoopChecksum::save(VXml xml)
+void SnoopChecksum::save(VRep& rep)
 {
   SnoopProcess::save(xml);
 
-  xml.setBool("ipChecksum",  ipChecksum);
-  xml.setBool("tcpChecksum", tcpChecksum);
-  xml.setBool("udpChecksum", udpChecksum);
+  rep.setBool("ipChecksum",  ipChecksum);
+  rep.setBool("tcpChecksum", tcpChecksum);
+  rep.setBool("udpChecksum", udpChecksum);
 }
 
 #ifdef QT_GUI_LIB

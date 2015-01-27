@@ -15,18 +15,18 @@ SnoopHost::~SnoopHost()
 
 }
 
-void SnoopHost::load(VXml xml)
+void SnoopHost::load(VRep& rep)
 {
-  ip   = xml.getStr("ip",   ip.str());
-  mac  = xml.getStr("mac",  mac.str());
-  name = xml.getStr("name", name);
+  ip   = rep.getStr("ip",   ip.str());
+  mac  = rep.getStr("mac",  mac.str());
+  name = rep.getStr("name", name);
 }
 
-void SnoopHost::save(VXml xml)
+void SnoopHost::save(VRep& rep)
 {
-  xml.setStr("ip",   ip.str());
-  xml.setStr("mac",  mac.str());
-  xml.setStr("name", name);
+  rep.setStr("ip",   ip.str());
+  rep.setStr("mac",  mac.str());
+  rep.setStr("name", name);
 }
 
 // ----------------------------------------------------------------------------
@@ -42,11 +42,11 @@ SnoopHost* SnoopHostList::findByIp(Ip ip)
   return NULL;
 }
 
-void SnoopHostList::load(VXml xml)
+void SnoopHostList::load(VRep& rep)
 {
   clear();
   {
-    xml_foreach (childXml, xml.childs())
+    xml_foreach (childXml, rep.childs())
     {
       SnoopHost host;
       host.load(childXml);
@@ -55,13 +55,13 @@ void SnoopHostList::load(VXml xml)
   }
 }
 
-void SnoopHostList::save(VXml xml)
+void SnoopHostList::save(VRep& rep)
 {
-  xml.clearChild();
+  rep.clearChild();
   for (SnoopHostList::iterator it = begin(); it != end(); it++)
   {
     SnoopHost& host = *it;
-    VXml childXml = xml.addChild("host");
+    VXml childXml = rep.addChild("host");
     host.save(childXml);
   }
 }

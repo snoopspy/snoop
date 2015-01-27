@@ -13,22 +13,22 @@ SnoopDnsChangeItem::SnoopDnsChangeItem()
   ip      = 0;
 }
 
-void SnoopDnsChangeItem::load(VXml xml)
+void SnoopDnsChangeItem::load(VRep& rep)
 {
   VRegExp::load(xml);
 
-  enabled = xml.getBool("enabled", enabled);
-  log     = xml.getBool("log", log);
-  ip      = xml.getStr("ip", ip.str());
+  enabled = rep.getBool("enabled", enabled);
+  log     = rep.getBool("log", log);
+  ip      = rep.getStr("ip", ip.str());
 }
 
-void SnoopDnsChangeItem::save(VXml xml)
+void SnoopDnsChangeItem::save(VRep& rep)
 {
   VRegExp::save(xml);
 
-  xml.setBool("enabled", enabled);
-  xml.setBool("log", log);
-  xml.setStr("ip", ip.str());
+  rep.setBool("enabled", enabled);
+  rep.setBool("log", log);
+  rep.setStr("ip", ip.str());
 }
 
 #ifdef QT_GUI_LIB
@@ -82,11 +82,11 @@ bool SnoopDnsChangeItems::prepare(VError& error)
   return true;
 }
 
-void SnoopDnsChangeItems::load(VXml xml)
+void SnoopDnsChangeItems::load(VRep& rep)
 {
   clear();
   {
-    xml_foreach (childXml, xml.childs())
+    xml_foreach (childXml, rep.childs())
     {
       SnoopDnsChangeItem item;
       item.load(childXml);
@@ -95,13 +95,13 @@ void SnoopDnsChangeItems::load(VXml xml)
   }
 }
 
-void SnoopDnsChangeItems::save(VXml xml)
+void SnoopDnsChangeItems::save(VRep& rep)
 {
-  xml.clearChild();
+  rep.clearChild();
   for (SnoopDnsChangeItems::iterator it = begin(); it != end(); it++)
   {
     SnoopDnsChangeItem& item = *it;
-    VXml childXml = xml.addChild("item");
+    VXml childXml = rep.addChild("item");
     item.save(childXml);
   }
 }
@@ -287,21 +287,21 @@ void SnoopDnsChange::check(SnoopPacket* packet)
   }
 }
 
-void SnoopDnsChange::load(VXml xml)
+void SnoopDnsChange::load(VRep& rep)
 {
   SnoopProcess::load(xml);
 
-  QString writerName = xml.getStr("writer", "");
+  QString writerName = rep.getStr("writer", "");
   if (writerName != "") writer = (SnoopCapture*)(((VGraph*)owner)->objectList.findByName(writerName));
-  changeItems.load(xml.gotoChild("changeItems"));
+  changeItems.load(rep.gotoChild("changeItems"));
 }
 
-void SnoopDnsChange::save(VXml xml)
+void SnoopDnsChange::save(VRep& rep)
 {
   SnoopProcess::save(xml);
   QString writerName = writer == NULL ? "" : writer->name;
-  xml.setStr("writer", writerName);
-  changeItems.save(xml.gotoChild("changeItems"));
+  rep.setStr("writer", writerName);
+  changeItems.save(rep.gotoChild("changeItems"));
 }
 
 #ifdef QT_GUI_LIB

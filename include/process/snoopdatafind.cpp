@@ -68,18 +68,18 @@ void SnoopDataFind::find(SnoopPacket* packet)
   }
 }
 
-void SnoopDataFind::load(VXml xml)
+void SnoopDataFind::load(VRep& rep)
 {
   SnoopProcess::load(xml);
 
-  dataFind.load(xml.gotoChild("dataFind"));
+  dataFind.load(rep.gotoChild("dataFind"));
 }
 
-void SnoopDataFind::save(VXml xml)
+void SnoopDataFind::save(VRep& rep)
 {
   SnoopProcess::save(xml);
 
-  dataFind.save(xml.gotoChild("dataFind"));
+  dataFind.save(rep.gotoChild("dataFind"));
 }
 
 #ifdef QT_GUI_LIB

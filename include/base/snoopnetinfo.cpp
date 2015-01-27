@@ -92,25 +92,25 @@ void SnoopNetInfo::clear()
   ip_and_subnet = 0;
 }
 
-void SnoopNetInfo::load(VXml xml)
+void SnoopNetInfo::load(VRep& rep)
 {
   //
   // netInfo
   //
-  ip      = xml.getStr("ip",      ip.str());
-  mac     = xml.getStr("mac",     mac.str());
-  subnet  = xml.getStr("subnet",  subnet.str());
-  gateway = xml.getStr("gateway", gateway.str());
+  ip      = rep.getStr("ip",      ip.str());
+  mac     = rep.getStr("mac",     mac.str());
+  subnet  = rep.getStr("subnet",  subnet.str());
+  gateway = rep.getStr("gateway", gateway.str());
   ip_and_subnet = ip & subnet;
 }
 
-void SnoopNetInfo::save(VXml xml)
+void SnoopNetInfo::save(VRep& rep)
 {
   //
   // netInfo
   //
-  xml.setStr("ip",     ip.str());
-  xml.setStr("mac",     mac.str());
-  xml.setStr("subnet",  subnet.str());
-  xml.setStr("gateway", gateway.str());
+  rep.setStr("ip",     ip.str());
+  rep.setStr("mac",     mac.str());
+  rep.setStr("subnet",  subnet.str());
+  rep.setStr("gateway", gateway.str());
 }

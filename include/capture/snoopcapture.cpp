@@ -137,22 +137,22 @@ void SnoopCapture::run()
   emit closed();
 }
 
-void SnoopCapture::load(VXml xml)
+void SnoopCapture::load(VRep& rep)
 {
   VObject::load(xml);
 
-  enabled   = xml.getBool("enabled",   enabled);
-  autoRead  = xml.getBool("autoRead",  autoRead);
-  autoParse = xml.getBool("autoParse", autoParse);
+  enabled   = rep.getBool("enabled",   enabled);
+  autoRead  = rep.getBool("autoRead",  autoRead);
+  autoParse = rep.getBool("autoParse", autoParse);
 }
 
-void SnoopCapture::save(VXml xml)
+void SnoopCapture::save(VRep& rep)
 {
   VObject::save(xml);
 
-  xml.setBool("enabled",   enabled);
-  xml.setBool("autoRead",  autoRead);
-  xml.setBool("autoParse", autoParse);
+  rep.setBool("enabled",   enabled);
+  rep.setBool("autoRead",  autoRead);
+  rep.setBool("autoParse", autoParse);
 }
 
 #ifdef QT_GUI_LIB

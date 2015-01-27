@@ -85,18 +85,18 @@ bool SnoopAdapter::doClose()
   return SnoopPcap::doClose();
 }
 
-void SnoopAdapter::load(VXml xml)
+void SnoopAdapter::load(VRep& rep)
 {
   SnoopPcap::load(xml);
 
-  adapterIndex = xml.getInt("adapterIndex", adapterIndex);
+  adapterIndex = rep.getInt("adapterIndex", adapterIndex);
 }
 
-void SnoopAdapter::save(VXml xml)
+void SnoopAdapter::save(VRep& rep)
 {
   SnoopPcap::save(xml);
 
-  xml.setInt("adapterIndex", adapterIndex);
+  rep.setInt("adapterIndex", adapterIndex);
 }
 
 #ifdef QT_GUI_LIB

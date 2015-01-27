@@ -37,8 +37,8 @@ signals:
   void moved(SnoopPacket* packet);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 
 #ifdef QT_GUI_LIB
 public: // for VOptionable

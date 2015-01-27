@@ -196,24 +196,24 @@ bool SnoopPcap::pcapProcessFilter(pcap_if_t* dev)
   return true;
 }
 
-void SnoopPcap::load(VXml xml)
+void SnoopPcap::load(VRep& rep)
 {
   SnoopCapture::load(xml);
 
-  filter      = xml.getStr("filter", filter);
-  snapLen     = xml.getInt("snapLen", snapLen);
-  flags       = xml.getInt("flags", flags);
-  readTimeout = xml.getInt("readTimeout", readTimeout);
+  filter      = rep.getStr("filter", filter);
+  snapLen     = rep.getInt("snapLen", snapLen);
+  flags       = rep.getInt("flags", flags);
+  readTimeout = rep.getInt("readTimeout", readTimeout);
 }
 
-void SnoopPcap::save(VXml xml)
+void SnoopPcap::save(VRep& rep)
 {
   SnoopCapture::save(xml);
 
-  xml.setStr("filter", filter);
-  xml.setInt("snapLen", snapLen);
-  xml.setInt("flags", flags);
-  xml.setInt("readTimeout", readTimeout);
+  rep.setStr("filter", filter);
+  rep.setInt("snapLen", snapLen);
+  rep.setInt("flags", flags);
+  rep.setInt("readTimeout", readTimeout);
 }
 
 #ifdef QT_GUI_LIB

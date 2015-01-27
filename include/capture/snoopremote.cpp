@@ -117,24 +117,24 @@ bool SnoopRemote::doClose()
   return SnoopPcap::doClose();
 }
 
-void SnoopRemote::load(VXml xml)
+void SnoopRemote::load(VRep& rep)
 {
   SnoopPcap::load(xml);
 
-  host = xml.getStr("host", host);
-  userName = xml.getStr("userName", userName);
-  password = xml.getStr("password", password);
-  adapterIndex = xml.getInt("adapterIndex", adapterIndex);
+  host = rep.getStr("host", host);
+  userName = rep.getStr("userName", userName);
+  password = rep.getStr("password", password);
+  adapterIndex = rep.getInt("adapterIndex", adapterIndex);
 }
 
-void SnoopRemote::save(VXml xml)
+void SnoopRemote::save(VRep& rep)
 {
   SnoopPcap::save(xml);
 
-  xml.setStr("host", host);
-  xml.setStr("userName", userName);
-  xml.setStr("password", password);
-  xml.setInt("adapterIndex", adapterIndex);
+  rep.setStr("host", host);
+  rep.setStr("userName", userName);
+  rep.setStr("password", password);
+  rep.setInt("adapterIndex", adapterIndex);
 }
 
 #ifdef QT_GUI_LIB

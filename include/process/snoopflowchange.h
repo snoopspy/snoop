@@ -22,7 +22,7 @@
 // ----------------------------------------------------------------------------
 // SnoopFlowChangeItem
 // ----------------------------------------------------------------------------
-class SnoopFlowChangeItem : public VXmlable
+class SnoopFlowChangeItem : public VSerializable
 {
 public:
   enum Protocol {
@@ -75,8 +75,8 @@ public:
   bool check(SnoopTransportFlowKey& flowKey, Protocol protocol);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 
 #ifdef QT_GUI_LIB
 public:
@@ -115,7 +115,7 @@ void operator << (SnoopFlowChangeItem& item, QTreeWidgetItem& treeWidgetItem);
 // ----------------------------------------------------------------------------
 // SnoopFlowChangeItems
 // ----------------------------------------------------------------------------
-class SnoopFlowChangeItems : public QObject, public QList<SnoopFlowChangeItem>, public VXmlable, public VOptionable, public VListWidgetAccessible
+class SnoopFlowChangeItems : public QObject, public QList<SnoopFlowChangeItem>, public VSerializable, public VOptionable, public VListWidgetAccessible
 {
   Q_OBJECT
 
@@ -133,8 +133,8 @@ public:
   SnoopTransportFlowKey change(SnoopFlowChangeItem& item, SnoopTransportFlowKey& flowKey);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 
 #ifdef QT_GUI_LIB
 public: // VOptionable
@@ -237,8 +237,8 @@ protected slots:
   void __toUdpFlowDelete(SnoopUdpFlowKey* key, SnoopFlowValue* value);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 
 #ifdef QT_GUI_LIB
 public:

@@ -30,18 +30,18 @@ bool SnoopSourcePcap::doClose()
   return SnoopPcap::doClose();
 }
 
-void SnoopSourcePcap::load(VXml xml)
+void SnoopSourcePcap::load(VRep& rep)
 {
   SnoopPcap::load(xml);
 
-  source = xml.getStr("source", source);
+  source = rep.getStr("source", source);
 }
 
-void SnoopSourcePcap::save(VXml xml)
+void SnoopSourcePcap::save(VRep& rep)
 {
   SnoopPcap::save(xml);
 
-  xml.setStr("source", source);
+  rep.setStr("source", source);
 }
 
 #ifdef QT_GUI_LIB

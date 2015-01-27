@@ -23,18 +23,18 @@ SnoopCommandItem::~SnoopCommandItem()
   }
 }
 
-void SnoopCommandItem::load(VXml xml)
+void SnoopCommandItem::load(VRep& rep)
 {
-  enabled = xml.getBool("enabled", enabled);
-  command = xml.getStr("command",  command);
-  sync    = xml.getBool("sync",    sync);
+  enabled = rep.getBool("enabled", enabled);
+  command = rep.getStr("command",  command);
+  sync    = rep.getBool("sync",    sync);
 }
 
-void SnoopCommandItem::save(VXml xml)
+void SnoopCommandItem::save(VRep& rep)
 {
-  xml.setBool("enabled", enabled);
-  xml.setStr("command",  command);
-  xml.setBool("sync",    sync);
+  rep.setBool("enabled", enabled);
+  rep.setStr("command",  command);
+  rep.setBool("sync",    sync);
 }
 
 bool SnoopCommandItem::execute(VError& error)
@@ -89,10 +89,10 @@ bool SnoopCommandItems::execute(VError& error)
   return true;
 }
 
-void SnoopCommandItems::load(VXml xml)
+void SnoopCommandItems::load(VRep& rep)
 {
   clear();
-  xml_foreach (childXml, xml.childs())
+  xml_foreach (childXml, rep.childs())
   {
     SnoopCommandItem item;
     item.load(childXml);
@@ -100,13 +100,13 @@ void SnoopCommandItems::load(VXml xml)
   }
 }
 
-void SnoopCommandItems::save(VXml xml)
+void SnoopCommandItems::save(VRep& rep)
 {
-  xml.clearChild();
+  rep.clearChild();
   for (int i = 0; i < this->count(); i++)
   {
     SnoopCommandItem& item = (SnoopCommandItem&)this->at(i);
-    item.save(xml.gotoChild("command" + QString::number(i)));
+    item.save(rep.gotoChild("command" + QString::number(i)));
   }
 }
 
@@ -175,20 +175,20 @@ bool SnoopCommand::doClose()
   return SnoopProcess::doClose();
 }
 
-void SnoopCommand::load(VXml xml)
+void SnoopCommand::load(VRep& rep)
 {
   SnoopProcess::load(xml);
 
-  if (!xml.findChild("open").isNull())  openCommands.load(xml.gotoChild("open"));
-  if (!xml.findChild("close").isNull()) closeCommands.load(xml.gotoChild("close"));
+  if (!rep.findChild("open").isNull())  openCommands.load(rep.gotoChild("open"));
+  if (!rep.findChild("close").isNull()) closeCommands.load(rep.gotoChild("close"));
 }
 
-void SnoopCommand::save(VXml xml)
+void SnoopCommand::save(VRep& rep)
 {
   SnoopProcess::save(xml);
 
-  openCommands.save(xml.gotoChild("open"));
-  closeCommands.save(xml.gotoChild("close"));
+  openCommands.save(rep.gotoChild("open"));
+  closeCommands.save(rep.gotoChild("close"));
 }
 
 #ifdef QT_GUI_LIB

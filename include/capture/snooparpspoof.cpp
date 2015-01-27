@@ -34,20 +34,20 @@ bool SnoopArpSpoofSession::operator ==(const SnoopArpSpoofSession& r)
   return true;
 }
 
-void SnoopArpSpoofSession::load(VXml xml)
+void SnoopArpSpoofSession::load(VRep& rep)
 {
-  senderIp  = xml.getStr("senderIp",  senderIp.str());
-  senderMac = xml.getStr("senderMac", senderMac.str());
-  targetIp  = xml.getStr("targetIp",  targetIp.str());
-  targetMac = xml.getStr("targetMac", targetMac.str());
+  senderIp  = rep.getStr("senderIp",  senderIp.str());
+  senderMac = rep.getStr("senderMac", senderMac.str());
+  targetIp  = rep.getStr("targetIp",  targetIp.str());
+  targetMac = rep.getStr("targetMac", targetMac.str());
 }
 
-void SnoopArpSpoofSession::save(VXml xml)
+void SnoopArpSpoofSession::save(VRep& rep)
 {
-  xml.setStr("senderIp",  senderIp.str());
-  xml.setStr("senderMac", senderMac.str());
-  xml.setStr("targetIp",  targetIp.str());
-  xml.setStr("targetMac", targetMac.str());
+  rep.setStr("senderIp",  senderIp.str());
+  rep.setStr("senderMac", senderMac.str());
+  rep.setStr("targetIp",  targetIp.str());
+  rep.setStr("targetMac", targetMac.str());
 }
 
 #ifdef QT_GUI_LIB
@@ -132,11 +132,11 @@ void SnoopArpSpoofSessionList::del(SnoopArpSpoofSession& session)
   }
 }
 
-void SnoopArpSpoofSessionList::load(VXml xml)
+void SnoopArpSpoofSessionList::load(VRep& rep)
 {
   clear();
   {
-    xml_foreach (childXml, xml.childs())
+    xml_foreach (childXml, rep.childs())
     {
       SnoopArpSpoofSession session;
       session.load(childXml);
@@ -145,13 +145,13 @@ void SnoopArpSpoofSessionList::load(VXml xml)
   }
 }
 
-void SnoopArpSpoofSessionList::save(VXml xml)
+void SnoopArpSpoofSessionList::save(VRep& rep)
 {
-  xml.clearChild();
+  rep.clearChild();
   for (SnoopArpSpoofSessionList::iterator it = begin(); it != end(); it++)
   {
     SnoopArpSpoofSession& session = *it;
-    VXml childXml = xml.addChild("session");
+    VXml childXml = rep.addChild("session");
     session.save(childXml);
   }
 }
@@ -802,26 +802,26 @@ SnoopArpSpoof::IpPacketType SnoopArpSpoof::findSessionByIpPacket(SnoopPacket* pa
   return ipOther;
 }
 
-void SnoopArpSpoof::load(VXml xml)
+void SnoopArpSpoof::load(VRep& rep)
 {
   SnoopAdapter::load(xml);
 
-  virtualMac         = xml.getStr("virtualMac", virtualMac.str());
-  selfRelay          = xml.getBool("selfRelay", selfRelay);
-  disableAutoRouting = xml.getBool("disableAutoRouting", disableAutoRouting);
-  infectInterval     = xml.getULong("infectInterval", infectInterval);
-  sessionList.load(xml.gotoChild("sessionList"));
+  virtualMac         = rep.getStr("virtualMac", virtualMac.str());
+  selfRelay          = rep.getBool("selfRelay", selfRelay);
+  disableAutoRouting = rep.getBool("disableAutoRouting", disableAutoRouting);
+  infectInterval     = rep.getULong("infectInterval", infectInterval);
+  sessionList.load(rep.gotoChild("sessionList"));
 }
 
-void SnoopArpSpoof::save(VXml xml)
+void SnoopArpSpoof::save(VRep& rep)
 {
   SnoopAdapter::save(xml);
 
-  xml.setStr("virtualMac",          virtualMac.str());
-  xml.setBool("selfRelay",          selfRelay);
-  xml.setBool("disableAutoRouting", disableAutoRouting);
-  xml.setULong("infectInterval", infectInterval);
-  sessionList.save(xml.gotoChild("sessionList"));
+  rep.setStr("virtualMac",          virtualMac.str());
+  rep.setBool("selfRelay",          selfRelay);
+  rep.setBool("disableAutoRouting", disableAutoRouting);
+  rep.setULong("infectInterval", infectInterval);
+  sessionList.save(rep.gotoChild("sessionList"));
 }
 
 #ifdef QT_GUI_LIB

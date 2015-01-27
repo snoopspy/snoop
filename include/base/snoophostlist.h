@@ -16,7 +16,7 @@
 // ----------------------------------------------------------------------------
 // SnoopHost
 // ----------------------------------------------------------------------------
-class SnoopHost : public VXmlable
+class SnoopHost : public VSerializable
 {
 public:
   Ip      ip;
@@ -28,21 +28,21 @@ public:
   virtual ~SnoopHost();
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 };
 
 // ----------------------------------------------------------------------------
 // SnoopHostList
 // ----------------------------------------------------------------------------
-class SnoopHostList : public QList<SnoopHost>, public VXmlable
+class SnoopHostList : public QList<SnoopHost>, public VSerializable
 {
 public:
   SnoopHost* findByIp(Ip ip);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 };
 
 #endif // __SNOOP_HOST_LIST_H__

@@ -96,20 +96,20 @@ void SnoopDump::dump(SnoopPacket* packet)
   emit dumped(packet);
 }
 
-void SnoopDump::load(VXml xml)
+void SnoopDump::load(VRep& rep)
 {
   SnoopProcess::load(xml);
 
-  filePath = xml.getStr("filePath", filePath);
-  linkType = xml.getInt("linkType", linkType);
+  filePath = rep.getStr("filePath", filePath);
+  linkType = rep.getInt("linkType", linkType);
 }
 
-void SnoopDump::save(VXml xml)
+void SnoopDump::save(VRep& rep)
 {
   SnoopProcess::save(xml);
 
-  xml.setStr("filePath", filePath);
-  xml.setInt("linkType", linkType);
+  rep.setStr("filePath", filePath);
+  rep.setInt("linkType", linkType);
 }
 
 #ifdef QT_GUI_LIB

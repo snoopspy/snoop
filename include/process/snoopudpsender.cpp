@@ -155,30 +155,30 @@ void SnoopUdpSender::merge(SnoopPacket* packet)
   }
 }
 
-void SnoopUdpSender::load(VXml xml)
+void SnoopUdpSender::load(VRep& rep)
 {
   SnoopProcess::load(xml);
 
-  QString flowMgrName = xml.getStr("flowMgr", "");
+  QString flowMgrName = rep.getStr("flowMgr", "");
   if (flowMgrName != "") flowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findByName(flowMgrName));
-  QString writerName = xml.getStr("writer", "");
+  QString writerName = rep.getStr("writer", "");
   if (writerName != "") writer = (SnoopCapture*)(((VGraph*)owner)->objectList.findByName(writerName));
-  dscr          = xml.getArr("dscr",          dscr);
-  headerSize    = xml.getInt("headerSize",    headerSize);
-  addChunkCount = xml.getInt("addChunkCount", addChunkCount);
+  dscr          = rep.getArr("dscr",          dscr);
+  headerSize    = rep.getInt("headerSize",    headerSize);
+  addChunkCount = rep.getInt("addChunkCount", addChunkCount);
 }
 
-void SnoopUdpSender::save(VXml xml)
+void SnoopUdpSender::save(VRep& rep)
 {
   SnoopProcess::save(xml);
 
   QString flowMgrName = flowMgr == NULL ? "" : flowMgr->name;
-  xml.setStr("flowMgr", flowMgrName);
+  rep.setStr("flowMgr", flowMgrName);
   QString writerName = writer == NULL ? "" : writer->name;
-  xml.setStr("writer", writerName);
-  xml.setArr("dscr",          dscr);
-  xml.setInt("headerSize",    headerSize);
-  xml.setInt("addChunkCount", addChunkCount);
+  rep.setStr("writer", writerName);
+  rep.setArr("dscr",          dscr);
+  rep.setInt("headerSize",    headerSize);
+  rep.setInt("addChunkCount", addChunkCount);
 }
 
 #ifdef QT_GUI_LIB

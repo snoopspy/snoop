@@ -16,7 +16,7 @@
 // ----------------------------------------------------------------------------
 // SnoopRtmEntry
 // ----------------------------------------------------------------------------
-class SnoopRtmEntry : public VXmlable
+class SnoopRtmEntry : public VSerializable
 {
 public:
   SnoopRtmEntry();
@@ -31,27 +31,27 @@ public:
   int     metric;
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 };
 
 // ----------------------------------------------------------------------------
 // SnoopRtmEntryList
 // ----------------------------------------------------------------------------
-class SnoopRtmEntryList : public QList<SnoopRtmEntry>, public VXmlable
+class SnoopRtmEntryList : public QList<SnoopRtmEntry>, public VSerializable
 {
 public:
   int find(Ip dst, Ip mask);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 };
 
 // ----------------------------------------------------------------------------
 // SnoopRtm
 // ----------------------------------------------------------------------------
-class SnoopRtm : public VXmlable
+class SnoopRtm : public VSerializable
 {
   friend class SnoopRtmInstance;
 
@@ -72,8 +72,8 @@ public:
   SnoopRtmEntry* getBestEntry(Ip ip);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 
 public:
   static SnoopRtm& instance();

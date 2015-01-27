@@ -35,7 +35,7 @@ protected:
 // ----------------------------------------------------------------------------
 // SnoopNetInfo
 // ----------------------------------------------------------------------------
-class SnoopNetInfo : public VXmlable
+class SnoopNetInfo : public VSerializable
 {
   friend class SnoopNetInfoAdapterIndex;
   friend class SnoopInterface;
@@ -66,8 +66,8 @@ public:
   Ip   getEndIp()         { return (ip | ~subnet);                   }
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 };
 
 #endif // __SNOOP_NET_INFO_H__

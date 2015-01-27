@@ -57,8 +57,8 @@ signals:
   void found(Ip ip, Mac mac);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 };
 
 #endif // __SNOOP_FIND_HOST_H__

@@ -21,7 +21,7 @@
 // ----------------------------------------------------------------------------
 // SnoopArpSpoofSession
 // ----------------------------------------------------------------------------
-class SnoopArpSpoofSession : public VXmlable
+class SnoopArpSpoofSession : public VSerializable
 {
 public:
   Ip  senderIp;
@@ -38,8 +38,8 @@ public:
   bool operator ==(const SnoopArpSpoofSession& r);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 
 #ifdef QT_GUI_LIB
 public:
@@ -70,7 +70,7 @@ class SnoopArpSpoof;
 class SnoopArpSpoofSessionList :
   public QObject,
   public QList<SnoopArpSpoofSession>,
-  public VXmlable,
+  public VSerializable,
   public VOptionable,
   public VListWidgetAccessible,
   public VLockable
@@ -92,8 +92,8 @@ public:
   void del(SnoopArpSpoofSession& session);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 
 #ifdef QT_GUI_LIB
 public: // VOptionable
@@ -200,8 +200,8 @@ signals:
   void capturedOther(SnoopPacket* packet);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 
 #ifdef QT_GUI_LIB
 public: // for VOptionable

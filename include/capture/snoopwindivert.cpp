@@ -343,32 +343,32 @@ bool SnoopWinDivert::relay(SnoopPacket* packet)
   return write(packet) != VError::FAIL;
 }
 
-void SnoopWinDivert::load(VXml xml)
+void SnoopWinDivert::load(VRep& rep)
 {
   SnoopCapture::load(xml);
 
-  filter          = xml.getStr("filter", filter);
-  priority        = (uint16_t)xml.getInt("priority", (int)priority);
-  layer           = (DIVERT_LAYER)xml.getInt("layer", (int)layer);
-  flags           = (UINT64)xml.getInt("flags", (int)flags);
-  queueLen        = (UINT64)xml.getInt("queueLen", (int)queueLen);
-  queueTime       = (UINT64)xml.getInt("queueTime", (int)queueTime);
-  tos             = (uint8_t) xml.getInt("tos", (int)tos);
-  correctChecksum = xml.getBool("correctChecksum", correctChecksum);
+  filter          = rep.getStr("filter", filter);
+  priority        = (uint16_t)rep.getInt("priority", (int)priority);
+  layer           = (DIVERT_LAYER)rep.getInt("layer", (int)layer);
+  flags           = (UINT64)rep.getInt("flags", (int)flags);
+  queueLen        = (UINT64)rep.getInt("queueLen", (int)queueLen);
+  queueTime       = (UINT64)rep.getInt("queueTime", (int)queueTime);
+  tos             = (uint8_t) rep.getInt("tos", (int)tos);
+  correctChecksum = rep.getBool("correctChecksum", correctChecksum);
 }
 
-void SnoopWinDivert::save(VXml xml)
+void SnoopWinDivert::save(VRep& rep)
 {
   SnoopCapture::save(xml);
 
-  xml.setStr("filter", filter);
-  xml.setInt("priority", (int)priority);
-  xml.setInt("layer", (int)layer);
-  xml.setInt("flags", (int)flags);
-  xml.setInt("queueLen", (int)queueLen);
-  xml.setInt("queueTime", (int)queueTime);
-  xml.setInt("tos", (int)tos);
-  xml.setBool("correctChecksum", correctChecksum);
+  rep.setStr("filter", filter);
+  rep.setInt("priority", (int)priority);
+  rep.setInt("layer", (int)layer);
+  rep.setInt("flags", (int)flags);
+  rep.setInt("queueLen", (int)queueLen);
+  rep.setInt("queueTime", (int)queueTime);
+  rep.setInt("tos", (int)tos);
+  rep.setBool("correctChecksum", correctChecksum);
 }
 
 #ifdef QT_GUI_LIB

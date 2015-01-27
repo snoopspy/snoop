@@ -13,7 +13,7 @@
 #include <QDebug>
 
 #include <VObjectWidget>
-#include <VXml>
+#include <VSerializable>
 #include <VLog>
 
 #include "scene.h"
@@ -49,7 +49,7 @@ class MainWindow;
 // ----------------------------------------------------------------------------
 // MainWindow
 // ----------------------------------------------------------------------------
-class MainWindow : public QMainWindow, public VXmlable
+class MainWindow : public QMainWindow, public VSerializable
 {
   Q_OBJECT
   
@@ -92,8 +92,8 @@ protected:
   QFileDialog fileDialog;
 
 public:
-  void load(VXml xml);
-  void save(VXml xml);
+  void load(VRep& rep);
+  void save(VRep& rep);
 
 private slots:
   void on_actionNewFile_triggered();

@@ -1,6 +1,6 @@
 #include <SnoopCaptureFactory>
 
-#include <VXmlDoc>
+// #include <VXmlDoc> // gilgil temp 2015.01.27
 #include <SnoopAdapter>
 #include <SnoopArpSpoof>
 #include <SnoopFile>

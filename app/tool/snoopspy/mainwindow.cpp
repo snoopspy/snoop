@@ -243,10 +243,10 @@ void MainWindow::dataChanged(QModelIndex,QModelIndex)
   selectionChanged();
 }
 
-void MainWindow::load(VXml xml)
+void MainWindow::load(VRep& rep)
 {
   {
-    VXml coordXml = xml.findChild("coord");
+    VXml coordXml = rep.findChild("coord");
     if (!coordXml.isNull())
     {
       QRect rect = geometry();
@@ -259,7 +259,7 @@ void MainWindow::load(VXml xml)
   }
 
   {
-    VXml sizesXml = xml.findChild("sizes");
+    VXml sizesXml = rep.findChild("sizes");
     QList<int> sizes;
     QStringList strList;
     if (!sizesXml.isNull())
@@ -278,13 +278,13 @@ void MainWindow::load(VXml xml)
     }
   }
 
-  scene->load(xml.gotoChild("scene"));
+  scene->load(rep.gotoChild("scene"));
 }
 
-void MainWindow::save(VXml xml)
+void MainWindow::save(VRep& rep)
 {
   {
-    VXml coordXml = xml.gotoChild("coord");
+    VXml coordXml = rep.gotoChild("coord");
     QRect rect = geometry();
     coordXml.setInt("left",   rect.left());
     coordXml.setInt("top",    rect.top());
@@ -293,7 +293,7 @@ void MainWindow::save(VXml xml)
   }
 
   {
-    VXml sizesXml = xml.gotoChild("sizes");
+    VXml sizesXml = rep.gotoChild("sizes");
     QList<int> sizes;
     QString strList;
 
@@ -313,7 +313,7 @@ void MainWindow::save(VXml xml)
     sizesXml.setStr("treeView", strList);
   }
 
-  scene->save(xml.gotoChild("scene"));
+  scene->save(rep.gotoChild("scene"));
 }
 
 void MainWindow::on_actionNewFile_triggered()

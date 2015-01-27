@@ -204,32 +204,32 @@ void SnoopTcpBlock::tcpBlock(SnoopPacket* packet)
     sendBackwardBlock(writer, packet, TH_FIN, backwardFinMsg);
 }
 
-void SnoopTcpBlock::load(VXml xml)
+void SnoopTcpBlock::load(VRep& rep)
 {
   SnoopProcess::load(xml);
 
-  QString writerName = xml.getStr("writer", "");
+  QString writerName = rep.getStr("writer", "");
   if (writerName != "") writer = (SnoopCapture*)(((VGraph*)owner)->objectList.findByName(writerName));
-  forwardRst     = xml.getBool("forwardRst",    forwardRst);
-  backwardRst    = xml.getBool("backwardRst",   backwardRst);
-  forwardFin     = xml.getBool("forwardFin",    forwardFin);
-  forwardFinMsg  = xml.getArr("forwardFinMsg",  forwardFinMsg);
-  backwardFin    = xml.getBool("backwardFin",   backwardFin);
-  backwardFinMsg = xml.getArr("backwardFinMsg", backwardFinMsg);
+  forwardRst     = rep.getBool("forwardRst",    forwardRst);
+  backwardRst    = rep.getBool("backwardRst",   backwardRst);
+  forwardFin     = rep.getBool("forwardFin",    forwardFin);
+  forwardFinMsg  = rep.getArr("forwardFinMsg",  forwardFinMsg);
+  backwardFin    = rep.getBool("backwardFin",   backwardFin);
+  backwardFinMsg = rep.getArr("backwardFinMsg", backwardFinMsg);
 }
 
-void SnoopTcpBlock::save(VXml xml)
+void SnoopTcpBlock::save(VRep& rep)
 {
   SnoopProcess::save(xml);
 
   QString writerName = writer == NULL ? "" : writer->name;
-  xml.setStr("writer",         writerName);
-  xml.setBool("forwardRst",    forwardRst);
-  xml.setBool("backwardRst",   backwardRst);
-  xml.setBool("forwardFin",    forwardFin);
-  xml.setArr("forwardFinMsg",  forwardFinMsg);
-  xml.setBool("backwardFin",   backwardFin);
-  xml.setArr("backwardFinMsg", backwardFinMsg);
+  rep.setStr("writer",         writerName);
+  rep.setBool("forwardRst",    forwardRst);
+  rep.setBool("backwardRst",   backwardRst);
+  rep.setBool("forwardFin",    forwardFin);
+  rep.setArr("forwardFinMsg",  forwardFinMsg);
+  rep.setBool("backwardFin",   backwardFin);
+  rep.setArr("backwardFinMsg", backwardFinMsg);
 }
 
 #ifdef QT_GUI_LIB

@@ -223,36 +223,36 @@ void SnoopFlowMgrTest::__udpCaptured(SnoopPacket* packet)
   LOG_DEBUG("%s:%d > %s:%d pkts=%zu bytes=%zu mem=%p", qPrintable(key->srcIp.str()), key->srcPort, qPrintable(key->dstIp.str()), key->dstPort, packets, bytes, mem);
 }
 
-void SnoopFlowMgrTest::load(VXml xml)
+void SnoopFlowMgrTest::load(VRep& rep)
 {
   SnoopProcess::load(xml);
 
-  QString flowMgrName = xml.getStr("flowMgr", "");
+  QString flowMgrName = rep.getStr("flowMgr", "");
   if (flowMgrName != "") flowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findByName(flowMgrName));
-  macFlowEnabled = xml.getBool("macFlowEnabled",     macFlowEnabled);
-  macFlowMemSize = (int)xml.getInt("macFlowMemSize", (int)macFlowMemSize);
-  ipFlowEnabled = xml.getBool("ipFlowEnabled",       ipFlowEnabled);
-  ipFlowMemSize = (int)xml.getInt("ipFlowMemSize",   (int)ipFlowMemSize);
-  tcpFlowEnabled = xml.getBool("tcpFlowEnabled",     tcpFlowEnabled);
-  tcpFlowMemSize = (int)xml.getInt("tcpFlowMemSize", (int)tcpFlowMemSize);
-  udpFlowEnabled = xml.getBool("udpFlowEnabled",     udpFlowEnabled);
-  udpFlowMemSize = (int)xml.getInt("udpFlowMemSize", (int)udpFlowMemSize);
+  macFlowEnabled = rep.getBool("macFlowEnabled",     macFlowEnabled);
+  macFlowMemSize = (int)rep.getInt("macFlowMemSize", (int)macFlowMemSize);
+  ipFlowEnabled = rep.getBool("ipFlowEnabled",       ipFlowEnabled);
+  ipFlowMemSize = (int)rep.getInt("ipFlowMemSize",   (int)ipFlowMemSize);
+  tcpFlowEnabled = rep.getBool("tcpFlowEnabled",     tcpFlowEnabled);
+  tcpFlowMemSize = (int)rep.getInt("tcpFlowMemSize", (int)tcpFlowMemSize);
+  udpFlowEnabled = rep.getBool("udpFlowEnabled",     udpFlowEnabled);
+  udpFlowMemSize = (int)rep.getInt("udpFlowMemSize", (int)udpFlowMemSize);
 }
 
-void SnoopFlowMgrTest::save(VXml xml)
+void SnoopFlowMgrTest::save(VRep& rep)
 {
   SnoopProcess::save(xml);
 
   QString flowMgrName = flowMgr == NULL ? "" : flowMgr->name;
-  xml.setStr("flowMgr", flowMgrName);
-  xml.setBool("macFlowEnabled",     macFlowEnabled);
-  xml.setInt("macFlowMemSize", (int)macFlowMemSize);
-  xml.setBool("ipFlowEnabled",       ipFlowEnabled);
-  xml.setInt("ipFlowMemSize",   (int)ipFlowMemSize);
-  xml.setBool("tcpFlowEnabled",     tcpFlowEnabled);
-  xml.setInt("tcpFlowMemSize", (int)tcpFlowMemSize);
-  xml.setBool("udpFlowEnabled",     udpFlowEnabled);
-  xml.setInt("udpFlowMemSize", (int)udpFlowMemSize);
+  rep.setStr("flowMgr", flowMgrName);
+  rep.setBool("macFlowEnabled",     macFlowEnabled);
+  rep.setInt("macFlowMemSize", (int)macFlowMemSize);
+  rep.setBool("ipFlowEnabled",       ipFlowEnabled);
+  rep.setInt("ipFlowMemSize",   (int)ipFlowMemSize);
+  rep.setBool("tcpFlowEnabled",     tcpFlowEnabled);
+  rep.setInt("tcpFlowMemSize", (int)tcpFlowMemSize);
+  rep.setBool("udpFlowEnabled",     udpFlowEnabled);
+  rep.setInt("udpFlowMemSize", (int)udpFlowMemSize);
 }
 
 #ifdef QT_GUI_LIB

@@ -227,10 +227,10 @@ bool Scene::loadFromFile(QString fileName, QString& errStr)
     VXmlDoc doc(fileName);
     doc.loadFromFile(fileName);
     VXml xml = doc.root().gotoChild("coord");
-    int _count = xml.childs().count();
+    int _count = rep.childs().count();
     for (int i = 0 ; i < _count; i++)
     {
-      VXml     childXml = xml.childs().at(i);
+      VXml     childXml = rep.childs().at(i);
       QString  name = childXml.getStr("name");
       if (name == "")
       {
@@ -289,7 +289,7 @@ bool Scene::saveToFile(QString fileName, QString& errStr)
   VXmlDoc doc(fileName);
   doc.loadFromFile(fileName);
   VXml xml = doc.root().gotoChild("coord");
-  xml.clearChild();
+  rep.clearChild();
   int _count = this->graph->objectList.count();
   for (int i = 0; i < _count; i++)
   {
@@ -297,7 +297,7 @@ bool Scene::saveToFile(QString fileName, QString& errStr)
     Node*    node   = findNodeByName(object->name);
     if (node == NULL) continue;
 
-    VXml     childXml = xml.addChild("object");
+    VXml     childXml = rep.addChild("object");
     childXml.setStr("name", object->name);
     childXml.setDouble("x", node->pos().x());
     childXml.setDouble("y", node->pos().y());
@@ -461,18 +461,18 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
   QGraphicsScene::mouseReleaseEvent(event);
 }
 
-void Scene::load(VXml xml)
+void Scene::load(VRep& rep)
 {
-  categoryNames     = xml.getStr("categoryNames",     categoryNames.join("/")).split("/");
-  removePrefixNames = xml.getStr("removePrefixNames", removePrefixNames.join("/")).split("/");
-  removeSignalNames = xml.getStr("removeSignalNames", removeSignalNames.join("/")).split("/");
-  removeSlotNames   = xml.getStr("removeSlotNames",   removeSlotNames.join("/")).split("/");
+  categoryNames     = rep.getStr("categoryNames",     categoryNames.join("/")).split("/");
+  removePrefixNames = rep.getStr("removePrefixNames", removePrefixNames.join("/")).split("/");
+  removeSignalNames = rep.getStr("removeSignalNames", removeSignalNames.join("/")).split("/");
+  removeSlotNames   = rep.getStr("removeSlotNames",   removeSlotNames.join("/")).split("/");
 }
 
-void Scene::save(VXml xml)
+void Scene::save(VRep& rep)
 {
-  xml.setStr("categoryNames",     categoryNames.join("/"));
-  xml.setStr("removePrefixNames", removePrefixNames.join("/"));
-  xml.setStr("removeSignalNames", removeSignalNames.join("/"));
-  xml.setStr("removeSlotNames",   removeSlotNames.join("/"));
+  rep.setStr("categoryNames",     categoryNames.join("/"));
+  rep.setStr("removePrefixNames", removePrefixNames.join("/"));
+  rep.setStr("removeSignalNames", removeSignalNames.join("/"));
+  rep.setStr("removeSlotNames",   removeSlotNames.join("/"));
 }

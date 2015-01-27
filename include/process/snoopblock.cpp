@@ -28,18 +28,18 @@ void SnoopBlock::block(SnoopPacket* packet)
   }
 }
 
-void SnoopBlock::load(VXml xml)
+void SnoopBlock::load(VRep& rep)
 {
   SnoopProcess::load(xml);
 
-  dropRate = xml.getInt("dropRate", dropRate);
+  dropRate = rep.getInt("dropRate", dropRate);
 }
 
-void SnoopBlock::save(VXml xml)
+void SnoopBlock::save(VRep& rep)
 {
   SnoopProcess::save(xml);
 
-  xml.setInt("dropRate", dropRate);
+  rep.setInt("dropRate", dropRate);
 }
 
 #ifdef QT_GUI_LIB

@@ -83,20 +83,20 @@ void SnoopBpFilter::check(SnoopPacket* packet)
   }
 }
 
-void SnoopBpFilter::load(VXml xml)
+void SnoopBpFilter::load(VRep& rep)
 {
   SnoopFilter::load(xml);
 
-  filter = xml.getStr("filter", filter);
-  linkType = xml.getInt("linkType", linkType);
+  filter = rep.getStr("filter", filter);
+  linkType = rep.getInt("linkType", linkType);
 }
 
-void SnoopBpFilter::save(VXml xml)
+void SnoopBpFilter::save(VRep& rep)
 {
   SnoopFilter::save(xml);
 
-  xml.setStr("filter", filter);
-  xml.setInt("linkType", linkType);
+  rep.setStr("filter", filter);
+  rep.setInt("linkType", linkType);
 }
 
 #ifdef QT_GUI_LIB

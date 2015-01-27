@@ -684,26 +684,26 @@ void SnoopFlowMgr::process_UdpFlow(SnoopPacket* packet, SnoopUdpFlowKey& key)
   emit __udpCaptured(packet);
 }
 
-void SnoopFlowMgr::load(VXml xml)
+void SnoopFlowMgr::load(VRep& rep)
 {
   SnoopProcess::load(xml);
 
-  checkInterval  = xml.getInt64("checkInterval", checkInterval);
-  macFlowTimeout = (long)xml.getInt("macFlowTimeout", (int)macFlowTimeout);
-  ipFlowTimeout  = (long)xml.getInt("ipFlowTimeout",  (int)ipFlowTimeout);
-  tcpFlowTimeout = (long)xml.getInt("tcpFlowTimeout", (int)tcpFlowTimeout);
-  udpFlowTimeout = (long)xml.getInt("udpFlowTimeout", (int)udpFlowTimeout);
+  checkInterval  = rep.getInt64("checkInterval", checkInterval);
+  macFlowTimeout = (long)rep.getInt("macFlowTimeout", (int)macFlowTimeout);
+  ipFlowTimeout  = (long)rep.getInt("ipFlowTimeout",  (int)ipFlowTimeout);
+  tcpFlowTimeout = (long)rep.getInt("tcpFlowTimeout", (int)tcpFlowTimeout);
+  udpFlowTimeout = (long)rep.getInt("udpFlowTimeout", (int)udpFlowTimeout);
 }
 
-void SnoopFlowMgr::save(VXml xml)
+void SnoopFlowMgr::save(VRep& rep)
 {
   SnoopProcess::save(xml);
 
-  xml.setInt64("checkInterval", checkInterval);
-  xml.setInt("macFlowTimeout", (int)macFlowTimeout);
-  xml.setInt("ipFlowTimeout",  (int)ipFlowTimeout);
-  xml.setInt("tcpFlowTimeout", (int)tcpFlowTimeout);
-  xml.setInt("udpFlowTimeout", (int)udpFlowTimeout);
+  rep.setInt64("checkInterval", checkInterval);
+  rep.setInt("macFlowTimeout", (int)macFlowTimeout);
+  rep.setInt("ipFlowTimeout",  (int)ipFlowTimeout);
+  rep.setInt("tcpFlowTimeout", (int)tcpFlowTimeout);
+  rep.setInt("udpFlowTimeout", (int)udpFlowTimeout);
 }
 
 #ifdef QT_GUI_LIB

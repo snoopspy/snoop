@@ -30,8 +30,8 @@ public:
   Ip   ip;
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 
 #ifdef QT_GUI_LIB
 public:
@@ -51,7 +51,7 @@ void operator << (SnoopDnsChangeItem& item, QTreeWidgetItem& treeWidgetItem);
 // ----------------------------------------------------------------------------
 // SnoopDnsChangeItems
 // ----------------------------------------------------------------------------
-class SnoopDnsChangeItems : public QObject, public QList<SnoopDnsChangeItem>, public VXmlable, public VOptionable, public VListWidgetAccessible
+class SnoopDnsChangeItems : public QObject, public QList<SnoopDnsChangeItem>, public VSerializable, public VOptionable, public VListWidgetAccessible
 {
   Q_OBJECT
 
@@ -59,8 +59,8 @@ public:
   bool prepare(VError& error);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 
 #ifdef QT_GUI_LIB
 public: // VOptionable
@@ -104,8 +104,8 @@ signals:
   void changed(SnoopPacket* packet);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 
 #ifdef QT_GUI_LIB
 public: // for VOptionable

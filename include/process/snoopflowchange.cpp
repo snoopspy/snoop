@@ -73,54 +73,54 @@ bool SnoopFlowChangeItem::check(SnoopTransportFlowKey& flowKey, Protocol protoco
   return true;
 }
 
-void SnoopFlowChangeItem::load(VXml xml)
+void SnoopFlowChangeItem::load(VRep& rep)
 {
-  enabled           = xml.getBool("enabled", enabled);
-  log               = xml.getBool("log", log);
-  protocol          = (Protocol)xml.getInt("protocol", (int)protocol);
+  enabled           = rep.getBool("enabled", enabled);
+  log               = rep.getBool("log", log);
+  protocol          = (Protocol)rep.getInt("protocol", (int)protocol);
 
-  srcIp             = xml.getStr("srcIp", srcIp.str());
-  srcIpMask         = xml.getStr("srcIpMask", srcIpMask.str());
-  srcIpChangeType   = (IpChangeType)xml.getInt("srcIpChangeType", (int)srcIpChangeType);
-  srcIpFixValue     = xml.getStr("srcIpFixValue", srcIpFixValue.str());
+  srcIp             = rep.getStr("srcIp", srcIp.str());
+  srcIpMask         = rep.getStr("srcIpMask", srcIpMask.str());
+  srcIpChangeType   = (IpChangeType)rep.getInt("srcIpChangeType", (int)srcIpChangeType);
+  srcIpFixValue     = rep.getStr("srcIpFixValue", srcIpFixValue.str());
 
-  srcPort           = (uint16_t)xml.getInt("srcPort", (int)srcPort);
-  srcPortChangeType = (PortChangeType)xml.getInt("srcPortChangeType", (int)srcPortChangeType);
-  srcPortFixValue   = (uint16_t)xml.getInt("srcPortFixValue", (int)srcPortFixValue);
+  srcPort           = (uint16_t)rep.getInt("srcPort", (int)srcPort);
+  srcPortChangeType = (PortChangeType)rep.getInt("srcPortChangeType", (int)srcPortChangeType);
+  srcPortFixValue   = (uint16_t)rep.getInt("srcPortFixValue", (int)srcPortFixValue);
 
-  dstIp             = xml.getStr("dstIp", dstIp.str());
-  dstIpMask         = xml.getStr("dstIpMask", dstIpMask.str());
-  dstIpChangeType   = (IpChangeType)xml.getInt("dstIpChangeType", (int)dstIpChangeType);
-  dstIpFixValue     = xml.getStr("dstIpFixValue", dstIpFixValue.str());
+  dstIp             = rep.getStr("dstIp", dstIp.str());
+  dstIpMask         = rep.getStr("dstIpMask", dstIpMask.str());
+  dstIpChangeType   = (IpChangeType)rep.getInt("dstIpChangeType", (int)dstIpChangeType);
+  dstIpFixValue     = rep.getStr("dstIpFixValue", dstIpFixValue.str());
 
-  dstPort           = (uint16_t)xml.getInt("dstPort", (int)dstPort);
-  dstPortChangeType = (PortChangeType)xml.getInt("dstPortChangeType", (int)dstPortChangeType);
-  dstPortFixValue   = (uint16_t)xml.getInt("dstPortFixValue", (int)dstPortFixValue);
+  dstPort           = (uint16_t)rep.getInt("dstPort", (int)dstPort);
+  dstPortChangeType = (PortChangeType)rep.getInt("dstPortChangeType", (int)dstPortChangeType);
+  dstPortFixValue   = (uint16_t)rep.getInt("dstPortFixValue", (int)dstPortFixValue);
 }
 
-void SnoopFlowChangeItem::save(VXml xml)
+void SnoopFlowChangeItem::save(VRep& rep)
 {
-  xml.setBool("enabled", enabled);
-  xml.setBool("log", log);
-  xml.setInt("protocol", (int)protocol);
+  rep.setBool("enabled", enabled);
+  rep.setBool("log", log);
+  rep.setInt("protocol", (int)protocol);
 
-  xml.setStr("srcIp", srcIp.str());
-  xml.setStr("srcIpMask", srcIpMask.str());
-  xml.setInt("srcIpChangeType", (int)srcIpChangeType);
-  xml.setStr("srcIpFixValue", srcIpFixValue.str());
+  rep.setStr("srcIp", srcIp.str());
+  rep.setStr("srcIpMask", srcIpMask.str());
+  rep.setInt("srcIpChangeType", (int)srcIpChangeType);
+  rep.setStr("srcIpFixValue", srcIpFixValue.str());
 
-  xml.setInt("srcPort", (int)srcPort);
-  xml.setInt("srcPortChangeType", (int)srcPortChangeType);
-  xml.setInt("srcPortFixValue", (int)srcPortFixValue);
+  rep.setInt("srcPort", (int)srcPort);
+  rep.setInt("srcPortChangeType", (int)srcPortChangeType);
+  rep.setInt("srcPortFixValue", (int)srcPortFixValue);
 
-  xml.setStr("dstIp", dstIp.str());
-  xml.setStr("dstIpMask", dstIpMask.str());
-  xml.setInt("dstIpChangeType", (int)dstIpChangeType);
-  xml.setStr("dstIpFixValue", dstIpFixValue.str());
+  rep.setStr("dstIp", dstIp.str());
+  rep.setStr("dstIpMask", dstIpMask.str());
+  rep.setInt("dstIpChangeType", (int)dstIpChangeType);
+  rep.setStr("dstIpFixValue", dstIpFixValue.str());
 
-  xml.setInt("dstPort", (int)dstPort);
-  xml.setInt("dstPortChangeType", (int)dstPortChangeType);
-  xml.setInt("dstPortFixValue", (int)dstPortFixValue);
+  rep.setInt("dstPort", (int)dstPort);
+  rep.setInt("dstPortChangeType", (int)dstPortChangeType);
+  rep.setInt("dstPortFixValue", (int)dstPortFixValue);
 }
 
 #ifdef QT_GUI_LIB
@@ -329,11 +329,11 @@ SnoopTransportFlowKey SnoopFlowChangeItems::change(SnoopFlowChangeItem& item, Sn
   return res;
 }
 
-void SnoopFlowChangeItems::load(VXml xml)
+void SnoopFlowChangeItems::load(VRep& rep)
 {
   clear();
   {
-    xml_foreach (childXml, xml.childs())
+    xml_foreach (childXml, rep.childs())
     {
       SnoopFlowChangeItem item;
       item.load(childXml);
@@ -342,13 +342,13 @@ void SnoopFlowChangeItems::load(VXml xml)
   }
 }
 
-void SnoopFlowChangeItems::save(VXml xml)
+void SnoopFlowChangeItems::save(VRep& rep)
 {
-  xml.clearChild();
+  rep.clearChild();
   for (SnoopFlowChangeItems::iterator it = begin(); it != end(); it++)
   {
     SnoopFlowChangeItem& item = *it;
-    VXml childXml = xml.addChild("item");
+    VXml childXml = rep.addChild("item");
     item.save(childXml);
   }
 }
@@ -808,30 +808,30 @@ void SnoopFlowChange::__toUdpFlowDelete(SnoopUdpFlowKey* key, SnoopFlowValue* va
   Q_UNUSED(value)
 }
 
-void SnoopFlowChange::load(VXml xml)
+void SnoopFlowChange::load(VRep& rep)
 {
   SnoopProcess::load(xml);
 
-  QString fromFlowMgrName = xml.getStr("fromFlowMgr", "");
+  QString fromFlowMgrName = rep.getStr("fromFlowMgr", "");
   if (fromFlowMgrName != "") fromFlowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findByName(fromFlowMgrName));
-  QString toFlowMgrName = xml.getStr("toFlowMgr", "");
+  QString toFlowMgrName = rep.getStr("toFlowMgr", "");
   if (toFlowMgrName != "") toFlowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findByName(toFlowMgrName));
-  tcpChange = xml.getBool("tcpChange", tcpChange);
-  udpChange = xml.getBool("udpChange", udpChange);
-  changeItems.load(xml.gotoChild("changeItems"));
+  tcpChange = rep.getBool("tcpChange", tcpChange);
+  udpChange = rep.getBool("udpChange", udpChange);
+  changeItems.load(rep.gotoChild("changeItems"));
 }
 
-void SnoopFlowChange::save(VXml xml)
+void SnoopFlowChange::save(VRep& rep)
 {
   SnoopProcess::save(xml);
 
   QString fromFlowMgrName = fromFlowMgr == NULL ? "" : fromFlowMgr->name;
-  xml.setStr("fromFlowMgr", fromFlowMgrName);
+  rep.setStr("fromFlowMgr", fromFlowMgrName);
   QString toFlowMgrName = toFlowMgr == NULL ? "" : toFlowMgr->name;
-  xml.setStr("toFlowMgr", toFlowMgrName);
-  xml.setBool("tcpChange", tcpChange);
-  xml.setBool("udpChange", udpChange);
-  changeItems.save(xml.gotoChild("changeItems"));
+  rep.setStr("toFlowMgr", toFlowMgrName);
+  rep.setBool("tcpChange", tcpChange);
+  rep.setBool("udpChange", udpChange);
+  changeItems.save(rep.gotoChild("changeItems"));
 }
 
 #ifdef QT_GUI_LIB

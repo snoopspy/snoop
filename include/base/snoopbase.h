@@ -15,7 +15,7 @@
 #include <VNet>
 #include <VError>
 #include <VLog>
-#include <VXml>
+#include <VSerializable>
 
 #ifdef WIN32
   #define  WPCAP

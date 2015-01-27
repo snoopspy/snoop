@@ -1,5 +1,5 @@
 #include <SnoopRtm>
-#include <VXmlDoc>
+// #include <VXmlDoc> // gilgil temp 2015.01.27
 #include <QRegExp>
 
 // ----------------------------------------------------------------------------
@@ -23,22 +23,22 @@ void SnoopRtmEntry::clear()
   metric  = 0;
 }
 
-void SnoopRtmEntry::load(VXml xml)
+void SnoopRtmEntry::load(VRep& rep)
 {
-  dst     = xml.getStr("dst",     dst.str());
-  mask    = xml.getStr("mask",    mask.str());
-  gateway = xml.getStr("gateway", gateway.str());
-  intf    = xml.getStr("intf",    intf);
-  metric  = xml.getInt("metric",  metric);
+  dst     = rep.getStr("dst",     dst.str());
+  mask    = rep.getStr("mask",    mask.str());
+  gateway = rep.getStr("gateway", gateway.str());
+  intf    = rep.getStr("intf",    intf);
+  metric  = rep.getInt("metric",  metric);
 }
 
-void SnoopRtmEntry::save(VXml xml)
+void SnoopRtmEntry::save(VRep& rep)
 {
-  xml.setStr("dst",     dst.str());
-  xml.setStr("mask",    mask.str());
-  xml.setStr("gateway", gateway.str());
-  xml.setStr("intf",    intf);
-  xml.setInt("metric",  metric);
+  rep.setStr("dst",     dst.str());
+  rep.setStr("mask",    mask.str());
+  rep.setStr("gateway", gateway.str());
+  rep.setStr("intf",    intf);
+  rep.setInt("metric",  metric);
 }
 
 // ----------------------------------------------------------------------------
@@ -54,10 +54,10 @@ int SnoopRtmEntryList::find(Ip dst, Ip mask)
   return -1;
 }
 
-void SnoopRtmEntryList::load(VXml xml)
+void SnoopRtmEntryList::load(VRep& rep)
 {
   clear();
-  xml_foreach (childXml, xml.childs())
+  xml_foreach (childXml, rep.childs())
   {
     SnoopRtmEntry entity;
     entity.load(childXml);
@@ -65,12 +65,12 @@ void SnoopRtmEntryList::load(VXml xml)
   }
 }
 
-void SnoopRtmEntryList::save(VXml xml)
+void SnoopRtmEntryList::save(VRep& rep)
 {
-  xml.clearChild();
+  rep.clearChild();
   foreach (SnoopRtmEntry entry, *this)
   {
-    VXml childXml = xml.addChild("entry");
+    VXml childXml = rep.addChild("entry");
     entry.save(childXml);
   }
 }
@@ -330,12 +330,12 @@ SnoopRtmEntry* SnoopRtm::getBestEntry(Ip ip)
   return res;
 }
 
-void SnoopRtm::load(VXml xml)
+void SnoopRtm::load(VRep& rep)
 {
   items.load(xml);
 }
 
-void SnoopRtm::save(VXml xml)
+void SnoopRtm::save(VRep& rep)
 {
   items.save(xml);
 }

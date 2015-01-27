@@ -16,11 +16,11 @@ void SnoopProcessPolicyMap::clear()
   (*this)[""] = false;
 }
 
-void SnoopProcessPolicyMap::load(VXml xml)
+void SnoopProcessPolicyMap::load(VRep& rep)
 {
   clear();
   {
-    xml_foreach (childXml, xml.childs())
+    xml_foreach (childXml, rep.childs())
     {
       QString processName  = childXml.getStr("processName", SnoopNetStat::UNKNOWN_PROCESS_NAME);
       bool    ack          = childXml.getBool("ack", false);
@@ -29,14 +29,14 @@ void SnoopProcessPolicyMap::load(VXml xml)
   }
 }
 
-void SnoopProcessPolicyMap::save(VXml xml)
+void SnoopProcessPolicyMap::save(VRep& rep)
 {
-  xml.clearChild();
+  rep.clearChild();
   for (SnoopProcessPolicyMap::iterator it = begin(); it != end(); it++)
   {
     QString& processName = (QString&)it.key();
     bool&    ack         = (bool&)it.value();
-    VXml childXml = xml.addChild("policy");
+    VXml childXml = rep.addChild("policy");
     childXml.setStr("processName", processName);
     childXml.setBool("ack", ack);
   }
@@ -260,27 +260,27 @@ void SnoopProcessFilter::check(SnoopPacket* packet)
     emit nak(packet);
 }
 
-void SnoopProcessFilter::load(VXml xml)
+void SnoopProcessFilter::load(VRep& rep)
 {
   SnoopFilter::load(xml);
 
-  QString flowMgrName = xml.getStr("flowMgr", "");
+  QString flowMgrName = rep.getStr("flowMgr", "");
   if (flowMgrName != "") flowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findByName(flowMgrName));
-  policyMap.load(xml.gotoChild("policies"));
+  policyMap.load(rep.gotoChild("policies"));
 #ifdef QT_GUI_LIB
-  showStatus = xml.getBool("showStatus", showStatus);
+  showStatus = rep.getBool("showStatus", showStatus);
 #endif //  QT_GUI_LIB
 }
 
-void SnoopProcessFilter::save(VXml xml)
+void SnoopProcessFilter::save(VRep& rep)
 {
   SnoopFilter::save(xml);
 
   QString flowMgrName = flowMgr == NULL ? "" : flowMgr->name;
-  xml.setStr("flowMgr", flowMgrName);
-  policyMap.save(xml.gotoChild("policies"));
+  rep.setStr("flowMgr", flowMgrName);
+  policyMap.save(rep.gotoChild("policies"));
 #ifdef QT_GUI_LIB
-  xml.setBool("showStatus", showStatus);
+  rep.setBool("showStatus", showStatus);
 #endif //  QT_GUI_LIB
 }
 

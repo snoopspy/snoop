@@ -86,20 +86,20 @@ int SnoopFile::read(SnoopPacket* packet)
   return res;
 }
 
-void SnoopFile::load(VXml xml)
+void SnoopFile::load(VRep& rep)
 {
   SnoopPcap::load(xml);
 
-  fileName = xml.getStr("fileName", fileName);
-  speed    = xml.getDouble("speed", speed);
+  fileName = rep.getStr("fileName", fileName);
+  speed    = rep.getDouble("speed", speed);
 }
 
-void SnoopFile::save(VXml xml)
+void SnoopFile::save(VRep& rep)
 {
   SnoopPcap::save(xml);
 
-  xml.setStr("fileName", fileName);
-  xml.setDouble("speed", speed);
+  rep.setStr("fileName", fileName);
+  rep.setDouble("speed", speed);
 }
 
 #ifdef QT_GUI_LIB

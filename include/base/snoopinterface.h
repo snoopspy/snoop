@@ -16,7 +16,7 @@
 // ----------------------------------------------------------------------------
 // SnoopInterface
 // ----------------------------------------------------------------------------
-class SnoopInterface : public VXmlable
+class SnoopInterface : public VSerializable
 {
   friend class SnoopInterfaces;
   friend class QList<SnoopInterface>;
@@ -43,8 +43,8 @@ public:
   bool operator != (SnoopInterface& rhs);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 
 // private: // gilgil temp 2015.01.16
 //  Q_DISABLE_COPY(SnoopInterface) // gilgil temp 2014.11.27
@@ -53,7 +53,7 @@ public:
 // ----------------------------------------------------------------------------
 // SnoopInterfaces
 // ----------------------------------------------------------------------------
-class SnoopInterfaces : public QList<SnoopInterface>, public VXmlable
+class SnoopInterfaces : public QList<SnoopInterface>, public VSerializable
 {
   friend class SnoopRemote;
   friend class _SnoopInterfaces;
@@ -79,8 +79,8 @@ public:
   bool operator != (SnoopInterfaces& rhs);
 
 public:
-  void load(VXml xml);
-  void save(VXml xml);
+  void load(VRep& rep);
+  void save(VRep& rep);
 
 public:
   static int getBestAdapterIndex(QString host = "");

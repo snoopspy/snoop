@@ -157,21 +157,21 @@ void SnoopVirtualNat::myRealRecv(SnoopPacket* packet)
   Q_UNUSED(packet) // gilgil temp 2012.06.11
 }
 
-void SnoopVirtualNat::load(VXml xml)
+void SnoopVirtualNat::load(VRep& rep)
 {
-  virAdapter.load(xml.gotoChild("virtual"));
+  virAdapter.load(rep.gotoChild("virtual"));
   virAdapterIndex = virAdapter.adapterIndex;
 
-  realAdapter.load(xml.gotoChild("real"));
+  realAdapter.load(rep.gotoChild("real"));
   realAdapterIndex = realAdapter.adapterIndex;
 }
 
-void SnoopVirtualNat::save(VXml xml)
+void SnoopVirtualNat::save(VRep& rep)
 {
   virAdapter.adapterIndex = virAdapterIndex;
-  virAdapter.save(xml.gotoChild("virtual"));
+  virAdapter.save(rep.gotoChild("virtual"));
 
   realAdapter.adapterIndex = realAdapterIndex;
-  realAdapter.save(xml.gotoChild("real"));
+  realAdapter.save(rep.gotoChild("real"));
 }
 

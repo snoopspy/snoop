@@ -198,22 +198,22 @@ void SnoopFindHost::run()
   }
 }
 
-void SnoopFindHost::load(VXml xml)
+void SnoopFindHost::load(VRep& rep)
 {
   SnoopAdapter::load(xml);
 
-  findAllTimeout = xml.getInt("findAllTimeout", findAllTimeout);
-  scanInterval   = xml.getULong("scanInterval", scanInterval);
-  sendInterval   = xml.getULong("sendInterval", sendInterval);
-  hostList.load(xml.gotoChild("hostList"));
+  findAllTimeout = rep.getInt("findAllTimeout", findAllTimeout);
+  scanInterval   = rep.getULong("scanInterval", scanInterval);
+  sendInterval   = rep.getULong("sendInterval", sendInterval);
+  hostList.load(rep.gotoChild("hostList"));
 }
 
-void SnoopFindHost::save(VXml xml)
+void SnoopFindHost::save(VRep& rep)
 {
   SnoopAdapter::save(xml);
 
-  xml.setInt("findAllTimeout", findAllTimeout);
-  xml.setULong("scanInterval", scanInterval);
-  xml.setULong("sendInterval", sendInterval);
-  hostList.save(xml.gotoChild("hostList"));
+  rep.setInt("findAllTimeout", findAllTimeout);
+  rep.setULong("scanInterval", scanInterval);
+  rep.setULong("sendInterval", sendInterval);
+  hostList.save(rep.gotoChild("hostList"));
 }

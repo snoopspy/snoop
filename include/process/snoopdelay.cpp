@@ -106,22 +106,22 @@ void SnoopDelay::delay(SnoopPacket* packet)
   thread->itemMgr.items.push_back(item);
 }
 
-void SnoopDelay::load(VXml xml)
+void SnoopDelay::load(VRep& rep)
 {
   SnoopProcess::load(xml);
 
-  QString writerName = xml.getStr("writer", "");
+  QString writerName = rep.getStr("writer", "");
   if (writerName != "") writer = (SnoopCapture*)(((VGraph*)owner)->objectList.findByName(writerName));
-  timeout = xml.getULong("timeout", timeout);
+  timeout = rep.getULong("timeout", timeout);
 }
 
-void SnoopDelay::save(VXml xml)
+void SnoopDelay::save(VRep& rep)
 {
   SnoopProcess::save(xml);
 
   QString writerName = writer == NULL ? "" : writer->name;
-  xml.setStr("writer", writerName);
-  xml.setULong("timeout", timeout);
+  rep.setStr("writer", writerName);
+  rep.setULong("timeout", timeout);
 }
 
 #ifdef QT_GUI_LIB

@@ -42,18 +42,18 @@ bool SnoopInterface::operator != (SnoopInterface& rhs)
   return !(*this == rhs);
 }
 
-void SnoopInterface::load(VXml xml)
+void SnoopInterface::load(VRep& rep)
 {
-  index = xml.getInt("index", index);
-  name = xml.getStr("name", name);
-  description = xml.getStr("description", description);
+  index = rep.getInt("index", index);
+  name = rep.getStr("name", name);
+  description = rep.getStr("description", description);
 }
 
-void SnoopInterface::save(VXml xml)
+void SnoopInterface::save(VRep& rep)
 {
-  xml.setInt("index", index);
-  xml.setStr("name", name);
-  xml.setStr("description", description);
+  rep.setInt("index", index);
+  rep.setStr("name", name);
+  rep.setStr("description", description);
 }
 
 // ----------------------------------------------------------------------------
@@ -223,9 +223,9 @@ bool SnoopInterfaces::operator != (SnoopInterfaces& rhs)
   return !(*this == rhs);
 }
 
-void SnoopInterfaces::load(VXml xml)
+void SnoopInterfaces::load(VRep& rep)
 {
-  xml_foreach(childXml, xml.childs())
+  xml_foreach(childXml, rep.childs())
   {
     SnoopInterface _interface;
     _interface.load(childXml);
@@ -233,13 +233,13 @@ void SnoopInterfaces::load(VXml xml)
   }
 }
 
-void SnoopInterfaces::save(VXml xml)
+void SnoopInterfaces::save(VRep& rep)
 {
-  xml.clearChild();
+  rep.clearChild();
   for (SnoopInterfaces::iterator it = begin(); it != end(); it++)
   {
     SnoopInterface& _interface = *it;
-    VXml childXml = xml.addChild("interface");
+    VXml childXml = rep.addChild("interface");
     _interface.save(childXml);
   }
 }

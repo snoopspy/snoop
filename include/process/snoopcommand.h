@@ -19,7 +19,7 @@
 // ----------------------------------------------------------------------------
 // SnoopCommandItem
 // ----------------------------------------------------------------------------
-class SnoopCommandItem : public VXmlable
+class SnoopCommandItem : public VSerializable
 {
 public:
   SnoopCommandItem();
@@ -37,8 +37,8 @@ public:
   bool execute(VError& error);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 
 #ifdef QT_GUI_LIB
 public:
@@ -56,14 +56,14 @@ void operator << (SnoopCommandItem& item, QTreeWidgetItem& treeWidgetItem);
 // ----------------------------------------------------------------------------
 // SnoopCommandItems
 // ----------------------------------------------------------------------------
-class SnoopCommandItems : public QList<SnoopCommandItem>, public VXmlable
+class SnoopCommandItems : public QList<SnoopCommandItem>, public VSerializable
 {
 public:
   bool execute(VError& error);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 };
 
 #ifdef QT_GUI_LIB
@@ -91,8 +91,8 @@ public:
   SnoopCommandItems closeCommands;
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 
 #ifdef QT_GUI_LIB
 public: // for VOptionable

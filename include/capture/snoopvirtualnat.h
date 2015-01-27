@@ -48,8 +48,8 @@ protected slots:
   void myRealRecv(SnoopPacket* packet);
 
 public:
-  virtual void load(VXml xml);
-  virtual void save(VXml xml);
+  virtual void load(VRep& rep);
+  virtual void save(VRep& rep);
 };
 
 #endif // __SNOOP_VIRTUAL_NAT_H__

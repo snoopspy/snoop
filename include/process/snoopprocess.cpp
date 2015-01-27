@@ -21,12 +21,12 @@ bool SnoopProcess::doClose()
   return true;
 }
 
-void SnoopProcess::load(VXml xml)
+void SnoopProcess::load(VRep& rep)
 {
   VObject::load(xml);
 }
 
-void SnoopProcess::save(VXml xml)
+void SnoopProcess::save(VRep& rep)
 {
   VObject::save(xml);
 }
