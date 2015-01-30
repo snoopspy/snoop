@@ -172,9 +172,9 @@ void SnoopUdpSender::save(VXml xml)
 {
   SnoopProcess::save(xml);
 
-  QString flowMgrName = flowMgr == NULL ? "" : flowMgr->name;
+  QString flowMgrName = flowMgr == NULL ? "" : flowMgr->objectName();
   xml.setStr("flowMgr", flowMgrName);
-  QString writerName = writer == NULL ? "" : writer->name;
+  QString writerName = writer == NULL ? "" : writer->objectName();
   xml.setStr("writer", writerName);
   xml.setArr("dscr",          dscr);
   xml.setInt("headerSize",    headerSize);
@@ -187,10 +187,10 @@ void SnoopUdpSender::optionAddWidget(QLayout* layout)
   SnoopProcess::optionAddWidget(layout);
 
   QStringList flowMgrList = ((VGraph*)owner)->objectList.findNamesByClassName("SnoopFlowMgr");
-  VOptionable::addComboBox(layout, "cbxFlowMgr", "FlowMgr", flowMgrList, -1, flowMgr == NULL ? "" : flowMgr->name);
+  VOptionable::addComboBox(layout, "cbxFlowMgr", "FlowMgr", flowMgrList, -1, flowMgr == NULL ? "" : flowMgr->objectName());
 
   QStringList writerList = ((VGraph*)owner)->objectList.findNamesByCategoryName("SnoopCapture");
-  VOptionable::addComboBox(layout, "cbxWriter", "Writer", writerList, -1, writer == NULL ? "" : writer->name);
+  VOptionable::addComboBox(layout, "cbxWriter", "Writer", writerList, -1, writer == NULL ? "" : writer->objectName());
 
   VOptionable::addLineEdit(layout, "leDscr", "Discriminator", dscr);
   VOptionable::addLineEdit(layout, "leHeaderSize",    "Header Size", QString::number(headerSize));

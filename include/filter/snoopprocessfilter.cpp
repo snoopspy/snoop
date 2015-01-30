@@ -102,7 +102,7 @@ bool SnoopProcessFilter::doOpen()
         }
       }
       widget = new SnoopProcessFilterWidget(mainWindow, Qt::Window);
-      widget->setWindowTitle(name + " Status");
+      widget->setWindowTitle(objectName() + " Status");
       widget->filter = this;
     }
     widget->show();
@@ -276,7 +276,7 @@ void SnoopProcessFilter::save(VXml xml)
 {
   SnoopFilter::save(xml);
 
-  QString flowMgrName = flowMgr == NULL ? "" : flowMgr->name;
+  QString flowMgrName = flowMgr == NULL ? "" : flowMgr->objectName();
   xml.setStr("flowMgr", flowMgrName);
   policyMap.save(xml.gotoChild("policies"));
 #ifdef QT_GUI_LIB
@@ -290,7 +290,7 @@ void SnoopProcessFilter::optionAddWidget(QLayout* layout)
   SnoopFilter::optionAddWidget(layout);
 
   QStringList flowMgrList = ((VGraph*)owner)->objectList.findNamesByClassName("SnoopFlowMgr");
-  VOptionable::addComboBox(layout, "cbxFlowMgr", "FlowMgr", flowMgrList, -1, flowMgr == NULL ? "" : flowMgr->name);
+  VOptionable::addComboBox(layout, "cbxFlowMgr", "FlowMgr", flowMgrList, -1, flowMgr == NULL ? "" : flowMgr->objectName());
   VOptionable::addCheckBox(layout, "chkShowStatus", "Show Status", showStatus);
 }
 

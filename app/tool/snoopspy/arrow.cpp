@@ -20,9 +20,9 @@ Arrow::Arrow(Node *startNode, QString signal, Node *endNode, QString slot) : QGr
   setPen(QPen(myColor, 2, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
   setZValue(-1000.0);
 
-  connect.sender   = startNode->object->name;
+  connect.sender   = startNode->object->objectName();
   connect.signal   = signal;
-  connect.receiver = endNode->object->name;
+  connect.receiver = endNode->object->objectName();
   connect.slot     = slot;
 }
 

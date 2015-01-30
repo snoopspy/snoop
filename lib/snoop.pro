@@ -133,4 +133,11 @@ HEADERS += \
   ../include/libnet/config.h \
   ../include/libnet/libnet-asn1.h \
   ../include/libnet/libnet-macros.h \
-	../include/base/snoopbase.h
+  ../include/base/snoopbase.h
+
+CONFIG(SNOOP_LIB_BUILD_GUI) {
+FORMS += \
+    ../include/process/snoopcommandwidget.ui \
+    ../include/filter/snoopprocessfilterwidget.ui
+}
+

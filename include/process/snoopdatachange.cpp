@@ -234,7 +234,7 @@ void SnoopDataChange::save(VXml xml)
 {
   SnoopProcess::save(xml);
 
-  QString flowMgrName = flowMgr == NULL ? "" : flowMgr->name;
+  QString flowMgrName = flowMgr == NULL ? "" : flowMgr->objectName();
   xml.setStr("flowMgr", flowMgrName);
   xml.setBool("tcpChange", tcpChange);
   xml.setBool("udpChange", udpChange);
@@ -247,7 +247,7 @@ void SnoopDataChange::optionAddWidget(QLayout* layout)
   SnoopProcess::optionAddWidget(layout);
 
   QStringList flowMgrList = ((VGraph*)owner)->objectList.findNamesByClassName("SnoopFlowMgr");
-  VOptionable::addComboBox(layout, "cbxFlowMgr", "FlowMgr", flowMgrList, -1, flowMgr == NULL ? "" : flowMgr->name);
+  VOptionable::addComboBox(layout, "cbxFlowMgr", "FlowMgr", flowMgrList, -1, flowMgr == NULL ? "" : flowMgr->objectName());
   VOptionable::addCheckBox(layout, "chkTcpChange", "TCP Change", tcpChange);
   VOptionable::addCheckBox(layout, "chkUdpChange", "UDP Change", udpChange);
   dataChange.optionAddWidget(layout);

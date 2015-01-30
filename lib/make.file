@@ -1,37 +1,49 @@
 all: debug release
 
-debug: snoop_test_d snoop_d snoop_gui_d 
+debug: snoop_d snoop_test_d snoop_gui_d snoop_gui_test_ d  
 
-release: snoop_test snoop snoop_gui
+release: snoop snoop_test snoop_gui snoop_gui_test
 
-snoop_test_d:
-	qmake snoop_test.pro "CONFIG+=debug" "QT-=gui"
+snoop_d:
+	qmake snoop.pro "CONFIG+=debug"
 	make -f Makefile
 	make clean -f Makefile
 
-snoop_d:
-	qmake snoop.pro "CONFIG+=debug" "QT-=gui"
+snoop_test_d:
+	qmake snoop_test.pro "CONFIG+=debug"
 	make -f Makefile
 	make clean -f Makefile
 
 snoop_gui_d:
-	qmake snoop_gui.pro "CONFIG+=debug" "QT-=gui"
+	qmake snoop_gui.pro "CONFIG+=debug"
 	make -f Makefile
 	cp ui_* ../include
 	make clean -f Makefile
 
-snoop_test:
-	qmake snoop_test.pro "CONFIG+=release" "QT-=gui"
+snoop_gui_test_d:
+	qmake snoop_gui_test.pro "CONFIG+=debug"
 	make -f Makefile
+	cp ui_* ../include
 	make clean -f Makefile
 
 snoop:
-	qmake snoop.pro "CONFIG+=release" "QT-=gui"
+	qmake snoop.pro "CONFIG+=release"
+	make -f Makefile
+	make clean -f Makefile
+
+snoop_test:
+	qmake snoop_test.pro "CONFIG+=release"
 	make -f Makefile
 	make clean -f Makefile
 
 snoop_gui:
-	qmake snoop_gui.pro "CONFIG+=release" "QT-=gui"
+	qmake snoop_gui.pro "CONFIG+=release"
+	make -f Makefile
+	cp ui_* ../include
+	make clean -f Makefile
+
+snoop_gui_test:
+	qmake snoop_gui.pro "CONFIG+=release"
 	make -f Makefile
 	cp ui_* ../include
 	make clean -f Makefile

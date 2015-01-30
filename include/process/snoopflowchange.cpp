@@ -825,9 +825,9 @@ void SnoopFlowChange::save(VXml xml)
 {
   SnoopProcess::save(xml);
 
-  QString fromFlowMgrName = fromFlowMgr == NULL ? "" : fromFlowMgr->name;
+  QString fromFlowMgrName = fromFlowMgr == NULL ? "" : fromFlowMgr->objectName();
   xml.setStr("fromFlowMgr", fromFlowMgrName);
-  QString toFlowMgrName = toFlowMgr == NULL ? "" : toFlowMgr->name;
+  QString toFlowMgrName = toFlowMgr == NULL ? "" : toFlowMgr->objectName();
   xml.setStr("toFlowMgr", toFlowMgrName);
   xml.setBool("tcpChange", tcpChange);
   xml.setBool("udpChange", udpChange);
@@ -842,8 +842,8 @@ void SnoopFlowChange::optionAddWidget(QLayout* layout)
   QStringList captureList = ((VGraph*)owner)->objectList.findNamesByCategoryName("SnoopCapture");
   QStringList flowMgrList = ((VGraph*)owner)->objectList.findNamesByClassName("SnoopFlowMgr");
 
-  VOptionable::addComboBox(layout, "cbxFromFlowMgr", "From FlowMgr", flowMgrList, -1, fromFlowMgr == NULL ? "" : fromFlowMgr->name);
-  VOptionable::addComboBox(layout, "cbxToFlowMgr", "To FlowMgr", flowMgrList, -1, toFlowMgr == NULL ? "" : toFlowMgr->name);
+  VOptionable::addComboBox(layout, "cbxFromFlowMgr", "From FlowMgr", flowMgrList, -1, fromFlowMgr == NULL ? "" : fromFlowMgr->objectName());
+  VOptionable::addComboBox(layout, "cbxToFlowMgr", "To FlowMgr", flowMgrList, -1, toFlowMgr == NULL ? "" : toFlowMgr->objectName());
   VOptionable::addCheckBox(layout, "chkTcpChange", "TCP Change", tcpChange);
   VOptionable::addCheckBox(layout, "chkUdpChange", "UDP Change", udpChange);
   changeItems.optionAddWidget(layout);

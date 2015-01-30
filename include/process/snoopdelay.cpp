@@ -119,7 +119,7 @@ void SnoopDelay::save(VXml xml)
 {
   SnoopProcess::save(xml);
 
-  QString writerName = writer == NULL ? "" : writer->name;
+  QString writerName = writer == NULL ? "" : writer->objectName();
   xml.setStr("writer", writerName);
   xml.setULong("timeout", timeout);
 }
@@ -130,7 +130,7 @@ void SnoopDelay::optionAddWidget(QLayout* layout)
   SnoopProcess::optionAddWidget(layout);
 
   QStringList writerList = ((VGraph*)owner)->objectList.findNamesByCategoryName("SnoopCapture");
-  VOptionable::addComboBox(layout, "cbxWriter", "Writer", writerList, -1, writer == NULL ? "" : writer->name);
+  VOptionable::addComboBox(layout, "cbxWriter", "Writer", writerList, -1, writer == NULL ? "" : writer->objectName());
   VOptionable::addLineEdit(layout, "leTimeout", "Timeout", QString::number(timeout));
 }
 

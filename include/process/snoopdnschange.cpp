@@ -299,7 +299,7 @@ void SnoopDnsChange::load(VXml xml)
 void SnoopDnsChange::save(VXml xml)
 {
   SnoopProcess::save(xml);
-  QString writerName = writer == NULL ? "" : writer->name;
+  QString writerName = writer == NULL ? "" : writer->objectName();
   xml.setStr("writer", writerName);
   changeItems.save(xml.gotoChild("changeItems"));
 }
@@ -310,7 +310,7 @@ void SnoopDnsChange::optionAddWidget(QLayout* layout)
   SnoopProcess::optionAddWidget(layout);
 
   QStringList writerList = ((VGraph*)owner)->objectList.findNamesByCategoryName("SnoopCapture");
-  VOptionable::addComboBox(layout, "cbxWriter", "Writer", writerList, -1, writer == NULL ? "" : writer->name);
+  VOptionable::addComboBox(layout, "cbxWriter", "Writer", writerList, -1, writer == NULL ? "" : writer->objectName());
   changeItems.optionAddWidget(layout);
 }
 

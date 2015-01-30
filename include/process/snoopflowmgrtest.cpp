@@ -243,7 +243,7 @@ void SnoopFlowMgrTest::save(VXml xml)
 {
   SnoopProcess::save(xml);
 
-  QString flowMgrName = flowMgr == NULL ? "" : flowMgr->name;
+  QString flowMgrName = flowMgr == NULL ? "" : flowMgr->objectName();
   xml.setStr("flowMgr", flowMgrName);
   xml.setBool("macFlowEnabled",     macFlowEnabled);
   xml.setInt("macFlowMemSize", (int)macFlowMemSize);
@@ -261,7 +261,7 @@ void SnoopFlowMgrTest::optionAddWidget(QLayout* layout)
   SnoopProcess::optionAddWidget(layout);
 
   QStringList flowMgrList = ((VGraph*)owner)->objectList.findNamesByClassName("SnoopFlowMgr");
-  VOptionable::addComboBox(layout, "cbxFlowMgr", "FlowMgr", flowMgrList, -1, flowMgr == NULL ? "" : flowMgr->name);
+  VOptionable::addComboBox(layout, "cbxFlowMgr", "FlowMgr", flowMgrList, -1, flowMgr == NULL ? "" : flowMgr->objectName());
   VOptionable::addCheckBox(layout, "chkMacFlowEnabled", "Mac Flow Enabled", macFlowEnabled);
   VOptionable::addLineEdit(layout, "leMacFlowMemSize", "Mac Flow Mem Size", QString::number(macFlowMemSize));
   VOptionable::addCheckBox(layout, "chkIpFlowEnabled", "IP Flow Enabled", ipFlowEnabled);

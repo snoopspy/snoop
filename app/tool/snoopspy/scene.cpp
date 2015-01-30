@@ -132,7 +132,7 @@ QString Scene::generateObjectClassName(QString className)
     // if (!IS_CLASS(item, Node*)) continue; // gilgil temp 2014.12.28
     if (!dynamic_cast<Node*>(item)) continue;
       Node* node = dynamic_cast<Node*>(item);
-      if (res == node->object->name)
+      if (res == node->object->objectName())
       {
         find = true;
         break;
@@ -156,7 +156,7 @@ Node* Scene::createNode(QString className, QString name, bool createObject)
     if (object == NULL) return NULL;
     if (name == "") name = generateObjectClassName(className);
     object->owner = this->graph;
-    object->name  = name;
+    object->setObjectName(name);
     this->graph->objectList.addObject(object);
   }
 
@@ -193,7 +193,7 @@ Node* Scene::findNodeByName(QString name)
     QGraphicsItem* item = this->items().at(i);
     if (dynamic_cast<Node*>(item) == NULL) continue;
     Node* res = dynamic_cast<Node*>(item);
-    if (res->object->name == name)
+    if (res->object->objectName() == name)
     {
       return res;
     }
@@ -247,7 +247,7 @@ bool Scene::loadFromFile(QString fileName, QString& errStr)
         return false;
       }
 
-      Node*    node = this->createNode(object->className(), object->name, false);
+      Node*    node = this->createNode(object->className(), object->objectName(), false);
       node->object = object;
       QPointF  f;
       f.setX(childXml.getDouble("x", f.x()));
@@ -294,11 +294,11 @@ bool Scene::saveToFile(QString fileName, QString& errStr)
   for (int i = 0; i < _count; i++)
   {
     VObject* object = this->graph->objectList.at(i);
-    Node*    node   = findNodeByName(object->name);
+    Node*    node   = findNodeByName(object->objectName());
     if (node == NULL) continue;
 
     VXml     childXml = xml.addChild("object");
-    childXml.setStr("name", object->name);
+    childXml.setStr("name", object->objectName());
     childXml.setDouble("x", node->pos().x());
     childXml.setDouble("y", node->pos().y());
   }
@@ -437,9 +437,9 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
                 QString slot   = signalSlotForm->ui->lwSlotList->selectedItems().first()->text();
 
                 VGraphConnect connect;
-                connect.sender   = startNode->object->name;
+                connect.sender   = startNode->object->objectName();
                 connect.signal   = signal;
-                connect.receiver = endNode->object->name;
+                connect.receiver = endNode->object->objectName();
                 connect.slot     = slot;
                 this->graph->connectList.addConnect(connect);
 

@@ -54,7 +54,7 @@ bool SnoopFindHost::findAll()
     // Is time elapsed?
     //
     nowTick = tick();
-    if (nowTick - startTick > findAllTimeout)
+    if ((VTimeout)(nowTick - startTick) > findAllTimeout)
     {
       {
         SET_ERROR(SnoopError, "can not find all host", SnoopError::CAN_NOT_FIND_ALL_HOST);
