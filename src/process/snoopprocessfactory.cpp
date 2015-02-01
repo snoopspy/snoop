@@ -23,23 +23,26 @@
 // ----------------------------------------------------------------------------
 void SnoopProcessFactory::explicitLink()
 {
-  SnoopBlock          block;
-  SnoopChecksum       checksum;
-  SnoopCommand        command;
-  SnoopDataChange     dataChange;
-  SnoopDataFind       dataFind;
-  SnoopDelay          delay;
-  SnoopDnsChange      dnsChange;
-  SnoopDump           dump;
-  SnoopFlowChange     flowChange;
-  SnoopFlowMgr        flowMgr;
-  SnoopFlowMgrTest    flowMgrTest;
-  SnoopTcpBlock       tcpBlock;
-  SnoopUdpReceiver    udpReceiver;
-  SnoopUdpSender      udpSender;
-  SnoopWriteAdapter   writeAdapter;
+  VFactory& factory = VFactory::instance();
+  static const QString categoryName = "SnoopProcess";
+
+  SnoopBlock          block;          factory.registerMetaObjectByCategoryName(block.metaObject(),          categoryName);
+  SnoopChecksum       checksum;       factory.registerMetaObjectByCategoryName(checksum.metaObject(),       categoryName);
+  SnoopCommand        command;        factory.registerMetaObjectByCategoryName(command.metaObject(),        categoryName);
+  SnoopDataChange     dataChange;     factory.registerMetaObjectByCategoryName(dataChange.metaObject(),     categoryName);
+  SnoopDataFind       dataFind;       factory.registerMetaObjectByCategoryName(dataFind.metaObject(),       categoryName);
+  SnoopDelay          delay;          factory.registerMetaObjectByCategoryName(delay.metaObject(),          categoryName);
+  SnoopDnsChange      dnsChange;      factory.registerMetaObjectByCategoryName(dnsChange.metaObject(),      categoryName);
+  SnoopDump           dump;           factory.registerMetaObjectByCategoryName(dump.metaObject(),           categoryName);
+  SnoopFlowChange     flowChange;     factory.registerMetaObjectByCategoryName(flowChange.metaObject(),     categoryName);
+  SnoopFlowMgr        flowMgr;        factory.registerMetaObjectByCategoryName(flowMgr.metaObject(),        categoryName);
+  SnoopFlowMgrTest    flowMgrTest;    factory.registerMetaObjectByCategoryName(flowMgrTest.metaObject(),    categoryName);
+  SnoopTcpBlock       tcpBlock;       factory.registerMetaObjectByCategoryName(tcpBlock.metaObject(),       categoryName);
+  SnoopUdpReceiver    udpReceiver;    factory.registerMetaObjectByCategoryName(udpReceiver.metaObject(),    categoryName);
+  SnoopUdpSender      udpSender;      factory.registerMetaObjectByCategoryName(udpSender.metaObject(),      categoryName);
+  SnoopWriteAdapter   writeAdapter;   factory.registerMetaObjectByCategoryName(writeAdapter.metaObject(),   categoryName);
 #ifdef WIN32
-  SnoopWriteWinDivert writeWinDivert;
+  SnoopWriteWinDivert writeWinDivert; factory.registerMetaObjectByCategoryName(writeWinDivert.metaObject(), categoryName);
 #endif // WIN32
 }
 

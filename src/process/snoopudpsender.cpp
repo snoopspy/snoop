@@ -1,6 +1,6 @@
 #include <SnoopUdpSender>
 
-REGISTER_METACLASS(SnoopUdpSender, SnoopProcess)
+// REGISTER_METACLASS(SnoopUdpSender, SnoopProcess) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // SnoopUdpSenderFlowItem
@@ -160,9 +160,9 @@ void SnoopUdpSender::load(VXml xml)
   SnoopProcess::load(xml);
 
   QString flowMgrName = xml.getStr("flowMgr", "");
-  if (flowMgrName != "") flowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findByName(flowMgrName));
+  if (flowMgrName != "") flowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findObjectByName(flowMgrName));
   QString writerName = xml.getStr("writer", "");
-  if (writerName != "") writer = (SnoopCapture*)(((VGraph*)owner)->objectList.findByName(writerName));
+  if (writerName != "") writer = (SnoopCapture*)(((VGraph*)owner)->objectList.findObjectByName(writerName));
   dscr          = xml.getArr("dscr",          dscr);
   headerSize    = xml.getInt("headerSize",    headerSize);
   addChunkCount = xml.getInt("addChunkCount", addChunkCount);
@@ -186,10 +186,10 @@ void SnoopUdpSender::optionAddWidget(QLayout* layout)
 {
   SnoopProcess::optionAddWidget(layout);
 
-  QStringList flowMgrList = ((VGraph*)owner)->objectList.findNamesByClassName("SnoopFlowMgr");
+  QStringList flowMgrList = ((VGraph*)owner)->objectList.findObjectNamesByClassName("SnoopFlowMgr");
   VOptionable::addComboBox(layout, "cbxFlowMgr", "FlowMgr", flowMgrList, -1, flowMgr == NULL ? "" : flowMgr->objectName());
 
-  QStringList writerList = ((VGraph*)owner)->objectList.findNamesByCategoryName("SnoopCapture");
+  QStringList writerList = ((VGraph*)owner)->objectList.findObjectNamesByCategoryName("SnoopCapture");
   VOptionable::addComboBox(layout, "cbxWriter", "Writer", writerList, -1, writer == NULL ? "" : writer->objectName());
 
   VOptionable::addLineEdit(layout, "leDscr", "Discriminator", dscr);
@@ -201,8 +201,8 @@ void SnoopUdpSender::optionSaveDlg(QDialog* dialog)
 {
   SnoopProcess::optionSaveDlg(dialog);
 
-  flowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findByName(dialog->findChild<QComboBox*>("cbxFlowMgr")->currentText()));
-  writer = (SnoopCapture*)(((VGraph*)owner)->objectList.findByName(dialog->findChild<QComboBox*>("cbxWriter")->currentText()));
+  flowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findObjectByName(dialog->findChild<QComboBox*>("cbxFlowMgr")->currentText()));
+  writer = (SnoopCapture*)(((VGraph*)owner)->objectList.findObjectByName(dialog->findChild<QComboBox*>("cbxWriter")->currentText()));
 
   dscr          = qPrintable(dialog->findChild<QLineEdit*>("leDscr")->text());
   headerSize    = dialog->findChild<QLineEdit*>("leHeaderSize")->text().toInt();

@@ -3,7 +3,7 @@
 #include <SnoopTcp> // for SnoopTcp::checksum
 #include <SnoopUdp> // for SnoopUdp::checksum
 
-REGISTER_METACLASS(SnoopChecksum, SnoopProcess)
+// REGISTER_METACLASS(SnoopChecksum, SnoopProcess) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // SnoopChecksum

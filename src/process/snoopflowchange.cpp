@@ -3,7 +3,7 @@
 #include <SnoopTcp>
 #include <SnoopUdp>
 
-REGISTER_METACLASS(SnoopFlowChange, SnoopProcess)
+// REGISTER_METACLASS(SnoopFlowChange, SnoopProcess) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // SnoopFlowChangeItem
@@ -813,9 +813,9 @@ void SnoopFlowChange::load(VXml xml)
   SnoopProcess::load(xml);
 
   QString fromFlowMgrName = xml.getStr("fromFlowMgr", "");
-  if (fromFlowMgrName != "") fromFlowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findByName(fromFlowMgrName));
+  if (fromFlowMgrName != "") fromFlowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findObjectByName(fromFlowMgrName));
   QString toFlowMgrName = xml.getStr("toFlowMgr", "");
-  if (toFlowMgrName != "") toFlowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findByName(toFlowMgrName));
+  if (toFlowMgrName != "") toFlowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findObjectByName(toFlowMgrName));
   tcpChange = xml.getBool("tcpChange", tcpChange);
   udpChange = xml.getBool("udpChange", udpChange);
   changeItems.load(xml.gotoChild("changeItems"));
@@ -839,8 +839,8 @@ void SnoopFlowChange::optionAddWidget(QLayout* layout)
 {
   SnoopProcess::optionAddWidget(layout);
 
-  QStringList captureList = ((VGraph*)owner)->objectList.findNamesByCategoryName("SnoopCapture");
-  QStringList flowMgrList = ((VGraph*)owner)->objectList.findNamesByClassName("SnoopFlowMgr");
+  QStringList captureList = ((VGraph*)owner)->objectList.findObjectNamesByCategoryName("SnoopCapture");
+  QStringList flowMgrList = ((VGraph*)owner)->objectList.findObjectNamesByClassName("SnoopFlowMgr");
 
   VOptionable::addComboBox(layout, "cbxFromFlowMgr", "From FlowMgr", flowMgrList, -1, fromFlowMgr == NULL ? "" : fromFlowMgr->objectName());
   VOptionable::addComboBox(layout, "cbxToFlowMgr", "To FlowMgr", flowMgrList, -1, toFlowMgr == NULL ? "" : toFlowMgr->objectName());
@@ -853,8 +853,8 @@ void SnoopFlowChange::optionSaveDlg(QDialog* dialog)
 {
   SnoopProcess::optionSaveDlg(dialog);
 
-  fromFlowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findByName(dialog->findChild<QComboBox*>("cbxFromFlowMgr")->currentText()));
-  toFlowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findByName(dialog->findChild<QComboBox*>("cbxToFlowMgr")->currentText()));
+  fromFlowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findObjectByName(dialog->findChild<QComboBox*>("cbxFromFlowMgr")->currentText()));
+  toFlowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findObjectByName(dialog->findChild<QComboBox*>("cbxToFlowMgr")->currentText()));
   tcpChange = dialog->findChild<QCheckBox*>("chkTcpChange")->checkState() == Qt::Checked;
   udpChange = dialog->findChild<QCheckBox*>("chkUdpChange")->checkState() == Qt::Checked;
   changeItems.optionSaveDlg(dialog);

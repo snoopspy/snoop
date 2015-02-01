@@ -3,7 +3,7 @@
 #include <VFile> // for VERR_FILENAME_NOT_SPECIFIED
 #include <VDebugNew>
 
-REGISTER_METACLASS(SnoopFile, SnoopCapture)
+// REGISTER_METACLASS(SnoopFile, SnoopCapture) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // SnoopFile

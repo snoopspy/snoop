@@ -17,11 +17,11 @@
 // ----------------------------------------------------------------------------
 // SnoopProcessFactory
 // ----------------------------------------------------------------------------
-class SnoopProcessFactory : public VFactory<SnoopProcess>
+class SnoopProcessFactory
 {
 public:
   static void          explicitLink();
-  static SnoopProcess* createDefaultProcess();
+  static SnoopProcess* createDefaultProcess(); // gilgil temp 2015.02.01
 };
 
 #endif // __SNOOP_PROCESS_FACTORY_H__

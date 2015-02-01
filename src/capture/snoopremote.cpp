@@ -3,7 +3,7 @@
 
 #ifdef WIN32
 
-REGISTER_METACLASS(SnoopRemote, SnoopCapture)
+// REGISTER_METACLASS(SnoopRemote, SnoopCapture) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // SnoopRemote

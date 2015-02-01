@@ -1,7 +1,7 @@
 #include <SnoopDelay>
 #include <VDebugNew>
 
-REGISTER_METACLASS(SnoopDelay, SnoopProcess)
+// REGISTER_METACLASS(SnoopDelay, SnoopProcess) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // SnoopDelayItemMgr
@@ -111,7 +111,7 @@ void SnoopDelay::load(VXml xml)
   SnoopProcess::load(xml);
 
   QString writerName = xml.getStr("writer", "");
-  if (writerName != "") writer = (SnoopCapture*)(((VGraph*)owner)->objectList.findByName(writerName));
+  if (writerName != "") writer = (SnoopCapture*)(((VGraph*)owner)->objectList.findObjectByName(writerName));
   timeout = xml.getULong("timeout", timeout);
 }
 
@@ -129,7 +129,7 @@ void SnoopDelay::optionAddWidget(QLayout* layout)
 {
   SnoopProcess::optionAddWidget(layout);
 
-  QStringList writerList = ((VGraph*)owner)->objectList.findNamesByCategoryName("SnoopCapture");
+  QStringList writerList = ((VGraph*)owner)->objectList.findObjectNamesByCategoryName("SnoopCapture");
   VOptionable::addComboBox(layout, "cbxWriter", "Writer", writerList, -1, writer == NULL ? "" : writer->objectName());
   VOptionable::addLineEdit(layout, "leTimeout", "Timeout", QString::number(timeout));
 }
@@ -138,7 +138,7 @@ void SnoopDelay::optionSaveDlg(QDialog* dialog)
 {
   SnoopProcess::optionSaveDlg(dialog);
 
-  writer = (SnoopCapture*)(((VGraph*)owner)->objectList.findByName(dialog->findChild<QComboBox*>("cbxWriter")->currentText()));
+  writer = (SnoopCapture*)(((VGraph*)owner)->objectList.findObjectByName(dialog->findChild<QComboBox*>("cbxWriter")->currentText()));
   timeout = (VTimeout)dialog->findChild<QLineEdit*>("leTimeout")->text().toLong();
 }
 #endif // QT_GUI_LIB

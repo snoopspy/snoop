@@ -3,7 +3,7 @@
 #include <VFile> // for FileError
 #include <VDebugNew>
 
-REGISTER_METACLASS(SnoopDump, SnoopProcess)
+// REGISTER_METACLASS(SnoopDump, SnoopProcess) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // SnoopDump

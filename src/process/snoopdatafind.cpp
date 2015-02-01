@@ -1,6 +1,6 @@
 #include <SnoopDataFind>
 
-REGISTER_METACLASS(SnoopDataFind, SnoopProcess)
+// REGISTER_METACLASS(SnoopDataFind, SnoopProcess) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // SnoopDataFind

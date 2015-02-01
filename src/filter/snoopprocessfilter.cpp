@@ -5,7 +5,7 @@
 #include <VDebugNew>
 #include "snoopprocessfilterwidget.h"
 
-REGISTER_METACLASS(SnoopProcessFilter, SnoopFilter)
+// REGISTER_METACLASS(SnoopProcessFilter, SnoopFilter) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // SnoopProcessPolicyMap
@@ -265,7 +265,7 @@ void SnoopProcessFilter::load(VXml xml)
   SnoopFilter::load(xml);
 
   QString flowMgrName = xml.getStr("flowMgr", "");
-  if (flowMgrName != "") flowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findByName(flowMgrName));
+  if (flowMgrName != "") flowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findObjectByName(flowMgrName));
   policyMap.load(xml.gotoChild("policies"));
 #ifdef QT_GUI_LIB
   showStatus = xml.getBool("showStatus", showStatus);
@@ -289,7 +289,7 @@ void SnoopProcessFilter::optionAddWidget(QLayout* layout)
 {
   SnoopFilter::optionAddWidget(layout);
 
-  QStringList flowMgrList = ((VGraph*)owner)->objectList.findNamesByClassName("SnoopFlowMgr");
+  QStringList flowMgrList = ((VGraph*)owner)->objectList.findObjectNamesByClassName("SnoopFlowMgr");
   VOptionable::addComboBox(layout, "cbxFlowMgr", "FlowMgr", flowMgrList, -1, flowMgr == NULL ? "" : flowMgr->objectName());
   VOptionable::addCheckBox(layout, "chkShowStatus", "Show Status", showStatus);
 }
@@ -298,7 +298,7 @@ void SnoopProcessFilter::optionSaveDlg(QDialog* dialog)
 {
   SnoopFilter::optionSaveDlg(dialog);
 
-  flowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findByName(dialog->findChild<QComboBox*>("cbxFlowMgr")->currentText()));
+  flowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findObjectByName(dialog->findChild<QComboBox*>("cbxFlowMgr")->currentText()));
   showStatus = dialog->findChild<QCheckBox*>("chkShowStatus")->checkState() == Qt::Checked;
 }
 #endif // QT_GUI_LIB

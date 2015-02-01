@@ -17,11 +17,11 @@
 // ----------------------------------------------------------------------------
 // SnoopCaptureFactory
 // ----------------------------------------------------------------------------
-class SnoopCaptureFactory : public VFactory<SnoopCapture>
+class SnoopCaptureFactory
 {
 public:
   static void          explicitLink();
-  static SnoopCapture* createDefaultCapture();
+  static SnoopCapture* createDefaultCapture(); // gilgil temp 2015.02.01
 };
 
 #endif // __SNOOP_CAPTURE_FACTORY_H__

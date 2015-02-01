@@ -1,7 +1,7 @@
 #include <SnoopCommand>
 #include <VDebugNew>
 
-REGISTER_METACLASS(SnoopCommand, SnoopProcess)
+// REGISTER_METACLASS(SnoopCommand, SnoopProcess) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // SnoopCommandItem

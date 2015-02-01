@@ -69,6 +69,8 @@ void Scene::addClass(QString categoryName)
 
   QTreeWidgetItem* rootItem = new QTreeWidgetItem(treeWidget);
   rootItem->setText(0, categoryName);
+  // ----- gilgil temp 2015.02.01 -----
+  /*
   VMetaClassList& list = VMetaClassMap::getList((char*)qPrintable(categoryName));
   for (VMetaClassList::iterator it = list.begin(); it != list.end(); it++)
   {
@@ -79,8 +81,22 @@ void Scene::addClass(QString categoryName)
     treeWidget->addTopLevelItem(item);
     addClass(metaClass, item);
   }
+  */
+  VFactory& factory = VFactory::instance();
+  VFactory::VMetaObjectList mobjList = factory.findMetaObjectsByCategoryName(categoryName);
+  foreach (const QMetaObject* mobj, mobjList)
+  {
+    QTreeWidgetItem* item = new QTreeWidgetItem(rootItem);
+    QString className = mobj->className();
+    item->setText(0, className);
+    treeWidget->addTopLevelItem(item);
+    addClass(className, item);
+  }
+  // ----------------------------------
 }
 
+// ----- gilgil temp 2015.02.01 -----
+/*
 void Scene::addClass(VMetaClass* parentMetaClass, QTreeWidgetItem* parentItem)
 {
   char* parentCategoryName = parentMetaClass->className();
@@ -92,6 +108,21 @@ void Scene::addClass(VMetaClass* parentMetaClass, QTreeWidgetItem* parentItem)
     QString childClassName = childMetaClass->className();
     childItem->setText(0, childClassName);
     addClass(childMetaClass, childItem);
+  }
+}
+*/
+// ----------------------------------
+
+void Scene::addClass(QString categoryName, QTreeWidgetItem* parentItem)
+{
+  VFactory& factory = VFactory::instance();
+  VFactory::VMetaObjectList mobjList = factory.findMetaObjectsByCategoryName(categoryName);
+  foreach (const QMetaObject* mobj, mobjList)
+  {
+    QTreeWidgetItem* childItem = new QTreeWidgetItem(parentItem);
+    QString childClassName = mobj->className();
+    childItem->setText(0, childClassName);
+    addClass(childClassName, childItem);
   }
 }
 
@@ -152,7 +183,8 @@ Node* Scene::createNode(QString className, QString name, bool createObject)
   VObject* object = NULL;
   if (createObject)
   {
-    object = (VObject*)VMetaClassMgr::createByClassName((char*)qPrintable(className));
+    // object = (VObject*)VMetaClassMgr::createByClassName((char*)qPrintable(className)); // gilgil temp 2015.02.01
+    object = dynamic_cast<VObject*>(VFactory::instance().createObjectByClassName(className));
     if (object == NULL) return NULL;
     if (name == "") name = generateObjectClassName(className);
     object->owner = this->graph;
@@ -239,16 +271,16 @@ bool Scene::loadFromFile(QString fileName, QString& errStr)
         return false;
       }
 
-      VObject* object   = this->graph->objectList.findByName(name);
-      if (object == NULL)
+      VObject* obj = this->graph->objectList.findObjectByName(name);
+      if (obj == NULL)
       {
         errStr = QString("can not find object ('%1')").arg(name);
         LOG_ERROR("%s", qPrintable(errStr));
         return false;
       }
 
-      Node*    node = this->createNode(object->className(), object->objectName(), false);
-      node->object = object;
+      Node* node = this->createNode(obj->className(), obj->objectName(), false);
+      node->object = obj;
       QPointF  f;
       f.setX(childXml.getDouble("x", f.x()));
       f.setY(childXml.getDouble("y", f.y()));
@@ -349,6 +381,8 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
   // LOG_DEBUG("mouseMoveEvent"); // gilgil temp 2012.06.30
   switch (m_mode)
   {
+    case InsertItem:
+      break;
     case MoveItem:
       break;
     case InsertLine:
@@ -369,6 +403,8 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
   // LOG_DEBUG("mouseReleaseEvent"); // gilgil temp 2012.06.30
   switch (m_mode)
   {
+    case InsertItem:
+      break;
     case MoveItem:
       break;
     case InsertLine:

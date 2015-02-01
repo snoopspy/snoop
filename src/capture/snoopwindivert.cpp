@@ -3,7 +3,7 @@
 #include <SnoopWinDivert>
 #include <VDebugNew>
 
-REGISTER_METACLASS(SnoopWinDivert, SnoopCapture)
+// REGISTER_METACLASS(SnoopWinDivert, SnoopCapture) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // SnoopWinDivertLib

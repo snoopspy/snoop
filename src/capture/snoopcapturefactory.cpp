@@ -15,16 +15,19 @@
 // ----------------------------------------------------------------------------
 void SnoopCaptureFactory::explicitLink()
 {
-  SnoopAdapter     adapter;
-  SnoopArpSpoof    arpSpoof;
-  SnoopFile        file;
-  SnoopSourcePcap  pcap;
+  VFactory& factory = VFactory::instance();
+  static const QString categoryName = "SnoopCapture";
+
+  SnoopAdapter     adapter;    factory.registerMetaObjectByCategoryName(adapter.metaObject(),    categoryName);
+  SnoopArpSpoof    arpSpoof;   factory.registerMetaObjectByCategoryName(arpSpoof.metaObject(),   categoryName);
+  SnoopFile        file;       factory.registerMetaObjectByCategoryName(file.metaObject(),       categoryName);
+  SnoopSourcePcap  pcap;       factory.registerMetaObjectByCategoryName(pcap.metaObject(),       categoryName);
 #ifdef WIN32
-  SnoopRemote      remote;
+  SnoopRemote      remote;     factory.registerMetaObjectByCategoryName(remote.metaObject(),     categoryName);
 #endif // WIN32
-  SnoopVirtualNat  virtualNAT;
+  SnoopVirtualNat  virtualNAT; factory.registerMetaObjectByCategoryName(virtualNAT.metaObject(), categoryName);
 #ifdef WIN32
-  SnoopWinDivert   winDivert;
+  SnoopWinDivert   winDivert;  factory.registerMetaObjectByCategoryName(winDivert.metaObject(),  categoryName);
 #endif // WIN32
 }
 

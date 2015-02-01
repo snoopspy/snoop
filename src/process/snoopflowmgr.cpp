@@ -6,7 +6,7 @@
 #include <SnoopTcp>
 #include <SnoopUdp>
 
-REGISTER_METACLASS(SnoopFlowMgr, SnoopProcess)
+// REGISTER_METACLASS(SnoopFlowMgr, SnoopProcess) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // Snoop_MacFlow_Map

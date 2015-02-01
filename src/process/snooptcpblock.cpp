@@ -3,7 +3,7 @@
 #include <SnoopIp>
 #include <SnoopTcp>
 
-REGISTER_METACLASS(SnoopTcpBlock, SnoopProcess)
+// REGISTER_METACLASS(SnoopTcpBlock, SnoopProcess) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // SnoopTcpBlock
@@ -209,7 +209,7 @@ void SnoopTcpBlock::load(VXml xml)
   SnoopProcess::load(xml);
 
   QString writerName = xml.getStr("writer", "");
-  if (writerName != "") writer = (SnoopCapture*)(((VGraph*)owner)->objectList.findByName(writerName));
+  if (writerName != "") writer = (SnoopCapture*)(((VGraph*)owner)->objectList.findObjectByName(writerName));
   forwardRst     = xml.getBool("forwardRst",    forwardRst);
   backwardRst    = xml.getBool("backwardRst",   backwardRst);
   forwardFin     = xml.getBool("forwardFin",    forwardFin);
@@ -237,7 +237,7 @@ void SnoopTcpBlock::optionAddWidget(QLayout* layout)
 {
   SnoopProcess::optionAddWidget(layout);
 
-  QStringList writerList = ((VGraph*)owner)->objectList.findNamesByCategoryName("SnoopCapture");
+  QStringList writerList = ((VGraph*)owner)->objectList.findObjectNamesByCategoryName("SnoopCapture");
   VOptionable::addComboBox(layout, "cbxWriter",        "Writer",          writerList, -1, writer == NULL ? "" : writer->objectName());
   VOptionable::addCheckBox(layout, "chkForwardRst",    "Forward Rst",     forwardRst);
   VOptionable::addCheckBox(layout, "chkBackwardRst",   "Backward Rst",    backwardRst);
@@ -251,7 +251,7 @@ void SnoopTcpBlock::optionSaveDlg(QDialog* dialog)
 {
   SnoopProcess::optionSaveDlg(dialog);
 
-  writer         = (SnoopCapture*)(((VGraph*)owner)->objectList.findByName(dialog->findChild<QComboBox*>("cbxWriter")->currentText()));
+  writer         = (SnoopCapture*)(((VGraph*)owner)->objectList.findObjectByName(dialog->findChild<QComboBox*>("cbxWriter")->currentText()));
   forwardRst     = dialog->findChild<QCheckBox*>("chkForwardRst")->checkState() == Qt::Checked;
   backwardRst    = dialog->findChild<QCheckBox*>("chkBackwardRst")->checkState() == Qt::Checked;
   forwardFin     = dialog->findChild<QCheckBox*>("chkForwardFin")->checkState() == Qt::Checked;

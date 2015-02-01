@@ -1,7 +1,7 @@
 #include <SnoopAdapter>
 #include <VDebugNew>
 
-REGISTER_METACLASS(SnoopAdapter, SnoopCapture)
+// REGISTER_METACLASS(SnoopAdapter, SnoopCapture) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // SnoopAdapterIndex

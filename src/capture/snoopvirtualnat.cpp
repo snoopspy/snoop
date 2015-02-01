@@ -1,6 +1,6 @@
 #include <SnoopVirtualNat>
 
-REGISTER_METACLASS(SnoopVirtualNat, SnoopCapture)
+// REGISTER_METACLASS(SnoopVirtualNat, SnoopCapture) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // SnoopVirtualNat

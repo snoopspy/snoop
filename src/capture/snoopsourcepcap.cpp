@@ -1,6 +1,6 @@
 #include <SnoopSourcePcap>
 
-REGISTER_METACLASS(SnoopSourcePcap, SnoopCapture)
+// REGISTER_METACLASS(SnoopSourcePcap, SnoopCapture) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // SnoopSourcePcap

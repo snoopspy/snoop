@@ -1,6 +1,6 @@
 #include <SnoopWriteAdapter>
 
-REGISTER_METACLASS(SnoopWriteAdapter, SnoopProcess)
+// REGISTER_METACLASS(SnoopWriteAdapter, SnoopProcess) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // SnoopWriteAdapter

@@ -1,7 +1,7 @@
 #include <SnoopBpFilter>
 #include <VDebugNew>
 
-REGISTER_METACLASS(SnoopBpFilter, SnoopFilter)
+// REGISTER_METACLASS(SnoopBpFilter, SnoopFilter) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // SnoopBpFilter

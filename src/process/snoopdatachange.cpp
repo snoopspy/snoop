@@ -3,7 +3,7 @@
 #include <SnoopTcp>
 #include <SnoopUdp>
 
-REGISTER_METACLASS(SnoopDataChange, SnoopProcess)
+// REGISTER_METACLASS(SnoopDataChange, SnoopProcess) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // SnoopDataChange
@@ -224,7 +224,7 @@ void SnoopDataChange::load(VXml xml)
   SnoopProcess::load(xml);
 
   QString flowMgrName = xml.getStr("flowMgr", "");
-  if (flowMgrName != "") flowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findByName(flowMgrName));
+  if (flowMgrName != "") flowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findObjectByName(flowMgrName));
   tcpChange = xml.getBool("tcpChange", tcpChange);
   udpChange = xml.getBool("udpChange", udpChange);
   dataChange.load(xml.gotoChild("dataChange"));
@@ -246,7 +246,7 @@ void SnoopDataChange::optionAddWidget(QLayout* layout)
 {
   SnoopProcess::optionAddWidget(layout);
 
-  QStringList flowMgrList = ((VGraph*)owner)->objectList.findNamesByClassName("SnoopFlowMgr");
+  QStringList flowMgrList = ((VGraph*)owner)->objectList.findObjectNamesByClassName("SnoopFlowMgr");
   VOptionable::addComboBox(layout, "cbxFlowMgr", "FlowMgr", flowMgrList, -1, flowMgr == NULL ? "" : flowMgr->objectName());
   VOptionable::addCheckBox(layout, "chkTcpChange", "TCP Change", tcpChange);
   VOptionable::addCheckBox(layout, "chkUdpChange", "UDP Change", udpChange);
@@ -257,7 +257,7 @@ void SnoopDataChange::optionSaveDlg(QDialog* dialog)
 {
   SnoopProcess::optionSaveDlg(dialog);
 
-  flowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findByName(dialog->findChild<QComboBox*>("cbxFlowMgr")->currentText()));
+  flowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findObjectByName(dialog->findChild<QComboBox*>("cbxFlowMgr")->currentText()));
   tcpChange = dialog->findChild<QCheckBox*>("chkTcpChange")->checkState() == Qt::Checked;
   udpChange = dialog->findChild<QCheckBox*>("chkUdpChange")->checkState() == Qt::Checked;
   dataChange.optionSaveDlg(dialog);

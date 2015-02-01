@@ -1,7 +1,7 @@
 #include <SnoopDnsChange>
 #include <VDebugNew>
 
-REGISTER_METACLASS(SnoopDnsChange, SnoopProcess)
+// REGISTER_METACLASS(SnoopDnsChange, SnoopProcess) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // SnoopDnsChangeItem
@@ -292,7 +292,7 @@ void SnoopDnsChange::load(VXml xml)
   SnoopProcess::load(xml);
 
   QString writerName = xml.getStr("writer", "");
-  if (writerName != "") writer = (SnoopCapture*)(((VGraph*)owner)->objectList.findByName(writerName));
+  if (writerName != "") writer = (SnoopCapture*)(((VGraph*)owner)->objectList.findObjectByName(writerName));
   changeItems.load(xml.gotoChild("changeItems"));
 }
 
@@ -309,7 +309,7 @@ void SnoopDnsChange::optionAddWidget(QLayout* layout)
 {
   SnoopProcess::optionAddWidget(layout);
 
-  QStringList writerList = ((VGraph*)owner)->objectList.findNamesByCategoryName("SnoopCapture");
+  QStringList writerList = ((VGraph*)owner)->objectList.findObjectNamesByCategoryName("SnoopCapture");
   VOptionable::addComboBox(layout, "cbxWriter", "Writer", writerList, -1, writer == NULL ? "" : writer->objectName());
   changeItems.optionAddWidget(layout);
 }
@@ -318,7 +318,7 @@ void SnoopDnsChange::optionSaveDlg(QDialog* dialog)
 {
   SnoopProcess::optionSaveDlg(dialog);
 
-  writer = (SnoopCapture*)(((VGraph*)owner)->objectList.findByName(dialog->findChild<QComboBox*>("cbxWriter")->currentText()));
+  writer = (SnoopCapture*)(((VGraph*)owner)->objectList.findObjectByName(dialog->findChild<QComboBox*>("cbxWriter")->currentText()));
   changeItems.optionSaveDlg(dialog);
 }
 #endif // QT_GUI_LIB

@@ -2,7 +2,7 @@
 #include <SnoopTcp> // for SnoopTcp::checksum
 #include <VDebugNew>
 
-REGISTER_METACLASS(SnoopArpSpoof, SnoopCapture)
+// REGISTER_METACLASS(SnoopArpSpoof, SnoopCapture) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // SnoopArpSpoofSession

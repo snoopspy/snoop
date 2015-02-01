@@ -17,7 +17,7 @@
 // ----------------------------------------------------------------------------
 // SnoopFilterFactory
 // ----------------------------------------------------------------------------
-class SnoopFilterFactory : public VFactory<SnoopFilter>
+class SnoopFilterFactory
 {
 public:
   static void          explicitLink();

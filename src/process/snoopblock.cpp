@@ -1,6 +1,6 @@
 #include <SnoopBlock>
 
-REGISTER_METACLASS(SnoopBlock, SnoopProcess)
+// REGISTER_METACLASS(SnoopBlock, SnoopProcess) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // SnoopBlock

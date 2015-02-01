@@ -7,8 +7,9 @@
 #include <QTreeWidget>
 #include <QMessageBox>
 
-#include <VMetaClass>
+#include <VFactory>
 #include <VLog>
+#include <VXmlDoc>
 
 #include "node.h"
 #include "arrow.h"
@@ -45,7 +46,8 @@ public:
 public: // for treeWidget
   void setTreeWidget(QTreeWidget* treeWidget) { this->treeWidget = treeWidget; }
   void addClass(QString categoryName);
-  void addClass(VMetaClass* parentMetaClass, QTreeWidgetItem* parentItem);
+  // void addClass(VMetaClass* parentMetaClass, QTreeWidgetItem* parentItem); // gilgil temp 2015.02.01
+  void addClass(QString categoryName, QTreeWidgetItem* parentItem);
   void addClasses();
 
 public:

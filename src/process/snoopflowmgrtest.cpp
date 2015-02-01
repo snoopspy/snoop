@@ -1,7 +1,7 @@
 #include <SnoopFlowMgrTest>
 #include <VDebugNew>
 
-REGISTER_METACLASS(SnoopFlowMgrTest, SnoopProcess)
+// REGISTER_METACLASS(SnoopFlowMgrTest, SnoopProcess) // gilgil temp 2015.02.01
 
 // ----------------------------------------------------------------------------
 // SnoopFlowMgrTest
@@ -228,7 +228,7 @@ void SnoopFlowMgrTest::load(VXml xml)
   SnoopProcess::load(xml);
 
   QString flowMgrName = xml.getStr("flowMgr", "");
-  if (flowMgrName != "") flowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findByName(flowMgrName));
+  if (flowMgrName != "") flowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findObjectByName(flowMgrName));
   macFlowEnabled = xml.getBool("macFlowEnabled",     macFlowEnabled);
   macFlowMemSize = (int)xml.getInt("macFlowMemSize", (int)macFlowMemSize);
   ipFlowEnabled = xml.getBool("ipFlowEnabled",       ipFlowEnabled);
@@ -260,7 +260,7 @@ void SnoopFlowMgrTest::optionAddWidget(QLayout* layout)
 {
   SnoopProcess::optionAddWidget(layout);
 
-  QStringList flowMgrList = ((VGraph*)owner)->objectList.findNamesByClassName("SnoopFlowMgr");
+  QStringList flowMgrList = ((VGraph*)owner)->objectList.findObjectNamesByClassName("SnoopFlowMgr");
   VOptionable::addComboBox(layout, "cbxFlowMgr", "FlowMgr", flowMgrList, -1, flowMgr == NULL ? "" : flowMgr->objectName());
   VOptionable::addCheckBox(layout, "chkMacFlowEnabled", "Mac Flow Enabled", macFlowEnabled);
   VOptionable::addLineEdit(layout, "leMacFlowMemSize", "Mac Flow Mem Size", QString::number(macFlowMemSize));
@@ -276,7 +276,7 @@ void SnoopFlowMgrTest::optionSaveDlg(QDialog* dialog)
 {
   SnoopProcess::optionSaveDlg(dialog);
 
-  flowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findByName(dialog->findChild<QComboBox*>("cbxFlowMgr")->currentText()));
+  flowMgr = (SnoopFlowMgr*)(((VGraph*)owner)->objectList.findObjectByName(dialog->findChild<QComboBox*>("cbxFlowMgr")->currentText()));
   macFlowEnabled = dialog->findChild<QCheckBox*>("chkMacFlowEnabled")->checkState() == Qt::Checked;
   macFlowMemSize = (size_t)dialog->findChild<QLineEdit*>("leMacFlowMemSize")->text().toInt();
   ipFlowEnabled  = dialog->findChild<QCheckBox*>("chkIpFlowEnabled")->checkState() == Qt::Checked;
