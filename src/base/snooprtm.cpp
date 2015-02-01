@@ -47,7 +47,7 @@ void SnoopRtmEntry::save(VXml xml)
 int SnoopRtmEntryList::find(Ip dst, Ip mask)
 {
   int i = 0;
-  foreach(const SnoopRtmEntry& entry, *this)
+  foreach (const SnoopRtmEntry& entry, *this)
   {
     if (entry.dst == dst && entry.mask == mask) return i;
   }

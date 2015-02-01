@@ -20,7 +20,7 @@ class SnoopRtmEntry : public VXmlable
 {
 public:
   SnoopRtmEntry();
-  ~SnoopRtmEntry();
+  virtual ~SnoopRtmEntry();
   void clear();
 
 public:
