@@ -122,6 +122,11 @@ void Scene::addClass(QString categoryName, QTreeWidgetItem* parentItem)
     QTreeWidgetItem* childItem = new QTreeWidgetItem(parentItem);
     QString childClassName = mobj->className();
     childItem->setText(0, childClassName);
+    if (childClassName == categoryName)
+    {
+      LOG_FATAL("childClassName is equal to categoryName (%s)", qPrintable(categoryName));
+      return;
+    }
     addClass(childClassName, childItem);
   }
 }
