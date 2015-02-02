@@ -1,6 +1,6 @@
 all: debug release
 
-debug: libsnoop_d libsnoop_test_d libsnoop_gui_d libsnoop_gui_test_ d  
+debug: libsnoop_d libsnoop_test_d libsnoop_gui_d libsnoop_gui_test_d  
 
 release: libsnoop libsnoop_test libsnoop_gui libsnoop_gui_test
 
