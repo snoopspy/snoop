@@ -18,6 +18,8 @@
 // ----------------------------------------------------------------------------
 class SnoopSourcePcap : public SnoopPcap
 {
+  Q_OBJECT
+
 public:
   SnoopSourcePcap(void* owner = NULL);
   virtual ~SnoopSourcePcap();

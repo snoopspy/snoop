@@ -36,6 +36,8 @@ protected:
 // ----------------------------------------------------------------------------
 class SnoopAdapter : public SnoopPcap
 {
+  Q_OBJECT
+
 public:
   SnoopAdapter(void* owner = NULL);
   virtual ~SnoopAdapter();

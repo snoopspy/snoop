@@ -35,8 +35,8 @@ bool Param::parse(QStringList arguments)
 // ----------------------------------------------------------------------------
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
-  ui(new Ui::MainWindow),
-  fileDialog(this)
+  fileDialog(this),
+  ui(new Ui::MainWindow)
 {
   ui->setupUi(this);
   aboutDlg = NULL;
@@ -197,6 +197,7 @@ void MainWindow::runProcess(QString processName)
 void MainWindow::changed(QList<QRectF> region)
 {
   //LOG_DEBUG("changed %d", region.count()); // gilgil temp 2012.07.30
+  Q_UNUSED(region)
   m_changed = true;
   setControl();
   //view->updateScene(region);

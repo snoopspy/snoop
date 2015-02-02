@@ -25,6 +25,8 @@
 // ----------------------------------------------------------------------------
 class SnoopWinDivert : public SnoopCapture
 {
+  Q_OBJECT
+
 public:
   SnoopWinDivert(void* owner = NULL);
   virtual ~SnoopWinDivert();

@@ -19,6 +19,8 @@
 // ----------------------------------------------------------------------------
 class SnoopFile : public SnoopPcap
 {
+  Q_OBJECT
+
 public:
   SnoopFile(void* owner = NULL);
   virtual ~SnoopFile();
