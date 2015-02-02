@@ -39,7 +39,7 @@ class SnoopAdapter : public SnoopPcap
   Q_OBJECT
 
 public:
-  SnoopAdapter(void* owner = NULL);
+  Q_INVOKABLE SnoopAdapter(void* owner = NULL);
   virtual ~SnoopAdapter();
 
 protected:

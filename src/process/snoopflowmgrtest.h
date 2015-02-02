@@ -22,7 +22,7 @@ class SnoopFlowMgrTest : public SnoopProcess
   Q_OBJECT
 
 public:
-  SnoopFlowMgrTest(void* owner = NULL);
+  Q_INVOKABLE SnoopFlowMgrTest(void* owner = NULL);
   virtual ~SnoopFlowMgrTest();
 
 public:

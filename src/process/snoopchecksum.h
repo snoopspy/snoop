@@ -21,7 +21,7 @@ class SnoopChecksum : public SnoopProcess
   Q_OBJECT
 
 public:
-  SnoopChecksum(void* owner = NULL);
+  Q_INVOKABLE SnoopChecksum(void* owner = NULL);
   virtual ~SnoopChecksum();
 
 public:

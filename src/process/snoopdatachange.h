@@ -33,7 +33,7 @@ class SnoopDataChange : public SnoopProcess
   Q_OBJECT
 
 public:
-  SnoopDataChange(void* owner = NULL);
+  Q_INVOKABLE SnoopDataChange(void* owner = NULL);
   virtual ~SnoopDataChange();
 
 protected:

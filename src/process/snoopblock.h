@@ -21,7 +21,7 @@ class SnoopBlock : public SnoopProcess
   Q_OBJECT
 
 public:
-  SnoopBlock(void* owner = NULL);
+  Q_INVOKABLE SnoopBlock(void* owner = NULL);
   virtual ~SnoopBlock();
 
 public:

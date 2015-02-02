@@ -86,7 +86,7 @@ class SnoopDnsChange : public SnoopProcess
   Q_OBJECT
 
 public:
-  SnoopDnsChange(void* owner = NULL);
+  Q_INVOKABLE SnoopDnsChange(void* owner = NULL);
   virtual ~SnoopDnsChange();
 
 public:

@@ -98,7 +98,7 @@ class SnoopFlowMgr : public SnoopProcess
   Q_OBJECT
 
 public:
-  SnoopFlowMgr(void* owner = NULL);
+  Q_INVOKABLE SnoopFlowMgr(void* owner = NULL);
   virtual ~SnoopFlowMgr();
 
 protected:

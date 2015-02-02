@@ -21,7 +21,7 @@
 class SnoopFilter : public VObject, public VOptionable
 {
 public:
-  SnoopFilter(void* owner = NULL);
+  Q_INVOKABLE SnoopFilter(void* owner = NULL);
   virtual ~SnoopFilter();
 
 protected:

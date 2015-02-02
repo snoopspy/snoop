@@ -28,7 +28,7 @@ class SnoopWinDivert : public SnoopCapture
   Q_OBJECT
 
 public:
-  SnoopWinDivert(void* owner = NULL);
+  Q_INVOKABLE SnoopWinDivert(void* owner = NULL);
   virtual ~SnoopWinDivert();
 
 protected:

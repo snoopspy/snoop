@@ -28,7 +28,7 @@ protected:
   pcap_dumper_t* m_pcap_dumper;
 
 public:
-  SnoopDump(void* owner = NULL);
+  Q_INVOKABLE SnoopDump(void* owner = NULL);
   virtual ~SnoopDump();
 
 public:

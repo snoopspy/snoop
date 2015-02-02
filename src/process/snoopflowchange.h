@@ -189,7 +189,7 @@ class SnoopFlowChange : public SnoopProcess
   Q_OBJECT
 
 public:
-  SnoopFlowChange(void* owner = NULL);
+  Q_INVOKABLE SnoopFlowChange(void* owner = NULL);
   virtual ~SnoopFlowChange();
 
 protected:

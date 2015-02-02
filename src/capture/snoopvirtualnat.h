@@ -22,7 +22,7 @@ class SnoopVirtualNat : public SnoopCapture
   Q_OBJECT
 
 public:
-  SnoopVirtualNat(void* owner = NULL);
+  Q_INVOKABLE SnoopVirtualNat(void* owner = NULL);
   virtual ~SnoopVirtualNat();
 
 protected:

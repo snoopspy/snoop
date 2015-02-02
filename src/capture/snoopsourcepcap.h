@@ -21,7 +21,7 @@ class SnoopSourcePcap : public SnoopPcap
   Q_OBJECT
 
 public:
-  SnoopSourcePcap(void* owner = NULL);
+  Q_INVOKABLE SnoopSourcePcap(void* owner = NULL);
   virtual ~SnoopSourcePcap();
 
 public:

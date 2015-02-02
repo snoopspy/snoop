@@ -24,7 +24,7 @@ class SnoopProcess : public VObject, public VOptionable
   Q_OBJECT
 
 public:
-  SnoopProcess(void* owner = NULL);
+  Q_INVOKABLE SnoopProcess(void* owner = NULL);
   virtual ~SnoopProcess();
 
 protected:

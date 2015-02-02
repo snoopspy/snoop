@@ -51,7 +51,7 @@ class SnoopProcessFilter : public SnoopFilter
   Q_OBJECT
 
 public:
-  SnoopProcessFilter(void* owner = NULL);
+  Q_INVOKABLE SnoopProcessFilter(void* owner = NULL);
   virtual ~SnoopProcessFilter();
 
 protected:

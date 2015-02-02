@@ -25,7 +25,7 @@ class SnoopCapture : public VObject, protected VRunnable, public VOptionable
   Q_OBJECT
 
 public:
-  SnoopCapture(void* owner = NULL);
+  Q_INVOKABLE SnoopCapture(void* owner = NULL);
   virtual ~SnoopCapture();
 
 protected:

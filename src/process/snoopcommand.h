@@ -79,7 +79,7 @@ class SnoopCommand : public SnoopProcess
   Q_OBJECT
 
 public:
-  SnoopCommand(void* owner = NULL);
+  Q_INVOKABLE SnoopCommand(void* owner = NULL);
   virtual ~SnoopCommand();
 
 protected:

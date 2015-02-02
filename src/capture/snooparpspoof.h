@@ -151,7 +151,7 @@ class SnoopArpSpoof : public SnoopAdapter
   } IpPacketType;
 
 public:
-  SnoopArpSpoof(void* owner = NULL);
+  Q_INVOKABLE SnoopArpSpoof(void* owner = NULL);
   virtual ~SnoopArpSpoof();
 
 protected:

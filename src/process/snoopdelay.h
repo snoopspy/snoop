@@ -69,7 +69,7 @@ class SnoopDelay : public SnoopProcess
   Q_OBJECT
 
 public:
-  SnoopDelay(void* owner = NULL);
+  Q_INVOKABLE SnoopDelay(void* owner = NULL);
   virtual ~SnoopDelay();
 
 public:

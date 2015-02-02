@@ -22,7 +22,7 @@ class SnoopDataFind : public SnoopProcess
   Q_OBJECT
 
 public:
-  SnoopDataFind(void* owner = NULL);
+  Q_INVOKABLE SnoopDataFind(void* owner = NULL);
   virtual ~SnoopDataFind();
 
 protected:

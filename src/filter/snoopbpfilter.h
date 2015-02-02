@@ -21,7 +21,7 @@ class SnoopBpFilter : public SnoopFilter
   Q_OBJECT
 
 public:
-  SnoopBpFilter(void* owner = NULL);
+  Q_INVOKABLE SnoopBpFilter(void* owner = NULL);
   virtual ~SnoopBpFilter();
 
 protected:

@@ -25,7 +25,7 @@ class SnoopPcap : public SnoopCapture
   Q_OBJECT
 
 public:
-  SnoopPcap(void* owner = NULL);
+  Q_INVOKABLE SnoopPcap(void* owner = NULL);
   virtual ~SnoopPcap();
 
 protected:
