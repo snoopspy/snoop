@@ -116,7 +116,7 @@ bool SnoopRtm::loadFromSystem()
 
   bool persistentMode = false;
   char buf[VBase::BUF_SIZE];
-  char* command = "route -4 print";
+  const char* command = "route -4 print";
 
   FILE* fp = popen(command, "r");
   if (fp == NULL)

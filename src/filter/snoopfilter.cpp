@@ -3,7 +3,7 @@
 // ----------------------------------------------------------------------------
 // SnoopFilter
 // ----------------------------------------------------------------------------
-SnoopFilter::SnoopFilter(void* owner) : VObject(owner)
+SnoopFilter::SnoopFilter(void* owner) : VStateObject(owner)
 {
 }
 

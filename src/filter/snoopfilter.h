@@ -18,7 +18,7 @@
 // ----------------------------------------------------------------------------
 // SnoopFilter
 // ----------------------------------------------------------------------------
-class SnoopFilter : public VObject, public VOptionable
+class SnoopFilter : public VStateObject, public VOptionable
 {
 public:
   Q_INVOKABLE SnoopFilter(void* owner = NULL);

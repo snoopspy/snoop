@@ -53,7 +53,7 @@ public:
 // ----------------------------------------------------------------------------
 // SnoopAutoDetectAdapterItem
 // ----------------------------------------------------------------------------
-class SnoopAutoDetectAdapterItem : public VObject
+class SnoopAutoDetectAdapterItem : public VStateObject
 {
   Q_OBJECT
 

@@ -20,7 +20,7 @@
 // SnoopCapture
 // ----------------------------------------------------------------------------
 /// Base class of all capture classes
-class SnoopCapture : public VObject, protected VRunnable, public VOptionable
+class SnoopCapture : public VStateObject, protected VRunnable, public VOptionable
 {
   Q_OBJECT
 

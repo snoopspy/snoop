@@ -19,7 +19,7 @@
 // SnoopProcess
 // ----------------------------------------------------------------------------
 /// Base class of all process classes
-class SnoopProcess : public VObject, public VOptionable
+class SnoopProcess : public VStateObject, public VOptionable
 {
   Q_OBJECT
 

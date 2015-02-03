@@ -83,7 +83,7 @@ void SnoopInterfaces::initialize()
   char errBuf[PCAP_ERRBUF_SIZE];
 
 #ifdef WIN32
-  int i = pcap_findalldevs_ex("rpcap://", NULL, &allDevs, errBuf);
+  int i = pcap_findalldevs_ex((char*)"rpcap://", NULL, &allDevs, errBuf);
 #endif // WIN32
 #ifdef linux
   int i = pcap_findalldevs(&allDevs, errBuf);
@@ -133,7 +133,7 @@ void SnoopInterfaces::initialize()
   }
   if (res != ERROR_SUCCESS)
   {
-    LOG_ERROR("GetAdaptersInfo return %d(0x%x)", res, res);
+    LOG_ERROR("GetAdaptersInfo return %lu(0x%lx)", res, res);
     return;
   }
 

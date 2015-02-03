@@ -3,7 +3,7 @@
 // ----------------------------------------------------------------------------
 // SnoopProcess
 // ----------------------------------------------------------------------------
-SnoopProcess::SnoopProcess(void* owner) : VObject(owner)
+SnoopProcess::SnoopProcess(void* owner) : VStateObject(owner)
 {
 }
 

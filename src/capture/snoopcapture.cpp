@@ -4,7 +4,7 @@
 // ----------------------------------------------------------------------------
 // SnoopCapture
 // ----------------------------------------------------------------------------
-SnoopCapture::SnoopCapture(void* owner) : VObject(owner)
+SnoopCapture::SnoopCapture(void* owner) : VStateObject(owner)
 {
   enabled   = true;
   autoRead  = true;
@@ -24,7 +24,7 @@ bool SnoopCapture::doOpen()
     //
     // There can be a case that even if thread starts,
     // state remains not VState::Opened(still VState::Opening) state.
-    // So set m_state into stOpened before open thread.
+    // So set m_state into Opened before open thread.
     //
     this->m_state = VState::Opened;
     runThread().open();

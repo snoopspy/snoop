@@ -76,7 +76,7 @@ int SnoopAutoDetectAdapter::detect(QString host)
 // ----------------------------------------------------------------------------
 // SnoopAutoDetectAdapterItem
 // ----------------------------------------------------------------------------
-SnoopAutoDetectAdapterItem::SnoopAutoDetectAdapterItem(void* owner) : VObject(owner)
+SnoopAutoDetectAdapterItem::SnoopAutoDetectAdapterItem(void* owner) : VStateObject(owner)
 {
   adapter.autoRead = true;
   VObject::connect(&adapter, SIGNAL(captured(SnoopPacket*)), this, SLOT(recv(SnoopPacket*)), Qt::DirectConnection);
