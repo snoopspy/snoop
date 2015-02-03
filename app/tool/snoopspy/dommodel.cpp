@@ -50,7 +50,7 @@ DomModel::DomModel(QDomDocument document, QObject *parent)
     : QAbstractItemModel(parent), domDocument(document)
 {
   QDomElement element = document.documentElement();
-  rootItem = new DomItem(element, NULL);
+  rootItem = new DomItem(element, 0);
 }
 //! [0]
 

@@ -7,8 +7,7 @@
 #include <QRectF>
 #include <QPainter>
 
-#include <VObject>
-#include <VLog>
+#include <VStateObject>
 
 #include "arrow.h"
 
@@ -19,7 +18,7 @@ public:
   int type() const { return Type; }
 
 public:
-  Node(VObject* object);
+  Node(VStateObject* object);
   virtual ~Node();
 
 public:
@@ -29,7 +28,7 @@ public:
   void removeArrows();
 
 public:
-  VObject* object; // reference
+  VStateObject* object; // reference
 
 public:
   // virtual QRectF boundingRect() const; //

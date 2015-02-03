@@ -57,7 +57,7 @@ class DomModel : public QAbstractItemModel
 
 public:
     DomModel(QDomDocument document, QObject *parent = 0);
-    ~DomModel();
+    virtual ~DomModel();
 
     QVariant data(const QModelIndex &index, int role) const;
     Qt::ItemFlags flags(const QModelIndex &index) const;

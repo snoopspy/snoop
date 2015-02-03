@@ -3,7 +3,7 @@
 
 #include <VDebugNew>
 
-Node::Node(VObject* object)
+Node::Node(VStateObject* object)
 {
   // LOG_DEBUG("%p scene()=%p", this, this->scene()); // gilgil temp 2012.07.27
   setFlag(QGraphicsItem::ItemIsMovable);

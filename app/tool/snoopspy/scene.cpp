@@ -185,11 +185,11 @@ QString Scene::generateObjectClassName(QString className)
 
 Node* Scene::createNode(QString className, QString name, bool createObject)
 {
-  VObject* object = NULL;
+  VStateObject* object = NULL;
   if (createObject)
   {
     // object = (VObject*)VMetaClassMgr::createByClassName((char*)qPrintable(className)); // gilgil temp 2015.02.01
-    object = dynamic_cast<VObject*>(VFactory::instance().createObjectByClassName(className));
+    object = dynamic_cast<VStateObject*>(VFactory::instance().createObjectByClassName(className));
     if (object == NULL) return NULL;
     if (name == "") name = generateObjectClassName(className);
     object->owner = this->graph;
@@ -276,7 +276,7 @@ bool Scene::loadFromFile(QString fileName, QString& errStr)
         return false;
       }
 
-      VObject* obj = this->graph->objectList.findObjectByName(name);
+      VStateObject* obj = this->graph->objectList.findObjectByName(name);
       if (obj == NULL)
       {
         errStr = QString("can not find object ('%1')").arg(name);
