@@ -11,7 +11,6 @@
 #ifndef __MAIN_H__
 #define __MAIN_H__
 
-#include <VObject>
 #include <VGraph>
 #include <VThread>
 #include <iostream>
@@ -19,7 +18,7 @@
 // ----------------------------------------------------------------------------
 // Main
 // ----------------------------------------------------------------------------
-class Main : public VObject
+class Main : public VStateObject
 {
   Q_OBJECT
 
