@@ -7,7 +7,7 @@ Packet processing C++ library based on Qt.
 # Develop Environment
 
 ## Windows
-* [winpcap](http://www.winpcap.org)
+* [winpcap](https://github.com/snoopspy/winpcap)
 
 ## Linux
 * libpcap-dev : apt-get install libpcap-dev
