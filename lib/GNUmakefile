@@ -49,7 +49,7 @@ libsnoop_gui_test:
 	make clean -f Makefile
 
 clean:
-	echo "clean in make.file"
+	echo "clean in GNUmakefile"
 	rm -rf *.o
 	rm -rf moc_*.*
 	rm -rf Makefile
