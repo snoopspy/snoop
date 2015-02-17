@@ -6,7 +6,7 @@
 
 QT -= gui
 
-include(../../../lib/snoop.pri)
+include(../../../snoop.pri)
 
 TARGET   = sscon
 CONFIG  += console

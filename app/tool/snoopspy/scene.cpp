@@ -83,7 +83,7 @@ void Scene::addClass(QString categoryName)
   }
   */
   VFactory& factory = VFactory::instance();
-  VFactory::VMetaObjectList mobjList = factory.findMetaObjectsByCategoryName(categoryName);
+  VFactory::VMetaObjectList mobjList = factory.getMetaObjectsByCategoryName(categoryName);
   foreach (const QMetaObject* mobj, mobjList)
   {
     QTreeWidgetItem* item = new QTreeWidgetItem(rootItem);
@@ -116,7 +116,7 @@ void Scene::addClass(VMetaClass* parentMetaClass, QTreeWidgetItem* parentItem)
 void Scene::addClass(QString categoryName, QTreeWidgetItem* parentItem)
 {
   VFactory& factory = VFactory::instance();
-  VFactory::VMetaObjectList mobjList = factory.findMetaObjectsByCategoryName(categoryName);
+  VFactory::VMetaObjectList mobjList = factory.getMetaObjectsByCategoryName(categoryName);
   foreach (const QMetaObject* mobj, mobjList)
   {
     QTreeWidgetItem* childItem = new QTreeWidgetItem(parentItem);

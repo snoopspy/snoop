@@ -19,7 +19,7 @@ message($${SNOOP_LIB_NAME}) # gilgil temp 2015.01.20
 #-------------------------------------------------
 # snoop
 #-------------------------------------------------
-SNOOP_PATH  =  $${PWD}/..
+SNOOP_PATH  =  $${PWD}
 INCLUDEPATH += $${SNOOP_PATH}/src
 !CONFIG(SNOOP_LIB_BUILD) {
   gcc:PRE_TARGETDEPS +=  $${SNOOP_PATH}/lib/lib$${SNOOP_LIB_NAME}.a
@@ -47,4 +47,4 @@ linux {
 #-------------------------------------------------
 # vdream
 #-------------------------------------------------
-include(../../../vdream/vdream91/lib/vdream.pri)
+include(../../vdream/vdream/vdream.pri)
