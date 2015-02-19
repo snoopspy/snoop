@@ -31,7 +31,7 @@ INCLUDEPATH += $${SNOOP_PATH}/src
 # pcap
 #-------------------------------------------------
 win32 {
-  WINPCAP_PATH  = $$PWD/../../winpcap
+  WINPCAP_PATH  = $$PWD/../winpcap
   INCLUDEPATH  += $${WINPCAP_PATH}/Include
   contains(QMAKE_TARGET.arch, x86_64) {
     LIBS     += -L$${WINPCAP_PATH}/Lib/x64
