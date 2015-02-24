@@ -1,5 +1,5 @@
-Snoop Component Suite version 9.1
-==================================
+Snoop Component Suite
+=====================
 
 # About
 Packet processing C++ library based on Qt.
